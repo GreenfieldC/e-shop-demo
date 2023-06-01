@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "eshop-demo-255dd": {
+      "hosting": {
+        "e-shop-demo": [
+          "eshop-demo-255dd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "eshop-demo-255dd"
+  }
+}
