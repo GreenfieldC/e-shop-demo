@@ -1,1 +1,10 @@
-<p>product-item works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ product?.name }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="product?.images[1]" />
+  <mat-card-content>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price | currency }}</p>
+  </mat-card-content>
+</mat-card>
