@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FrameComponent } from './frame/frame.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 const components = [FrameComponent];
 const modules = [
@@ -37,7 +38,7 @@ const modules = [
 ];
 
 @NgModule({
-  declarations: [...components, FrameComponent],
+  declarations: [...components, FrameComponent, SearchBarComponent],
   imports: [...modules],
   exports: [...modules, ...components],
 })
