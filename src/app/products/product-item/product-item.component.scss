@@ -1,0 +1,16 @@
+.image-container {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    position: center;
+    margin-bottom: 20px;
+    zoom: 1.2;
+
+    &:hover {
+      zoom: 0.6;
+    }
+  }
+}
