@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  baseUrl = 'https://api.escuelajs.co/api/v1/';
+  baseUrl = 'https://fakestoreapi.com/products';
 
   constructor() {}
 
@@ -29,7 +29,7 @@ export class ApiService {
    * @returns {json}
    */
   get getProducts(): Observable<any> {
-    const productsUrl = this.baseUrl + 'products';
+    const productsUrl = this.baseUrl;
     return this.fetchData(productsUrl);
   }
 

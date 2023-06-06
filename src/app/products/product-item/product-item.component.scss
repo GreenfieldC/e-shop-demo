@@ -1,16 +1,13 @@
 .image-container {
+  overflow: hidden;
+  background-color: white;
   width: 300px;
   height: 300px;
-  overflow: hidden;
 
-  img {
-    object-fit: cover;
-    position: center;
-    margin-bottom: 20px;
-    zoom: 1.2;
-
-    &:hover {
-      zoom: 0.6;
-    }
+  .product-image {
+    width: 400px;
+    height: 400px;
+    object-fit: scale-down;
+    object-position: 50% 50%;
   }
 }
