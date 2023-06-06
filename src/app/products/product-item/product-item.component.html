@@ -1,12 +1,17 @@
-<mat-card class="product-card">
-  <mat-card-header>
-    <mat-card-title>{{ product?.name }}</mat-card-title>
-  </mat-card-header>
-  <div class="image-container">
-    <img class="product-image" [src]="product?.image" />
-  </div>
+<mat-card class="card">
+	<mat-card-header>
+		<mat-card-title>{{ product?.name }}</mat-card-title>
+	</mat-card-header>
+	<div class="card__image-container">
+		<img class="card__image-container__image" [src]="product?.image" />
+		<div class="card__image-container__overlay">
+			<button mat-raised-button aria-label="Expand image">
+				<span>Quick View</span>
+			</button>
+		</div>
+	</div>
 
-  <mat-card-content>
-    <span>{{ product.price | currency }}</span>
-  </mat-card-content>
+	<mat-card-content class="card__content">
+		<span class="card__content__title">{{ product.title }}</span>
+	</mat-card-content>
 </mat-card>

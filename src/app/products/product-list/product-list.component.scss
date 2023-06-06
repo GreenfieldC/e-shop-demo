@@ -1,4 +1,8 @@
 .products-list {
-  flex-wrap: wrap;
-  width: 100vw;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	padding: 16px;
+	overflow: hidden;
 }
