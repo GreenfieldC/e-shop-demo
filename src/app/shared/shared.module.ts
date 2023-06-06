@@ -20,26 +20,26 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FrameComponent } from './frame/frame.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
-const components = [FrameComponent];
+const components = [FrameComponent, SearchBarComponent];
 const modules = [
-  CommonModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatIconModule,
-  LayoutModule,
-  MatSidenavModule,
-  MatListModule,
-  MatMenuModule,
-  RouterModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatSnackBarModule,
+	CommonModule,
+	MatButtonModule,
+	MatToolbarModule,
+	MatIconModule,
+	LayoutModule,
+	MatSidenavModule,
+	MatListModule,
+	MatMenuModule,
+	RouterModule,
+	MatCardModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatSnackBarModule,
 ];
 
 @NgModule({
-  declarations: [...components, FrameComponent, SearchBarComponent],
-  imports: [...modules],
-  exports: [...modules, ...components],
+	declarations: [...components],
+	imports: [...modules],
+	exports: [...modules, ...components],
 })
 export class SharedModule {}
