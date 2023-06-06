@@ -1,7 +1,4 @@
 <mat-card class="card">
-	<mat-card-header>
-		<mat-card-title>{{ product?.name }}</mat-card-title>
-	</mat-card-header>
 	<div class="card__image-container">
 		<img class="card__image-container__image" [src]="product?.image" />
 		<div class="card__image-container__overlay">
@@ -13,5 +10,6 @@
 
 	<mat-card-content class="card__content">
 		<span class="card__content__title">{{ product.title }}</span>
+		<span class="card__content__price">{{ product.price | currency }}</span>
 	</mat-card-content>
 </mat-card>
