@@ -4,7 +4,12 @@
     display: flex;
     position: relative;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+
+
+    &--logo {
+        width: 80px;
+    }
 
     &--title {
         color: white;
@@ -13,10 +18,7 @@
     }
 
     &--icon-box{
-        position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
+       
         display: flex;
         gap: 2rem;
         color: white;
@@ -34,10 +36,17 @@
             .dropdown-menu {
                 position: absolute;
                 top: calc(100% + 1rem);
+                right: 0;
+                left: 0;
                 padding: .5rem;
                 background-color: white;
                 z-index: 2; 
                 color: black;
+                box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: .4);
+                div {
+                    margin-top: .5rem;
+                    cursor: pointer;
+                }
             }
         }
 
