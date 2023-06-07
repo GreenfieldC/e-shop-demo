@@ -9,7 +9,7 @@
 			<mat-icon>euro</mat-icon>
 			<span>{{selectedCurrency}}</span>
 			<mat-icon class="dropdown-arrow" (click)="dropDownOpen = !dropDownOpen">expand_more</mat-icon>
-            <div *ngIf="dropDownOpen" class="dropdown-menu">
+            <div *ngIf="dropDownOpen" class="dropdown-menu" #dropdown>
                 <div (click)="selectedCurrency = 'EUR'">EUR</div>
                 <div (click)="selectedCurrency = 'USD'">USD</div>
                 <div (click)="selectedCurrency = 'GBP'">GBP</div>
