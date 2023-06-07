@@ -26,6 +26,11 @@
             align-items: center;
             gap: .5rem;
             position: relative;
+            
+            .dropdown-arrow {
+                cursor: pointer;
+            }
+
             .dropdown-menu {
                 position: absolute;
                 top: calc(100% + 1rem);
@@ -39,6 +44,13 @@
         .icon-box--menuitem-wrapper {
             display: flex;
             gap: .5rem;
+            mat-icon {
+                transition: 225ms all ease-in-out;
+                cursor: pointer;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
         }
     }
 
