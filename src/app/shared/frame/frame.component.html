@@ -1,4 +1,25 @@
 <div class="header">
-    <h1 class="header-title">Greenfield Traders</h1>
-    <mat-icon>add</mat-icon>
+	<h1 class="header--title">Greenfield Traders</h1>
+
+	<div class="header--icon-box">
+		<div class="icon-box--currency-wrapper">
+			<mat-icon>euro</mat-icon>
+			<span>{{selectedCurrency}}</span>
+			<mat-icon (click)="dropDownOpen = !dropDownOpen">expand_more</mat-icon>
+            <div *ngIf="dropDownOpen" class="dropdown-menu">
+                <div (click)="selectedCurrency = 'EUR'">EUR</div>
+                <div (click)="selectedCurrency = 'USD'">USD</div>
+                <div (click)="selectedCurrency = 'GBP'">GBP</div>
+                <h1>I work</h1>
+            </div>
+		</div>
+		<div class="icon-box--menuitem-wrapper">
+			<mat-icon>person</mat-icon>
+			<mat-icon>favorite</mat-icon>
+			<mat-icon>shopping_bag</mat-icon>
+			<mat-icon>search</mat-icon>
+		</div>
+	</div>
+
+   
 </div>

@@ -1,14 +1,45 @@
 .header {
-    height: 15vh;
+    padding: 2rem;
     background-color: var(--primary-color);
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
 
-    &-title {
+    &--title {
         color: white;
         margin: 0;
+    
+    }
+
+    &--icon-box{
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        gap: 2rem;
+        color: white;
+
+        .icon-box--currency-wrapper {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            position: relative;
+            .dropdown-menu {
+                position: absolute;
+                top: calc(100% + 1rem);
+                padding: .5rem;
+                background-color: white;
+                z-index: 2; 
+                color: black;
+            }
+        }
+
+        .icon-box--menuitem-wrapper {
+            display: flex;
+            gap: .5rem;
+        }
     }
 
 }
