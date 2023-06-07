@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FrameComponent } from './frame/frame.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
@@ -35,6 +36,7 @@ const modules = [
 	MatFormFieldModule,
 	MatInputModule,
 	MatSnackBarModule,
+	MatDialogModule,
 ];
 
 @NgModule({
