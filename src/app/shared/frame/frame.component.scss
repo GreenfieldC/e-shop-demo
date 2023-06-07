@@ -1,0 +1,17 @@
+.header {
+    height: 15vh;
+    background-color: var(--primary-color);
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    &-title {
+        color: white;
+        margin: 0;
+    }
+
+}
+
+
+

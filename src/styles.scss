@@ -1,13 +1,17 @@
+@import 'variables.scss';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
 html,
 body {
 	height: 100%;
 }
 
 * {
-	font-family: 'Work Sans' !important;
+	font-family: 'Work Sans';
 }
 
 body {
 	margin: 0;
-	font-family: 'Work Sans', 'Roboto', 'Helvetica Neue';
 }
+
+
