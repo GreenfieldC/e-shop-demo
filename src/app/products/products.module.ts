@@ -7,7 +7,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
-  declarations: [ProductItemComponent, ProductListComponent],
-  imports: [CommonModule, ProductsRoutingModule, SharedModule],
+	declarations: [ProductItemComponent, ProductListComponent],
+	imports: [CommonModule, SharedModule, ProductsRoutingModule],
 })
 export class ProductsModule {}
