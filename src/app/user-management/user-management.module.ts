@@ -7,10 +7,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
 	declarations: [LoginPageComponent],
-	imports: [
-		CommonModule,
-		SharedModule,
-		UserManagementRoutingModule,
-	],
+	imports: [CommonModule, SharedModule, UserManagementRoutingModule],
 })
 export class UserManagementModule {}
