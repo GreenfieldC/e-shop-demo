@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
 
 /* FireBase */
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -20,9 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
+		SharedModule,
 		BrowserModule,
 		BrowserAnimationsModule,
-		SharedModule,
 		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		provideFirebaseApp(() => initializeApp(environment.firebase)),
