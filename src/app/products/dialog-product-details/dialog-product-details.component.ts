@@ -12,7 +12,11 @@ export class DialogProductDetailsComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
 
-	// ngOnInit() {
-	// 	console.log(this.data);
-	// }
+	ngOnInit() {
+		console.log(this.data);
+	}
+
+	onNoClick() {
+		this.dialog.closeAll();
+	}
 }
