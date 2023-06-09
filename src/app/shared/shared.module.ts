@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FrameComponent } from './frame/frame.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const components = [FrameComponent, SearchBarComponent];
 const modules = [
@@ -35,6 +36,7 @@ const modules = [
 	MatFormFieldModule,
 	MatInputModule,
 	MatSnackBarModule,
+	MatDialogModule,
 ];
 
 @NgModule({

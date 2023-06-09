@@ -1,19 +1,22 @@
 <div class="header">
-
-	<img class="header--logo" src="assets/img/logo.png" alt="logo">
+	<img class="header--logo" src="assets/img/logo.png" alt="logo" />
 
 	<h1 class="header--title">Greenfield Traders</h1>
 
 	<div class="header--icon-box">
 		<div class="icon-box--currency-wrapper">
 			<mat-icon>euro</mat-icon>
-			<span>{{selectedCurrency}}</span>
-			<mat-icon class="dropdown-arrow" (click)="dropDownOpen = !dropDownOpen">expand_more</mat-icon>
-            <div *ngIf="dropDownOpen" class="dropdown-menu" #dropdown>
-                <div (click)="selectedCurrency = 'EUR'">EUR</div>
-                <div (click)="selectedCurrency = 'USD'">USD</div>
-                <div (click)="selectedCurrency = 'GBP'">GBP</div>
-            </div>
+			<span>{{ selectedCurrency }}</span>
+			<mat-icon
+				class="dropdown-arrow"
+				(click)="dropDownOpen = !dropDownOpen"
+				>expand_more</mat-icon
+			>
+			<div *ngIf="dropDownOpen" class="dropdown-menu" #dropdown>
+				<div (click)="selectedCurrency = 'EUR'">EUR</div>
+				<div (click)="selectedCurrency = 'USD'">USD</div>
+				<div (click)="selectedCurrency = 'GBP'">GBP</div>
+			</div>
 		</div>
 		<div class="icon-box--menuitem-wrapper">
 			<mat-icon>person</mat-icon>
@@ -22,6 +25,4 @@
 			<mat-icon>search</mat-icon>
 		</div>
 	</div>
-
-   
 </div>
