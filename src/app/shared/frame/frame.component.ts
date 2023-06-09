@@ -12,6 +12,7 @@ export class FrameComponent {
 	dropDownOpen: boolean = false;
 	selectedCurrency: string = 'EUR';
 	clickCounter: number = 0;
+	shoppingCartOpen: boolean = false;
 
 	constructor(
 		public dialog: MatDialog,

@@ -70,13 +70,26 @@
                 .bag {
                     top: calc(100% + 1rem);
                     right: 0;
-                    width: 200px;
+                    min-width: 300px;
                     padding: .5rem;
                     background-color: white;
                     z-index: 2; 
                     color: black;
                     box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: .4);
-                    
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    .product-preview-container {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        
+                        img {
+                            width: 50px;
+                        }
+                    }
                 }
             }
             
