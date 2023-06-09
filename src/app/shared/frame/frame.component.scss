@@ -71,7 +71,7 @@
                     top: calc(100% + 1rem);
                     right: 0;
                     min-width: 300px;
-                    padding: .5rem;
+                    padding: 1rem;
                     background-color: white;
                     z-index: 2; 
                     color: black;
@@ -90,6 +90,34 @@
                         
                         img {
                             width: 50px;
+                        }
+                    }
+
+                    .checkout-row {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        margin-top: 2rem;
+                        
+                        span {
+                            white-space: nowrap;
+                        }
+
+                        button {
+                            color: white;
+                            background-color: var(--accent-color);
+                            font-size: 1rem;
+                            border: none;
+                            border-radius: .5rem;
+                            padding: .5rem;
+                            white-space: nowrap;
+                            box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: .2);
+                            cursor: pointer;
+                            transition: 225ms all ease-in-out;
+
+                            &:hover {   
+                                background-color: var(--primary-color);
+                            }
                         }
                     }
                 }
