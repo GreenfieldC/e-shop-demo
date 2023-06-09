@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserManagementModule } from './user-management/user-management.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		AngularFireDatabaseModule,
 		AngularFirestoreModule,
 		AngularFireStorageModule,
+		UserManagementModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
