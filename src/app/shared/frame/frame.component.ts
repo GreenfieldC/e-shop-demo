@@ -1,6 +1,7 @@
 import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
+import { CurrencyService } from '../services/selext-currency.service';
 
 @Component({
 	selector: 'app-frame',
@@ -12,7 +13,15 @@ export class FrameComponent {
 	selectedCurrency: string = 'EUR';
 	clickCounter: number = 0;
 
-	constructor(public dialog: MatDialog) {}
+	constructor(
+		public dialog: MatDialog,
+		private currencyService: CurrencyService
+	) {}
+
+	onCurrencySelected(currency: string): void {
+		this.currencyService.setCurrency(currency);
+		this.selectedCurrency = currency;
+	}
 
 	@ViewChild('dropdown') el: any;
 	// Close the dropdown menu when a user clicks outside of it
