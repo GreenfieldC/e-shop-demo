@@ -1,4 +1,6 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 
 @Component({
 	selector: 'app-frame',
@@ -9,6 +11,8 @@ export class FrameComponent {
 	dropDownOpen: boolean = false;
 	selectedCurrency: string = 'EUR';
 	clickCounter: number = 0;
+
+	constructor(public dialog: MatDialog) {}
 
 	shoppingCartOpen: boolean = false;
 
@@ -36,5 +40,13 @@ export class FrameComponent {
 				this.clickCounter = 0;
 			}
 		}
+	}
+
+	openLoginDialog(): void {
+		const dialogRef = this.dialog.open(LoginPageComponent);
+
+		dialogRef.afterClosed().subscribe((result) => {
+			console.log('The dialog was closed');
+		});
 	}
 }
