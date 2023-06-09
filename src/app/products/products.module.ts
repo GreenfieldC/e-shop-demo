@@ -6,12 +6,14 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { DialogProductDetailsComponent } from './dialog-product-details/dialog-product-details.component';
 
 @NgModule({
 	declarations: [
 		ProductItemComponent,
 		ProductListComponent,
 		ProductDetailsComponent,
+		DialogProductDetailsComponent,
 	],
 	imports: [CommonModule, SharedModule, ProductsRoutingModule],
 })

@@ -30,6 +30,9 @@
 				<mat-icon (click)="shoppingCartOpen = !shoppingCartOpen"
 					>shopping_bag</mat-icon
 				>
+				<div class="quantity-indicator" (click)="shoppingCartOpen = !shoppingCartOpen">
+					0
+				</div>
 				<div class="popup-box bag" *ngIf="shoppingCartOpen">
 					<h2>Shopping Cart</h2>
 					<div class="product-preview-container">

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <div class="product-wrapper">
+        <img [src]="data.image" alt="product-image">
+        <div>{{data.description}}</div>
+    </div>
+  
+  <span>{{data.price}}</span>  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">X</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Add to basket</button>
+</div>

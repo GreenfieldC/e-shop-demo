@@ -1,0 +1,13 @@
+.product-wrapper {
+    display: flex;
+    gap: 2rem;
+
+    img {
+        width: 200px;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+}
