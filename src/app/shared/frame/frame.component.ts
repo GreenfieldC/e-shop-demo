@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'app-frame',
