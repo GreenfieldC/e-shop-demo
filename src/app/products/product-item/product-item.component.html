@@ -3,11 +3,11 @@
 		<img class="card__image-container__image" [src]="product?.image" />
 		<div class="card__image-container__overlay">
 			<button mat-raised-button aria-label="Expand image">
-				<span>Quick View</span>
+				<span>Product View</span>
 			</button>
 		</div>
 	</div>
-
+ 
 	<mat-card-content class="card__content">
 		<span class="card__content__title">{{ product.title }}</span>
 		<span class="card__content__price">{{ product.price | currency }}</span>

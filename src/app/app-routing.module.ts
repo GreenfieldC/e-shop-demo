@@ -10,10 +10,6 @@ const routes: Routes = [
 			import('./products/products.module').then((m) => m.ProductsModule), // Lazy load module
 	},
 	{
-		path: 'shopping-basket',
-		component: ProductDetailsComponent,
-	},
-	{
 		path: 'login',
 		component: LoginPageComponent,
 	},
