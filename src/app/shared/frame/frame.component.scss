@@ -50,16 +50,36 @@
             }
         }
 
-        .icon-box--menuitem-wrapper {
+        .icon-box--menuitem-container {
             display: flex;
             gap: .5rem;
-            mat-icon {
-                transition: 225ms all ease-in-out;
-                cursor: pointer;
-                &:hover {
-                    transform: scale(1.1);
+
+            .icon-wrapper {
+                position: relative;
+                mat-icon {
+                    transition: 225ms all ease-in-out;
+                    cursor: pointer;
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+                .popup-box {
+                    position: absolute;
+                }
+
+                .bag {
+                    top: calc(100% + 1rem);
+                    right: 0;
+                    width: 200px;
+                    padding: .5rem;
+                    background-color: white;
+                    z-index: 2; 
+                    color: black;
+                    box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: .4);
+                    
                 }
             }
+            
         }
     }
 

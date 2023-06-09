@@ -18,11 +18,19 @@
 				<div (click)="selectedCurrency = 'GBP'">GBP</div>
 			</div>
 		</div>
-		<div class="icon-box--menuitem-wrapper">
-			<mat-icon>person</mat-icon>
-			<mat-icon>favorite</mat-icon>
-			<mat-icon>shopping_bag</mat-icon>
-			<mat-icon>search</mat-icon>
+		<div class="icon-box--menuitem-container">
+			<div class="icon-wrapper">
+				<mat-icon>person</mat-icon>
+				<div class="popup-box"></div>
+			</div>
+			<div class="icon-wrapper">
+				<mat-icon>favorite</mat-icon>
+			</div>
+			<div class="icon-wrapper">
+				<mat-icon>shopping_bag</mat-icon>
+				<div class="popup-box bag"></div>
+			</div>
+			<div class="icon-wrapper"><mat-icon>search</mat-icon></div>
 		</div>
 	</div>
 </div>
