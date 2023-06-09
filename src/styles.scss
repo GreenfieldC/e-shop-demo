@@ -14,4 +14,8 @@ body {
 	margin: 0;
 }
 
-
+.mdc-button__label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

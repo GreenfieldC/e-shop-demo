@@ -1,4 +1,109 @@
-<mat-card>
+<div *ngIf="!(afAuth.authState | async)">
+	<h1>Login</h1>
+	<button mat-raised-button appGoogleSignin>
+		<img src="./../../../assets/icon/google--logo.png" alt="" />
+		GoogleLogin
+	</button>
+</div>
 
-    I work I work I work
+<div *ngIf="afAuth.authState | async as user">
+	<h1>Welcome {{ user.displayName }}!</h1>
+	<button mat-raised-button (click)="afAuth.signOut()">Logout</button>
+</div>
+
+<mat-card>
+	<!-- SignUp -->
+	<div *ngIf="isSignup">
+		<h3>Create Account</h3>
+
+		<button mat-stroked-button (click)="changeType('login')">
+			Returning user?
+		</button>
+	</div>
+
+	<!-- Login -->
+	<div *ngIf="isLogin">
+		<h3>Sign In</h3>
+		<button size="small" mat-stroked-button (click)="changeType('signup')">
+			New user?
+		</button>
+	</div>
+
+	<!-- Password Reset -->
+	<div *ngIf="isPasswordReset">
+		<h3>Reset Password</h3>
+		<button size="small" mat-stroked-button (click)="changeType('reset')">
+			Return to Login
+		</button>
+	</div>
+
+	<!-- Form -->
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<!--Email -->
+		<mat-form-field [color]="email!.valid ? 'primary' : 'warn'">
+			<input
+				matInput
+				formControlName="email"
+				placeholder="Email"
+				type="email"
+				autocomplete="off"
+			/>
+			<mat-error *ngIf="email!.invalid && email!.dirty">
+				You must enter a valid email address
+			</mat-error>
+		</mat-form-field>
+
+		<!-- Password -->
+		<mat-form-field
+			*ngIf="!isPasswordReset"
+			[color]="password!.valid ? 'primary' : 'warn'"
+		>
+			<input
+				matInput
+				formControlName="password"
+				placeholder="Password"
+				type="password"
+				autocomplete="off"
+			/>
+			<mat-error *ngIf="password!.invalid && password!.dirty">
+				Password must be at least 6 characters long
+			</mat-error>
+		</mat-form-field>
+
+		<!-- PasswordDoesMatch -->
+		<mat-form-field
+			*ngIf="isSignup"
+			[color]="passwordDoesMatch ? 'primary' : 'warn'"
+		>
+			<input
+				matInput
+				formControlName="passwordDoesMatch"
+				placeholder="Password"
+				type="password"
+				autocomplete="off"
+			/>
+			<mat-error *ngIf="passwordConfirm!.dirty && !passwordDoesMatch">
+				Passwords do not match
+			</mat-error>
+		</mat-form-field>
+
+		<button
+			mat-raised-button
+			color="accent"
+			type="submit"
+			[disabled]="form.invalid || !passwordDoesMatch || loading"
+		>
+			Submit
+		</button>
+	</form>
+
+	<button
+		*ngIf="isPasswordReset"
+		mat-raised-button
+		color="accent"
+		type="submit"
+		[disabled]="loading"
+	>
+		Send Password Reset Email
+	</button>
 </mat-card>
