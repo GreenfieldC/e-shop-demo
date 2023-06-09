@@ -1,6 +1,8 @@
 import { Component, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 
 @Component({
 	selector: 'app-product-list',
@@ -10,12 +12,17 @@ import { ApiService } from 'src/app/shared/services/api.service';
 export class ProductListComponent {
 	products$: Observable<any>;
 
-	constructor(private apiService: ApiService) {
+	constructor(private apiService: ApiService, private dialog: MatDialog) {
 		this.products$ = this.apiService.getProducts;
 		this.apiService.getProducts.subscribe((data) => {
 			console.log(data);
 		});
 	}
 
-	openDetailView(product: any) {}
+	openDetailView(product: any) {
+		this.dialog.open(DialogProductDetailsComponent, {
+			height: '60vh',
+			width: '80vw',
+		});
+	}
 }
