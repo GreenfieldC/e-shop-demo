@@ -121,6 +121,20 @@
                         }
                     }
                 }
+
+                .quantity-indicator {
+                    position: absolute;
+                    width: 1.1rem;
+                    height: 1.1rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    background-color: var(--accent-color);
+                    bottom: -.3rem;
+                    right: -.2rem;
+                    cursor: pointer;
+                }
             }
             
         }
