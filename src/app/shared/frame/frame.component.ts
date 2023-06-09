@@ -10,6 +10,8 @@ export class FrameComponent {
 	selectedCurrency: string = 'EUR';
 	clickCounter: number = 0;
 
+	shoppingCartOpen: boolean = false;
+
 	@ViewChild('dropdown') el: any;
 	// Close the dropdown menu when a user clicks outside of it
 	@HostListener('document:click', ['$event'])
