@@ -11,10 +11,9 @@ export class FrameComponent {
 	dropDownOpen: boolean = false;
 	selectedCurrency: string = 'EUR';
 	clickCounter: number = 0;
+	shoppingCartOpen: boolean = false;
 
 	constructor(public dialog: MatDialog) {}
-
-	shoppingCartOpen: boolean = false;
 
 	@ViewChild('dropdown') el: any;
 	// Close the dropdown menu when a user clicks outside of it
