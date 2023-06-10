@@ -12,9 +12,10 @@ export class LoginPageComponent {
 
 	type: 'login' | 'signup' | 'reset' = 'signup';
 	loading = false;
+
 	serverMessage: any;
 
-	constructor(private fb: FormBuilder, public afAuth: AngularFireAuth) {}
+	constructor(public afAuth: AngularFireAuth, private fb: FormBuilder) {}
 
 	ngOnInit() {
 		this.form = this.fb.group({
@@ -24,7 +25,7 @@ export class LoginPageComponent {
 		});
 	}
 
-	changeType(val: 'login' | 'signup' | 'reset') {
+	changeType(val: any) {
 		this.type = val;
 	}
 
@@ -43,7 +44,6 @@ export class LoginPageComponent {
 	get email() {
 		return this.form.get('email');
 	}
-
 	get password() {
 		return this.form.get('password');
 	}
@@ -56,9 +56,38 @@ export class LoginPageComponent {
 		if (this.type !== 'signup') {
 			return true;
 		} else {
-			return this.password?.value === this.passwordConfirm?.value;
+			return this.password!.value === this.passwordConfirm!.value;
 		}
 	}
 
-	async onSubmit() {}
+	async onSubmit() {
+		this.loading = true;
+
+		const email = this.email!.value;
+		const password = this.password!.value;
+
+		try {
+			if (this.isLogin) {
+				await this.afAuth.signInWithEmailAndPassword(email, password);
+			}
+			if (this.isSignup) {
+				await this.afAuth.createUserWithEmailAndPassword(
+					email,
+					password
+				);
+			}
+			if (this.isPasswordReset) {
+				await this.afAuth.sendPasswordResetEmail(email);
+				this.serverMessage = 'Check your email';
+			}
+		} catch (err) {
+			this.serverMessage = err;
+		}
+
+		this.loading = false;
+	}
+
+	logout() {
+		this.afAuth.signOut();
+	}
 }
