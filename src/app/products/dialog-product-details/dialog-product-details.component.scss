@@ -1,34 +1,88 @@
-.product-wrapper {
-    display: flex;
-    align-items: flex-start;
-    column-gap: 2rem;
-    padding: 1rem;
+.product-container {
+	display: flex;
+	align-items: flex-start;
+	column-gap: 3rem;
+	padding: 1rem;
 
-    img {
-        width: 200px;
-    }
+	img {
+		width: 200px;
+	}
 
-    div {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+	.product-detail-container {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+        
+		.subheading {
+			margin-bottom: 1rem;
+			color: var(--secondary-color);
+			font-size: 1.2rem;
+		}
 
-        .subheading {
-            margin-bottom: 1rem;
-            color: lightgray;
-            font-size: 1.2rem;
-        }
-    }
+		.rating-container {
+			display: flex;
+			margin-top: 1rem;
+
+			span {
+				margin-left: 1rem;
+			}
+		}
+
+		.size-selection-container {
+			display: flex;
+			flex-direction: column;
+			row-gap: 1rem;
+			margin-top: 2rem;
+
+            .sizes {
+                color: var(--secondary-color);
+            }
+
+			.size-box-wrapper {
+				display: flex;
+				gap: 0.5rem;
+
+				div {
+					border: 1px solid gray;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					color: gray;
+					width: 40px;
+					height: 40px;
+                    cursor: pointer;
+				}
+			}
+
+			button {
+				color: white;
+				background-color: var(--accent-color);
+				font-size: 1rem;
+				border: none;
+				border-radius: 0.5rem;
+				padding-top: .8rem;
+				padding-bottom: .8rem;
+				white-space: nowrap;
+				box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+				cursor: pointer;
+				transition: 225ms all ease-in-out;
+                max-width: 50%;
+				&:hover {
+					background-color: var(--primary-color);
+				}
+			}
+		}
+	}
 }
 
 .close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-    transition: 225ms all ease-in-out;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	cursor: pointer;
+	transition: 225ms all ease-in-out;
 
-    &:hover {
-        transform: scale(1.2);
-    }
+	&:hover {
+		transform: scale(1.2);
+	}
 }

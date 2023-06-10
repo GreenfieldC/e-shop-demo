@@ -21,8 +21,6 @@ export class ProductListComponent {
 
 	openDetailView(product: any) {
 		this.dialog.open(DialogProductDetailsComponent, {
-			height: '60vh',
-			width: '80vw',
 			data: product,
 		});
 	}

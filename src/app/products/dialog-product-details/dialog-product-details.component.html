@@ -1,11 +1,33 @@
 <div mat-dialog-content>
-	<div class="product-wrapper">
+	<div class="product-container">
 		<img [src]="data.image" alt="product-image" />
-		<div>
-			<h1>{{ data.title }}</h1>
+		<div class="product-detail-container">
+			<h1 class="main-heading">{{ data.title }}</h1>
             <span class="subheading">Greenfield Traders</span>
 			<span> {{ data.description }} </span>
-
+            <div class="rating-container">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <span>(no reviews)</span>
+            </div>
+            <div class="size-selection-container">
+                <span class="sizes">Sizes</span>
+                <div class="size-box-wrapper">
+                    <div>2XS</div>
+                    <div>XS</div>
+                    <div>S</div>
+                    <div>M</div>
+                    <div>L</div>
+                    <div>XL</div>
+                    <div>2XL</div>
+                    <div>3XL</div>
+                    <div>4XL</div>
+                </div>
+                <button>Add to cart</button>
+            </div>
 		</div>
 	</div>
     
