@@ -20,7 +20,11 @@
 	<div *ngIf="isSignup">
 		<h3>Create Account</h3>
 
-		<button mat-stroked-button (click)="changeType('login')">
+		<button
+			class="card__button-option"
+			mat-stroked-button
+			(click)="changeType('login')"
+		>
 			Returning user?
 		</button>
 	</div>
@@ -28,7 +32,12 @@
 	<!-- Login -->
 	<div *ngIf="isLogin">
 		<h3>Sign In</h3>
-		<button size="small" mat-stroked-button (click)="changeType('signup')">
+		<button
+			class="card__button-option"
+			size="small"
+			mat-stroked-button
+			(click)="changeType('signup')"
+		>
 			New user?
 		</button>
 	</div>
