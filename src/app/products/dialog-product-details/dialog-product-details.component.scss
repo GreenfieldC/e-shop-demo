@@ -1,6 +1,8 @@
 .product-wrapper {
     display: flex;
-    gap: 2rem;
+    align-items: flex-start;
+    column-gap: 2rem;
+    padding: 1rem;
 
     img {
         width: 200px;
@@ -8,6 +10,25 @@
 
     div {
         display: flex;
-        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .subheading {
+            margin-bottom: 1rem;
+            color: lightgray;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    transition: 225ms all ease-in-out;
+
+    &:hover {
+        transform: scale(1.2);
     }
 }
