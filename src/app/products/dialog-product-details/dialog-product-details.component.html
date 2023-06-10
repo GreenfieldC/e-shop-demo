@@ -4,6 +4,7 @@
 		<div class="product-detail-container">
 			<h1 class="main-heading">{{ data.title }}</h1>
             <span class="subheading">Greenfield Traders</span>
+            <span class="price">{{data.price }}$</span>
 			<span> {{ data.description }} </span>
             <div class="rating-container">
                 <mat-icon>star</mat-icon>
@@ -27,6 +28,10 @@
                     <div>4XL</div>
                 </div>
                 <button>Add to cart</button>
+                <div class="shipping-option-container">
+                    <mat-icon>local_shipping</mat-icon>
+                    <span>Free shipping above 250$</span>
+                </div>
             </div>
 		</div>
 	</div>

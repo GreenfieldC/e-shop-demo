@@ -13,6 +13,10 @@
 		justify-content: center;
 		flex-direction: column;
         
+        .price {
+            margin-bottom: 1rem;
+        }
+
 		.subheading {
 			margin-bottom: 1rem;
 			color: var(--secondary-color);
@@ -71,6 +75,12 @@
 					background-color: var(--primary-color);
 				}
 			}
+
+            .shipping-option-container {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
 		}
 	}
 }
