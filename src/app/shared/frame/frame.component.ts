@@ -2,6 +2,7 @@ import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 import { CurrencyService } from '../services/selext-currency.service';
+import { ShoppingBasketService } from '../services/shopping-basket.service';
 
 @Component({
 	selector: 'app-frame',
@@ -16,7 +17,8 @@ export class FrameComponent {
 
 	constructor(
 		public dialog: MatDialog,
-		private currencyService: CurrencyService
+		private currencyService: CurrencyService,
+		public shoppingBasketService: ShoppingBasketService
 	) {}
 
 	onCurrencySelected(currency: string): void {

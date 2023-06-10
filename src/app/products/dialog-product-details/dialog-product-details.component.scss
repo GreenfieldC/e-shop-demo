@@ -76,6 +76,11 @@
 				}
 			}
 
+			.success {
+				background-color: var(--secondary-color);
+				width: 250px;
+			}
+
             .shipping-option-container {
                 display: flex;
                 align-items: center;

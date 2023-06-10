@@ -27,7 +27,9 @@
                     <div>3XL</div>
                     <div>4XL</div>
                 </div>
-                <button>Add to cart</button>
+                <button (click)="addToBasket()" *ngIf="!orderPlaced">Add to cart</button>
+                <button *ngIf="orderPlaced" class="success">
+                    Order Placed! View Cart</button>
                 <div class="shipping-option-container">
                     <mat-icon>local_shipping</mat-icon>
                     <span>Free shipping above 250$</span>

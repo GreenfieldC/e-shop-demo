@@ -31,32 +31,24 @@
 					>shopping_bag</mat-icon
 				>
 				<div class="quantity-indicator" (click)="shoppingCartOpen = !shoppingCartOpen">
-					0
+					{{shoppingBasketService.items.length}}
 				</div>
 				<div class="popup-box bag" *ngIf="shoppingCartOpen">
 					<h2>Shopping Cart</h2>
-					<div class="product-preview-container">
-						<img src="assets/img/logo.png" alt="img-preview" />
-						<span>Product Name</span>
-						<span>Quantity</span>
+
+					<div class="product-preview-container" *ngFor="let item of shoppingBasketService.items; let i = index">
+						<img [src]="item.image" alt="img-preview" />
+						<span>{{item.title}}</span>
+						<span>1X</span>
 					</div>
-					<div class="product-preview-container">
-						<img src="assets/img/logo.png" alt="img-preview" />
-						<span>Product Name</span>
-						<span>Quantity</span>
+
+					<div *ngIf="shoppingBasketService.items.length < 1">
+						Shopping Cart is empty
 					</div>
-					<div class="product-preview-container">
-						<img src="assets/img/logo.png" alt="img-preview" />
-						<span>Product Name</span>
-						<span>Quantity</span>
-					</div>
-					<div class="product-preview-container">
-						<img src="assets/img/logo.png" alt="img-preview" />
-						<span>Product Name</span>
-						<span>Quantity</span>
-					</div>
+
+					
 					<div class="checkout-row">
-						<span>Total: 100$</span>
+						<span>{{shoppingBasketService.totalPrice}}$</span>
 						<button>View Cart</button>
 						<button>Quick Checkout</button>
 					</div>
