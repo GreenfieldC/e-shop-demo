@@ -15,7 +15,7 @@ export class LoginPageComponent {
 
 	serverMessage: any;
 
-	constructor(private afAuth: AngularFireAuth, private fb: FormBuilder) {}
+	constructor(public afAuth: AngularFireAuth, private fb: FormBuilder) {}
 
 	ngOnInit() {
 		this.form = this.fb.group({
@@ -85,5 +85,9 @@ export class LoginPageComponent {
 		}
 
 		this.loading = false;
+	}
+
+	logout() {
+		this.afAuth.signOut();
 	}
 }
