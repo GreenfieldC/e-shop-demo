@@ -51,3 +51,5 @@ environments/environment.ts
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+.prettierrc
