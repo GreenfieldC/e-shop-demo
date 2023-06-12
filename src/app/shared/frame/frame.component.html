@@ -19,8 +19,11 @@
 			</div>
 		</div>
 		<div class="icon-box--menuitem-container">
-			<div class="icon-wrapper">
+			<div class="icon-wrapper icon-wrapper--person">
 				<mat-icon (click)="openLoginDialog()">person</mat-icon>
+				<button *ngIf="showLogOutButton" (click)="logout()">
+					Logout
+				</button>
 				<div class="popup-box"></div>
 			</div>
 			<div class="icon-wrapper">
@@ -30,7 +33,10 @@
 				<mat-icon (click)="shoppingCartOpen = !shoppingCartOpen"
 					>shopping_bag</mat-icon
 				>
-				<div class="quantity-indicator" (click)="shoppingCartOpen = !shoppingCartOpen">
+				<div
+					class="quantity-indicator"
+					(click)="shoppingCartOpen = !shoppingCartOpen"
+				>
 					0
 				</div>
 				<div class="popup-box bag" *ngIf="shoppingCartOpen">

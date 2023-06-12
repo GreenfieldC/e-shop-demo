@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 	styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
+	@Output() loginSuccess: EventEmitter<void> = new EventEmitter<void>();
+
 	form!: FormGroup;
 
 	type: 'login' | 'signup' | 'reset' = 'signup';
@@ -69,6 +71,7 @@ export class LoginPageComponent {
 		try {
 			if (this.isLogin) {
 				await this.afAuth.signInWithEmailAndPassword(email, password);
+				this.loginSuccess.emit();
 			}
 			if (this.isSignup) {
 				await this.afAuth.createUserWithEmailAndPassword(

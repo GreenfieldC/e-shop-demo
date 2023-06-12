@@ -2,6 +2,7 @@ import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 import { CurrencyService } from '../services/selext-currency.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
 	selector: 'app-frame',
@@ -13,10 +14,12 @@ export class FrameComponent {
 	selectedCurrency: string = 'EUR';
 	clickCounter: number = 0;
 	shoppingCartOpen: boolean = false;
+	showLogOutButton: boolean = false;
 
 	constructor(
 		public dialog: MatDialog,
-		private currencyService: CurrencyService
+		private currencyService: CurrencyService,
+		public afAuth: AngularFireAuth
 	) {}
 
 	onCurrencySelected(currency: string): void {
@@ -50,11 +53,34 @@ export class FrameComponent {
 		}
 	}
 
-	openLoginDialog(): void {
+	async openLoginDialog(): Promise<void> {
+		const currentUser = await this.afAuth.currentUser;
+		if (currentUser) {
+			// User is logged in, do not open the dialog
+			this.toggleLogOutButton();
+			return;
+		}
 		const dialogRef = this.dialog.open(LoginPageComponent);
+
+		dialogRef.componentInstance.loginSuccess.subscribe(() => {
+			dialogRef.close(); // Close the dialog when login is successful
+		});
 
 		dialogRef.afterClosed().subscribe((result) => {
 			console.log('The dialog was closed');
 		});
+	}
+
+	logout() {
+		this.afAuth.signOut();
+		this.showLogOutButton = false;
+	}
+
+	onLoginDialogClosed(): void {
+		this.dialog.closeAll();
+	}
+
+	toggleLogOutButton() {
+		this.showLogOutButton = !this.showLogOutButton;
 	}
 }

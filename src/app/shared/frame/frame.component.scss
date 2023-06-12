@@ -1,146 +1,157 @@
 .header {
-    padding: 2rem;
-    background-color: var(--primary-color);
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
+	padding: 2rem;
+	background-color: var(--primary-color);
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: space-between;
 
+	&--logo {
+		width: 80px;
+	}
 
-    &--logo {
-        width: 80px;
-    }
+	&--title {
+		color: white;
+		margin: 0;
+	}
 
-    &--title {
-        color: white;
-        margin: 0;
-    
-    }
+	&--icon-box {
+		display: flex;
+		gap: 2rem;
+		color: white;
 
-    &--icon-box{
-       
-        display: flex;
-        gap: 2rem;
-        color: white;
+		.icon-box--currency-wrapper {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			position: relative;
 
-        .icon-box--currency-wrapper {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            position: relative;
-            
-            .dropdown-arrow {
-                cursor: pointer;
-            }
+			.dropdown-arrow {
+				cursor: pointer;
+			}
 
-            .dropdown-menu {
-                position: absolute;
-                top: calc(100% + 1rem);
-                right: 0;
-                left: 0;
-                padding: .5rem;
-                background-color: white;
-                z-index: 2; 
-                color: black;
-                box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: .4);
-                div {
-                    margin-top: .5rem;
-                    cursor: pointer;
-                }
-            }
-        }
+			.dropdown-menu {
+				position: absolute;
+				top: calc(100% + 1rem);
+				right: 0;
+				left: 0;
+				padding: 0.5rem;
+				background-color: white;
+				z-index: 2;
+				color: black;
+				box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: 0.4);
+				div {
+					margin-top: 0.5rem;
+					cursor: pointer;
+				}
+			}
+		}
 
-        .icon-box--menuitem-container {
-            display: flex;
-            gap: .5rem;
+		.icon-box--menuitem-container {
+			display: flex;
+			gap: 0.5rem;
 
-            .icon-wrapper {
-                position: relative;
-                mat-icon {
-                    transition: 225ms all ease-in-out;
-                    cursor: pointer;
-                    &:hover {
-                        transform: scale(1.1);
-                    }
-                }
-                .popup-box {
-                    position: absolute;
-                }
+			.icon-wrapper {
+				position: relative;
+				mat-icon {
+					transition: 225ms all ease-in-out;
+					cursor: pointer;
+					&:hover {
+						transform: scale(1.1);
+					}
+				}
+				button {
+					position: absolute;
+					top: 143%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					color: white;
+					background-color: var(--accent-color);
+					font-size: 0.75rem;
+					white-space: nowrap;
+					box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+					cursor: pointer;
+					transition: 225ms all ease-in-out;
 
-                .bag {
-                    top: calc(100% + 1rem);
-                    right: 0;
-                    min-width: 300px;
-                    padding: 1rem;
-                    background-color: white;
-                    z-index: 2; 
-                    color: black;
-                    box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: .4);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
+					&:hover {
+						background-color: var(--primary-color);
+					}
+				}
 
-                    .product-preview-container {
-                        display: flex;
-                        align-items: center;
-                        width: 100%;
-                        justify-content: space-between;
-                        margin-top: 1rem;
-                        
-                        img {
-                            width: 50px;
-                        }
-                    }
+				.popup-box {
+					position: absolute;
+				}
 
-                    .checkout-row {
-                        display: flex;
-                        align-items: center;
-                        gap: 1rem;
-                        margin-top: 2rem;
-                        
-                        span {
-                            white-space: nowrap;
-                        }
+				.bag {
+					top: calc(100% + 1rem);
+					right: 0;
+					min-width: 300px;
+					padding: 1rem;
+					background-color: white;
+					z-index: 2;
+					color: black;
+					box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: 0.4);
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
 
-                        button {
-                            color: white;
-                            background-color: var(--accent-color);
-                            font-size: 1rem;
-                            border: none;
-                            border-radius: .5rem;
-                            padding: .5rem;
-                            white-space: nowrap;
-                            box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: .2);
-                            cursor: pointer;
-                            transition: 225ms all ease-in-out;
+					.product-preview-container {
+						display: flex;
+						align-items: center;
+						width: 100%;
+						justify-content: space-between;
+						margin-top: 1rem;
 
-                            &:hover {   
-                                background-color: var(--primary-color);
-                            }
-                        }
-                    }
-                }
+						img {
+							width: 50px;
+						}
+					}
 
-                .quantity-indicator {
-                    position: absolute;
-                    width: 1.1rem;
-                    height: 1.1rem;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 50%;
-                    background-color: var(--accent-color);
-                    bottom: -.3rem;
-                    right: -.2rem;
-                    cursor: pointer;
-                }
-            }
-            
-        }
-    }
+					.checkout-row {
+						display: flex;
+						align-items: center;
+						gap: 1rem;
+						margin-top: 2rem;
 
+						span {
+							white-space: nowrap;
+						}
+
+						button {
+							color: white;
+							background-color: var(--accent-color);
+							font-size: 1rem;
+							border: none;
+							border-radius: 0.5rem;
+							padding: 0.5rem;
+							white-space: nowrap;
+							box-shadow: 0 0 2px 0
+								rgba($color: #000000, $alpha: 0.2);
+							cursor: pointer;
+							transition: 225ms all ease-in-out;
+
+							&:hover {
+								background-color: var(--primary-color);
+							}
+						}
+					}
+				}
+
+				.quantity-indicator {
+					position: absolute;
+					width: 1.1rem;
+					height: 1.1rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 50%;
+					background-color: var(--accent-color);
+					bottom: -0.3rem;
+					right: -0.2rem;
+					cursor: pointer;
+				}
+			}
+		}
+	}
 }
-
-
-
