@@ -5,7 +5,9 @@
 
 	<div class="header--icon-box">
 		<div class="icon-box--currency-wrapper">
-			<mat-icon>euro</mat-icon>
+			<span *ngIf="selectedCurrency == 'EUR'">&#8364;</span>
+			<span *ngIf="selectedCurrency == 'GBP'">&#163;</span>
+			<span *ngIf="selectedCurrency == 'USD'">&#36;</span>
 			<span>{{ selectedCurrency }}</span>
 			<mat-icon
 				class="dropdown-arrow"
@@ -13,15 +15,19 @@
 				>expand_more</mat-icon
 			>
 			<div *ngIf="dropDownOpen" class="dropdown-menu" #dropdown>
-				<div (click)="onCurrencySelected('EUR')">EUR</div>
 				<div (click)="onCurrencySelected('USD')">USD</div>
+				<div (click)="onCurrencySelected('EUR')">EUR</div>
 				<div (click)="onCurrencySelected('GBP')">GBP</div>
 			</div>
 		</div>
 		<div class="icon-box--menuitem-container">
 			<div class="icon-wrapper icon-wrapper--person">
 				<mat-icon (click)="openLoginDialog()">person</mat-icon>
-				<button *ngIf="showLogOutButton" (click)="logout()" class="logout-btn">
+				<button
+					*ngIf="showLogOutButton"
+					(click)="logout()"
+					class="logout-btn"
+				>
 					Logout
 				</button>
 				<div class="popup-box"></div>
@@ -59,7 +65,10 @@
 					</div>
 
 					<div class="checkout-row">
-						<span>Total: {{ shoppingBasketService.totalPrice }}$</span>
+						<span
+							>Total:
+							{{ shoppingBasketService.totalPrice }}$</span
+						>
 						<button class="cart-action-btn">View Cart</button>
 						<button class="cart-action-btn">Quick Checkout</button>
 					</div>

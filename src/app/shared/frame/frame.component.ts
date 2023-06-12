@@ -12,7 +12,7 @@ import { ShoppingBasketService } from '../services/shopping-basket.service';
 })
 export class FrameComponent {
 	dropDownOpen: boolean = false;
-	selectedCurrency: string = 'EUR';
+	selectedCurrency: string = 'USD';
 	clickCounter: number = 0;
 	shoppingCartOpen: boolean = false;
 	showLogOutButton: boolean = false;
