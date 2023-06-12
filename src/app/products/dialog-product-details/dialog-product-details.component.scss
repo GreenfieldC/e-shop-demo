@@ -70,10 +70,15 @@
 				box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
 				cursor: pointer;
 				transition: 225ms all ease-in-out;
-                max-width: 50%;
+                width: 150px;
 				&:hover {
 					background-color: var(--primary-color);
 				}
+			}
+
+			.success {
+				background-color: var(--secondary-color);
+				width: 250px;
 			}
 
             .shipping-option-container {

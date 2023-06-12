@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 import { CurrencyService } from '../services/selext-currency.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ShoppingBasketService } from '../services/shopping-basket.service';
 
 @Component({
 	selector: 'app-frame',
@@ -19,7 +20,8 @@ export class FrameComponent {
 	constructor(
 		public dialog: MatDialog,
 		private currencyService: CurrencyService,
-		public afAuth: AngularFireAuth
+		public afAuth: AngularFireAuth,
+		public shoppingBasketService: ShoppingBasketService
 	) {}
 
 	onCurrencySelected(currency: string): void {

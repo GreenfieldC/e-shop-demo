@@ -21,6 +21,7 @@ export class ProductListComponent {
 
 	openDetailView(product: any) {
 		this.dialog.open(DialogProductDetailsComponent, {
+			height: 'fit-content',
 			data: product,
 		});
 	}

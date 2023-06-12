@@ -82,6 +82,19 @@
 					position: absolute;
 				}
 
+				.product-preview-container {
+					display: flex;
+					align-items: center;
+					width: 100%;
+					justify-content: space-between;
+					margin-top: 1rem;
+					gap: 1rem;
+
+					img {
+						width: 50px;
+					}
+				}
+
 				.bag {
 					top: calc(100% + 1rem);
 					right: 0;
