@@ -22,8 +22,8 @@ export class DialogProductDetailsComponent {
 
 	addToBasket() {
 		this.orderPlaced = true;
-		this.shoppingBasketService.items.push(this.data);
+		this.shoppingBasketService.products.push(this.data);
 		this.shoppingBasketService.totalPrice += this.data.price;
-		this.shoppingBasketService.addItem();
+		this.shoppingBasketService.addProduct();
 	}
 }
