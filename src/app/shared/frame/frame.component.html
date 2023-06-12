@@ -21,7 +21,7 @@
 		<div class="icon-box--menuitem-container">
 			<div class="icon-wrapper icon-wrapper--person">
 				<mat-icon (click)="openLoginDialog()">person</mat-icon>
-				<button *ngIf="showLogOutButton" (click)="logout()">
+				<button *ngIf="showLogOutButton" (click)="logout()" class="logout-btn">
 					Logout
 				</button>
 				<div class="popup-box"></div>
@@ -59,9 +59,9 @@
 					</div>
 
 					<div class="checkout-row">
-						<span>{{ shoppingBasketService.totalPrice }}$</span>
-						<button>View Cart</button>
-						<button>Quick Checkout</button>
+						<span>Total: {{ shoppingBasketService.totalPrice }}$</span>
+						<button class="cart-action-btn">View Cart</button>
+						<button class="cart-action-btn">Quick Checkout</button>
 					</div>
 				</div>
 			</div>

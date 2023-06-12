@@ -60,7 +60,7 @@
 						transform: scale(1.1);
 					}
 				}
-				button {
+				.logout-btn {
 					position: absolute;
 					top: 143%;
 					left: 50%;
@@ -131,7 +131,7 @@
 							white-space: nowrap;
 						}
 
-						button {
+						.cart-action-btn {
 							color: white;
 							background-color: var(--accent-color);
 							font-size: 1rem;
