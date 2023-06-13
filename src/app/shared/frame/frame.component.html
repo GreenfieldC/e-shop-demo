@@ -1,5 +1,5 @@
 <div class="header">
-	<img class="header--logo" src="assets/img/logo.png" alt="logo" />
+	<img class="header--logo" src="assets/img/logo.png" alt="logo" [routerLink]="''"/>
 
 	<h1 class="header--title">Greenfield Traders</h1>
 
@@ -69,7 +69,7 @@
 							>Total:
 							{{ shoppingBasketService.totalPrice }}$</span
 						>
-						<button class="cart-action-btn">View Cart</button>
+						<button class="cart-action-btn" [routerLink]="'shopping-cart'" (click)="shoppingCartOpen= false">View Cart</button>
 						<button class="cart-action-btn">Quick Checkout</button>
 					</div>
 				</div>
