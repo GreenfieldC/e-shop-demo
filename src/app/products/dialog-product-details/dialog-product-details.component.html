@@ -56,7 +56,14 @@
 				</button>
 				<div class="shipping-option-container">
 					<mat-icon>local_shipping</mat-icon>
-					<span>Free shipping above 250$</span>
+					<span
+						>Free shipping above
+						{{
+							minimumOrderValue * exchangeRateService.selectedRate
+								| number : '1.2-2'
+						}}
+						{{ exchangeRateService.icon }}
+					</span>
 				</div>
 			</div>
 		</div>

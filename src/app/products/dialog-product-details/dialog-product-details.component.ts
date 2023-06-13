@@ -12,6 +12,7 @@ export class DialogProductDetailsComponent {
 	orderPlaced: boolean = false;
 	selectedSize: string | null = null;
 	selectedCurrency: string = 'USD';
+	minimumOrderValue = 250;
 
 	constructor(
 		private dialog: MatDialog,
