@@ -19,14 +19,6 @@ export class ProductItemComponent implements OnInit {
 
 	//convert price to selected currency (USD, EUR, GBP)
 	convertPrice(price: number): number {
-		if (this.selectedCurrency === 'USD') {
-			return price;
-		} else if (this.selectedCurrency === 'EUR') {
-			return price * 0.93;
-		} else if (this.selectedCurrency === 'GBP') {
-			return price * 0.81;
-		} else {
-			return price;
-		}
+		return this.currencyService.convertPrice(price, this.selectedCurrency);
 	}
 }
