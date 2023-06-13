@@ -4,9 +4,7 @@
 		<div class="product-detail-container">
 			<h1 class="main-heading">{{ data.title }}</h1>
 			<span class="subheading">Greenfield Traders</span>
-			<span class="price">{{
-				convertPrice(data.price) | currency : selectedCurrency
-			}}</span>
+			<span class="price">{{data.price * exchangeRateService.selectedRate}} {{exchangeRateService.icon}}</span>
 			<span> {{ data.description }} </span>
 			<div class="rating-container">
 				<mat-icon>star</mat-icon>
