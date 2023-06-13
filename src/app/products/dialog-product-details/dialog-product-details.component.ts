@@ -20,10 +20,20 @@ export class DialogProductDetailsComponent {
 		this.dialog.closeAll();
 	}
 
-	addToBasket() {
+	addToCart() {
 		this.orderPlaced = true;
-		this.shoppingBasketService.products.push(this.data);
-		this.shoppingBasketService.totalPrice += this.data.price;
+
+		const index = this.shoppingBasketService.products.findIndex(
+			(obj) => obj.title === this.data.title
+		);
+
+		// if (index != -1) {
+		// 	this.shoppingBasketService.products[index].quantity;
+		// } else {
+		// 	this.shoppingBasketService.products.push(this.data);
+		// }
+
+		// this.shoppingBasketService.totalPrice += this.data.price;
 		this.shoppingBasketService.addProduct();
 	}
 }

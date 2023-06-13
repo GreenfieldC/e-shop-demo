@@ -1,6 +1,6 @@
 <div class="products-list">
 	<app-product-item
-		*ngFor="let product of products$ | async"
+		*ngFor="let product of products"
 		class="product-item"
 		[product]="product"
 		(click)="openDetailView(product)"

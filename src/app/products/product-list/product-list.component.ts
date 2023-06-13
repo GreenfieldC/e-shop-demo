@@ -10,12 +10,14 @@ import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-
 	styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {
-	products$: Observable<any>;
+	products: Array<any>;
 
 	constructor(private apiService: ApiService, private dialog: MatDialog) {
-		this.products$ = this.apiService.getProducts;
 		this.apiService.getProducts.subscribe((data) => {
-			console.log(data);
+			data.forEach((obj: any) => {
+				obj.quantity = 1;
+			});
+			this.products = data;
 		});
 	}
 
@@ -24,5 +26,6 @@ export class ProductListComponent {
 			height: 'fit-content',
 			data: product,
 		});
+		console.log(product);
 	}
 }

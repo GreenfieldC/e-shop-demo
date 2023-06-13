@@ -27,7 +27,7 @@
                     <div>3XL</div>
                     <div>4XL</div>
                 </div>
-                <button (click)="addToBasket()" *ngIf="!orderPlaced">Add to cart</button>
+                <button (click)="addToCart()" *ngIf="!orderPlaced">Add to cart</button>
                 <button *ngIf="orderPlaced" class="success">
                     Order Placed! View Cart</button>
                 <div class="shipping-option-container">
