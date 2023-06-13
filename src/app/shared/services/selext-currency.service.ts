@@ -10,5 +10,6 @@ export class CurrencyService {
 
 	setCurrency(currency: string): void {
 		this.currencySubject.next(currency);
+		console.log('currency selected: ', currency);
 	}
 }
