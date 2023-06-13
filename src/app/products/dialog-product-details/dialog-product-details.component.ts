@@ -1,21 +1,29 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
+import { CurrencyService } from 'src/app/shared/services/selext-currency.service';
 @Component({
 	selector: 'app-dialog-product-details',
 	templateUrl: './dialog-product-details.component.html',
 	styleUrls: ['./dialog-product-details.component.scss'],
 })
-export class DialogProductDetailsComponent {
+export class DialogProductDetailsComponent implements OnInit {
 	orderPlaced: boolean = false;
 	selectedSize: string | null = null;
+	selectedCurrency: string = 'USD';
 
 	constructor(
 		private dialog: MatDialog,
 		public shoppingBasketService: ShoppingBasketService,
-		@Inject(MAT_DIALOG_DATA) public data: any
+		@Inject(MAT_DIALOG_DATA) public data: any,
+		private currencyService: CurrencyService
 	) {}
+	ngOnInit(): void {
+		this.currencyService.currency$.subscribe((currency) => {
+			this.selectedCurrency = currency;
+		});
+	}
 
 	selectSize(size: string) {
 		this.selectedSize = size;
@@ -50,5 +58,15 @@ export class DialogProductDetailsComponent {
 		} else {
 			alert('Please select size!');
 		}
+	}
+
+	/**
+	 * Convert price to selected currency (USD, EUR, GBP)
+	 * @param price
+	 * @returns
+	 */
+	convertPrice(price: number): number {
+		console.log('price', this.selectedCurrency);
+		return this.currencyService.convertPrice(price, this.selectedCurrency);
 	}
 }

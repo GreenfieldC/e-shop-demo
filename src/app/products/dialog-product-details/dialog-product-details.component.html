@@ -3,40 +3,61 @@
 		<img [src]="data.image" alt="product-image" />
 		<div class="product-detail-container">
 			<h1 class="main-heading">{{ data.title }}</h1>
-            <span class="subheading">Greenfield Traders</span>
-            <span class="price">{{data.price }}$</span>
+			<span class="subheading">Greenfield Traders</span>
+			<span class="price">{{
+				convertPrice(data.price) | currency : selectedCurrency
+			}}</span>
 			<span> {{ data.description }} </span>
-            <div class="rating-container">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <span>(no reviews)</span>
-            </div>
-            <div class="size-selection-container">
-                <span class="sizes">Sizes</span>
-                <div class="size-box-wrapper">
-                    <div *ngFor="let size of ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']"
-                    (click)="selectSize(size)"
-                    [class.selected-size]="size === selectedSize"
-                    >{{size}}</div>
-                </div>
-                <button (click)="addToCart()" *ngIf="!orderPlaced">Add to cart</button>
-                <button *ngIf="orderPlaced" class="success" [routerLink]="'shopping-cart'" (click)="onNoClick()">
-                    <mat-icon>check_circle</mat-icon>
-                    Order Placed! View Cart</button>
-                <div class="shipping-option-container">
-                    <mat-icon>local_shipping</mat-icon>
-                    <span>Free shipping above 250$</span>
-                </div>
-            </div>
+			<div class="rating-container">
+				<mat-icon>star</mat-icon>
+				<mat-icon>star</mat-icon>
+				<mat-icon>star</mat-icon>
+				<mat-icon>star</mat-icon>
+				<mat-icon>star</mat-icon>
+				<span>(no reviews)</span>
+			</div>
+			<div class="size-selection-container">
+				<span class="sizes">Sizes</span>
+				<div class="size-box-wrapper">
+					<div
+						*ngFor="
+							let size of [
+								'XS',
+								'S',
+								'M',
+								'L',
+								'XL',
+								'2XL',
+								'3XL',
+								'4XL'
+							]
+						"
+						(click)="selectSize(size)"
+						[class.selected-size]="size === selectedSize"
+					>
+						{{ size }}
+					</div>
+				</div>
+				<button (click)="addToCart()" *ngIf="!orderPlaced">
+					Add to cart
+				</button>
+				<button
+					*ngIf="orderPlaced"
+					class="success"
+					[routerLink]="'shopping-cart'"
+					(click)="onNoClick()"
+				>
+					<mat-icon>check_circle</mat-icon>
+					Order Placed! View Cart
+				</button>
+				<div class="shipping-option-container">
+					<mat-icon>local_shipping</mat-icon>
+					<span>Free shipping above 250$</span>
+				</div>
+			</div>
 		</div>
 	</div>
-    
-
 </div>
-
 
 <span class="close-button" (click)="onNoClick()"
 	><mat-icon>close</mat-icon></span
