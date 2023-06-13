@@ -1,7 +1,9 @@
 import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
-import { CurrencyService } from '../services/selext-currency.service';
+// import { CurrencyService } from '../services/selext-currency.service';
+
+import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ShoppingBasketService } from '../services/shopping-basket.service';
 
@@ -12,21 +14,37 @@ import { ShoppingBasketService } from '../services/shopping-basket.service';
 })
 export class FrameComponent {
 	dropDownOpen: boolean = false;
-	selectedCurrency: string = 'USD';
 	clickCounter: number = 0;
 	shoppingCartOpen: boolean = false;
 	showLogOutButton: boolean = false;
 
 	constructor(
 		public dialog: MatDialog,
-		private currencyService: CurrencyService,
+		// private currencyService: CurrencyService,
+		public exchangeRateService: ExchangeRateService,
 		public afAuth: AngularFireAuth,
 		public shoppingBasketService: ShoppingBasketService
 	) {}
 
+	ngOnInit() {
+		this.exchangeRateService.getExchangeRates();
+	}
+
 	onCurrencySelected(currency: string): void {
-		this.currencyService.setCurrency(currency);
-		this.selectedCurrency = currency;
+		this.exchangeRateService.selectedCurrency = currency;
+		let rate = this.exchangeRateService.exchangeRates[currency];
+		this.exchangeRateService.selectedRate = rate;
+		this.setCurrencyIcon(currency);
+	}
+
+	setCurrencyIcon(currency: string) {
+		if (currency === 'USD') {
+			this.exchangeRateService.icon = '\u0024';
+		} else if (currency === 'EUR') {
+			this.exchangeRateService.icon = '\u20AC';
+		} else if (currency === 'GBP') {
+			this.exchangeRateService.icon = '\u00A3';
+		}
 	}
 
 	@ViewChild('dropdown') el: any;

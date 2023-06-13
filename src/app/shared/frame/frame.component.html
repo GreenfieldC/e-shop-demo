@@ -5,10 +5,9 @@
 
 	<div class="header--icon-box">
 		<div class="icon-box--currency-wrapper">
-			<span *ngIf="selectedCurrency == 'EUR'">&#8364;</span>
-			<span *ngIf="selectedCurrency == 'GBP'">&#163;</span>
-			<span *ngIf="selectedCurrency == 'USD'">&#36;</span>
-			<span>{{ selectedCurrency }}</span>
+			<span>{{exchangeRateService.icon}}</span>
+			
+			<span>{{ exchangeRateService.selectedCurrency }}</span>
 			<mat-icon
 				class="dropdown-arrow"
 				(click)="dropDownOpen = !dropDownOpen"

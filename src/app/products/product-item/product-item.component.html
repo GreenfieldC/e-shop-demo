@@ -11,7 +11,7 @@
 	<mat-card-content class="card__content">
 		<span class="card__content__title">{{ product.title }}</span>
 		<span class="card__content__price">{{
-			convertPrice(product.price) | currency : selectedCurrency
-		}}</span>
+			product.price * exchangeRateService.selectedRate
+		}} {{exchangeRateService.icon}}</span>
 	</mat-card-content>
 </mat-card>
