@@ -1,7 +1,6 @@
 import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
-// import { CurrencyService } from '../services/selext-currency.service';
 
 import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
