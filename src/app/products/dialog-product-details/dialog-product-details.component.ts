@@ -39,7 +39,8 @@ export class DialogProductDetailsComponent implements OnInit {
 			this.orderPlaced = true;
 
 			const index = this.shoppingBasketService.products.findIndex(
-				(obj) => obj.size === this.data.size
+				(obj) =>
+					obj.size === this.data.size && obj.title === this.data.title
 			);
 
 			if (index != -1) {
