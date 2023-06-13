@@ -1,12 +1,17 @@
 <div class="header">
-	<img class="header--logo" src="assets/img/logo.png" alt="logo" [routerLink]="''"/>
+	<img
+		class="header--logo"
+		src="assets/img/logo.png"
+		alt="logo"
+		[routerLink]="''"
+	/>
 
 	<h1 class="header--title">Greenfield Traders</h1>
 
 	<div class="header--icon-box">
 		<div class="icon-box--currency-wrapper">
-			<span>{{exchangeRateService.icon}}</span>
-			
+			<span>{{ exchangeRateService.icon }}</span>
+
 			<span>{{ exchangeRateService.selectedCurrency }}</span>
 			<mat-icon
 				class="dropdown-arrow"
@@ -55,8 +60,8 @@
 						"
 					>
 						<img [src]="item.image" alt="img-preview" />
-						<span>{{ item.title }} ({{item.size}})</span>
-						<span>{{item.quantity}}X</span>
+						<span>{{ item.title }} ({{ item.size }})</span>
+						<span>{{ item.quantity }}X</span>
 					</div>
 
 					<div *ngIf="shoppingBasketService.products.length < 1">
@@ -66,9 +71,18 @@
 					<div class="checkout-row">
 						<span
 							>Total:
-							{{ shoppingBasketService.totalPrice }}$</span
+							{{
+								shoppingBasketService.totalPrice
+									| number : '1.2-2'
+							}}$</span
 						>
-						<button class="cart-action-btn" [routerLink]="'shopping-cart'" (click)="shoppingCartOpen= false">View Cart</button>
+						<button
+							class="cart-action-btn"
+							[routerLink]="'shopping-cart'"
+							(click)="shoppingCartOpen = false"
+						>
+							View Cart
+						</button>
 						<button class="cart-action-btn">Quick Checkout</button>
 					</div>
 				</div>

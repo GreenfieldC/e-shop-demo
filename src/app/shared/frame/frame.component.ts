@@ -37,13 +37,13 @@ export class FrameComponent {
 	}
 
 	setCurrencyIcon(currency: string) {
-		if (currency === 'USD') {
-			this.exchangeRateService.icon = '\u0024';
-		} else if (currency === 'EUR') {
-			this.exchangeRateService.icon = '\u20AC';
-		} else if (currency === 'GBP') {
-			this.exchangeRateService.icon = '\u00A3';
-		}
+		const currencyIcons: { [key: string]: string } = {
+			USD: '\u0024',
+			EUR: '\u20AC',
+			GBP: '\u00A3',
+		};
+
+		this.exchangeRateService.icon = currencyIcons[currency];
 	}
 
 	@ViewChild('dropdown') el: any;
