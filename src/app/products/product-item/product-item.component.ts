@@ -8,7 +8,6 @@ import { CurrencyService } from 'src/app/shared/services/selext-currency.service
 })
 export class ProductItemComponent implements OnInit {
 	@Input() product: any;
-
 	selectedCurrency: string = 'USD';
 
 	constructor(private currencyService: CurrencyService) {}
@@ -23,9 +22,9 @@ export class ProductItemComponent implements OnInit {
 		if (this.selectedCurrency === 'USD') {
 			return price;
 		} else if (this.selectedCurrency === 'EUR') {
-			return price * 0.85;
+			return price * 0.93;
 		} else if (this.selectedCurrency === 'GBP') {
-			return price * 0.73;
+			return price * 0.81;
 		} else {
 			return price;
 		}
