@@ -56,6 +56,12 @@
 					height: 40px;
                     cursor: pointer;
 				}
+
+				.selected-size {
+					color: white;
+					background-color: var(--accent-color);
+					border: var(--secondary-color);
+				}
 			}
 
 			button {

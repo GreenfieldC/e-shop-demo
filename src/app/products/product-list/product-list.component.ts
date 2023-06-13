@@ -16,6 +16,7 @@ export class ProductListComponent {
 		this.apiService.getProducts.subscribe((data) => {
 			data.forEach((obj: any) => {
 				obj.quantity = 1;
+				obj.size = '';
 			});
 			this.products = data;
 		});
@@ -26,6 +27,5 @@ export class ProductListComponent {
 			height: 'fit-content',
 			data: product,
 		});
-		console.log(product);
 	}
 }

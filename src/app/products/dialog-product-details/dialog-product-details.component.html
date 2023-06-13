@@ -17,18 +17,13 @@
             <div class="size-selection-container">
                 <span class="sizes">Sizes</span>
                 <div class="size-box-wrapper">
-                    <div>2XS</div>
-                    <div>XS</div>
-                    <div>S</div>
-                    <div>M</div>
-                    <div>L</div>
-                    <div>XL</div>
-                    <div>2XL</div>
-                    <div>3XL</div>
-                    <div>4XL</div>
+                    <div *ngFor="let size of ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']"
+                    (click)="selectSize(size)"
+                    [class.selected-size]="size === selectedSize"
+                    >{{size}}</div>
                 </div>
                 <button (click)="addToCart()" *ngIf="!orderPlaced">Add to cart</button>
-                <button *ngIf="orderPlaced" class="success">
+                <button *ngIf="orderPlaced" class="success" [routerLink]="'shopping-cart'" (click)="onNoClick()">
                     Order Placed! View Cart</button>
                 <div class="shipping-option-container">
                     <mat-icon>local_shipping</mat-icon>
@@ -40,10 +35,7 @@
     
 
 </div>
-<!-- <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">X</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Add to basket</button>
-</div> -->
+
 
 <span class="close-button" (click)="onNoClick()"
 	><mat-icon>close</mat-icon></span

@@ -33,7 +33,7 @@ export class ShoppingBasketService {
 		//built-in observable creator that establishes real time listener of database
 		onSnapshot(this.cartDocRef, (doc) => {
 			this.products = doc.data()?.['products'] || [];
-
+			this.totalPrice = 0;
 			this.products.forEach((product) => {
 				this.totalPrice += product.price;
 			});

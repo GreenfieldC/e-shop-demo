@@ -57,7 +57,7 @@
 					>
 						<img [src]="item.image" alt="img-preview" />
 						<span>{{ item.title }}</span>
-						<span>1X</span>
+						<span>{{item.quantity}}X</span>
 					</div>
 
 					<div *ngIf="shoppingBasketService.products.length < 1">

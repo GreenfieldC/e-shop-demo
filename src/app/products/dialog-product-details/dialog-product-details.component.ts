@@ -9,6 +9,7 @@ import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.s
 })
 export class DialogProductDetailsComponent {
 	orderPlaced: boolean = false;
+	selectedSize: string | null = null;
 
 	constructor(
 		private dialog: MatDialog,
@@ -16,24 +17,38 @@ export class DialogProductDetailsComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
 
+	selectSize(size: string) {
+		this.selectedSize = size;
+		this.data.size = this.selectedSize;
+	}
+
 	onNoClick() {
 		this.dialog.closeAll();
 	}
 
 	addToCart() {
-		this.orderPlaced = true;
+		if (this.selectedSize) {
+			this.orderPlaced = true;
 
-		const index = this.shoppingBasketService.products.findIndex(
-			(obj) => obj.title === this.data.title
-		);
+			const index = this.shoppingBasketService.products.findIndex(
+				(obj) => obj.title === this.data.title
+			);
 
-		// if (index != -1) {
-		// 	this.shoppingBasketService.products[index].quantity;
-		// } else {
-		// 	this.shoppingBasketService.products.push(this.data);
-		// }
+			if (index != -1) {
+				let baselinePrice =
+					this.shoppingBasketService.products[index].price /
+					this.shoppingBasketService.products[index].quantity;
 
-		// this.shoppingBasketService.totalPrice += this.data.price;
-		this.shoppingBasketService.addProduct();
+				this.shoppingBasketService.products[index].quantity += 1;
+				this.shoppingBasketService.products[index].price +=
+					baselinePrice;
+			} else {
+				this.shoppingBasketService.products.push(this.data);
+			}
+
+			this.shoppingBasketService.addProduct();
+		} else {
+			alert('Please select size!');
+		}
 	}
 }
