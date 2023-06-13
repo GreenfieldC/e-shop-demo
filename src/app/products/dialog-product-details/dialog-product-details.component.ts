@@ -31,7 +31,7 @@ export class DialogProductDetailsComponent {
 			this.orderPlaced = true;
 
 			const index = this.shoppingBasketService.products.findIndex(
-				(obj) => obj.title === this.data.title
+				(obj) => obj.size === this.data.size
 			);
 
 			if (index != -1) {

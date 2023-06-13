@@ -60,7 +60,6 @@
 				.selected-size {
 					color: white;
 					background-color: var(--accent-color);
-					border: var(--secondary-color);
 				}
 			}
 
@@ -85,6 +84,13 @@
 			.success {
 				background-color: var(--secondary-color);
 				width: 250px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				
+				mat-icon {
+					margin-right: .5rem;
+				}
 			}
 
             .shipping-option-container {

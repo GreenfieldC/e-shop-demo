@@ -24,6 +24,7 @@
                 </div>
                 <button (click)="addToCart()" *ngIf="!orderPlaced">Add to cart</button>
                 <button *ngIf="orderPlaced" class="success" [routerLink]="'shopping-cart'" (click)="onNoClick()">
+                    <mat-icon>check_circle</mat-icon>
                     Order Placed! View Cart</button>
                 <div class="shipping-option-container">
                     <mat-icon>local_shipping</mat-icon>
