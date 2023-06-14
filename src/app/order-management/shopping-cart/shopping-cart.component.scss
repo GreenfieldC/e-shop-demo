@@ -68,18 +68,16 @@
 
             p {
                 margin-left: 2rem;
+                text-align: center;
             }
 
             .info-row {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
+                justify-content: center;
 
-                h2 {
-                    margin: 0;
-                }
-
-                div {
+                .info {
                     border: 1px solid gray;
                     padding: .5rem 1rem;
                     display: flex;
@@ -87,7 +85,24 @@
                     align-items: center;
                 }
 
+                .stars {
+                    display: flex;
+                    align-items: center;
+
+                    mat-icon {
+                        color: gray;
+                    }
+
+                    mat-icon:last-of-type {
+                        margin-right: 1rem;
+                    }
+                }
+
             }
         }
     }
+}
+
+.filled {
+    color: var(--accent-color) !important;
 }
