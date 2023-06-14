@@ -24,8 +24,10 @@
 		.icon-box--currency-wrapper {
 			display: flex;
 			align-items: center;
+			justify-content: space-between;
 			gap: 0.5rem;
 			position: relative;
+			min-width: 80px;
 
 			.dropdown-arrow {
 				cursor: pointer;
