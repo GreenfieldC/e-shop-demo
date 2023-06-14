@@ -31,6 +31,23 @@
 			</mat-panel-description> 
 
 		</mat-expansion-panel-header>
-		<p>{{product.description}}</p>
+
+        <div class="product-detail-container">
+            <h1>{{product.title}}</h1>
+            <div class="img-description-wrapper">
+                <img [src]="product.image" alt="product-img" class="product-img">
+
+                <div class="description-infos">
+                    <p>{{product.description}}</p>
+                    <div class="info-row">
+                        <h2>Price: {{product.price * exchangeRateService.selectedRate | number : '1.2-2'}}{{exchangeRateService.icon}}</h2>
+                        <div>{{product.size}}</div>
+
+                    </div>
+                </div>  
+
+            </div>
+        </div>
+
 	</mat-expansion-panel>
 </div>
