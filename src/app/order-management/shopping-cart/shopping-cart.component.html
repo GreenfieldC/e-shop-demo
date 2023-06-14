@@ -20,7 +20,7 @@
                     <mat-icon (click)="decreaseQuantity(i, $event)">do_not_disturb_on</mat-icon>
                 </div>
                 <div class="total-container"> 
-                    Total:
+                    Item Total:
 							{{
 								product.price * product.quantity * exchangeRateService.selectedRate
 									| number : '1.2-2'
