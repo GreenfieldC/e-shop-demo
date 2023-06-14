@@ -1,0 +1,42 @@
+.shopping-cart-content {
+    padding: 2rem;
+}
+
+.product-panel {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    .product-img {
+        width: 50px;
+        margin-right: 1rem;
+    }
+
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2rem;
+
+    mat-icon {
+        color: var(--accent-color);
+        cursor: pointer;
+        transition: 225ms all ease-in-out;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    .quantity-box {
+        margin-left: .5rem;
+        margin-right: .5rem;
+        border: 1px solid gray;
+        padding: .5rem 1rem;
+    }
+
+}
+
+.total-container {
+    font-weight: bold;
+}

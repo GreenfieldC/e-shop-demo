@@ -1,12 +1,36 @@
-<mat-expansion-panel
-	(opened)="panelOpenState = true"
-	(closed)="panelOpenState = false"
->
-	<mat-expansion-panel-header>
-		<mat-panel-title> Self aware panel </mat-panel-title>
-		<mat-panel-description>
-			Currently I am {{ panelOpenState ? 'open' : 'closed' }}
-		</mat-panel-description>
-	</mat-expansion-panel-header>
-	<p>I'm visible because I am open</p>
-</mat-expansion-panel>
+<div class="shopping-cart-content">
+	<mat-expansion-panel
+		(opened)="panelOpenState = true"
+		(closed)="panelOpenState = false"
+        *ngFor="let product of shoppingCartService.products; let i= index"
+        class="product-panel"
+	>
+		<mat-expansion-panel-header>
+		    
+            <mat-panel-title> <img [src]="product.image" alt="product-img" class="product-img"> {{product.title}} ({{product.size}})</mat-panel-title>
+
+            <mat-panel-description>
+
+                <div>
+                    Price: {{product.price * exchangeRateService.selectedRate | number : '1.2-2'}}{{exchangeRateService.icon}}
+                </div>
+                <div class="quantity-container">
+                    <mat-icon (click)="incrementQuantity(i, $event)">add_circle</mat-icon>
+                    <div class="quantity-box">{{product.quantity}}</div>
+                    <mat-icon (click)="decreaseQuantity(i, $event)">do_not_disturb_on</mat-icon>
+                </div>
+                <div class="total-container"> 
+                    Total:
+							{{
+								product.price * product.quantity * exchangeRateService.selectedRate
+									| number : '1.2-2'
+							}} {{exchangeRateService.icon}}
+                </div>
+
+				
+			</mat-panel-description> 
+
+		</mat-expansion-panel-header>
+		<p>{{product.description}}</p>
+	</mat-expansion-panel>
+</div>
