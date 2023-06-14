@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 /* Material Design */
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -37,6 +38,7 @@ const modules = [
 	MatInputModule,
 	MatSnackBarModule,
 	MatDialogModule,
+	MatExpansionModule,
 ];
 
 @NgModule({
