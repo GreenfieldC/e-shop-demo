@@ -118,33 +118,54 @@
 			</div>
 			<div *ngIf="discountGiven">
 				<span>Discount:</span>
-				<span class="discount">+ {{this.discount * exchangeRateService.selectedRate}}{{exchangeRateService.icon}}</span>
+				<span class="discount"
+					>+ {{ this.discount * exchangeRateService.selectedRate
+					}}{{ exchangeRateService.icon }}</span
+				>
 			</div>
 			<div>
 				<span> Grand Total: </span>
 				<span>
 					{{
 						(shoppingCartService.shippingCosts +
-							shoppingCartService.totalPrice - this.discount) *
+							shoppingCartService.totalPrice -
+							this.discount) *
 							exchangeRateService.selectedRate | number : '1.2-2'
 					}}{{ exchangeRateService.icon }}
 				</span>
 			</div>
 			<h2 class="payment-header">Payment Options</h2>
 			<div>
-				<div class="payment-option-wrapper">
-					<mat-icon>credit_card</mat-icon>
+				<div
+					class="payment-option-wrapper"
+					(click)="selectPayment('credit')"
+				>
+					<mat-icon [class.selected]="paymentMethod === 'credit'"
+						>credit_card</mat-icon
+					>
 					Credit Card
 				</div>
-				<div class="payment-option-wrapper">
-					<mat-icon>paid</mat-icon>
+				<div
+					class="payment-option-wrapper"
+					(click)="selectPayment('paypal')"
+				>
+					<mat-icon [class.selected]="paymentMethod === 'paypal'"
+						>paid</mat-icon
+					>
 					Paypal
 				</div>
-				<div class="payment-option-wrapper">
-					<mat-icon>newspaper</mat-icon>
+				<div
+					class="payment-option-wrapper"
+					(click)="selectPayment('debit')"
+				>
+					<mat-icon [class.selected]="paymentMethod === 'debit'"
+						>newspaper</mat-icon
+					>
 					Direct Debit
 				</div>
 			</div>
+
+			<button class="payment-button">Proceed to Payment</button>
 		</mat-card>
 	</div>
 

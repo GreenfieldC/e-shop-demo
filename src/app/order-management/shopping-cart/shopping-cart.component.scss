@@ -183,8 +183,31 @@
     cursor: pointer;
 
     mat-icon {
-        margin-bottom: 1rem;
-        color: var(--secondary-color);
+        margin-bottom: .5rem;
+        color: var(--primary-color);
     }
 
+}
+
+.selected {
+    color: var(--accent-color) !important;
+    transform: scale(1.2);
+}
+
+.payment-button {
+        color: white;
+            background-color: var(--accent-color);
+            font-size: 1rem;
+            margin-top: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            width: 100%;
+            white-space: nowrap;
+            box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+            cursor: pointer;
+            transition: 225ms all ease-in-out;
+            &:hover {
+                background-color: var(--primary-color);
+            }
+        
 }

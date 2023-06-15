@@ -12,6 +12,7 @@ export class ShoppingCartComponent {
 	panelOpenState: boolean = false;
 	discountGiven: boolean = false;
 	discount: number = 0;
+	paymentMethod: string | null = null;
 
 	constructor(
 		public shoppingCartService: ShoppingBasketService,
@@ -46,5 +47,9 @@ export class ShoppingCartComponent {
 				this.discount = 0;
 			}
 		});
+	}
+
+	selectPayment(payment: string) {
+		this.paymentMethod = payment;
 	}
 }
