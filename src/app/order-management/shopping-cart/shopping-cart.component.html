@@ -70,7 +70,9 @@
     </div>
 
     <div class="empty-cart-prompt" *ngIf="shoppingCartService.products.length === 0">
-        <mat-card>Shopping Cart is empty</mat-card>
+        <mat-icon>shopping_cart</mat-icon>
+        <h3>Shopping Cart is empty</h3>
+        <button>Explore products</button>
     </div>
 
 </div>
