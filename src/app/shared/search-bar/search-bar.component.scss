@@ -1,0 +1,48 @@
+.wrapper {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100dvh;
+	background-color: rgba(0, 0, 0, 0.9);
+
+	&__window {
+		position: absolute;
+		top: 5rem;
+		left: 15rem;
+		right: 15rem;
+
+		&__searchbar-container {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			height: fit-content;
+			background-color: whitesmoke;
+
+			mat-form-field {
+				flex-basis: 100%;
+				border: none;
+			}
+
+			&__btn-container {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				padding: 1rem;
+
+				.close {
+					cursor: pointer;
+				}
+			}
+		}
+
+		&__procucts-container {
+			display: flex;
+			height: 460px;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 1rem;
+			padding: 1rem;
+			background-color: whitesmoke;
+		}
+	}
+}
