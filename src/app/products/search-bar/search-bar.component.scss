@@ -40,10 +40,10 @@
 				display: flex;
 				width: 100%;
 				background-color: whitesmoke;
+				padding-bottom: 1rem;
 
 				* {
 					flex-basis: 100%;
-					border: none;
 					cursor: pointer;
 				}
 			}
@@ -60,9 +60,4 @@
 			}
 		}
 	}
-}
-
-button {
-	border: unset;
-	border-radius: unset !important;
 }
