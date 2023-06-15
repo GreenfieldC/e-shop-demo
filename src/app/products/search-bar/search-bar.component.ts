@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../shared/services/api.service';
 import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
 
 @Component({
 	selector: 'app-search-bar',
@@ -15,12 +16,13 @@ export class SearchBarComponent {
 	categories: Array<any>;
 	selectedCategory: string = 'all';
 
-	constructor(private apiService: ApiService, private dialog: MatDialog) {
+	constructor(
+		private apiService: ApiService,
+		private dialog: MatDialog,
+		public exchangeRateService: ExchangeRateService
+	) {
 		this.getProductsFromService();
-		this.apiService.getCategories.subscribe((data) => {
-			this.categories = data;
-			console.log(this.categories);
-		});
+		this.getCategoriesFromService();
 	}
 
 	/**
@@ -30,6 +32,15 @@ export class SearchBarComponent {
 		this.apiService.getProducts.subscribe((data) => {
 			this.products = data;
 			console.log(this.products);
+		});
+	}
+
+	/**
+	 * Gets categories from API
+	 */
+	getCategoriesFromService() {
+		this.apiService.getCategories.subscribe((data) => {
+			this.categories = data;
 		});
 	}
 
@@ -44,9 +55,12 @@ export class SearchBarComponent {
 		});
 	}
 
+	/**
+	 * Filters products by category
+	 * @param category
+	 * @returns
+	 */
 	filterProducts(category: string) {
-		this.selectedCategory = category;
-
 		if (category === 'all') {
 			this.getProductsFromService();
 			return;
@@ -56,7 +70,6 @@ export class SearchBarComponent {
 			.getProductsOfSelectedCategory(category)
 			.subscribe((data) => {
 				this.products = data;
-				console.log(this.products);
 			});
 	}
 }
