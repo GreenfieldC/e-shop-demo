@@ -8,8 +8,8 @@
 	&__window {
 		position: absolute;
 		top: 5rem;
-		left: 5rem;
-		right: 5rem;
+		left: 15rem;
+		right: 15rem;
 
 		&__searchbar-container {
 			display: flex;
@@ -33,6 +33,16 @@
 					cursor: pointer;
 				}
 			}
+		}
+
+		&__procucts-container {
+			display: flex;
+			height: 460px;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 1rem;
+			padding: 1rem;
+			background-color: whitesmoke;
 		}
 	}
 }

@@ -10,15 +10,16 @@ import { ProductItemComponent } from 'src/app/products/product-item/product-item
 export class SearchBarComponent {
 	searchTerm: string;
 	products: Array<any>;
+	showProducts: boolean = false;
 
 	constructor(private apiService: ApiService) {
 		this.apiService.getProducts.subscribe((data) => {
-			/* 	data.forEach((obj: any) => {
-				obj.quantity = 1;
-				obj.size = '';
-			}); */
 			this.products = data;
 			console.log(this.products);
 		});
+	}
+
+	showProductsList() {
+		this.showProducts = true;
 	}
 }

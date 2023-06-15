@@ -1,6 +1,9 @@
 <div class="wrapper">
 	<div class="wrapper__window">
-		<div class="wrapper__window__searchbar-container">
+		<div
+			(click)="showProducts = true"
+			class="wrapper__window__searchbar-container"
+		>
 			<mat-form-field>
 				<input
 					placeholder="SEARCH"
@@ -14,13 +17,10 @@
 				<mat-icon class="close" routerLink="/">close</mat-icon>
 			</div>
 		</div>
-		<div class="wrapper__procucts-container">
-			<!-- 	<app-product-item
-				*ngFor="let product of products"
-				class="product-item"
-				[product]="product"
-				(click)="openDetailView(product)"
-			></app-product-item> -->
-		</div>
+		<div
+			*ngIf="showProducts"
+			#productList
+			class="wrapper__window__procucts-container"
+		></div>
 	</div>
 </div>
