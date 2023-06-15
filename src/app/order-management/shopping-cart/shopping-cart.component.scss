@@ -127,3 +127,38 @@
 
     }
 }
+
+.empty-cart-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    mat-icon {
+        color: var(--primary-color);
+        transform: scale(3);
+        margin-bottom: 3rem;
+    }
+
+    button {
+        color: white;
+        background-color: var(--accent-color);
+        font-size: 1rem;
+        margin-top: 1.1rem;
+        border: none;
+        border-radius: 0.5rem;
+
+        white-space: nowrap;
+        box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+        cursor: pointer;
+        transition: 225ms all ease-in-out;
+        width: 150px;
+        &:hover {
+            background-color: var(--primary-color);
+        }
+    }
+
+}
