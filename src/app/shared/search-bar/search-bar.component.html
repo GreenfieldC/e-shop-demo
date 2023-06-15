@@ -1,5 +1,26 @@
 <div class="wrapper">
-	<div class="wrapper__input">
-		<input matInput type="search" autocomplete="off" />
+	<div class="wrapper__window">
+		<div class="wrapper__window__searchbar-container">
+			<mat-form-field>
+				<input
+					placeholder="SEARCH"
+					matInput
+					type="search"
+					[(ngModel)]="searchTerm"
+				/>
+			</mat-form-field>
+			<div class="wrapper__window__searchbar-container__btn-container">
+				<mat-icon>search</mat-icon>
+				<mat-icon class="close" routerLink="/">close</mat-icon>
+			</div>
+		</div>
+		<div class="wrapper__procucts-container">
+			<!-- 	<app-product-item
+				*ngFor="let product of products"
+				class="product-item"
+				[product]="product"
+				(click)="openDetailView(product)"
+			></app-product-item> -->
+		</div>
 	</div>
 </div>

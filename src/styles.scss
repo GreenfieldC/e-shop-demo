@@ -21,8 +21,23 @@ body {
 }
 
 .mat-mdc-text-field-wrapper {
-	border: 1px solid #ccc;
+	// border: 1px solid #ccc;
 	border-radius: unset !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+	box-sizing: border-box;
+	width: 100%;
+	position: relative;
+	height: 0px;
+}
+
+.mat-mdc-form-field:hover .mat-mdc-form-field-focus-overlay {
+	opacity: 0;
+}
+
+::ng-deep .mat-input-underline {
+	display: none;
 }
 
 .ta-center {
