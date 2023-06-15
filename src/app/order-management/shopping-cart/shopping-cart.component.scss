@@ -116,13 +116,16 @@
     mat-card {
         width: 40%;
         padding: 1rem;
-        background-color: rgb(230, 226, 226);
+        // background-color: rgb(230, 226, 226);
+        border: 1px solid var(--primary-color);
         display: flex;
         flex-direction: column;
 
         div {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 1rem;
+
         }
 
     }
@@ -147,7 +150,7 @@
         color: white;
         background-color: var(--accent-color);
         font-size: 1rem;
-        margin-top: 1.1rem;
+        margin-top: 1rem;
         border: none;
         border-radius: 0.5rem;
 

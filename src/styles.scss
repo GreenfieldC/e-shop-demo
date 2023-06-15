@@ -29,6 +29,15 @@ body {
 	text-align: center;
 }
 
+.mdc-text-field--filled .mdc-line-ripple::after {
+	border-bottom-color: var(--primary-color);
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: gray;
+}
+
+
 button {
 	color: white;
 	font-size: 1rem;

@@ -72,9 +72,9 @@
 						<span
 							>Total:
 							{{
-								shoppingBasketService.totalPrice
+								shoppingBasketService.totalPrice * exchangeRateService.selectedRate
 									| number : '1.2-2'
-							}}$</span
+							}}{{exchangeRateService.icon}}</span
 						>
 						<button
 							class="cart-action-btn"
