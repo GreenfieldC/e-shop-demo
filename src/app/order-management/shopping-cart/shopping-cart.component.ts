@@ -18,6 +18,7 @@ export class ShoppingCartComponent {
 	incrementQuantity(i: number, event: Event) {
 		event.stopPropagation();
 		this.shoppingCartService.products[i].quantity += 1;
+		this.shoppingCartService.updateProducts();
 	}
 
 	decreaseQuantity(i: number, event: Event) {
@@ -28,5 +29,7 @@ export class ShoppingCartComponent {
 		} else {
 			this.shoppingCartService.products[i].quantity -= 1;
 		}
+
+		this.shoppingCartService.updateProducts();
 	}
 }

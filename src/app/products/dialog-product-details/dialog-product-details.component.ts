@@ -51,7 +51,7 @@ export class DialogProductDetailsComponent {
 				this.shoppingBasketService.products.push(this.data);
 			}
 
-			this.shoppingBasketService.addProduct();
+			this.shoppingBasketService.updateProducts();
 		} else {
 			alert('Please select size!');
 		}

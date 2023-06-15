@@ -40,7 +40,7 @@ export class ShoppingBasketService {
 		});
 	}
 
-	async addProduct() {
+	async updateProducts() {
 		setDoc(this.cartDocRef, {
 			products: this.products,
 		});
