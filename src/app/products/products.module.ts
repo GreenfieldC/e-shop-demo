@@ -8,6 +8,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DialogProductDetailsComponent } from './dialog-product-details/dialog-product-details.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
 	declarations: [
@@ -17,6 +18,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 		DialogProductDetailsComponent,
 		SearchBarComponent,
 	],
-	imports: [CommonModule, SharedModule, ProductsRoutingModule],
+	imports: [
+		CommonModule,
+		SharedModule,
+		ProductsRoutingModule,
+		MatButtonToggleModule,
+	],
 })
 export class ProductsModule {}
