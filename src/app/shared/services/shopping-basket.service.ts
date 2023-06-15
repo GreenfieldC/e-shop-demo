@@ -5,7 +5,7 @@ import {
 	setDoc,
 	DocumentReference,
 } from '@angular/fire/firestore';
-import { onSnapshot } from 'firebase/firestore';
+import { getDoc, onSnapshot } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,6 +14,8 @@ import { Observable } from 'rxjs';
 export class ShoppingBasketService {
 	//document reference in Firestore
 	private cartDocRef: DocumentReference;
+
+	private couponDocRef: DocumentReference;
 
 	//products array that get displayed in UI
 	products: Array<any> = [];
@@ -24,11 +26,17 @@ export class ShoppingBasketService {
 	//shipping costs
 	shippingCosts: number = 2.5;
 
+	//coupon code
+	couponCodes: Array<Object>;
+
 	constructor(private firestore: Firestore) {
-		//asssignment of document reference in Firestore
+		//asssignment of cart document reference in Firestore
 		this.cartDocRef = doc(this.firestore, 'user_guest/cart');
 
-		//built-in observable creator that establishes real time listener of database
+		//asssignment of coupon_codes document reference in Firestore
+		this.couponDocRef = doc(this.firestore, 'coupon_codes/codes');
+
+		//real time listener of prodcuts in database
 		onSnapshot(this.cartDocRef, (doc) => {
 			this.products = doc.data()?.['products'] || [];
 			this.totalPrice = 0;
@@ -40,6 +48,11 @@ export class ShoppingBasketService {
 					this.shippingCosts = 2.5;
 				}
 			});
+		});
+
+		//real time listener of coupon codes in database
+		onSnapshot(this.couponDocRef, (doc) => {
+			this.couponCodes = doc.data()?.['codes'];
 		});
 	}
 

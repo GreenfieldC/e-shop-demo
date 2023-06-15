@@ -105,7 +105,10 @@
 				<span>Coupon:</span>
 				<mat-form-field>
 					<mat-label>Code</mat-label>
-					<input matInput placeholder="Enter Code here" value="" />
+					<input matInput placeholder="Enter Code here" value=""
+					maxlength="5"
+					(input)="validateDiscount()"
+					/>
 				</mat-form-field>
 			</div>
 			<div><span>

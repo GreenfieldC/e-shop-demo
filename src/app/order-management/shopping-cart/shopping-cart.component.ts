@@ -8,6 +8,8 @@ import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.servi
 	styleUrls: ['./shopping-cart.component.scss'],
 })
 export class ShoppingCartComponent {
+	discountCode: number;
+
 	constructor(
 		public shoppingCartService: ShoppingBasketService,
 		public exchangeRateService: ExchangeRateService
@@ -31,5 +33,9 @@ export class ShoppingCartComponent {
 		}
 
 		this.shoppingCartService.updateProducts();
+	}
+
+	validateDiscount() {
+		this.shoppingCartService.couponCodes.forEach((coupon) => {});
 	}
 }
