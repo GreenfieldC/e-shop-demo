@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.component';
 
 @Component({
 	selector: 'app-shopping-cart',
@@ -16,7 +18,8 @@ export class ShoppingCartComponent {
 
 	constructor(
 		public shoppingCartService: ShoppingBasketService,
-		public exchangeRateService: ExchangeRateService
+		public exchangeRateService: ExchangeRateService,
+		public dialog: MatDialog
 	) {}
 
 	incrementQuantity(i: number, event: Event) {
@@ -51,5 +54,9 @@ export class ShoppingCartComponent {
 
 	selectPayment(payment: string) {
 		this.paymentMethod = payment;
+	}
+
+	openPaymentDialog() {
+		this.dialog.open(DialogPaymentComponent);
 	}
 }
