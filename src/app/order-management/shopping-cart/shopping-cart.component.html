@@ -59,4 +59,20 @@
         </div>
 
 	</mat-expansion-panel>
+
+    <div class="checkout-container" *ngIf="shoppingCartService.products.length > 0">
+            <mat-card>
+                <div><span>Subtotal:</span><span>XY$</span></div>
+                <div>Subtotal:</div>
+                <div>Subtotal:</div>
+                <div>Subtotal:</div>
+            </mat-card>
+    </div>
+
+    <div class="empty-cart-prompt" *ngIf="shoppingCartService.products.length === 0">
+        <mat-icon>shopping_cart</mat-icon>
+        <h3>Shopping Cart is empty</h3>
+        <button>Explore products</button>
+    </div>
+
 </div>
