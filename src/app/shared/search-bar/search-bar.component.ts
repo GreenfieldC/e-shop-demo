@@ -13,13 +13,20 @@ export class SearchBarComponent {
 	showProducts: boolean = false;
 
 	constructor(private apiService: ApiService) {
-		this.apiService.getProducts.subscribe((data) => {
-			this.products = data;
-			console.log(this.products);
-		});
+		this.getProductsFromService();
 	}
 
 	showProductsList() {
 		this.showProducts = true;
+	}
+
+	/**
+	 * Gets products from API
+	 */
+	getProductsFromService() {
+		this.apiService.getProducts.subscribe((data) => {
+			this.products = data;
+			console.log(this.products);
+		});
 	}
 }
