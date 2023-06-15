@@ -36,7 +36,7 @@ export class ApiService {
 	 * @returns {json}
 	 */
 	get getCategories(): Observable<any> {
-		const categoryUrl = this.baseUrl + 'categories';
+		const categoryUrl = this.baseUrl + '/categories';
 		return this.fetchData(categoryUrl);
 	}
 }

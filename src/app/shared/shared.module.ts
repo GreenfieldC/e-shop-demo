@@ -21,9 +21,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { FrameComponent } from './frame/frame.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 
-const components = [FrameComponent, SearchBarComponent];
+const components = [FrameComponent];
 const modules = [
 	CommonModule,
 	MatButtonModule,

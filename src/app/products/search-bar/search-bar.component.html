@@ -21,6 +21,13 @@
 			*ngIf="showProducts"
 			#productList
 			class="wrapper__window__procucts-container"
-		></div>
+		>
+			<app-product-item
+				*ngFor="let product of products"
+				class="product-item"
+				[product]="product"
+				(click)="openDetailView(product)"
+			></app-product-item>
+		</div>
 	</div>
 </div>
