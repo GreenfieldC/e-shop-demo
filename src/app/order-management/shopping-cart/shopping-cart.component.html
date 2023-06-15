@@ -105,21 +105,31 @@
 				<span>Coupon:</span>
 				<mat-form-field>
 					<mat-label>Code</mat-label>
-					<input matInput placeholder="Enter Code here" value=""
-					maxlength="5"
-					(input)="validateDiscount()"
+					<input
+						matInput
+						placeholder="Enter Code here"
+						value=""
+						maxlength="5"
+						(input)="validateDiscount()"
+						[(ngModel)]="discountCode"
+						[ngClass]="{ valid: discountGiven }"
 					/>
 				</mat-form-field>
 			</div>
-			<div><span>
-                Grand Total:
-            </span>
-            <span>
-                {{(shoppingCartService.shippingCosts 
-                  + shoppingCartService.totalPrice) *
-                    exchangeRateService.selectedRate | number : '1.2-2'
-                }}{{exchangeRateService.icon}}
-            </span></div>
+			<div *ngIf="discountGiven">
+				<span>Discount:</span>
+				<span class="discount">+ {{this.discount * exchangeRateService.selectedRate}}{{exchangeRateService.icon}}</span>
+			</div>
+			<div>
+				<span> Grand Total: </span>
+				<span>
+					{{
+						(shoppingCartService.shippingCosts +
+							shoppingCartService.totalPrice - this.discount) *
+							exchangeRateService.selectedRate | number : '1.2-2'
+					}}{{ exchangeRateService.icon }}
+				</span>
+			</div>
 		</mat-card>
 	</div>
 

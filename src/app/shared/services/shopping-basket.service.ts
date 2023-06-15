@@ -27,7 +27,7 @@ export class ShoppingBasketService {
 	shippingCosts: number = 2.5;
 
 	//coupon code
-	couponCodes: Array<Object>;
+	couponCodes: Array<any>;
 
 	constructor(private firestore: Firestore) {
 		//asssignment of cart document reference in Firestore
