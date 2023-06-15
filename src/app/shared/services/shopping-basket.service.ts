@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import {
 	Firestore,
 	doc,
 	setDoc,
-	getDoc,
-	DocumentData,
-	CollectionReference,
-	updateDoc,
 	DocumentReference,
 } from '@angular/fire/firestore';
 import { onSnapshot } from 'firebase/firestore';
@@ -26,6 +21,9 @@ export class ShoppingBasketService {
 	//total price
 	totalPrice: number = 0;
 
+	//shipping costs
+	shippingCosts: number = 2.5;
+
 	constructor(private firestore: Firestore) {
 		//asssignment of document reference in Firestore
 		this.cartDocRef = doc(this.firestore, 'user_guest/cart');
@@ -35,7 +33,12 @@ export class ShoppingBasketService {
 			this.products = doc.data()?.['products'] || [];
 			this.totalPrice = 0;
 			this.products.forEach((product) => {
-				this.totalPrice += product.price;
+				this.totalPrice += product.price * product.quantity;
+				if (this.totalPrice > 250) {
+					this.shippingCosts = 0;
+				} else {
+					this.shippingCosts = 2.5;
+				}
 			});
 		});
 	}
