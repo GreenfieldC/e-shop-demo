@@ -39,4 +39,14 @@ export class ApiService {
 		const categoryUrl = this.baseUrl + '/categories';
 		return this.fetchData(categoryUrl);
 	}
+
+	/**
+	 * Gets products of selected category from API
+	 * @param selectedCategory
+	 * @returns
+	 */
+	getProductsOfSelectedCategory(selectedCategory: string): Observable<any> {
+		const categoryUrl = this.baseUrl + '/category/' + selectedCategory;
+		return this.fetchData(categoryUrl);
+	}
 }
