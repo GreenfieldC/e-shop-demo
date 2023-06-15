@@ -35,15 +35,34 @@
 			}
 		}
 
-		&__procucts-container {
-			display: flex;
-			height: 460px;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			gap: 1rem;
-			padding: 1rem;
-			background-color: whitesmoke;
-			overflow: scroll;
+		&__container {
+			&__catergory-bar {
+				display: flex;
+				width: 100%;
+				background-color: whitesmoke;
+
+				* {
+					flex-basis: 100%;
+					border: none;
+					cursor: pointer;
+				}
+			}
+
+			&__procucts-container {
+				display: flex;
+				height: 460px;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				gap: 1rem;
+				padding: 1rem;
+				background-color: whitesmoke;
+				overflow: scroll;
+			}
 		}
 	}
+}
+
+button {
+	border: unset;
+	border-radius: unset !important;
 }

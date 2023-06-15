@@ -17,17 +17,33 @@
 				<mat-icon class="close" routerLink="/">close</mat-icon>
 			</div>
 		</div>
-		<div
-			*ngIf="showProducts"
-			#productList
-			class="wrapper__window__procucts-container"
-		>
-			<app-product-item
-				*ngFor="let product of products"
-				class="product-item"
-				[product]="product"
-				(click)="openDetailView(product)"
-			></app-product-item>
+		<div class="wrapper__window__container" *ngIf="showProducts">
+			<!-- Category bar -->
+			<div class="wrapper__window__container__catergory-bar">
+				<mat-button-toggle-group
+					name="favoriteColor"
+					aria-label="Favorite Color"
+				>
+					<mat-button-toggle
+						*ngFor="let category of categories"
+						value="red"
+						>{{ category }}</mat-button-toggle
+					>
+				</mat-button-toggle-group>
+			</div>
+
+			<!-- Products container -->
+			<div
+				#productList
+				class="wrapper__window__container__procucts-container"
+			>
+				<app-product-item
+					*ngFor="let product of products"
+					class="product-item"
+					[product]="product"
+					(click)="openDetailView(product)"
+				></app-product-item>
+			</div>
 		</div>
 	</div>
 </div>
