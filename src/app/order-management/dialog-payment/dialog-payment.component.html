@@ -1,1 +1,8 @@
-<h1>Pay me</h1>
+<div class="checkout-container">
+	<h1>Order Summary</h1>
+
+	<span>Payment Method: {{ data.payment | titlecase }}</span>
+	<span>Grand Total: {{ data.total }}{{ data.currency }}</span>
+
+	<button class="order-btn"><mat-icon>lock</mat-icon>Order</button>
+</div>

@@ -57,6 +57,20 @@ export class ShoppingCartComponent {
 	}
 
 	openPaymentDialog() {
-		this.dialog.open(DialogPaymentComponent);
+		if (this.paymentMethod) {
+			this.dialog.open(DialogPaymentComponent, {
+				data: {
+					payment: this.paymentMethod,
+					total:
+						(this.shoppingCartService.shippingCosts +
+							this.shoppingCartService.totalPrice -
+							this.discount) *
+						this.exchangeRateService.selectedRate,
+					currency: this.exchangeRateService.icon,
+				},
+			});
+		} else {
+			alert('Please select a payment method'!);
+		}
 	}
 }
