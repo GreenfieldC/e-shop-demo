@@ -4,12 +4,16 @@
 			(click)="showProducts = true"
 			class="wrapper__window__searchbar-container"
 		>
+			<!-- Search Input Field -->
 			<mat-form-field>
 				<input
 					placeholder="SEARCH"
 					matInput
 					type="search"
-					[(ngModel)]="searchTerm"
+					autocomplete="off"
+					aria-label="Search"
+					#searchInput
+					(input)="searchInput$.next(searchInput.value)"
 				/>
 			</mat-form-field>
 			<div class="wrapper__window__searchbar-container__btn-container">

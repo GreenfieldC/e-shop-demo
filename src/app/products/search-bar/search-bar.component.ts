@@ -3,6 +3,15 @@ import { ApiService } from '../../shared/services/api.service';
 import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
+import {
+	Observable,
+	Subject,
+	debounceTime,
+	distinctUntilChanged,
+	filter,
+	of,
+	switchMap,
+} from 'rxjs';
 
 @Component({
 	selector: 'app-search-bar',
@@ -15,6 +24,8 @@ export class SearchBarComponent {
 	showProducts: boolean = false;
 	categories: Array<any>;
 	selectedCategory: string = 'all';
+	searchInput$ = new Subject<string>();
+	results$: Observable<any>;
 
 	constructor(
 		private apiService: ApiService,
@@ -23,6 +34,25 @@ export class SearchBarComponent {
 	) {
 		this.getProductsFromService();
 		this.getCategoriesFromService();
+		this.executesSearch();
+	}
+
+	/**
+	 * Executes search
+	 * @returns
+	 */
+	executesSearch() {
+		this.results$ = this.searchInput$.pipe(
+			filter((text) => text.length > 3),
+			debounceTime(500),
+			distinctUntilChanged(),
+			switchMap((searchTerm) => this.searchProducts(searchTerm))
+		);
+
+		this.results$.subscribe((filteredProducts) => {
+			this.showProducts = filteredProducts.length > 0;
+			this.products = filteredProducts;
+		});
 	}
 
 	/**
@@ -71,5 +101,13 @@ export class SearchBarComponent {
 			.subscribe((data) => {
 				this.products = data;
 			});
+	}
+
+	searchProducts(searchTerm: string): Observable<any> {
+		const filteredProducts = this.products.filter((product) =>
+			product.title.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+
+		return of(filteredProducts);
 	}
 }
