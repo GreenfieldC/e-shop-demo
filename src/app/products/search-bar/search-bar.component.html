@@ -28,13 +28,13 @@
 					name="favoriteColor"
 					aria-label="Favorite Color"
 				>
-					<mat-button-toggle (click)="filterProducts('all')"
+					<mat-button-toggle (click)="showsCategory('all')"
 						>All</mat-button-toggle
 					>
 					<mat-button-toggle
 						*ngFor="let category of categories"
 						value="red"
-						(click)="filterProducts(category)"
+						(click)="showsCategory(category)"
 						>{{ category }}</mat-button-toggle
 					>
 				</mat-button-toggle-group>

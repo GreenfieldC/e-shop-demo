@@ -90,7 +90,7 @@ export class SearchBarComponent {
 	 * @param category
 	 * @returns
 	 */
-	filterProducts(category: string) {
+	showsCategory(category: string) {
 		if (category === 'all') {
 			this.getProductsFromService();
 			return;
