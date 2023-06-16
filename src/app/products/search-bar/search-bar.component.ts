@@ -46,7 +46,7 @@ export class SearchBarComponent {
 			filter((text) => text.length > 3),
 			debounceTime(500),
 			distinctUntilChanged(),
-			switchMap((searchTerm) => this.searchProducts(searchTerm))
+			switchMap((searchTerm) => this.filtersProducts(searchTerm))
 		);
 
 		this.results$.subscribe((filteredProducts) => {
@@ -103,7 +103,12 @@ export class SearchBarComponent {
 			});
 	}
 
-	searchProducts(searchTerm: string): Observable<any> {
+	/**
+	 * Filters products by search term
+	 * @param searchTerm
+	 * @returns Observable
+	 */
+	filtersProducts(searchTerm: string): Observable<any> {
 		const filteredProducts = this.products.filter((product) =>
 			product.title.toLowerCase().includes(searchTerm.toLowerCase())
 		);
