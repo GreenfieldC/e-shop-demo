@@ -20,6 +20,13 @@ export class LoginPageComponent {
 	constructor(public afAuth: AngularFireAuth, private fb: FormBuilder) {}
 
 	ngOnInit() {
+		this.initialiseForm();
+	}
+
+	/**
+	 * Initialise the form
+	 */
+	initialiseForm() {
 		this.form = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.minLength(6), Validators.required]],
@@ -27,6 +34,10 @@ export class LoginPageComponent {
 		});
 	}
 
+	/**
+	 * Set the type of form
+	 * @param val string of the type of form
+	 */
 	changeType(val: any) {
 		this.type = val;
 	}
