@@ -1,7 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { updateProfile } from 'firebase/auth';
+import {
+	CollectionReference,
+	collection,
+	doc,
+	setDoc,
+} from 'firebase/firestore';
 
 @Component({
 	selector: 'app-login-page',
@@ -18,7 +25,13 @@ export class LoginPageComponent {
 
 	serverMessage: any;
 
-	constructor(public afAuth: AngularFireAuth, private fb: FormBuilder) {}
+	collection: CollectionReference;
+
+	constructor(
+		public afAuth: AngularFireAuth,
+		private fb: FormBuilder,
+		private firestore: Firestore
+	) {}
 
 	ngOnInit() {
 		this.initialiseForm();
@@ -94,7 +107,9 @@ export class LoginPageComponent {
 
 				const user = credential.user;
 				if (user) {
-					await updateProfile(user, { displayName: 'new' });
+					setDoc(doc(this.firestore, `user_${user.uid}`, 'cart'), {
+						products: [],
+					});
 				}
 			}
 			if (this.isPasswordReset) {
