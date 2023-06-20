@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { updateProfile } from 'firebase/auth';
 
 @Component({
 	selector: 'app-login-page',
@@ -85,10 +86,16 @@ export class LoginPageComponent {
 				this.loginSuccess.emit();
 			}
 			if (this.isSignup) {
-				await this.afAuth.createUserWithEmailAndPassword(
-					email,
-					password
-				);
+				const credential =
+					await this.afAuth.createUserWithEmailAndPassword(
+						email,
+						password
+					);
+
+				const user = credential.user;
+				if (user) {
+					await updateProfile(user, { displayName: 'new' });
+				}
 			}
 			if (this.isPasswordReset) {
 				await this.afAuth.sendPasswordResetEmail(email);
