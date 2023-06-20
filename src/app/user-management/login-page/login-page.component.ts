@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
 import {
 	CollectionReference,
@@ -9,6 +10,7 @@ import {
 	doc,
 	setDoc,
 } from 'firebase/firestore';
+import { UserServiceService } from 'src/app/shared/services/user-service.service';
 
 @Component({
 	selector: 'app-login-page',
@@ -30,7 +32,9 @@ export class LoginPageComponent {
 	constructor(
 		public afAuth: AngularFireAuth,
 		private fb: FormBuilder,
-		private firestore: Firestore
+		private firestore: Firestore,
+		private router: Router,
+		public userService: UserServiceService
 	) {}
 
 	ngOnInit() {
@@ -97,6 +101,16 @@ export class LoginPageComponent {
 			if (this.isLogin) {
 				await this.afAuth.signInWithEmailAndPassword(email, password);
 				this.loginSuccess.emit();
+				const user = await this.afAuth.currentUser;
+				if (user) {
+					this.userService.currentlyLoggedIn = user.uid;
+					this.router.navigateByUrl('');
+
+					// later user data will be stored in local storage or cache and checked for existence on application init
+
+					// const authData = { id: user.uid, name: user.displayName };
+					// localStorage.setItem('authToken', JSON.stringify(authData));
+				}
 			}
 			if (this.isSignup) {
 				const credential =
