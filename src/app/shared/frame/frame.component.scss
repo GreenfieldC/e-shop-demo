@@ -63,23 +63,6 @@
 						transform: scale(1.1);
 					}
 				}
-				.logout-btn {
-					position: absolute;
-					top: 143%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					color: white;
-					background-color: var(--accent-color);
-					font-size: 0.75rem;
-					white-space: nowrap;
-					box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
-					cursor: pointer;
-					transition: 225ms all ease-in-out;
-
-					&:hover {
-						background-color: var(--primary-color);
-					}
-				}
 
 				.popup-box {
 					position: absolute;
@@ -168,6 +151,38 @@
 					bottom: -0.3rem;
 					right: -0.2rem;
 					cursor: pointer;
+				}
+
+				.logout {
+					top: calc(100% + 1rem);
+					right: 0;
+					padding: 1rem 2rem; 
+					background-color: white;
+					z-index: 2;
+					color: black;
+					box-shadow: 0 0 6px 2px rgba($color: #000000, $alpha: 0.4);
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+
+					button {
+						color: white;
+							background-color: var(--accent-color);
+							font-size: 1rem;
+							border: none;
+							border-radius: 0.5rem;
+							padding: 0.5rem;
+							white-space: nowrap;
+							box-shadow: 0 0 2px 0
+								rgba($color: #000000, $alpha: 0.2);
+							cursor: pointer;
+							transition: 225ms all ease-in-out;
+
+							&:hover {
+								background-color: var(--primary-color);
+							}
+					}
 				}
 			}
 		}

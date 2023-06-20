@@ -27,14 +27,18 @@
 		<div class="icon-box--menuitem-container">
 			<div class="icon-wrapper icon-wrapper--person">
 				<mat-icon (click)="openLoginDialog()">person</mat-icon>
-				<button
-					*ngIf="showLogOutButton"
+				
+				<div class="popup-box logout" *ngIf="showLogOutButton">
+
+					<h1>Hi, {{userService.currentlyLoggedIn}}!</h1>
+
+					<button
 					(click)="logout()"
 					class="logout-btn"
 				>
 					Logout
 				</button>
-				<div class="popup-box"></div>
+				</div>
 			</div>
 			<div class="icon-wrapper">
 				<mat-icon>favorite</mat-icon>

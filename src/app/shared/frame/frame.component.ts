@@ -5,6 +5,7 @@ import { LoginPageComponent } from 'src/app/user-management/login-page/login-pag
 import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ShoppingBasketService } from '../services/shopping-basket.service';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
 	selector: 'app-frame',
@@ -22,7 +23,8 @@ export class FrameComponent {
 		// private currencyService: CurrencyService,
 		public exchangeRateService: ExchangeRateService,
 		public afAuth: AngularFireAuth,
-		public shoppingBasketService: ShoppingBasketService
+		public shoppingBasketService: ShoppingBasketService,
+		public userService: UserServiceService
 	) {}
 
 	ngOnInit() {
