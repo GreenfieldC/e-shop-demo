@@ -47,6 +47,15 @@ export class ShoppingBasketService {
 		//real time listener of prodcuts in database
 		onSnapshot(this.cartDocRef, (doc) => {
 			this.products = doc.data()?.['products'] || [];
+			this.totalPrice = 0;
+			this.products.forEach((product) => {
+				this.totalPrice += product.price * product.quantity;
+				if (this.totalPrice > 250) {
+					this.shippingCosts = 0;
+				} else {
+					this.shippingCosts = 2.5;
+				}
+			});
 		});
 
 		//real time listener of coupon codes in database
@@ -60,15 +69,16 @@ export class ShoppingBasketService {
 			setDoc(this.cartDocRef, {
 				products: this.products,
 			});
+		} else {
+			this.totalPrice = 0;
+			this.products.forEach((product) => {
+				this.totalPrice += product.price * product.quantity;
+				if (this.totalPrice > 250) {
+					this.shippingCosts = 0;
+				} else {
+					this.shippingCosts = 2.5;
+				}
+			});
 		}
-		this.totalPrice = 0;
-		this.products.forEach((product) => {
-			this.totalPrice += product.price * product.quantity;
-			if (this.totalPrice > 250) {
-				this.shippingCosts = 0;
-			} else {
-				this.shippingCosts = 2.5;
-			}
-		});
 	}
 }

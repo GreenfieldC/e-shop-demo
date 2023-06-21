@@ -89,10 +89,9 @@ export class FrameComponent {
 	logout() {
 		this.afAuth.signOut();
 		this.showLogOutButton = false;
-		this.shoppingBasketService.cartReference = 'user_guest/cart';
 		this.shoppingBasketService.currentlyLoggedInUser = 'Guest';
-		this.shoppingBasketService.getUserData();
 		localStorage.removeItem('authToken');
+		window.location.reload();
 	}
 
 	toggleLogOutButton() {

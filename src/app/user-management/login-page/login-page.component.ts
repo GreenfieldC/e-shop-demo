@@ -149,8 +149,4 @@ export class LoginPageComponent {
 
 		this.loading = false;
 	}
-
-	logout() {
-		this.afAuth.signOut();
-	}
 }
