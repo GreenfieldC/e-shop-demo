@@ -21,7 +21,10 @@ export class ShoppingBasketService {
 	//products array that get displayed in UI
 	products: Array<any> = [];
 
-	cartReference: string = 'user_guest/cart';
+	//currently logged In User
+	currentlyLoggedInUser: string | null;
+
+	cartReference: string;
 
 	//total price
 	totalPrice: number = 0;
@@ -44,15 +47,6 @@ export class ShoppingBasketService {
 		//real time listener of prodcuts in database
 		onSnapshot(this.cartDocRef, (doc) => {
 			this.products = doc.data()?.['products'] || [];
-			this.totalPrice = 0;
-			this.products.forEach((product) => {
-				this.totalPrice += product.price * product.quantity;
-				if (this.totalPrice > 250) {
-					this.shippingCosts = 0;
-				} else {
-					this.shippingCosts = 2.5;
-				}
-			});
 		});
 
 		//real time listener of coupon codes in database
@@ -62,8 +56,19 @@ export class ShoppingBasketService {
 	}
 
 	async updateProducts() {
-		setDoc(this.cartDocRef, {
-			products: this.products,
+		if (this.currentlyLoggedInUser != 'Guest') {
+			setDoc(this.cartDocRef, {
+				products: this.products,
+			});
+		}
+		this.totalPrice = 0;
+		this.products.forEach((product) => {
+			this.totalPrice += product.price * product.quantity;
+			if (this.totalPrice > 250) {
+				this.shippingCosts = 0;
+			} else {
+				this.shippingCosts = 2.5;
+			}
 		});
 	}
 }

@@ -5,7 +5,6 @@ import { LoginPageComponent } from 'src/app/user-management/login-page/login-pag
 import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ShoppingBasketService } from '../services/shopping-basket.service';
-import { UserServiceService } from '../services/user-service.service';
 
 @Component({
 	selector: 'app-frame',
@@ -23,8 +22,7 @@ export class FrameComponent {
 		// private currencyService: CurrencyService,
 		public exchangeRateService: ExchangeRateService,
 		public afAuth: AngularFireAuth,
-		public shoppingBasketService: ShoppingBasketService,
-		public userService: UserServiceService
+		public shoppingBasketService: ShoppingBasketService
 	) {}
 
 	ngOnInit() {
@@ -75,7 +73,7 @@ export class FrameComponent {
 	}
 
 	openLoginDialog() {
-		if (this.userService.currentlyLoggedInUser != 'Guest') {
+		if (this.shoppingBasketService.currentlyLoggedInUser != 'Guest') {
 			// User is logged in, do not open the dialog
 			this.toggleLogOutButton();
 			return;
@@ -92,8 +90,9 @@ export class FrameComponent {
 		this.afAuth.signOut();
 		this.showLogOutButton = false;
 		this.shoppingBasketService.cartReference = 'user_guest/cart';
-		this.userService.currentlyLoggedInUser = 'Guest';
+		this.shoppingBasketService.currentlyLoggedInUser = 'Guest';
 		this.shoppingBasketService.getUserData();
+		localStorage.removeItem('authToken');
 	}
 
 	toggleLogOutButton() {

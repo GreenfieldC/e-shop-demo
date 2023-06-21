@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserServiceService } from './shared/services/user-service.service';
 import { ShoppingBasketService } from './shared/services/shopping-basket.service';
 
 @Component({
@@ -12,7 +11,6 @@ export class AppComponent {
 	title = 'shop-demo';
 	constructor(
 		private router: Router,
-		public userService: UserServiceService,
 		public cartService: ShoppingBasketService
 	) {}
 
@@ -24,14 +22,11 @@ export class AppComponent {
 		const authToken = localStorage.getItem('authToken');
 		if (authToken) {
 			const userData = JSON.parse(authToken);
-			this.userService.currentlyLoggedInUser = userData.name;
-			this.userService.loggedIn = true;
 			this.cartService.cartReference = `user_${userData.id}/cart`;
+			this.cartService.currentlyLoggedInUser = userData.name;
+			this.cartService.getUserData();
 		} else {
-			this.userService.currentlyLoggedInUser = 'Guest';
-			this.cartService.cartReference = `user_guest/cart`;
+			this.cartService.currentlyLoggedInUser = 'Guest';
 		}
-
-		this.cartService.getUserData();
 	}
 }

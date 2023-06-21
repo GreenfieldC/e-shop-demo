@@ -11,7 +11,6 @@ import {
 	setDoc,
 } from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
-import { UserServiceService } from 'src/app/shared/services/user-service.service';
 
 @Component({
 	selector: 'app-login-page',
@@ -24,6 +23,7 @@ export class LoginPageComponent {
 	form!: FormGroup;
 
 	type: 'login' | 'signup' | 'reset' = 'signup';
+
 	loading = false;
 
 	serverMessage: any;
@@ -35,7 +35,6 @@ export class LoginPageComponent {
 		private fb: FormBuilder,
 		private firestore: Firestore,
 		private router: Router,
-		public userService: UserServiceService,
 		public cartService: ShoppingBasketService
 	) {}
 
@@ -115,12 +114,11 @@ export class LoginPageComponent {
 				this.loginSuccess.emit();
 				const user = await this.afAuth.currentUser;
 				if (user) {
-					this.userService.currentlyLoggedInUser = user.displayName;
+					this.cartService.currentlyLoggedInUser = user.displayName;
 					const authData = { id: user.uid, name: user.displayName };
 					localStorage.setItem('authToken', JSON.stringify(authData));
 					this.cartService.cartReference = `user_${user.uid}/cart`;
 					this.cartService.getUserData();
-					this.router.navigateByUrl('');
 				}
 			}
 			if (this.isSignup) {
