@@ -74,31 +74,26 @@ export class FrameComponent {
 		}
 	}
 
-	async openLoginDialog(): Promise<void> {
-		const currentUser = await this.afAuth.currentUser;
-		if (currentUser) {
+	openLoginDialog() {
+		if (this.userService.currentlyLoggedInUser != 'Guest') {
 			// User is logged in, do not open the dialog
 			this.toggleLogOutButton();
 			return;
+		} else {
+			const dialogRef = this.dialog.open(LoginPageComponent);
+
+			dialogRef.componentInstance.loginSuccess.subscribe(() => {
+				dialogRef.close(); // Close the dialog when login is successful
+			});
 		}
-		const dialogRef = this.dialog.open(LoginPageComponent);
-
-		dialogRef.componentInstance.loginSuccess.subscribe(() => {
-			dialogRef.close(); // Close the dialog when login is successful
-		});
-
-		dialogRef.afterClosed().subscribe((result) => {
-			console.log('The dialog was closed');
-		});
 	}
 
 	logout() {
 		this.afAuth.signOut();
 		this.showLogOutButton = false;
-	}
-
-	onLoginDialogClosed(): void {
-		this.dialog.closeAll();
+		this.shoppingBasketService.cartReference = 'user_guest/cart';
+		this.userService.currentlyLoggedInUser = 'Guest';
+		this.shoppingBasketService.getUserData();
 	}
 
 	toggleLogOutButton() {

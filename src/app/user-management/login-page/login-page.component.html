@@ -12,7 +12,7 @@
 	</div>
 
 	<div *ngIf="isLogin">
-		<h3 class="ta-center">Sign In</h3>
+		<h3 class="ta-center">Log In</h3>
 		<button
 			class="card__button-option"
 			size="small"
@@ -44,6 +44,9 @@
 				placeholder="Username"
 				autocomplete="off"
 			/>
+			<mat-error *ngIf="username?.invalid && username?.dirty">
+				Enter Username with at least 3 characters.
+			</mat-error>
 		</mat-form-field>
 		<mat-form-field [color]="passwordDoesMatch ? 'primary' : 'warn'">
 			<input

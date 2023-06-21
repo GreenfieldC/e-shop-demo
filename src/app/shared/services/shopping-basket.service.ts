@@ -21,6 +21,8 @@ export class ShoppingBasketService {
 	//products array that get displayed in UI
 	products: Array<any> = [];
 
+	cartReference: string = 'user_guest/cart';
+
 	//total price
 	totalPrice: number = 0;
 
@@ -30,9 +32,11 @@ export class ShoppingBasketService {
 	//coupon code
 	couponCodes: Array<any>;
 
-	constructor(private firestore: Firestore) {
+	constructor(private firestore: Firestore) {}
+
+	async getUserData() {
 		//asssignment of cart document reference in Firestore
-		this.cartDocRef = doc(this.firestore, 'user_guest/cart');
+		this.cartDocRef = doc(this.firestore, this.cartReference);
 
 		//asssignment of coupon_codes document reference in Firestore
 		this.couponDocRef = doc(this.firestore, 'coupon_codes/codes');

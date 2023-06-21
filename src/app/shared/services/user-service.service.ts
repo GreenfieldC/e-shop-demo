@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 	providedIn: 'root',
 })
 export class UserServiceService {
-	currentlyLoggedIn: string | null;
+	loggedIn: boolean = false;
+	currentlyLoggedInUser: string | null;
 
 	constructor() {}
 }

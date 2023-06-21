@@ -10,6 +10,7 @@ import {
 	doc,
 	setDoc,
 } from 'firebase/firestore';
+import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { UserServiceService } from 'src/app/shared/services/user-service.service';
 
 @Component({
@@ -34,7 +35,8 @@ export class LoginPageComponent {
 		private fb: FormBuilder,
 		private firestore: Firestore,
 		private router: Router,
-		public userService: UserServiceService
+		public userService: UserServiceService,
+		public cartService: ShoppingBasketService
 	) {}
 
 	ngOnInit() {
@@ -49,7 +51,10 @@ export class LoginPageComponent {
 			username: ['', []],
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.minLength(6), Validators.required]],
-			passwordConfirm: ['', []],
+			passwordConfirm: [
+				'',
+				[Validators.minLength(3), Validators.required],
+			],
 		});
 	}
 
@@ -110,13 +115,12 @@ export class LoginPageComponent {
 				this.loginSuccess.emit();
 				const user = await this.afAuth.currentUser;
 				if (user) {
-					this.userService.currentlyLoggedIn = user.displayName;
+					this.userService.currentlyLoggedInUser = user.displayName;
+					const authData = { id: user.uid, name: user.displayName };
+					localStorage.setItem('authToken', JSON.stringify(authData));
+					this.cartService.cartReference = `user_${user.uid}/cart`;
+					this.cartService.getUserData();
 					this.router.navigateByUrl('');
-
-					// later user data will be stored in local storage or cache and checked for existence on application init
-
-					// const authData = { id: user.uid, name: user.displayName };
-					// localStorage.setItem('authToken', JSON.stringify(authData));
 				}
 			}
 			if (this.isSignup) {
@@ -133,6 +137,8 @@ export class LoginPageComponent {
 					});
 
 					updateProfile(user, { displayName: username });
+					alert('Account successfully created!');
+					this.type = 'login';
 				}
 			}
 			if (this.isPasswordReset) {
