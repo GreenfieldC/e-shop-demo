@@ -2,7 +2,7 @@
 	<h1>Order Summary</h1>
 
 	<span>Payment Method: {{ data.payment | titlecase }}</span>
-	<span>Grand Total: {{ data.total }}{{ data.currency }}</span>
+	<span>Grand Total: {{ data.total | number : '1.2-2' }}{{ data.currency }}</span>
 
 	<button class="order-btn"><mat-icon>lock</mat-icon>Order</button>
 </div>

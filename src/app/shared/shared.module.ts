@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 /* Material Design */
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,6 +41,7 @@ const modules = [
 	MatDialogModule,
 	MatExpansionModule,
 	FormsModule,
+	MatCheckboxModule,
 ];
 
 @NgModule({

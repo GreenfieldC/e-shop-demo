@@ -83,7 +83,7 @@
 		*ngIf="shoppingCartService.products.length > 0"
 	>
 		<mat-card>
-			<div>
+			<div class="price-info-container">
 				<span>Subtotal:</span
 				><span>
 					{{
@@ -92,7 +92,7 @@
 					}}{{ exchangeRateService.icon }}</span
 				>
 			</div>
-			<div>
+			<div class="price-info-container">
 				<span>Shipping:</span>
 				<span
 					>{{
@@ -101,7 +101,7 @@
 					}}{{ exchangeRateService.icon }}</span
 				>
 			</div>
-			<div>
+			<div class="price-info-container">
 				<span>Coupon:</span>
 				<mat-form-field>
 					<mat-label>Code</mat-label>
@@ -116,14 +116,14 @@
 					/>
 				</mat-form-field>
 			</div>
-			<div *ngIf="discountGiven">
+			<div *ngIf="discountGiven" class="price-info-container">
 				<span>Discount:</span>
 				<span class="discount"
 					>+ {{ this.discount * exchangeRateService.selectedRate
 					}}{{ exchangeRateService.icon }}</span
 				>
 			</div>
-			<div>
+			<div class="price-info-container">
 				<span> Grand Total: </span>
 				<span>
 					{{
@@ -135,37 +135,68 @@
 				</span>
 			</div>
 			<h2 class="payment-header">Payment Options</h2>
-			<div>
-				<div
-					class="payment-option-wrapper"
-					(click)="selectPayment('credit')"
-				>
-					<mat-icon [class.selected]="paymentMethod === 'credit'"
-						>credit_card</mat-icon
-					>
+			<div class="payment-option-container">
+				<div class="payment-option-wrapper">
+					<mat-checkbox
+						color="primary"
+						[checked]="paymentMethod === 'credit'"
+						(change)="selectPayment('credit')"
+					></mat-checkbox>
+					<mat-icon>credit_card</mat-icon>
 					Credit Card
 				</div>
-				<div
-					class="payment-option-wrapper"
-					(click)="selectPayment('paypal')"
-				>
-					<mat-icon [class.selected]="paymentMethod === 'paypal'"
-						>paid</mat-icon
-					>
+				<div class="payment-info" *ngIf="paymentMethod === 'credit'">
+					<mat-form-field>
+						<mat-label>Card Number</mat-label>
+						<input
+							matInput
+							placeholder="Enter card number here"
+							value=""
+						/>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-label>Name On Card</mat-label>
+						<input
+							matInput
+							placeholder="Enter Code here"
+							value=""
+						/>
+					</mat-form-field>
+					<mat-form-field>
+						<mat-label>Security Number</mat-label>
+						<input
+							matInput
+							placeholder="Enter Code here"
+							value=""
+						/>
+					</mat-form-field>
+				</div>
+				<div class="payment-option-wrapper">
+					<mat-checkbox
+						color="primary"
+						[checked]="paymentMethod === 'paypal'"
+						(change)="selectPayment('paypal')"
+					></mat-checkbox>
+					<mat-icon>paid</mat-icon>
 					Paypal
 				</div>
-				<div
-					class="payment-option-wrapper"
-					(click)="selectPayment('debit')"
-				>
-					<mat-icon [class.selected]="paymentMethod === 'debit'"
-						>newspaper</mat-icon
-					>
+				<div class="payment-option-wrapper">
+					<mat-checkbox
+						color="primary"
+						[checked]="paymentMethod === 'debit'"
+						(change)="selectPayment('debit')"
+					></mat-checkbox>
+					<mat-icon>newspaper</mat-icon>
 					Direct Debit
 				</div>
 			</div>
 
-			<button class="payment-button" (click)="openPaymentDialog()">Proceed to Payment</button>
+				
+			
+
+			<button class="payment-button" (click)="openPaymentDialog()">
+				Proceed to Payment
+			</button>
 		</mat-card>
 	</div>
 

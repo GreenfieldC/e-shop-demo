@@ -35,8 +35,8 @@
 						<mat-icon>admin_panel_settings</mat-icon>
 					</div>
 
-					<div class="account-option">Account Settings</div>
-					<div class="account-option">My orders</div>
+					<div class="account-option" [routerLink]="'settings'">Account Settings</div>
+					<div class="account-option" [routerLink]="'orders'">My orders</div>
 
 					<button
 					(click)="logout()"

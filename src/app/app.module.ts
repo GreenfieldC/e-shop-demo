@@ -18,9 +18,10 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserManagementModule } from './user-management/user-management.module';
 import { OrderManagementModule } from './order-management/order-management.module';
+import { SettingsComponent } from './user-managemenet/settings/settings.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, SettingsComponent],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
