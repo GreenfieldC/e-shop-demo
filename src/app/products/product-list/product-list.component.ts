@@ -27,5 +27,6 @@ export class ProductListComponent {
 			height: 'fit-content',
 			data: product,
 		});
+		console.log(product);
 	}
 }

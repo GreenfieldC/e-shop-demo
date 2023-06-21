@@ -36,6 +36,19 @@
 	</div>
 
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<mat-form-field>
+			<input
+				matInput
+				formControlName="username"
+				type="text"
+				placeholder="Username"
+				autocomplete="off"
+			/>
+
+			<!-- <mat-error *ngIf="email?.invalid && email?.dirty">
+				You must enter a valid email address
+			</mat-error> -->
+		</mat-form-field>
 		<mat-form-field [color]="passwordDoesMatch ? 'primary' : 'warn'">
 			<input
 				matInput

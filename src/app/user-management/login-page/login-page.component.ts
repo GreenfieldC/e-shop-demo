@@ -46,6 +46,7 @@ export class LoginPageComponent {
 	 */
 	initialiseForm() {
 		this.form = this.fb.group({
+			username: ['', []],
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.minLength(6), Validators.required]],
 			passwordConfirm: ['', []],
@@ -75,6 +76,11 @@ export class LoginPageComponent {
 	get email() {
 		return this.form.get('email');
 	}
+
+	get username() {
+		return this.form.get('username');
+	}
+
 	get password() {
 		return this.form.get('password');
 	}
@@ -96,6 +102,7 @@ export class LoginPageComponent {
 
 		const email = this.email!.value;
 		const password = this.password!.value;
+		const username = this.username!.value;
 
 		try {
 			if (this.isLogin) {
@@ -103,7 +110,7 @@ export class LoginPageComponent {
 				this.loginSuccess.emit();
 				const user = await this.afAuth.currentUser;
 				if (user) {
-					this.userService.currentlyLoggedIn = user.uid;
+					this.userService.currentlyLoggedIn = user.displayName;
 					this.router.navigateByUrl('');
 
 					// later user data will be stored in local storage or cache and checked for existence on application init
@@ -124,6 +131,8 @@ export class LoginPageComponent {
 					setDoc(doc(this.firestore, `user_${user.uid}`, 'cart'), {
 						products: [],
 					});
+
+					updateProfile(user, { displayName: username });
 				}
 			}
 			if (this.isPasswordReset) {
