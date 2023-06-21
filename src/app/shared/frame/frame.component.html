@@ -30,10 +30,13 @@
 				
 				<div class="popup-box logout" *ngIf="showLogOutButton">
 
-					<h2>Hi, {{shoppingBasketService.currentlyLoggedInUser}}!</h2>
+					<div class="account-prompt">
+						<h2>Hi, {{shoppingBasketService.currentlyLoggedInUser}}!</h2>
+						<mat-icon>admin_panel_settings</mat-icon>
+					</div>
 
-					<div>Account Settings</div>
-					<div>My orders</div>
+					<div class="account-option">Account Settings</div>
+					<div class="account-option">My orders</div>
 
 					<button
 					(click)="logout()"
