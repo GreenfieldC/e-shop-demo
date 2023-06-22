@@ -31,6 +31,7 @@ export class DialogProductDetailsComponent {
 	}
 
 	addToCart() {
+		//! hier muss noch rein: this.data.category.includes('clothing') -> keine sizes auswählen, aber hinzufügen
 		if (this.selectedSize) {
 			this.orderPlaced = true;
 

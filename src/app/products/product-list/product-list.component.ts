@@ -24,8 +24,13 @@ export class ProductListComponent {
 
 	openDetailView(product: any) {
 		this.dialog.open(DialogProductDetailsComponent, {
-			height: 'fit-content',
+			// height: 'fit-content',
 			data: product,
+			maxWidth: '480px',
+			/* maxHeight: '650px', */
+			height: '100dvh',
+			width: '100%',
+			panelClass: 'full-screen-modal',
 		});
 		console.log(product);
 	}

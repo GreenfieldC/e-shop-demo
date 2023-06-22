@@ -20,7 +20,10 @@
 				<mat-icon>star</mat-icon>
 				<span>(no reviews)</span>
 			</div>
-			<div class="size-selection-container">
+			<div
+				*ngIf="data.category.includes('clothing')"
+				class="size-selection-container"
+			>
 				<span class="sizes">Sizes</span>
 				<div class="size-box-wrapper">
 					<div
@@ -42,29 +45,29 @@
 						{{ size }}
 					</div>
 				</div>
-				<button (click)="addToCart()" *ngIf="!orderPlaced">
-					Add to cart
-				</button>
-				<button
-					*ngIf="orderPlaced"
-					class="success"
-					[routerLink]="'shopping-cart'"
-					(click)="onNoClick()"
-				>
-					<mat-icon>check_circle</mat-icon>
-					Order Placed! View Cart
-				</button>
-				<div class="shipping-option-container">
-					<mat-icon>local_shipping</mat-icon>
-					<span
-						>Free shipping above
-						{{
-							minimumOrderValue * exchangeRateService.selectedRate
-								| number : '1.2-2'
-						}}
-						{{ exchangeRateService.icon }}
-					</span>
-				</div>
+			</div>
+			<button (click)="addToCart()" *ngIf="!orderPlaced">
+				Add to cart
+			</button>
+			<button
+				*ngIf="orderPlaced"
+				class="success"
+				[routerLink]="'shopping-cart'"
+				(click)="onNoClick()"
+			>
+				<mat-icon>check_circle</mat-icon>
+				Order Placed! View Cart
+			</button>
+			<div class="shipping-option-container">
+				<mat-icon>local_shipping</mat-icon>
+				<span
+					>Free shipping above
+					{{
+						minimumOrderValue * exchangeRateService.selectedRate
+							| number : '1.2-2'
+					}}
+					{{ exchangeRateService.icon }}
+				</span>
 			</div>
 		</div>
 	</div>
