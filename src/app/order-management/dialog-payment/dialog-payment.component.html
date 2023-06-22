@@ -1,9 +1,28 @@
+<h1>Order Summary</h1>
+
 <div class="checkout-container">
-	<h1>Order Summary</h1>
+	<div class="checkout-detail-wrapper">
+		<h2>Payment Method</h2>
+		<span> {{ data.payment | titlecase }} </span>
+	</div>
+	<div class="checkout-detail-wrapper">
+		<h2>Grand Total</h2>
+		<span>{{ data.total | number : '1.2-2' }}{{ data.currency }}</span>
+	</div>
+	<div class="checkout-detail-wrapper" *ngIf="data.payment === 'credit'">
+		<h2>Card Details</h2>
+		<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
+			{{ item[0] }}: {{ item[1] }}
+		</span>
+	</div>
+	<div class="checkout-detail-wrapper" *ngIf="data.payment === 'debit'">
+		<h2>Debit Details</h2>
+		<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
+			{{ item[0][0].toUpperCase() + item[0].slice(1) }}: {{ item[1] }}
+		</span>
+	</div>
+</div>
 
-	<span>Payment Method: {{ data.payment | titlecase }}</span>
-	<span>Grand Total: {{ data.total | number : '1.2-2' }}{{ data.currency }}</span>
-
+<div class="btn-wrapper">
 	<button class="order-btn"><mat-icon>lock</mat-icon>Order</button>
-	<!-- <h1>{{data.paymentData.number}}</h1> -->
 </div>

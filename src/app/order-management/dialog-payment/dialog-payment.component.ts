@@ -9,4 +9,8 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class DialogPaymentComponent {
 	constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+
+	getCardDetailsArray(details: any): any[] {
+		return Object.entries(details);
+	}
 }
