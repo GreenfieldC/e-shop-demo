@@ -31,6 +31,7 @@ export class ShoppingCartComponent {
 	discountGiven: boolean = false;
 	discount: number = 0;
 	paymentMethod: string | null = null;
+	paymentData: any;
 	billingDetails: billingDetails = {
 		firstname: null,
 		lastname: null,
@@ -89,6 +90,12 @@ export class ShoppingCartComponent {
 
 	openPaymentDialog() {
 		if (this.paymentMethod) {
+			if (this.paymentMethod === 'credit') {
+				this.paymentData = this.cardDetails;
+			} else {
+				this.paymentData = this.billingDetails;
+			}
+
 			this.dialog.open(DialogPaymentComponent, {
 				data: {
 					payment: this.paymentMethod,
@@ -98,7 +105,7 @@ export class ShoppingCartComponent {
 							this.discount) *
 						this.exchangeRateService.selectedRate,
 					currency: this.exchangeRateService.icon,
-					paymentData: this.cardDetails,
+					paymentData: this.paymentData,
 				},
 			});
 		} else {

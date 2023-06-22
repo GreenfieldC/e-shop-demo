@@ -1,16 +1,38 @@
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+
 .checkout-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 5rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-width: 50vw;
+    padding: 1rem 2rem;
     gap: 1rem;
 
+    .checkout-detail-wrapper {
+        display: flex;   
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+
+    
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
     .order-btn {
         color: white;
         background-color: var(--accent-color);
         font-size: 1rem;
         margin-top: 1rem;
+        margin-bottom: 1rem;
         border: none;
         border-radius: 0.5rem;
         display: flex;

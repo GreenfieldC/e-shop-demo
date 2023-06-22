@@ -196,6 +196,7 @@
 
     i {
         transform: scale(1.4);
+        margin-left: .3rem;
     }
 
 }
@@ -215,7 +216,10 @@
     .security-wrapper {
         display: flex;
         gap: 1rem;
-        justify-content: space-between;
+
+        mat-form-field {
+            width: 50%;
+        }
         
     }
 
