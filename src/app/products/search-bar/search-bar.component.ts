@@ -3,7 +3,6 @@ import { ApiService } from '../../shared/services/api.service';
 import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-search-bar',
@@ -57,12 +56,11 @@ export class SearchBarComponent {
 	}
 
 	/**
-	 * Filters products by category
+	 * Sets category to filter products
 	 * @param category
 	 * @returns
 	 */
-	showsCategory(category: string) {
+	setsCategory(category: string) {
 		this.selectedCategory = category;
-		console.log(this.selectedCategory);
 	}
 }
