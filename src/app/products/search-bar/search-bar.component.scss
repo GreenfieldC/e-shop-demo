@@ -45,6 +45,10 @@
 					flex-basis: 100%;
 					cursor: pointer;
 				}
+
+				mat-button-toggle-group {
+					overflow-x: scroll;
+				}
 			}
 
 			&__procucts-container {
