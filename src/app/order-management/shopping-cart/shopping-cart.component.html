@@ -148,7 +148,10 @@
 					<div class="number-wrapper">
 						<mat-form-field>
 							<mat-label>Enter Card Number</mat-label>
-							<input matInput placeholder="1234 5678 9012 3456" />
+							<input matInput placeholder="1234 5678 9012 3456" 
+							[(ngModel)]="cardDetails.number"
+							
+							/>
 							<mat-icon matSuffix
 								>credit_card</mat-icon
 							>
@@ -161,6 +164,7 @@
 							<input
 								matInput
 								placeholder="MM/JJ"
+								[(ngModel)]="cardDetails.expiry"
 							/>
 							<mat-icon matSuffix
 								>credit_card_off</mat-icon
@@ -171,6 +175,7 @@
 							<input
 								matInput
 								placeholder="3 digits"
+								[(ngModel)]="cardDetails.CVC"
 							/>
 							<mat-icon matSuffix
 								>pin</mat-icon
@@ -183,6 +188,7 @@
 							<input
 								matInput
 								placeholder="Enter Cardholder's Name"
+								[(ngModel)]="cardDetails.name"
 							/>
 							<mat-icon matSuffix
 								>person</mat-icon
@@ -222,6 +228,7 @@
 							<input
 								matInput
 								placeholder="Enter First Name"
+								[(ngModel)]="billingDetails.firstname"
 							/>
 							
 						</mat-form-field>
@@ -230,6 +237,7 @@
 							<input
 								matInput
 								placeholder="Enter Last Name"
+								[(ngModel)]="billingDetails.lastname"
 							/>
 							
 						</mat-form-field>
@@ -239,7 +247,10 @@
 					<div class="number-wrapper">
 						<mat-form-field>
 							<mat-label>Street + Number</mat-label>
-							<input matInput placeholder="Baker Street 15" />
+							<input matInput placeholder="Baker Street 15" 
+							[(ngModel)]="billingDetails.adress"
+
+							/>
 							
 						</mat-form-field>
 					</div>
@@ -250,6 +261,8 @@
 							<input
 								matInput
 								placeholder="Enter Zip Code"
+								[(ngModel)]="billingDetails.zipcode"
+
 							/>
 							
 						</mat-form-field>
@@ -258,6 +271,8 @@
 							<input
 								matInput
 								placeholder="Enter City Name"
+								[(ngModel)]="billingDetails.city"
+
 							/>
 							
 						</mat-form-field>
@@ -268,7 +283,9 @@
 						<mat-form-field>
 							<mat-label>Country</mat-label>
 							<mat-select>
-								<mat-option value="option">Option</mat-option>
+								<mat-option value="option"
+								[(ngModel)]="billingDetails.country"
+								>Option</mat-option>
 							</mat-select>
 							
 						</mat-form-field>

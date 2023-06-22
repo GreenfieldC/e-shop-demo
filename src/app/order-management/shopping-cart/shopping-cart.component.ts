@@ -4,6 +4,22 @@ import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.servi
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.component';
 
+interface cardDetails {
+	number: null | number;
+	expiry: null | string;
+	CVC: null | number;
+	name: null | string;
+}
+
+interface billingDetails {
+	firstname: null | number;
+	lastname: null | string;
+	adress: null | string;
+	zipcode: null | number;
+	city: null | string;
+	country: null | string;
+}
+
 @Component({
 	selector: 'app-shopping-cart',
 	templateUrl: './shopping-cart.component.html',
@@ -15,6 +31,20 @@ export class ShoppingCartComponent {
 	discountGiven: boolean = false;
 	discount: number = 0;
 	paymentMethod: string | null = null;
+	billingDetails: billingDetails = {
+		firstname: null,
+		lastname: null,
+		adress: null,
+		zipcode: null,
+		city: null,
+		country: null,
+	};
+	cardDetails: cardDetails = {
+		number: null,
+		expiry: null,
+		CVC: null,
+		name: null,
+	};
 
 	constructor(
 		public shoppingCartService: ShoppingBasketService,
@@ -67,6 +97,7 @@ export class ShoppingCartComponent {
 							this.discount) *
 						this.exchangeRateService.selectedRate,
 					currency: this.exchangeRateService.icon,
+					paymentData: this.cardDetails,
 				},
 			});
 		} else {
