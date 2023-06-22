@@ -3,15 +3,7 @@ import { ApiService } from '../../shared/services/api.service';
 import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
-import {
-	Observable,
-	Subject,
-	debounceTime,
-	distinctUntilChanged,
-	filter,
-	of,
-	switchMap,
-} from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-search-bar',
@@ -23,9 +15,7 @@ export class SearchBarComponent {
 	products: Array<any>;
 	showProducts: boolean = false;
 	categories: Array<any>;
-	selectedCategory: string = 'all';
-	searchInput$ = new Subject<string>();
-	results$: Observable<any>;
+	selectedCategory: string;
 
 	constructor(
 		private apiService: ApiService,
@@ -74,10 +64,6 @@ export class SearchBarComponent {
 	 * @returns
 	 */
 	showsCategory(category: string) {
-		/* 	if (category === 'all') {
-			this.getProductsFromService();
-			return;
-		} */
 		this.selectedCategory = category;
 		console.log(this.selectedCategory);
 	}
