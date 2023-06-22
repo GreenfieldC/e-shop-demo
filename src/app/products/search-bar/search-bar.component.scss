@@ -1,12 +1,13 @@
 .wrapper {
-	position: fixed;
+	position: absolute;
 	inset: 0;
 	background-color: rgba(0, 0, 0, 0.9);
+	overflow: hidden !important;
 
 	&__window {
 		position: absolute;
 		inset: 0;
-		overflow: hidden;
+		overflow: hidden !important;
 		width: 100vw;
 
 		&__searchbar-container {
@@ -48,7 +49,7 @@
 
 			&__procucts-container {
 				display: flex;
-				height: calc(100dvh - 17px);
+				height: calc(100dvh - 156px);
 				flex-wrap: wrap;
 				justify-content: center;
 				gap: 1rem;
