@@ -47,13 +47,15 @@
 			>
 				<app-product-item
 					[class.d-none]="
-						!(
+						(!(
 							searchTerm &&
 							searchTerm.length >= 3 &&
 							product.title
 								.toLowerCase()
 								.includes(searchTerm.toLowerCase())
-						) && searchTerm.length > 3
+						) &&
+							searchTerm.length > 3) ||
+						product.category !== selectedCategory
 					"
 					*ngFor="let product of products"
 					class="product-item"

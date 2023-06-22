@@ -74,9 +74,11 @@ export class SearchBarComponent {
 	 * @returns
 	 */
 	showsCategory(category: string) {
-		if (category === 'all') {
+		/* 	if (category === 'all') {
 			this.getProductsFromService();
 			return;
-		}
+		} */
+		this.selectedCategory = category;
+		console.log(this.selectedCategory);
 	}
 }
