@@ -1,5 +1,5 @@
 .header {
-	padding: 2rem;
+	padding: 1rem;
 	background-color: var(--primary-color);
 	display: flex;
 	position: relative;
@@ -7,18 +7,21 @@
 	justify-content: space-between;
 
 	&--logo {
-		width: 80px;
+		width: 40px;
 		cursor: pointer;
 	}
 
 	&--title {
 		color: white;
 		margin: 0;
+		padding: 0 1rem;
+		display: none;
+		line-height: 1;
 	}
 
 	&--icon-box {
 		display: flex;
-		gap: 2rem;
+		gap: 1rem;
 		color: white;
 
 		.icon-box--currency-wrapper {
@@ -178,35 +181,66 @@
 					}
 
 					.account-option {
-						margin-bottom: .5rem;
+						margin-bottom: 0.5rem;
 						cursor: pointer;
 						transition: 225ms all ease-in-out;
-						padding: .5rem;
+						padding: 0.5rem;
 						&:hover {
-							background-color: rgba($color: #000000, $alpha: .1);
+							background-color: rgba(
+								$color: #000000,
+								$alpha: 0.1
+							);
 						}
 					}
 
 					button {
 						color: white;
-							background-color: var(--accent-color);
-							font-size: 1rem;
-							border: none;
-							border-radius: 0.5rem;
-							padding: 0.5rem;
-							margin-top: .5rem;
-							white-space: nowrap;
-							box-shadow: 0 0 2px 0
-								rgba($color: #000000, $alpha: 0.2);
-							cursor: pointer;
-							transition: 225ms all ease-in-out;
+						background-color: var(--accent-color);
+						font-size: 1rem;
+						border: none;
+						border-radius: 0.5rem;
+						padding: 0.5rem;
+						margin-top: 0.5rem;
+						white-space: nowrap;
+						box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+						cursor: pointer;
+						transition: 225ms all ease-in-out;
 
-							&:hover {
-								background-color: var(--primary-color);
-							}
+						&:hover {
+							background-color: var(--primary-color);
+						}
 					}
 				}
 			}
+		}
+	}
+}
+
+@media (min-width: 480px) {
+	.header {
+		padding: 2rem;
+
+		&--logo {
+			width: 80px;
+		}
+
+		&--title {
+			display: block;
+			font-size: 1.2rem;
+		}
+
+		&--icon-box {
+			display: flex;
+			gap: 2rem;
+			color: white;
+		}
+	}
+}
+
+@media (min-width: 801px) {
+	.header {
+		&--title {
+			font-size: 1.7rem;
 		}
 	}
 }
