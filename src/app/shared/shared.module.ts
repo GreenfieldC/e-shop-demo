@@ -22,6 +22,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { FrameComponent } from './frame/frame.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 const components = [FrameComponent];
 const modules = [
@@ -42,6 +44,8 @@ const modules = [
 	MatExpansionModule,
 	FormsModule,
 	MatCheckboxModule,
+	MatSelectModule,
+	MatRadioModule,
 ];
 
 @NgModule({

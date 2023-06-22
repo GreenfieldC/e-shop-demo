@@ -137,68 +137,156 @@
 			<h2 class="payment-header">Payment Options</h2>
 			<div class="payment-option-container">
 				<div class="payment-option-wrapper">
-					<mat-checkbox
+					<mat-radio-button
 						color="primary"
-						[checked]="paymentMethod === 'credit'"
-						(change)="selectPayment('credit')"
-					></mat-checkbox>
+						(click)="selectPayment('credit')"
+					></mat-radio-button>
 					<mat-icon>credit_card</mat-icon>
 					Credit Card
 				</div>
 				<div class="payment-info" *ngIf="paymentMethod === 'credit'">
 					<div class="number-wrapper">
 						<mat-form-field>
-							<mat-label>Card Number</mat-label>
-							<input
-								matInput
-								placeholder="1234 5678 9012 3456"
-								
-							/>
+							<mat-label>Enter Card Number</mat-label>
+							<input matInput placeholder="1234 5678 9012 3456" />
+							<mat-icon matSuffix
+								>credit_card</mat-icon
+							>
 						</mat-form-field>
 					</div>
 
-					<div class="name-security-wrapper">
+					<div class="security-wrapper">
+						<mat-form-field>
+							<mat-label>Expiry Date</mat-label>
+							<input
+								matInput
+								placeholder="MM/JJ"
+							/>
+							<mat-icon matSuffix
+								>credit_card_off</mat-icon
+							>
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>CVC/ CVV</mat-label>
+							<input
+								matInput
+								placeholder="3 digits"
+							/>
+							<mat-icon matSuffix
+								>pin</mat-icon
+							>
+						</mat-form-field>
+					</div>
+					<div class="name-wrapper">
 						<mat-form-field>
 							<mat-label>Name On Card</mat-label>
 							<input
 								matInput
-								placeholder="Enter Code here"
-								value=""
+								placeholder="Enter Cardholder's Name"
 							/>
-						</mat-form-field>
-						<mat-form-field>
-							<mat-label>Security Number</mat-label>
-							<input
-								matInput
-								placeholder="Enter Code here"
-								value=""
-							/>
+							<mat-icon matSuffix
+								>person</mat-icon
+							>
 						</mat-form-field>
 					</div>
 				</div>
+
+
+
+
 				<div class="payment-option-wrapper">
-					<mat-checkbox
+					<mat-radio-button
 						color="primary"
-						[checked]="paymentMethod === 'paypal'"
-						(change)="selectPayment('paypal')"
-					></mat-checkbox>
-					<mat-icon>paid</mat-icon>
+						(click)="selectPayment('paypal')"
+					></mat-radio-button>
+					<!-- <mat-icon>paid</mat-icon> -->
+					<i class="bi bi-paypal"></i>
 					Paypal
 				</div>
+				
+
+
 				<div class="payment-option-wrapper">
-					<mat-checkbox
+					<mat-radio-button
 						color="primary"
-						[checked]="paymentMethod === 'debit'"
-						(change)="selectPayment('debit')"
-					></mat-checkbox>
-					<mat-icon>newspaper</mat-icon>
+						(click)="selectPayment('debit')"
+					></mat-radio-button>
+					<mat-icon>receipt_long</mat-icon>
 					Direct Debit
 				</div>
+				<div class="payment-info" *ngIf="paymentMethod === 'debit'">
+
+					<div class="security-wrapper">
+						<mat-form-field>
+							<mat-label>First Name</mat-label>
+							<input
+								matInput
+								placeholder="Enter First Name"
+							/>
+							
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>Last Name</mat-label>
+							<input
+								matInput
+								placeholder="Enter Last Name"
+							/>
+							
+						</mat-form-field>
+					</div>
+
+
+					<div class="number-wrapper">
+						<mat-form-field>
+							<mat-label>Street + Number</mat-label>
+							<input matInput placeholder="Baker Street 15" />
+							
+						</mat-form-field>
+					</div>
+
+					<div class="security-wrapper">
+						<mat-form-field>
+							<mat-label>Zip Code</mat-label>
+							<input
+								matInput
+								placeholder="Enter Zip Code"
+							/>
+							
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>City</mat-label>
+							<input
+								matInput
+								placeholder="Enter City Name"
+							/>
+							
+						</mat-form-field>
+					</div>
+
+					
+					<div class="name-wrapper">
+						<mat-form-field>
+							<mat-label>Country</mat-label>
+							<mat-select>
+								<mat-option value="option">Option</mat-option>
+							</mat-select>
+							
+						</mat-form-field>
+					</div>
+				</div>
+
+
+
 			</div>
 
-			<button class="payment-button" (click)="openPaymentDialog()">
+			<button *ngIf="paymentMethod != 'paypal'" class="payment-button" (click)="openPaymentDialog()">
 				Proceed to Payment
 			</button>
+
+			<button *ngIf="paymentMethod === 'paypal'" class="paypal-button">
+				Checkout with paypal <i class="bi bi-paypal pal"></i>
+			</button>
+
 		</mat-card>
 	</div>
 

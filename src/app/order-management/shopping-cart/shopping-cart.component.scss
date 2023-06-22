@@ -190,8 +190,12 @@
     gap: 1rem;
     cursor: pointer;
 
-    mat-icon {
+    mat-icon, i {
         color: var(--primary-color);
+    }
+
+    i {
+        transform: scale(1.4);
     }
 
 }
@@ -208,11 +212,17 @@
         }
     }
 
-    .name-security-wrapper {
+    .security-wrapper {
         display: flex;
         gap: 1rem;
         justify-content: space-between;
         
+    }
+
+    .name-wrapper {
+        mat-form-field {
+            width: 100%;
+        }
     }
 
 }
@@ -222,7 +232,7 @@
     transform: scale(1.2);
 }
 
-.payment-button {
+.payment-button, .paypal-button {
         color: white;
             background-color: var(--accent-color);
             font-size: 1rem;
@@ -238,4 +248,16 @@
                 background-color: var(--primary-color);
             }
         
+}
+
+.paypal-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pal {
+    margin-left: .5rem;
+    font-size: 1.5rem;
+    color: rgb(41, 171, 226);;
 }
