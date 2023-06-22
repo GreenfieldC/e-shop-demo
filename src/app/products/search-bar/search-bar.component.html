@@ -46,7 +46,7 @@
 				class="wrapper__window__container__procucts-container"
 			>
 				<app-product-item
-					[class.d-none]="
+					[hidden]="
 						(!(
 							searchTerm &&
 							searchTerm.length >= 3 &&
@@ -55,7 +55,8 @@
 								.includes(searchTerm.toLowerCase())
 						) &&
 							searchTerm.length > 3) ||
-						product.category !== selectedCategory
+						(product.category !== selectedCategory &&
+							selectedCategory !== 'all')
 					"
 					*ngFor="let product of products"
 					class="product-item"

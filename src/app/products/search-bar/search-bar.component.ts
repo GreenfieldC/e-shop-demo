@@ -15,7 +15,7 @@ export class SearchBarComponent {
 	products: Array<any>;
 	showProducts: boolean = false;
 	categories: Array<any>;
-	selectedCategory: string;
+	selectedCategory: string = 'all';
 
 	constructor(
 		private apiService: ApiService,
@@ -25,8 +25,6 @@ export class SearchBarComponent {
 		this.getProductsFromService();
 		this.getCategoriesFromService();
 	}
-
-	searchValue: string = '';
 
 	/**
 	 * Gets products from API
