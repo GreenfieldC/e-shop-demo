@@ -5,9 +5,9 @@
 
 	&__window {
 		position: absolute;
-		top: 5rem;
-		left: 15rem;
-		right: 15rem;
+		inset: 0;
+		overflow: hidden;
+		width: 100vw;
 
 		&__searchbar-container {
 			display: flex;
@@ -48,13 +48,30 @@
 
 			&__procucts-container {
 				display: flex;
-				height: 460px;
+				height: calc(100dvh - 17px);
 				flex-wrap: wrap;
 				justify-content: center;
 				gap: 1rem;
 				padding: 1rem;
 				background-color: whitesmoke;
 				overflow-y: scroll;
+			}
+		}
+	}
+}
+
+@media (min-width: 1025px) {
+	.wrapper {
+		&__window {
+			inset: unset;
+			top: 5rem;
+			left: 15rem;
+			right: 15rem;
+			width: unset;
+
+			&__procucts-container {
+				display: flex;
+				height: 460px !important;
 			}
 		}
 	}
