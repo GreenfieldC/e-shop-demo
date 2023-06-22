@@ -75,9 +75,11 @@
 			bottom: 5rem;
 			width: unset;
 
-			&__procucts-container {
-				display: flex;
-				height: 460px !important;
+			&__container {
+				&__procucts-container {
+					display: flex;
+					height: 460px !important;
+				}
 			}
 		}
 	}
