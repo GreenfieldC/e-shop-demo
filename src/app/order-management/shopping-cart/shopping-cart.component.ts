@@ -39,6 +39,7 @@ export class ShoppingCartComponent {
 		city: null,
 		country: null,
 	};
+
 	cardDetails: cardDetails = {
 		number: null,
 		expiry: null,
