@@ -13,7 +13,7 @@
 					autocomplete="off"
 					aria-label="Search"
 					#searchInput
-					(input)="searchInput$.next(searchInput.value)"
+					[(ngModel)]="searchTerm"
 				/>
 			</mat-form-field>
 			<div class="wrapper__window__searchbar-container__btn-container">
@@ -46,6 +46,15 @@
 				class="wrapper__window__container__procucts-container"
 			>
 				<app-product-item
+					[class.d-none]="
+						!(
+							searchTerm &&
+							searchTerm.length >= 3 &&
+							product.title
+								.toLowerCase()
+								.includes(searchTerm.toLowerCase())
+						) && searchTerm.length > 3
+					"
 					*ngFor="let product of products"
 					class="product-item"
 					[product]="product"

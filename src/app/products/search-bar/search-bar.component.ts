@@ -19,7 +19,7 @@ import {
 	styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent {
-	searchTerm: string;
+	searchTerm: string = '';
 	products: Array<any>;
 	showProducts: boolean = false;
 	categories: Array<any>;
@@ -34,26 +34,9 @@ export class SearchBarComponent {
 	) {
 		this.getProductsFromService();
 		this.getCategoriesFromService();
-		this.executesSearch();
 	}
 
-	/**
-	 * Executes search
-	 * @returns
-	 */
-	executesSearch() {
-		this.results$ = this.searchInput$.pipe(
-			filter((text) => text.length > 3),
-			debounceTime(500),
-			distinctUntilChanged(),
-			switchMap((searchTerm) => this.filtersProducts(searchTerm))
-		);
-
-		this.results$.subscribe((filteredProducts) => {
-			this.showProducts = filteredProducts.length > 0;
-			this.products = filteredProducts;
-		});
-	}
+	searchValue: string = '';
 
 	/**
 	 * Gets products from API
@@ -95,24 +78,5 @@ export class SearchBarComponent {
 			this.getProductsFromService();
 			return;
 		}
-
-		this.apiService
-			.getProductsOfSelectedCategory(category)
-			.subscribe((data) => {
-				this.products = data;
-			});
-	}
-
-	/**
-	 * Filters products by search term
-	 * @param searchTerm
-	 * @returns Observable
-	 */
-	filtersProducts(searchTerm: string): Observable<any> {
-		const filteredProducts = this.products.filter((product) =>
-			product.title.toLowerCase().includes(searchTerm.toLowerCase())
-		);
-
-		return of(filteredProducts);
 	}
 }
