@@ -146,30 +146,35 @@
 					Credit Card
 				</div>
 				<div class="payment-info" *ngIf="paymentMethod === 'credit'">
-					<mat-form-field>
-						<mat-label>Card Number</mat-label>
-						<input
-							matInput
-							placeholder="Enter card number here"
-							value=""
-						/>
-					</mat-form-field>
-					<mat-form-field>
-						<mat-label>Name On Card</mat-label>
-						<input
-							matInput
-							placeholder="Enter Code here"
-							value=""
-						/>
-					</mat-form-field>
-					<mat-form-field>
-						<mat-label>Security Number</mat-label>
-						<input
-							matInput
-							placeholder="Enter Code here"
-							value=""
-						/>
-					</mat-form-field>
+					<div class="number-wrapper">
+						<mat-form-field>
+							<mat-label>Card Number</mat-label>
+							<input
+								matInput
+								placeholder="1234 5678 9012 3456"
+								
+							/>
+						</mat-form-field>
+					</div>
+
+					<div class="name-security-wrapper">
+						<mat-form-field>
+							<mat-label>Name On Card</mat-label>
+							<input
+								matInput
+								placeholder="Enter Code here"
+								value=""
+							/>
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>Security Number</mat-label>
+							<input
+								matInput
+								placeholder="Enter Code here"
+								value=""
+							/>
+						</mat-form-field>
+					</div>
 				</div>
 				<div class="payment-option-wrapper">
 					<mat-checkbox
@@ -190,9 +195,6 @@
 					Direct Debit
 				</div>
 			</div>
-
-				
-			
 
 			<button class="payment-button" (click)="openPaymentDialog()">
 				Proceed to Payment

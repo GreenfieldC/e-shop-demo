@@ -201,6 +201,20 @@
     justify-content: space-between;
     flex-direction: column;
     row-gap: 1rem;
+
+    .number-wrapper {
+        mat-form-field {
+            width: 100%;
+        }
+    }
+
+    .name-security-wrapper {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        
+    }
+
 }
 
 .selected {
