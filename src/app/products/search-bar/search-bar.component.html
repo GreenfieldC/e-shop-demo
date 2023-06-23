@@ -51,12 +51,12 @@
 					[hidden]="
 						(!(
 							searchTerm &&
-							searchTerm.length >= 3 &&
+							searchTerm.length >= 2 &&
 							product.title
 								.toLowerCase()
 								.includes(searchTerm.toLowerCase())
 						) &&
-							searchTerm.length > 3) ||
+							searchTerm.length > 2) ||
 						(product.category !== selectedCategory &&
 							selectedCategory !== 'all')
 					"
