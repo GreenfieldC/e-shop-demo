@@ -82,7 +82,7 @@ button {
 
 .mat-mdc-menu-panel.mat-mdc-menu-panel {
 	min-width: 112px;
-	max-width: 270px !important;
+	max-width: 270px;
 	border-radius: 0;
 }
 
@@ -181,5 +181,16 @@ button {
 				background-color: var(--primary-color);
 			}
 		}
+	}
+}
+
+@media (min-width: 801px) {
+	.mat-mdc-menu-panel.mat-mdc-menu-panel {
+		max-width: 400px !important;
+	}
+
+	.checkout-row {
+		align-items: center;
+		flex-direction: row !important;
 	}
 }
