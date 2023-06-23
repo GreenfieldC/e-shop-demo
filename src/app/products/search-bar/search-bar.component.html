@@ -1,7 +1,7 @@
 <div class="wrapper">
 	<div class="wrapper__window">
 		<div
-			(click)="showProducts = true"
+			(click)="getProductsAndCategories()"
 			class="wrapper__window__searchbar-container"
 		>
 			<!-- Search Input Field -->
@@ -47,6 +47,7 @@
 				#productList
 				class="wrapper__window__container__procucts-container"
 			>
+				<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
 				<app-product-item
 					[hidden]="
 						(!(

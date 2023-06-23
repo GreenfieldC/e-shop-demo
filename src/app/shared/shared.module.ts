@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 import { FrameComponent } from './frame/frame.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const components = [FrameComponent];
 const modules = [
@@ -46,6 +47,7 @@ const modules = [
 	MatCheckboxModule,
 	MatSelectModule,
 	MatRadioModule,
+	MatProgressSpinnerModule,
 ];
 
 @NgModule({

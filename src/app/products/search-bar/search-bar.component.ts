@@ -15,14 +15,22 @@ export class SearchBarComponent {
 	showProducts: boolean = false;
 	categories: Array<any>;
 	selectedCategory: string = 'all';
+	isLoading: boolean = false;
 
 	constructor(
 		private apiService: ApiService,
 		private dialog: MatDialog,
 		public exchangeRateService: ExchangeRateService
-	) {
-		this.getProductsFromService();
-		this.getCategoriesFromService();
+	) {}
+
+	/**
+	 * Gets products and categories from API
+	 * and opens products list
+	 */
+	async getProductsAndCategories() {
+		this.showProducts = true;
+		await this.getProductsFromService();
+		await this.getCategoriesFromService();
 	}
 
 	/**
@@ -31,7 +39,6 @@ export class SearchBarComponent {
 	getProductsFromService() {
 		this.apiService.getProducts.subscribe((data) => {
 			this.products = data;
-			console.log(this.products);
 		});
 	}
 
