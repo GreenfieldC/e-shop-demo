@@ -96,7 +96,14 @@
 						"
 					>
 						<img [src]="item.image" alt="img-preview" />
-						<span>{{ item.title }} ({{ item.size }})</span>
+						<span
+							>{{
+								item.title.length > 10
+									? (item.title | slice : 0 : 10) + '...'
+									: item.title
+							}}
+							({{ item.size }})</span
+						>
 						<span>{{ item.quantity }}X</span>
 					</div>
 

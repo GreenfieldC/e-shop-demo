@@ -82,7 +82,7 @@ button {
 
 .mat-mdc-menu-panel.mat-mdc-menu-panel {
 	min-width: 112px;
-	max-width: 400px !important;
+	max-width: 270px !important;
 	border-radius: 0;
 }
 
@@ -157,7 +157,7 @@ button {
 
 	.checkout-row {
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		gap: 1rem;
 		margin-top: 2rem;
 
