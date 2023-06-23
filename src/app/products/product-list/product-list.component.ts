@@ -23,15 +23,17 @@ export class ProductListComponent {
 	}
 
 	openDetailView(product: any) {
-		this.dialog.open(DialogProductDetailsComponent, {
-			// height: 'fit-content',
+		const isMobileView = window.innerWidth < 800;
+		const dialogConfig = {
 			data: product,
-			maxWidth: '480px',
-			/* maxHeight: '650px', */
-			height: '100dvh',
+			maxHeight: isMobileView ? '100dvh' : '650px',
+			maxWidth: isMobileView ? '480px' : '800px',
+			height: isMobileView ? '100dvh' : 'fit-content',
 			width: '100%',
-			panelClass: 'full-screen-modal',
-		});
+			panelClass: isMobileView ? 'full-screen-modal' : undefined,
+		};
+
+		this.dialog.open(DialogProductDetailsComponent, dialogConfig);
 		console.log(product);
 	}
 }

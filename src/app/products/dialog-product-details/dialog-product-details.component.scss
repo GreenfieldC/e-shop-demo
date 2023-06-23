@@ -1,5 +1,5 @@
 .mat-mdc-dialog-content {
-	max-height: 801px; // später ändern
+	max-height: 100dvh; // später ändern
 	max-width: 100dvw; // später ändern
 }
 
@@ -53,7 +53,7 @@
 			.size-box-wrapper {
 				display: flex;
 				gap: 0.5rem;
-				flex-wrap: wrap; // später ändern
+				flex-wrap: wrap;
 
 				div {
 					border: 1px solid gray;
@@ -122,5 +122,19 @@
 
 	&:hover {
 		transform: scale(1.2);
+	}
+}
+
+@media (min-width: 801px) {
+	.mat-mdc-dialog-content {
+		max-height: unset !important; // später ändern
+		max-width: unset !important; // später ändern
+	}
+
+	.product-container {
+		display: flex;
+		align-items: flex-start;
+		column-gap: 3rem;
+		flex-direction: unset; //rückgängig machen
 	}
 }
