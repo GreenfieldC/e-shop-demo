@@ -28,9 +28,8 @@ export class SearchBarComponent {
 	 * and opens products list
 	 */
 	async getProductsAndCategories() {
-		this.showProducts = true;
-		await this.getProductsFromService();
-		await this.getCategoriesFromService();
+		this.getProductsFromService();
+		this.getCategoriesFromService();
 	}
 
 	/**
