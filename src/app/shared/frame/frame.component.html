@@ -33,14 +33,14 @@
 					(click)="openLoginDialog()"
 					>person</mat-icon
 				>
-				<div
+				<span
 					*ngIf="
 						shoppingBasketService.currentlyLoggedInUser !== 'Guest'
 					"
 					[matMenuTriggerFor]="accountMenu"
 				>
 					{{ shoppingBasketService.currentlyLoggedInUser }}
-				</div>
+				</span>
 
 				<mat-menu
 					class="mat-menu"
@@ -70,10 +70,8 @@
 			<div class="icon-wrapper">
 				<mat-icon>favorite</mat-icon>
 			</div>
-			<div class="icon-wrapper">
-				<mat-icon
-					[matMenuTriggerFor]="shoppingBag"
-					(click)="shoppingCartOpen = !shoppingCartOpen"
+			<div [matMenuTriggerFor]="shoppingBag" class="icon-wrapper">
+				<mat-icon (click)="shoppingCartOpen = !shoppingCartOpen"
 					>shopping_bag</mat-icon
 				>
 

@@ -61,6 +61,11 @@
 				position: relative;
 				display: flex;
 				align-items: center;
+
+				span {
+					cursor: pointer;
+				}
+
 				mat-icon {
 					transition: 225ms all ease-in-out;
 					cursor: pointer;
