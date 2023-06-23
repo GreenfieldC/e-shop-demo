@@ -1,7 +1,6 @@
 @import 'variables.scss';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-
+@import '~bootstrap-icons/font/bootstrap-icons.css';
 
 html,
 body {
@@ -72,4 +71,115 @@ button {
 
 .mat-button-toggle-button {
 	border-radius: unset;
+}
+
+.mat-mdc-menu-content {
+	margin: 0;
+	padding: 1rem !important;
+	list-style-type: none;
+	border-radius: 0 !important;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+	min-width: 112px;
+	max-width: 400px !important;
+	border-radius: 0;
+}
+
+.cdk-overlay-pane {
+	margin-top: 1rem;
+}
+
+.mat-menu {
+	right: 0;
+	padding: 1rem;
+	min-width: 300px;
+	width: fit-content !important;
+	background-color: white;
+	z-index: 2;
+	color: black;
+	box-shadow: 0 0 6px 2px rgba($color: #000000, $alpha: 0.4);
+	display: flex;
+	flex-direction: column;
+	// align-items: center;
+	justify-content: center;
+
+	.account-prompt {
+		display: flex;
+		justify-content: space-between;
+
+		mat-icon {
+			transform: scale(1.4);
+			color: var(--primary-color);
+		}
+	}
+
+	.account-option {
+		margin-bottom: 0.5rem;
+		cursor: pointer;
+		transition: 225ms all ease-in-out;
+		padding: 0.5rem;
+		&:hover {
+			background-color: rgba($color: #000000, $alpha: 0.1);
+		}
+	}
+
+	button {
+		color: white;
+		background-color: var(--accent-color);
+		font-size: 1rem;
+		border: none;
+		border-radius: 0.5rem;
+		padding: 0.5rem;
+		margin-top: 0.5rem;
+		white-space: nowrap;
+		box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+		cursor: pointer;
+		transition: 225ms all ease-in-out;
+
+		&:hover {
+			background-color: var(--primary-color);
+		}
+	}
+
+	.product-preview-container {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		justify-content: space-between;
+		margin-top: 1rem;
+
+		img {
+			width: 50px;
+			padding-right: 1rem;
+		}
+	}
+
+	.checkout-row {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 2rem;
+
+		span {
+			white-space: nowrap;
+		}
+
+		.cart-action-btn {
+			color: white;
+			background-color: var(--accent-color);
+			font-size: 1rem;
+			border: none;
+			border-radius: 0.5rem;
+			padding: 0.5rem;
+			white-space: nowrap;
+			box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+			cursor: pointer;
+			transition: 225ms all ease-in-out;
+
+			&:hover {
+				background-color: var(--primary-color);
+			}
+		}
+	}
 }

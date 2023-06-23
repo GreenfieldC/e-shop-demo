@@ -25,41 +25,69 @@
 			</div>
 		</div>
 		<div class="icon-box--menuitem-container">
-			<div class="icon-wrapper icon-wrapper--person">
-				<mat-icon (click)="openLoginDialog()">person</mat-icon>
-				
-				<div class="popup-box logout" *ngIf="showLogOutButton">
+			<div class="icon-wrapper">
+				<mat-icon
+					*ngIf="
+						shoppingBasketService.currentlyLoggedInUser === 'Guest'
+					"
+					(click)="openLoginDialog()"
+					>person</mat-icon
+				>
+				<div
+					*ngIf="
+						shoppingBasketService.currentlyLoggedInUser !== 'Guest'
+					"
+					[matMenuTriggerFor]="accountMenu"
+				>
+					{{ shoppingBasketService.currentlyLoggedInUser }}
+				</div>
 
+				<mat-menu
+					class="mat-menu"
+					#accountMenu="matMenu"
+					xPosition="before"
+				>
 					<div class="account-prompt">
-						<h2>Hi, {{shoppingBasketService.currentlyLoggedInUser}}!</h2>
+						<h2>
+							Hi,
+							{{ shoppingBasketService.currentlyLoggedInUser }}!
+						</h2>
 						<mat-icon>admin_panel_settings</mat-icon>
 					</div>
 
-					<div class="account-option" [routerLink]="'settings'">Account Settings</div>
-					<div class="account-option" [routerLink]="'orders'">My orders</div>
+					<div class="account-option" [routerLink]="'settings'">
+						Account Settings
+					</div>
+					<div class="account-option" [routerLink]="'orders'">
+						My orders
+					</div>
 
-					<button
-					(click)="logout()"
-					class="logout-btn"
-				>
-					Logout
-				</button>
-				</div>
+					<button (click)="logout()" class="logout-btn">
+						Logout
+					</button>
+				</mat-menu>
 			</div>
 			<div class="icon-wrapper">
 				<mat-icon>favorite</mat-icon>
 			</div>
 			<div class="icon-wrapper">
-				<mat-icon (click)="shoppingCartOpen = !shoppingCartOpen"
+				<mat-icon
+					[matMenuTriggerFor]="shoppingBag"
+					(click)="shoppingCartOpen = !shoppingCartOpen"
 					>shopping_bag</mat-icon
 				>
+
 				<div
 					class="quantity-indicator"
 					(click)="shoppingCartOpen = !shoppingCartOpen"
 				>
 					{{ shoppingBasketService.products.length }}
 				</div>
-				<div class="popup-box bag" *ngIf="shoppingCartOpen">
+				<mat-menu
+					class="mat-menu"
+					#shoppingBag="matMenu"
+					xPosition="before"
+				>
 					<h2>Shopping Cart</h2>
 
 					<div
@@ -82,9 +110,10 @@
 						<span
 							>Total:
 							{{
-								shoppingBasketService.totalPrice * exchangeRateService.selectedRate
+								shoppingBasketService.totalPrice *
+									exchangeRateService.selectedRate
 									| number : '1.2-2'
-							}}{{exchangeRateService.icon}}</span
+							}}{{ exchangeRateService.icon }}</span
 						>
 						<button
 							class="cart-action-btn"
@@ -95,7 +124,7 @@
 						</button>
 						<button class="cart-action-btn">Quick Checkout</button>
 					</div>
-				</div>
+				</mat-menu>
 			</div>
 			<div routerLink="/search" class="icon-wrapper">
 				<mat-icon>search</mat-icon>
