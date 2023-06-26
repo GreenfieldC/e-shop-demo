@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.component';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface cardDetails {
 	number: null | number;
@@ -25,13 +27,15 @@ interface billingDetails {
 	templateUrl: './shopping-cart.component.html',
 	styleUrls: ['./shopping-cart.component.scss'],
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
 	discountCode: number;
 	panelOpenState: boolean = false;
 	discountGiven: boolean = false;
 	discount: number = 0;
 	paymentMethod: string | null = null;
 	paymentData: any;
+	form: FormGroup;
+
 	billingDetails: billingDetails = {
 		firstname: null,
 		lastname: null,
@@ -51,8 +55,44 @@ export class ShoppingCartComponent {
 	constructor(
 		public shoppingCartService: ShoppingBasketService,
 		public exchangeRateService: ExchangeRateService,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		private fb: FormBuilder
 	) {}
+
+	ngOnInit() {
+		this.initialiseForm();
+	}
+
+	initialiseForm() {
+		this.form = this.fb.group({
+			cardNumber: [
+				'',
+				[Validators.required, Validators.pattern(/^\d{16}$/)],
+			],
+			expiry: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/),
+				],
+			],
+			cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
+			name: ['', [Validators.required, Validators.minLength(1)]],
+		});
+	}
+
+	get cardNumber() {
+		return this.form.get('cardName');
+	}
+	get expiry() {
+		return this.form.get('expiry');
+	}
+	get cvv() {
+		return this.form.get('cvv');
+	}
+	get cardholder() {
+		return this.form.get('name');
+	}
 
 	incrementQuantity(i: number, event: Event) {
 		event.stopPropagation();

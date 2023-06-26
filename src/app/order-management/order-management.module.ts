@@ -6,9 +6,19 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { DialogPaymentComponent } from './dialog-payment/dialog-payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-	declarations: [ShoppingCartComponent, OrdersListComponent, DialogPaymentComponent],
-	imports: [CommonModule, OrderManagementRoutingModule, SharedModule],
+	declarations: [
+		ShoppingCartComponent,
+		OrdersListComponent,
+		DialogPaymentComponent,
+	],
+	imports: [
+		CommonModule,
+		OrderManagementRoutingModule,
+		SharedModule,
+		ReactiveFormsModule,
+	],
 })
 export class OrderManagementModule {}

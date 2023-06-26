@@ -144,61 +144,67 @@
 					<mat-icon>credit_card</mat-icon>
 					Credit Card
 				</div>
-				<div class="payment-info" *ngIf="paymentMethod === 'credit'">
-					<div class="number-wrapper">
-						<mat-form-field>
-							<mat-label>Enter Card Number</mat-label>
-							<input matInput placeholder="1234 5678 9012 3456" 
-							[(ngModel)]="cardDetails.number"
-							required
-							/>
-							<mat-icon matSuffix
-								>credit_card</mat-icon
-							>
-						</mat-form-field>
-					</div>
+				<form *ngIf="paymentMethod === 'credit'" [formGroup]="form">
+					<div class="payment-info">
+						<div class="number-wrapper">
+							<mat-form-field>
+								<mat-label>Enter Card Number</mat-label>
+								<input matInput placeholder="1234 5678 9012 3456" 
+								formControlName="cardNumber"
 
-					<div class="security-wrapper">
-						<mat-form-field>
-							<mat-label>Expiry Date</mat-label>
-							<input
-								matInput
-								placeholder="MM/JJ"
-								[(ngModel)]="cardDetails.expiry"
 								required
-							/>
-							<mat-icon matSuffix
-								>credit_card_off</mat-icon
-							>
-						</mat-form-field>
-						<mat-form-field>
-							<mat-label>CVC/ CVV</mat-label>
-							<input
-								matInput
-								placeholder="3 digits"
-								[(ngModel)]="cardDetails.CVC"
-								required
-							/>
-							<mat-icon matSuffix
-								>pin</mat-icon
-							>
-						</mat-form-field>
+								/>
+								<mat-icon matSuffix
+									>credit_card</mat-icon
+								>
+							</mat-form-field>
+						</div>
+	
+						<div class="security-wrapper">
+							<mat-form-field>
+								<mat-label>Expiry Date</mat-label>
+								<input
+									matInput
+									placeholder="MM/JJ"
+									required
+									formControlName="expiry"
+								/>
+								<mat-icon matSuffix
+									>credit_card_off</mat-icon
+								>
+							</mat-form-field>
+							<mat-form-field>
+								<mat-label>CVC/ CVV</mat-label>
+								<input
+									matInput
+									placeholder="3 digits"
+									formControlName="cvv"
+
+									required
+								/>
+								<mat-icon matSuffix
+									>pin</mat-icon
+								>
+							</mat-form-field>
+						</div>
+						<div class="name-wrapper">
+							<mat-form-field>
+								<mat-label>Name On Card</mat-label>
+								<input
+									matInput
+									placeholder="Enter Cardholder's Name"
+									formControlName=""
+									required
+									formControlName="name"
+								/>
+								<mat-icon matSuffix
+									>person</mat-icon
+								>
+							</mat-form-field>
+						</div>
 					</div>
-					<div class="name-wrapper">
-						<mat-form-field>
-							<mat-label>Name On Card</mat-label>
-							<input
-								matInput
-								placeholder="Enter Cardholder's Name"
-								[(ngModel)]="cardDetails.name"
-								required
-							/>
-							<mat-icon matSuffix
-								>person</mat-icon
-							>
-						</mat-form-field>
-					</div>
-				</div>
+				</form>
+			
 
 
 
