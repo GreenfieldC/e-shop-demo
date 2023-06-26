@@ -86,7 +86,7 @@ export class ShoppingCartComponent implements OnInit {
 				],
 			],
 			cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
-			name: ['', [Validators.required, Validators.minLength(1)]],
+			name: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
 		});
 	}
 
