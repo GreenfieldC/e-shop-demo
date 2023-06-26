@@ -5,11 +5,39 @@ import { LoginPageComponent } from 'src/app/user-management/login-page/login-pag
 import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ShoppingBasketService } from '../services/shopping-basket.service';
+import {
+	trigger,
+	state,
+	style,
+	animate,
+	transition,
+} from '@angular/animations';
 
 @Component({
 	selector: 'app-frame',
 	templateUrl: './frame.component.html',
 	styleUrls: ['./frame.component.scss'],
+	animations: [
+		trigger('fadeInOut', [
+			state(
+				'void',
+				style({ opacity: 0, transform: 'translateY(-20px)' })
+			),
+			state('*', style({ opacity: 1, transform: 'translateY(0)' })),
+			transition(':enter', [
+				animate(
+					'300ms ease-in-out',
+					style({ opacity: 1, transform: 'translateY(0)' })
+				),
+			]),
+			transition(':leave', [
+				animate(
+					'300ms ease-in-out',
+					style({ opacity: 0, transform: 'translateY(-20px)' })
+				),
+			]),
+		]),
+	],
 })
 export class FrameComponent {
 	dropDownOpen: boolean = false;
