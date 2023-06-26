@@ -8,7 +8,7 @@
 
 	<h1 class="header--title">Greenfield Traders</h1>
 
-	<div class="header--icon-box">
+	<div class="header--icon-box" *ngIf="iconBoxOpen">
 		<div class="icon-box--currency-wrapper">
 			<span>{{ exchangeRateService.icon }}</span>
 
@@ -136,4 +136,5 @@
 			</div>
 		</div>
 	</div>
+	<mat-icon class="header--burger-menu" (click)="toggleBurgerMenu()">{{iconName}}</mat-icon>
 </div>

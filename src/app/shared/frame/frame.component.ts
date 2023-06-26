@@ -16,6 +16,8 @@ export class FrameComponent {
 	clickCounter: number = 0;
 	shoppingCartOpen: boolean = false;
 	showLogOutButton: boolean = false;
+	iconBoxOpen: boolean = true;
+	iconName: string = 'menu';
 
 	constructor(
 		public dialog: MatDialog,
@@ -23,7 +25,9 @@ export class FrameComponent {
 		public exchangeRateService: ExchangeRateService,
 		public afAuth: AngularFireAuth,
 		public shoppingBasketService: ShoppingBasketService
-	) {}
+	) {
+		this.checkMobile();
+	}
 
 	ngOnInit() {
 		this.exchangeRateService.getExchangeRates();
@@ -72,6 +76,16 @@ export class FrameComponent {
 		}
 	}
 
+	@HostListener('window:resize', ['$event'])
+	onResize(event: MouseEvent) {
+		if (window.innerWidth > 480) {
+			this.iconBoxOpen = true;
+			this.iconName = 'menu';
+		} else {
+			this.iconBoxOpen = false;
+		}
+	}
+
 	openLoginDialog() {
 		if (this.shoppingBasketService.currentlyLoggedInUser != 'Guest') {
 			// User is logged in, do not open the dialog
@@ -96,5 +110,21 @@ export class FrameComponent {
 
 	toggleLogOutButton() {
 		this.showLogOutButton = !this.showLogOutButton;
+	}
+
+	toggleBurgerMenu() {
+		if (this.iconName === 'menu') {
+			this.iconName = 'close';
+		} else {
+			this.iconName = 'menu';
+		}
+
+		this.iconBoxOpen = !this.iconBoxOpen;
+	}
+
+	private checkMobile() {
+		if (window.innerWidth < 480) {
+			this.iconBoxOpen = false;
+		}
 	}
 }
