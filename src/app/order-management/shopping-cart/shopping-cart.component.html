@@ -150,7 +150,7 @@
 							<mat-label>Enter Card Number</mat-label>
 							<input matInput placeholder="1234 5678 9012 3456" 
 							[(ngModel)]="cardDetails.number"
-							
+							required
 							/>
 							<mat-icon matSuffix
 								>credit_card</mat-icon
@@ -165,6 +165,7 @@
 								matInput
 								placeholder="MM/JJ"
 								[(ngModel)]="cardDetails.expiry"
+								required
 							/>
 							<mat-icon matSuffix
 								>credit_card_off</mat-icon
@@ -176,6 +177,7 @@
 								matInput
 								placeholder="3 digits"
 								[(ngModel)]="cardDetails.CVC"
+								required
 							/>
 							<mat-icon matSuffix
 								>pin</mat-icon
@@ -189,6 +191,7 @@
 								matInput
 								placeholder="Enter Cardholder's Name"
 								[(ngModel)]="cardDetails.name"
+								required
 							/>
 							<mat-icon matSuffix
 								>person</mat-icon
@@ -229,6 +232,7 @@
 								matInput
 								placeholder="Enter First Name"
 								[(ngModel)]="billingDetails.firstname"
+								required
 							/>
 							
 						</mat-form-field>
@@ -238,6 +242,7 @@
 								matInput
 								placeholder="Enter Last Name"
 								[(ngModel)]="billingDetails.lastname"
+								required
 							/>
 							
 						</mat-form-field>
@@ -249,6 +254,7 @@
 							<mat-label>Street + Number</mat-label>
 							<input matInput placeholder="Baker Street 15" 
 							[(ngModel)]="billingDetails.adress"
+							required
 
 							/>
 							
@@ -262,6 +268,7 @@
 								matInput
 								placeholder="Enter Zip Code"
 								[(ngModel)]="billingDetails.zipcode"
+								required
 
 							/>
 							
@@ -272,6 +279,7 @@
 								matInput
 								placeholder="Enter City Name"
 								[(ngModel)]="billingDetails.city"
+								required
 							/>
 							
 						</mat-form-field>
