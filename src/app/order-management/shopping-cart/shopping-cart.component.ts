@@ -6,6 +6,9 @@ import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.compone
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+/**
+ * interface for the Credit Card Details entered by the user
+ */
 interface cardDetails {
 	number: null | number;
 	expiry: null | string;
@@ -13,6 +16,9 @@ interface cardDetails {
 	name: null | string;
 }
 
+/**
+ * interface for the Debit/ Billing Details entered by the user
+ */
 interface billingDetails {
 	firstname: null | number;
 	lastname: null | string;
@@ -63,6 +69,9 @@ export class ShoppingCartComponent implements OnInit {
 		this.initialiseForm();
 	}
 
+	/**
+	 * 	initialisation of the card infirmation forms
+	 */
 	initialiseForm() {
 		this.form = this.fb.group({
 			cardNumber: [
@@ -81,6 +90,9 @@ export class ShoppingCartComponent implements OnInit {
 		});
 	}
 
+	/**
+	 * getting Card details from form
+	 */
 	get cardNumber() {
 		return this.form.get('cardName');
 	}
@@ -94,12 +106,22 @@ export class ShoppingCartComponent implements OnInit {
 		return this.form.get('name');
 	}
 
+	/**
+	 * Increasing product quantity by 1
+	 * @param i index of product in product array
+	 * @param event click event to prevent bubbling
+	 */
 	incrementQuantity(i: number, event: Event) {
 		event.stopPropagation();
 		this.shoppingCartService.products[i].quantity += 1;
 		this.shoppingCartService.updateProducts();
 	}
 
+	/**
+	 * Decrease product quantity by 1
+	 * @param i index of product in product array
+	 * @param event click event to prevent bubbling
+	 */
 	decreaseQuantity(i: number, event: Event) {
 		event.stopPropagation();
 
@@ -112,6 +134,9 @@ export class ShoppingCartComponent implements OnInit {
 		this.shoppingCartService.updateProducts();
 	}
 
+	/**
+	 * Validate the entered discount code and deduct stored quantity from order
+	 */
 	validateDiscount() {
 		this.shoppingCartService.couponCodes.forEach((coupon) => {
 			if (coupon.code == this.discountCode) {
@@ -124,10 +149,17 @@ export class ShoppingCartComponent implements OnInit {
 		});
 	}
 
+	/**
+	 * Select Payment Method
+	 * @param payment payment literal that was chosen by user
+	 */
 	selectPayment(payment: string) {
 		this.paymentMethod = payment;
 	}
 
+	/**
+	 * Open Final Checkout Dialog and inject payment & order data
+	 */
 	openPaymentDialog() {
 		if (this.paymentMethod) {
 			if (this.paymentMethod === 'credit') {
