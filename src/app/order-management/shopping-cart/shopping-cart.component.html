@@ -157,6 +157,9 @@
 								<mat-icon matSuffix
 									>credit_card</mat-icon
 								>
+								<mat-error *ngIf="form.controls['cardNumber'].invalid && form.controls['cardNumber'].touched">
+									Card number is required.
+								  </mat-error>
 							</mat-form-field>
 						</div>
 	
@@ -172,6 +175,9 @@
 								<mat-icon matSuffix
 									>credit_card_off</mat-icon
 								>
+								<mat-error *ngIf="form.controls['expiry'].invalid && form.controls['expiry'].touched">
+									Valid expiry date is required.
+								  </mat-error>
 							</mat-form-field>
 							<mat-form-field>
 								<mat-label>CVC/ CVV</mat-label>
@@ -185,6 +191,9 @@
 								<mat-icon matSuffix
 									>pin</mat-icon
 								>
+								<mat-error *ngIf="form.controls['cvv'].invalid && form.controls['cvv'].touched">
+									Valid cvv is required.
+								  </mat-error>
 							</mat-form-field>
 						</div>
 						<div class="name-wrapper">
@@ -200,6 +209,9 @@
 								<mat-icon matSuffix
 									>person</mat-icon
 								>
+								<mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+									Cardholder's name is required.
+								  </mat-error>
 							</mat-form-field>
 						</div>
 					</div>
