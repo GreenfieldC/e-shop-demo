@@ -22,7 +22,7 @@
 
 	&--icon-box {
 		display: flex;
-		gap: 1rem;
+		gap: 0.5rem; // 1rem
 		color: white;
 
 		.icon-box--currency-wrapper {
@@ -75,6 +75,10 @@
 					}
 				}
 
+				.account-name {
+					display: none;
+				}
+
 				.popup-box {
 					position: absolute;
 				}
@@ -122,14 +126,9 @@
 			width: 80px;
 		}
 
-		&--title {
-			display: block;
-			font-size: 1.2rem;
-		}
-
 		&--icon-box {
 			display: flex;
-			gap: 2rem;
+
 			color: white;
 		}
 
@@ -142,7 +141,23 @@
 @media (min-width: 801px) {
 	.header {
 		&--title {
-			font-size: 1.7rem;
+			display: block;
+			font-size: 1.2rem;
+		}
+		&--icon-box {
+			.icon-box--menuitem-container {
+				display: flex;
+				gap: 0.5rem;
+
+				.icon-wrapper {
+					.account-name {
+						display: block;
+					}
+					.account-icon {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 }

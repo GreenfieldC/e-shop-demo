@@ -165,22 +165,39 @@ button {
 			white-space: nowrap;
 		}
 
-		.cart-action-btn {
-			color: white;
-			background-color: var(--accent-color);
-			font-size: 1rem;
-			border: none;
-			border-radius: 0.5rem;
-			padding: 0.5rem;
-			white-space: nowrap;
-			box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
-			cursor: pointer;
-			transition: 225ms all ease-in-out;
+		// .cart-action-btn {
+		// 	color: white;
+		// 	background-color: var(--accent-color);
+		// 	font-size: 1rem;
+		// 	border: none;
+		// 	border-radius: 0.5rem;
+		// 	padding: 0.5rem;
+		// 	white-space: nowrap;
+		// 	box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+		// 	cursor: pointer;
+		// 	transition: 225ms all ease-in-out;
 
-			&:hover {
-				background-color: var(--primary-color);
-			}
-		}
+		// 	&:hover {
+		// 		background-color: var(--primary-color);
+		// 	}
+		// }
+	}
+}
+
+.cart-action-btn {
+	color: white;
+	background-color: var(--accent-color);
+	font-size: 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	white-space: nowrap;
+	box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+	cursor: pointer;
+	transition: 225ms all ease-in-out;
+
+	&:hover {
+		background-color: var(--primary-color);
 	}
 }
 
