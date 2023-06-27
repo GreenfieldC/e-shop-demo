@@ -327,6 +327,7 @@ export class ShoppingCartComponent implements OnInit {
 					this.exchangeRateService.selectedRate,
 				currency: this.exchangeRateService.icon,
 				paymentData: this.paymentData,
+				shipping: this.shoppingCartService.shippingCosts,
 			},
 		});
 	}

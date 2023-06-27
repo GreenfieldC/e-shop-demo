@@ -12,6 +12,8 @@ import {
 } from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
+import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
+
 @Component({
 	selector: 'app-login-page',
 	templateUrl: './login-page.component.html',
@@ -35,7 +37,8 @@ export class LoginPageComponent {
 		private fb: FormBuilder,
 		private firestore: Firestore,
 		private router: Router,
-		public cartService: ShoppingBasketService
+		public cartService: ShoppingBasketService,
+		public orderService: OrderHistoryService
 	) {}
 
 	ngOnInit() {
@@ -115,10 +118,16 @@ export class LoginPageComponent {
 				const user = await this.afAuth.currentUser;
 				if (user) {
 					this.cartService.currentlyLoggedInUser = user.displayName;
+					this.orderService.currentlyLoggedInUser = user.displayName;
+
 					const authData = { id: user.uid, name: user.displayName };
 					localStorage.setItem('authToken', JSON.stringify(authData));
+
 					this.cartService.cartReference = `user_${user.uid}/cart`;
+					this.orderService.orderReference = `user_${user.uid}/orders`;
+
 					this.cartService.getUserData();
+					this.orderService.getOrders();
 				}
 			}
 			if (this.isSignup) {
@@ -132,6 +141,9 @@ export class LoginPageComponent {
 				if (user) {
 					setDoc(doc(this.firestore, `user_${user.uid}`, 'cart'), {
 						products: [],
+					});
+					setDoc(doc(this.firestore, `user_${user.uid}`, 'orders'), {
+						orders: [],
 					});
 
 					updateProfile(user, { displayName: username });
