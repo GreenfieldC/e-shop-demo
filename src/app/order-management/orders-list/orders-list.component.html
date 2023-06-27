@@ -1,1 +1,4 @@
-<p>orders-list works!</p>
+<div *ngFor="let order of orderService.orders">
+    <h1>Order</h1>
+    <p>{{order.paymentDetails.currency}}</p>
+</div>
