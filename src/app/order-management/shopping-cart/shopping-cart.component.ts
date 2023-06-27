@@ -63,6 +63,7 @@ export class ShoppingCartComponent implements OnInit {
 	countries = [
 		'Albania',
 		'Andorra',
+		'Australia',
 		'Austria',
 		'Belarus',
 		'Belgium',
