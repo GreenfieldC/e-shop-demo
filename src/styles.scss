@@ -201,6 +201,12 @@ button {
 	}
 }
 
+.active {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
+	color: black;
+}
+
 @media (min-width: 801px) {
 	.mat-mdc-menu-panel.mat-mdc-menu-panel {
 		max-width: 400px !important;

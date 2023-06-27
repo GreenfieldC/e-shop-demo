@@ -1,1 +1,147 @@
-<p>addresses works!</p>
+<form
+	[formGroup]="addressForm"
+	class="form"
+	aria-label="Address Form"
+>
+	<div class="form__container">
+		<!-- Name -->
+		<fieldset>
+			<legend>Name</legend>
+			<!-- First Name -->
+			<div class="form__container__subcontainer">
+				<label for="firstName" class="label"
+					>FIRST NAME<small>*REQUIRED</small></label
+				>
+				<mat-form-field>
+					<input
+						formControlName="firstName"
+						#firstName
+						matInput
+						type="text"
+						id="firstName"
+						placeholder="First Name"
+						aria-required="true"
+						required
+					/>
+				</mat-form-field>
+				<mat-error *ngIf="firstName.required"
+					>First Name is required</mat-error
+				>
+			</div>
+			<!-- Last Name -->
+			<div class="form__container__subcontainer">
+				<label for="lastName" class="label"
+					>LAST NAME<small>*REQUIRED</small></label
+				>
+				<mat-form-field>
+					<input
+						formControlName="lastName"
+						#lastName
+						matInput
+						type="text"
+						id="lastName"
+						placeholder="Last Name"
+						aria-required="true"
+						required
+					/>
+				</mat-form-field>
+				<mat-error *ngIf="lastName.required"
+					>Last Name is required</mat-error
+				>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Address</legend>
+			<!-- Street -->
+			<div class="form__container__subcontainer">
+				<label for="street" class="label"
+					>STREET<small>*REQUIRED</small></label
+				>
+				<mat-form-field>
+					<input
+						formControlName="street"
+						#street
+						matInput
+						type="text"
+						id="street"
+						placeholder="Street + Number"
+						aria-required="true"
+						autocomplete="street-address"
+						required
+					/>
+				</mat-form-field>
+				<mat-error *ngIf="street.required"
+					>Street is required</mat-error
+				>
+			</div>
+			<!-- Zip Code -->
+			<div class="form__container__subcontainer">
+				<label for="zipCode" class="label"
+					>ZIP CODE<small>*REQUIRED</small></label
+				>
+				<mat-form-field>
+					<input
+						formControlName="zipCode"
+						#zipCode
+						matInput
+						type="number"
+						id="zipCode"
+						placeholder="Zip Code"
+						aria-required="true"
+						autocomplete="postal-code"
+						required
+					/>
+				</mat-form-field>
+				<mat-error *ngIf="zipCode.required"
+					>Zip Code is required</mat-error
+				>
+			</div>
+			<!-- City -->
+			<div class="form__container__subcontainer">
+				<label for="city" class="label"
+					>CITY<small>*REQUIRED</small></label
+				>
+				<mat-form-field>
+					<input
+						formControlName="city"
+						#city
+						matInput
+						type="text"
+						id="city"
+						placeholder="City"
+						aria-required="true"
+						autocomplete="address-level2"
+						required
+					/>
+				</mat-form-field>
+				<mat-error *ngIf="city.required"
+					>City is required</mat-error
+				>
+			</div>
+			<!-- Country -->
+			<div class="form__container__subcontainer">
+				<label for="country" class="label"
+					>COUNTRY<small>*REQUIRED</small></label
+				>
+				<mat-form-field>
+					<input
+						formControlName="country"
+						#country
+						matInput
+						type="text"
+						id="country"
+						placeholder="Country"
+						aria-required="true"
+						autocomplete="country"
+						required
+					/>
+				</mat-form-field>
+				<mat-error *ngIf="country.required"
+					>Country is required</mat-error
+				>
+			</div>
+		</fieldset>
+	</div>
+	<button class="cart-action-btn" type="submit">SUBMIT</button>
+</form>

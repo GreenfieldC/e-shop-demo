@@ -28,7 +28,8 @@
 			<div class="icon-wrapper">
 				<mat-icon
 					*ngIf="
-						shoppingBasketService.currentlyLoggedInUser === 'Guest'
+						shoppingBasketService.currentlyLoggedInUser ===
+						'Guest'
 					"
 					(click)="openLoginDialog()"
 					>person</mat-icon
@@ -36,13 +37,16 @@
 				<span
 					class="account-name"
 					*ngIf="
-						shoppingBasketService.currentlyLoggedInUser !== 'Guest'
+						shoppingBasketService.currentlyLoggedInUser !==
+						'Guest'
 					"
 					[matMenuTriggerFor]="accountMenu"
 				>
 					{{ shoppingBasketService.currentlyLoggedInUser }}
 				</span>
-				<mat-icon class="account-icon" [matMenuTriggerFor]="accountMenu"
+				<mat-icon
+					class="account-icon"
+					[matMenuTriggerFor]="accountMenu"
 					>person</mat-icon
 				>
 
@@ -54,15 +58,23 @@
 					<div class="account-prompt">
 						<h2>
 							Hi,
-							{{ shoppingBasketService.currentlyLoggedInUser }}!
+							{{
+								shoppingBasketService.currentlyLoggedInUser
+							}}!
 						</h2>
 						<mat-icon>admin_panel_settings</mat-icon>
 					</div>
 
-					<div class="account-option" [routerLink]="'settings'">
+					<div
+						class="account-option"
+						[routerLink]="'settings/account'"
+					>
 						Account Settings
 					</div>
-					<div class="account-option" [routerLink]="'orders'">
+					<div
+						class="account-option"
+						[routerLink]="'orders'"
+					>
 						My orders
 					</div>
 
@@ -74,8 +86,12 @@
 			<div class="icon-wrapper">
 				<mat-icon>favorite</mat-icon>
 			</div>
-			<div [matMenuTriggerFor]="shoppingBag" class="icon-wrapper">
-				<mat-icon (click)="shoppingCartOpen = !shoppingCartOpen"
+			<div
+				[matMenuTriggerFor]="shoppingBag"
+				class="icon-wrapper"
+			>
+				<mat-icon
+					(click)="shoppingCartOpen = !shoppingCartOpen"
 					>shopping_bag</mat-icon
 				>
 
@@ -103,7 +119,8 @@
 						<span
 							>{{
 								item.title.length > 10
-									? (item.title | slice : 0 : 10) + '...'
+									? (item.title | slice : 0 : 10) +
+									  '...'
 									: item.title
 							}}
 							({{ item.size }})</span
@@ -111,7 +128,11 @@
 						<span>{{ item.quantity }}X</span>
 					</div>
 
-					<div *ngIf="shoppingBasketService.products.length < 1">
+					<div
+						*ngIf="
+							shoppingBasketService.products.length < 1
+						"
+					>
 						Shopping Cart is empty
 					</div>
 
@@ -131,7 +152,9 @@
 						>
 							View Cart
 						</button>
-						<button class="cart-action-btn">Quick Checkout</button>
+						<button class="cart-action-btn">
+							Quick Checkout
+						</button>
 					</div>
 				</mat-menu>
 			</div>
@@ -140,7 +163,9 @@
 			</div>
 		</div>
 	</div>
-	<mat-icon class="header--burger-menu" (click)="toggleBurgerMenu()">{{
-		iconName
-	}}</mat-icon>
+	<mat-icon
+		class="header--burger-menu"
+		(click)="toggleBurgerMenu()"
+		>{{ iconName }}</mat-icon
+	>
 </div>
