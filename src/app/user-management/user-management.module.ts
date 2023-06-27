@@ -7,9 +7,12 @@ import { UserManagementRoutingModule } from './user-management-routing.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleSigninDirective } from './google-signin.directive';
+import { SettingsComponent } from './settings/settings.component';
+import { AccountComponent } from './settings/account/account.component';
+import { AddressesComponent } from './settings/addresses/addresses.component';
 
 @NgModule({
-	declarations: [LoginPageComponent, GoogleSigninDirective],
+	declarations: [LoginPageComponent, GoogleSigninDirective, SettingsComponent, AccountComponent, AddressesComponent],
 	imports: [
 		CommonModule,
 		UserManagementRoutingModule,

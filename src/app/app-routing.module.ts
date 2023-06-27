@@ -4,7 +4,9 @@ import { ShoppingCartComponent } from './order-management/shopping-cart/shopping
 import { SearchBarComponent } from './products/search-bar/search-bar.component';
 import { LoginPageComponent } from './user-management/login-page/login-page.component';
 import { OrdersListComponent } from './order-management/orders-list/orders-list.component';
-import { SettingsComponent } from './user-managemenet/settings/settings.component';
+import { SettingsComponent } from './user-management/settings/settings.component';
+import { AddressesComponent } from './user-management/settings/addresses/addresses.component';
+import { AccountComponent } from './user-management/settings/account/account.component';
 
 const routes: Routes = [
 	{
@@ -31,6 +33,10 @@ const routes: Routes = [
 	{
 		path: 'settings',
 		component: SettingsComponent,
+		children: [
+			{ path: 'account', component: AccountComponent },
+			{ path: 'addresses', component: AddressesComponent },
+		],
 	},
 ];
 
