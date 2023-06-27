@@ -180,7 +180,7 @@
 .payment-option-container {
  display: flex;
  flex-direction: column;
- row-gap: 1rem;
+ row-gap: 2rem;
 }
 
 
@@ -201,11 +201,12 @@
 
 }
 
+
 .payment-info {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 2rem;
 
     .number-wrapper {
         mat-form-field {
