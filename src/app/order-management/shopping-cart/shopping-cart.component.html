@@ -144,7 +144,7 @@
 					<mat-icon>credit_card</mat-icon>
 					Credit Card
 				</div>
-				<form *ngIf="paymentMethod === 'credit'" [formGroup]="form">
+				<form *ngIf="paymentMethod === 'credit'" [formGroup]="form1">
 					<div class="payment-info">
 						<div class="number-wrapper">
 							<mat-form-field>
@@ -157,7 +157,7 @@
 								<mat-icon matSuffix
 									>credit_card</mat-icon
 								>
-								<mat-error *ngIf="form.controls['cardNumber'].invalid && form.controls['cardNumber'].touched">
+								<mat-error *ngIf="form1.controls['cardNumber'].invalid && form1.controls['cardNumber'].touched">
 									Card number is required (16 digits).
 								  </mat-error>
 							</mat-form-field>
@@ -175,7 +175,7 @@
 								<mat-icon matSuffix
 									>credit_card_off</mat-icon
 								>
-								<mat-error *ngIf="form.controls['expiry'].invalid && form.controls['expiry'].touched">
+								<mat-error *ngIf="form1.controls['expiry'].invalid && form1.controls['expiry'].touched">
 									Valid expiry date is required.
 								  </mat-error>
 							</mat-form-field>
@@ -191,7 +191,7 @@
 								<mat-icon matSuffix
 									>pin</mat-icon
 								>
-								<mat-error *ngIf="form.controls['cvv'].invalid && form.controls['cvv'].touched">
+								<mat-error *ngIf="form1.controls['cvv'].invalid && form1.controls['cvv'].touched">
 									Valid cvv is required.
 								  </mat-error>
 							</mat-form-field>
@@ -209,7 +209,7 @@
 								<mat-icon matSuffix
 									>person</mat-icon
 								>
-								<mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+								<mat-error *ngIf="form1.controls['name'].invalid && form1.controls['name'].touched">
 									Cardholder's name is required.
 								  </mat-error>
 							</mat-form-field>
@@ -241,81 +241,89 @@
 					<mat-icon>receipt_long</mat-icon>
 					Direct Debit
 				</div>
-				<div class="payment-info" *ngIf="paymentMethod === 'debit'">
+				<form *ngIf="paymentMethod === 'debit'" [formGroup]="form2">
+					<div class="payment-info">
 
-					<div class="security-wrapper">
-						<mat-form-field>
-							<mat-label>First Name</mat-label>
-							<input
-								matInput
-								placeholder="Enter First Name"
-								[(ngModel)]="billingDetails.firstname"
+						<div class="security-wrapper">
+							<mat-form-field>
+								<mat-label>First Name</mat-label>
+								<input
+									matInput
+									placeholder="Enter First Name"
+									formControlName="firstname"
+									required
+								/>
+								<mat-error *ngIf="form2.controls['firstname'].invalid && form2.controls['firstname'].touched">Please enter first name.</mat-error>
+							</mat-form-field>
+							<mat-form-field>
+								<mat-label>Last Name</mat-label>
+								<input
+									matInput
+									placeholder="Enter Last Name"
+									formControlName="lastname"
+									required
+								/>
+								<mat-error *ngIf="form2.controls['lastname'].invalid && form2.controls['lastname'].touched">Please enter last name.</mat-error>
+							</mat-form-field>
+						</div>
+	
+	
+						<div class="number-wrapper">
+							<mat-form-field>
+								<mat-label>Street + Number</mat-label>
+								<input matInput 
+								placeholder="Enter Street Name" 
+								formControlName="adress"
 								required
-							/>
-							
-						</mat-form-field>
-						<mat-form-field>
-							<mat-label>Last Name</mat-label>
-							<input
-								matInput
-								placeholder="Enter Last Name"
-								[(ngModel)]="billingDetails.lastname"
-								required
-							/>
-							
-						</mat-form-field>
+	
+								/>
+								<mat-error *ngIf="form2.controls['adress'].invalid && form2.controls['adress'].touched">
+									Please enter a valid adress.
+								</mat-error>
+							</mat-form-field>
+						</div>
+	
+						<div class="security-wrapper">
+							<mat-form-field>
+								<mat-label>Zip Code</mat-label>
+								<input
+									matInput
+									placeholder="Enter Zip Code"
+									formControlName="zipcode"
+									required
+	
+								/>
+								<mat-error *ngIf="form2.controls['zipcode'].invalid && form2.controls['zipcode'].touched">Please enter zipcode.</mat-error>
+							</mat-form-field>
+							<mat-form-field>
+								<mat-label>City</mat-label>
+								<input
+									matInput
+									placeholder="Enter City Name"
+									formControlName="city"
+									required
+								/>
+								<mat-error *ngIf="form2.controls['city'].invalid && form2.controls['city'].touched">
+									Please enter city.
+								</mat-error>
+							</mat-form-field>
+						</div>
+	
+						
+						<div class="name-wrapper">
+							<mat-form-field>
+								<mat-label>Country</mat-label>
+								<mat-select formControlName="country" value="Option">
+									<mat-option *ngFor="let country of countries"
+									[value]="country"
+									>{{country}}</mat-option>
+								</mat-select>
+								<mat-error *ngIf="form2.controls['city'].invalid">Please select a country.</mat-error>
+							</mat-form-field>
+						</div>
 					</div>
-
-
-					<div class="number-wrapper">
-						<mat-form-field>
-							<mat-label>Street + Number</mat-label>
-							<input matInput placeholder="Baker Street 15" 
-							[(ngModel)]="billingDetails.adress"
-							required
-
-							/>
-							
-						</mat-form-field>
-					</div>
-
-					<div class="security-wrapper">
-						<mat-form-field>
-							<mat-label>Zip Code</mat-label>
-							<input
-								matInput
-								placeholder="Enter Zip Code"
-								[(ngModel)]="billingDetails.zipcode"
-								required
-
-							/>
-							
-						</mat-form-field>
-						<mat-form-field>
-							<mat-label>City</mat-label>
-							<input
-								matInput
-								placeholder="Enter City Name"
-								[(ngModel)]="billingDetails.city"
-								required
-							/>
-							
-						</mat-form-field>
-					</div>
-
-					
-					<div class="name-wrapper">
-						<mat-form-field>
-							<mat-label>Country</mat-label>
-							<mat-select>
-								<mat-option value="option"
-								[(ngModel)]="billingDetails.country"
-								>Option</mat-option>
-							</mat-select>
-							
-						</mat-form-field>
-					</div>
-				</div>
+				</form>
+				
 
 
 
