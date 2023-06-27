@@ -21,10 +21,20 @@ export class DialogPaymentComponent {
 		return Object.entries(details);
 	}
 
+	generateOrderNumber(): string {
+		const randomNumber1 = Math.floor(Math.random() * 900) + 100;
+		const randomNumber2 = Math.floor(Math.random() * 9000000) + 1000000;
+		const randomNumber3 = Math.floor(Math.random() * 9000000) + 1000000;
+		const orderNumber = `ORDER # ${randomNumber1}-${randomNumber2}-${randomNumber3}`;
+		return orderNumber;
+	}
+
 	placeOrder() {
 		const order = {
+			orderID: this.generateOrderNumber(),
 			paymentDetails: this.data,
 			products: this.cartService.products,
+			date: new Date(),
 		};
 
 		this.orderService.orders.push(order);

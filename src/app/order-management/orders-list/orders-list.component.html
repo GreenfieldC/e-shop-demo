@@ -1,4 +1,51 @@
-<div *ngFor="let order of orderService.orders">
+<div class="order-history-container">
+	<h1>My Orders</h1>
+	<mat-card *ngFor="let order of orderService.orders" class="order-container">
+		<div class="order-overview-container">
+			<div class="order-detail-wrapper">
+				<span>ORDER PLACED</span>
+				<span>{{ order.date.seconds * 1000 | date : 'longDate' }}</span>
+			</div>
+			<div class="order-detail-wrapper">
+				<span>TOTAL</span>
+				<span
+					>{{ order.paymentDetails.currency
+					}}{{ order.paymentDetails.total | number : '1.2-2' }}
+				</span>
+			</div>
+			<div class="order-detail-wrapper">
+				<span>DELIVERED TO</span>
+				<span>{{ orderService.currentlyLoggedInUser }}</span>
+			</div>
+			<div class="order-detail-wrapper">
+				<span>{{ order.orderID }}</span>
+				<span class="more-details">View All Order Details</span>
+			</div>
+		</div>
+		<div class="product-overview-container">
+			<div *ngFor="let product of order.products; let i = index" class="product-wrapper">
+				<div class="product">
+					<img [src]="product.image" alt="product-img" />
+					<div class="product-info-actions">
+						<span>{{ product.title }}</span>
+						<span style="font-size: smaller;">Return window open until 30 June 2023</span>
+						<div class="btn-wrapper"> 
+							<button class="btn-accent">                            
+                                Buy again</button>
+							<button class="btn-white">See Product Detail</button>
+						</div>
+					</div>
+				</div>
+				<div class="problem-btns">
+					<button *ngIf="i === 0" class="btn-accent">Problem with order</button>
+					<button class="btn-white">Write Product Review</button>
+				</div>
+			</div>
+		</div>
+	</mat-card>
+</div>
+
+<!-- <div *ngFor="let order of orderService.orders">
     <h1>Order</h1>
     <p>{{order.paymentDetails.currency}}</p>
-</div>
+</div> -->
