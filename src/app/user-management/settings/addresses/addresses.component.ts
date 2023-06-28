@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-addresses',
@@ -7,40 +7,62 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 	styleUrls: ['./addresses.component.scss'],
 })
 export class AddressesComponent implements OnInit {
+	form: FormGroup;
 	ngOnInit(): void {
 		// throw new Error('Method not implemented.');
 	}
 
-	addressForm = new FormGroup({
-		firstName: new FormControl('', Validators.required),
-		lastName: new FormControl('', Validators.required),
-		street: new FormControl('', Validators.required),
-		zipCode: new FormControl('', Validators.required),
-		city: new FormControl('', Validators.required),
-		country: new FormControl('', Validators.required),
-	});
-
-	get firstName() {
-		return this.addressForm.get('firstName');
+	constructor(private fb: FormBuilder) {
+		this.initialiseForm();
 	}
 
-	get lastName() {
-		return this.addressForm.get('lastName');
+	/**
+	 * initialise the form with the validators
+	 */
+	initialiseForm() {
+		this.form = this.fb.group({
+			firstName: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
+			],
+			lastName: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
+			],
+			street: ['', Validators.required],
+			zipCode: ['', Validators.required],
+			city: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
+			],
+			country: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
+			],
+		});
 	}
 
-	get street() {
-		return this.addressForm.get('street');
+	submit() {
+		if (!this.form.valid) {
+			console.log('form is invalid');
+			return;
+		}
 	}
 
-	get zipCode() {
-		return this.addressForm.get('zipCode');
-	}
-
-	get city() {
-		return this.addressForm.get('city');
-	}
-
-	get country() {
-		return this.addressForm.get('country');
+	isFormControlInvalid(controlName: any): boolean {
+		const control = controlName;
+		return control.invalid && (control.dirty || control.touched);
 	}
 }

@@ -1,11 +1,12 @@
 <form
-	[formGroup]="addressForm"
+	[formGroup]="form"
 	class="form"
+	(ngSubmit)="submit()"
 	aria-label="Address Form"
 >
 	<div class="form__container">
 		<!-- Name -->
-		<fieldset>
+		<fieldset class="form__container__fieldset--name">
 			<legend>Name</legend>
 			<!-- First Name -->
 			<div class="form__container__subcontainer">
@@ -18,15 +19,20 @@
 						#firstName
 						matInput
 						type="text"
-						id="firstName"
 						placeholder="First Name"
 						aria-required="true"
 						required
 					/>
 				</mat-form-field>
-				<mat-error *ngIf="firstName.required"
-					>First Name is required</mat-error
+				<mat-error
+					class="mat-error"
+					*ngIf="
+						form.controls['firstName'].invalid &&
+						form.controls['firstName'].touched
+					"
 				>
+					First Name is required
+				</mat-error>
 			</div>
 			<!-- Last Name -->
 			<div class="form__container__subcontainer">
@@ -45,7 +51,12 @@
 						required
 					/>
 				</mat-form-field>
-				<mat-error *ngIf="lastName.required"
+				<mat-error
+					class="mat-error"
+					*ngIf="
+						form.controls['lastName'].invalid &&
+						form.controls['lastName'].touched
+					"
 					>Last Name is required</mat-error
 				>
 			</div>
@@ -71,7 +82,12 @@
 						required
 					/>
 				</mat-form-field>
-				<mat-error *ngIf="street.required"
+				<mat-error
+					class="mat-error"
+					*ngIf="
+						form.controls['street'].invalid &&
+						form.controls['street'].touched
+					"
 					>Street is required</mat-error
 				>
 			</div>
@@ -93,7 +109,12 @@
 						required
 					/>
 				</mat-form-field>
-				<mat-error *ngIf="zipCode.required"
+				<mat-error
+					class="mat-error"
+					*ngIf="
+						form.controls['zipCode'].invalid &&
+						form.controls['zipCode'].touched
+					"
 					>Zip Code is required</mat-error
 				>
 			</div>
@@ -115,7 +136,12 @@
 						required
 					/>
 				</mat-form-field>
-				<mat-error *ngIf="city.required"
+				<mat-error
+					class="mat-error"
+					*ngIf="
+						form.controls['city'].invalid &&
+						form.controls['city'].touched
+					"
 					>City is required</mat-error
 				>
 			</div>
@@ -137,7 +163,12 @@
 						required
 					/>
 				</mat-form-field>
-				<mat-error *ngIf="country.required"
+				<mat-error
+					class="mat-error"
+					*ngIf="
+						form.controls['country'].invalid &&
+						form.controls['country'].touched
+					"
 					>Country is required</mat-error
 				>
 			</div>

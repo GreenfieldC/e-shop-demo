@@ -1,67 +1,171 @@
-<form class="form">
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
 	<div class="form__container">
 		<!-- First Name -->
 		<div class="form__container__subcontainer">
-			<label class="label">FIRST NAME<small>*REQUIRED</small></label>
+			<label for="firstName" class="label"
+				>FIRST NAME<small>*REQUIRED</small></label
+			>
 			<mat-form-field>
-				<input matInput placeholder="First Name" value="John" />
+				<input
+					formControlName="firstName"
+					#firstName
+					matInput
+					placeholder="First Name"
+					aria-required="true"
+					required
+				/>
 			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['firstName'].invalid &&
+					form.controls['firstName'].touched
+				"
+			>
+				First Name is required
+			</mat-error>
 		</div>
 		<!-- Last Name -->
 		<div class="form__container__subcontainer">
-			<label class="label">LAST NAME<small>*REQUIRED</small></label>
+			<label for="lastName" class="label"
+				>LAST NAME<small>*REQUIRED</small></label
+			>
 			<mat-form-field>
-				<input matInput placeholder="Last Name" value="Dough" />
+				<input
+					formControlName="lastName"
+					#lastName
+					matInput
+					placeholder="Last Name"
+					aria-required="true"
+					required
+				/>
 			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['lastName'].invalid &&
+					form.controls['lastName'].touched
+				"
+			>
+				Last name is required
+			</mat-error>
 		</div>
 	</div>
 	<div class="form__container">
 		<!-- Company -->
 		<div class="form__container__subcontainer">
-			<label class="label">COMPANY</label>
+			<label for="company" class="label">COMPANY</label>
 			<mat-form-field>
-				<input matInput placeholder="Company" value="--" />
+				<input
+					formControlName="company"
+					#company
+					matInput
+					placeholder="Company"
+					value="--"
+				/>
 			</mat-form-field>
 		</div>
 		<!-- Phone Number -->
 		<div class="form__container__subcontainer">
-			<label class="label">PHONE NUMBER<small>*REQUIRED</small></label>
+			<label for="phone" class="label"
+				>PHONE NUMBER<small>*REQUIRED</small></label
+			>
 			<mat-form-field>
-				<input matInput placeholder="Phone number" value="--" />
+				<input
+					formControlName="phone"
+					#phone
+					matInput
+					placeholder="Phone number"
+					value="--"
+					aria-required="true"
+					required
+				/>
 			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['phone'].invalid &&
+					form.controls['phone'].touched
+				"
+			>
+				Phone number is required
+			</mat-error>
 		</div>
 	</div>
 	<div class="form__container">
 		<!-- Email Address -->
 		<div class="form__container__subcontainer">
-			<label class="label">EMAIL ADDRESS<small>*REQUIRED</small></label>
+			<label for="email" class="label"
+				>EMAIL ADDRESS<small>*REQUIRED</small></label
+			>
 			<mat-form-field>
-				<input matInput placeholder="Email Address" value="--" />
+				<input
+					formControlName="email"
+					#email
+					matInput
+					placeholder="Email Address"
+					value="--"
+					aria-required="true"
+					required
+				/>
 			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['email'].invalid &&
+					form.controls['email'].touched
+				"
+			>
+				Email address is required
+			</mat-error>
 		</div>
 		<!-- Password -->
 		<div class="form__container__subcontainer">
-			<label class="label">PASSWORD</label>
+			<label for="password" class="label">PASSWORD</label>
 			<mat-form-field>
-				<input matInput placeholder="Password" value="**********" />
+				<input
+					formControlName="password"
+					#password
+					matInput
+					placeholder="Password"
+					value="**********"
+				/>
 			</mat-form-field>
 		</div>
 	</div>
 	<div class="form__container">
 		<!-- Confirm Password -->
 		<div class="form__container__subcontainer">
-			<label class="label">CONFIRM PASSWORD</label>
+			<label for="passwordConfirm" class="label"
+				>CONFIRM PASSWORD</label
+			>
 			<mat-form-field>
-				<input matInput placeholder="Confirm Password" value="--" />
+				<input
+					formControlName="passwordConfirm"
+					#passwordConfirm
+					matInput
+					placeholder="Confirm Password"
+					value="--"
+				/>
 			</mat-form-field>
 		</div>
 		<!-- Current Password -->
 		<div class="form__container__subcontainer">
-			<label class="label">CURRENT PASSWORD</label>
+			<label for="passwordCurrent" class="label"
+				>CURRENT PASSWORD</label
+			>
 			<mat-form-field>
-				<input matInput placeholder="Current Password" value="" />
+				<input
+					formControlName="passwordCurrent"
+					#currentPassword
+					matInput
+					placeholder="Current Password"
+					value=""
+				/>
 			</mat-form-field>
 		</div>
 	</div>
-	<button class="cart-action-btn">UPDATE DETAILS</button>
+	<button type="submit" class="cart-action-btn">
+		UPDATE DETAILS
+	</button>
 </form>

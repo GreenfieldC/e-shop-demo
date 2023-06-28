@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-account',
@@ -7,4 +8,39 @@ import { Component } from '@angular/core';
 })
 export class AccountComponent {
 	selected: string = 'ACCOUNT SETTINGS';
+	form: FormGroup;
+
+	constructor(private fb: FormBuilder) {
+		this.initialiseForm();
+	}
+
+	submit() {
+		console.log('form is invalid');
+		return;
+	}
+
+	initialiseForm() {
+		this.form = this.fb.group({
+			firstName: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
+			],
+			lastName: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
+			],
+			company: [''],
+			phone: ['', Validators.required],
+			email: ['', Validators.required],
+			password: [''],
+			passwordConfirm: [''],
+			passwordCurrent: ['', Validators.required],
+		});
+	}
 }

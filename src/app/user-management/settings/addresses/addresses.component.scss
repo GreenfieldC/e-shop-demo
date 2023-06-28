@@ -27,3 +27,16 @@
 		align-self: center;
 	}
 }
+
+@media (min-width: 801px) {
+	.form__container__fieldset--name {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 1rem;
+		gap: 1rem;
+
+		.form__container__subcontainer {
+			flex-basis: 100%;
+		}
+	}
+}
