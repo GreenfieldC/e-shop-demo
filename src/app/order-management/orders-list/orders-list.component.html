@@ -4,7 +4,9 @@
 		<div class="order-overview-container">
 			<div class="order-detail-wrapper">
 				<span>ORDER PLACED</span>
-				<span>{{ order.date.seconds * 1000 | date : 'longDate' }}</span>
+				<span>
+					{{ (order.date.seconds * 1000 + (21 * 24 * 60 * 60 * 1000)) | date: 'longDate' }}
+				  </span>
 			</div>
 			<div class="order-detail-wrapper">
 				<span>TOTAL</span>

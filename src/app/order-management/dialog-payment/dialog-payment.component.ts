@@ -17,19 +17,25 @@ export class DialogPaymentComponent {
 		public cartService: ShoppingBasketService
 	) {}
 
+	orderAnimation: boolean = false;
+
 	getCardDetailsArray(details: any): any[] {
 		return Object.entries(details);
 	}
 
 	generateOrderNumber(): string {
 		const randomNumber1 = Math.floor(Math.random() * 900) + 100;
-		const randomNumber2 = Math.floor(Math.random() * 9000000) + 1000000;
-		const randomNumber3 = Math.floor(Math.random() * 9000000) + 1000000;
+		const randomNumber2 =
+			Math.floor(Math.random() * 9000000) + 1000000;
+		const randomNumber3 =
+			Math.floor(Math.random() * 9000000) + 1000000;
 		const orderNumber = `ORDER # ${randomNumber1}-${randomNumber2}-${randomNumber3}`;
 		return orderNumber;
 	}
 
 	placeOrder() {
+		this.orderAnimation = true;
+
 		const order = {
 			orderID: this.generateOrderNumber(),
 			paymentDetails: this.data,
@@ -37,8 +43,16 @@ export class DialogPaymentComponent {
 			date: new Date(),
 		};
 
-		this.orderService.orders.push(order);
-		this.orderService.updateOrders();
-		this.dialog.closeAll();
+		setTimeout(() => {
+			this.orderService.orders.push(order);
+			this.orderService.updateOrders();
+
+			this.cartService.products = [];
+			this.cartService.updateProducts();
+
+			this.dialog.closeAll();
+		}, 2000);
+
+		this.orderAnimation = false;
 	}
 }
