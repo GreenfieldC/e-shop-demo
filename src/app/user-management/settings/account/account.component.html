@@ -1,0 +1,171 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
+	<div class="form__container">
+		<!-- First Name -->
+		<div class="form__container__subcontainer">
+			<label for="firstName" class="label"
+				>FIRST NAME<small>*REQUIRED</small></label
+			>
+			<mat-form-field>
+				<input
+					formControlName="firstName"
+					#firstName
+					matInput
+					placeholder="First Name"
+					aria-required="true"
+					required
+				/>
+			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['firstName'].invalid &&
+					form.controls['firstName'].touched
+				"
+			>
+				First Name is required
+			</mat-error>
+		</div>
+		<!-- Last Name -->
+		<div class="form__container__subcontainer">
+			<label for="lastName" class="label"
+				>LAST NAME<small>*REQUIRED</small></label
+			>
+			<mat-form-field>
+				<input
+					formControlName="lastName"
+					#lastName
+					matInput
+					placeholder="Last Name"
+					aria-required="true"
+					required
+				/>
+			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['lastName'].invalid &&
+					form.controls['lastName'].touched
+				"
+			>
+				Last name is required
+			</mat-error>
+		</div>
+	</div>
+	<div class="form__container">
+		<!-- Company -->
+		<div class="form__container__subcontainer">
+			<label for="company" class="label">COMPANY</label>
+			<mat-form-field>
+				<input
+					formControlName="company"
+					#company
+					matInput
+					placeholder="Company"
+					value="--"
+				/>
+			</mat-form-field>
+		</div>
+		<!-- Phone Number -->
+		<div class="form__container__subcontainer">
+			<label for="phone" class="label"
+				>PHONE NUMBER<small>*REQUIRED</small></label
+			>
+			<mat-form-field>
+				<input
+					formControlName="phone"
+					#phone
+					matInput
+					placeholder="Phone number"
+					value="--"
+					aria-required="true"
+					required
+				/>
+			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['phone'].invalid &&
+					form.controls['phone'].touched
+				"
+			>
+				Phone number is required
+			</mat-error>
+		</div>
+	</div>
+	<div class="form__container">
+		<!-- Email Address -->
+		<div class="form__container__subcontainer">
+			<label for="email" class="label"
+				>EMAIL ADDRESS<small>*REQUIRED</small></label
+			>
+			<mat-form-field>
+				<input
+					formControlName="email"
+					#email
+					matInput
+					placeholder="Email Address"
+					value="--"
+					aria-required="true"
+					required
+				/>
+			</mat-form-field>
+			<mat-error
+				class="mat-error"
+				*ngIf="
+					form.controls['email'].invalid &&
+					form.controls['email'].touched
+				"
+			>
+				Email address is required
+			</mat-error>
+		</div>
+		<!-- Password -->
+		<div class="form__container__subcontainer">
+			<label for="password" class="label">PASSWORD</label>
+			<mat-form-field>
+				<input
+					formControlName="password"
+					#password
+					matInput
+					placeholder="Password"
+					value="**********"
+				/>
+			</mat-form-field>
+		</div>
+	</div>
+	<div class="form__container">
+		<!-- Confirm Password -->
+		<div class="form__container__subcontainer">
+			<label for="passwordConfirm" class="label"
+				>CONFIRM PASSWORD</label
+			>
+			<mat-form-field>
+				<input
+					formControlName="passwordConfirm"
+					#passwordConfirm
+					matInput
+					placeholder="Confirm Password"
+					value="--"
+				/>
+			</mat-form-field>
+		</div>
+		<!-- Current Password -->
+		<div class="form__container__subcontainer">
+			<label for="passwordCurrent" class="label"
+				>CURRENT PASSWORD</label
+			>
+			<mat-form-field>
+				<input
+					formControlName="passwordCurrent"
+					#currentPassword
+					matInput
+					placeholder="Current Password"
+					value=""
+				/>
+			</mat-form-field>
+		</div>
+	</div>
+	<button type="submit" class="cart-action-btn">
+		UPDATE DETAILS
+	</button>
+</form>

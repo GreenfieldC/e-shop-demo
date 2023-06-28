@@ -1,0 +1,57 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	max-width: 900px;
+	width: 100%;
+
+	&__container {
+		&__subcontainer {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 1rem;
+
+			.label {
+				color: #666666;
+			}
+		}
+	}
+	.label {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 0.3rem;
+	}
+
+	button {
+		margin-top: 1rem;
+		max-width: 170px;
+		align-self: center;
+	}
+}
+
+@media (min-width: 801px) {
+	// .wrapper {
+	// 	align-items: center;
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		&__container {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 1rem;
+			gap: 1rem;
+
+			&__subcontainer {
+				flex-basis: 100%;
+			}
+		}
+
+		button {
+			align-self: flex-end;
+		}
+	}
+}
+// }
+// }
