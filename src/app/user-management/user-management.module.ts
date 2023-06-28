@@ -10,14 +10,22 @@ import { GoogleSigninDirective } from './google-signin.directive';
 import { SettingsComponent } from './settings/settings.component';
 import { AccountComponent } from './settings/account/account.component';
 import { AddressesComponent } from './settings/addresses/addresses.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-	declarations: [LoginPageComponent, GoogleSigninDirective, SettingsComponent, AccountComponent, AddressesComponent],
+	declarations: [
+		LoginPageComponent,
+		GoogleSigninDirective,
+		SettingsComponent,
+		AccountComponent,
+		AddressesComponent,
+	],
 	imports: [
 		CommonModule,
 		UserManagementRoutingModule,
 		SharedModule,
 		ReactiveFormsModule,
+		MatExpansionModule,
 	],
 })
 export class UserManagementModule {}
