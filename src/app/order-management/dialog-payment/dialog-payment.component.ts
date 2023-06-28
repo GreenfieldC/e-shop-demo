@@ -17,6 +17,8 @@ export class DialogPaymentComponent {
 		public cartService: ShoppingBasketService
 	) {}
 
+	orderAnimation: boolean = false;
+
 	getCardDetailsArray(details: any): any[] {
 		return Object.entries(details);
 	}
@@ -32,6 +34,8 @@ export class DialogPaymentComponent {
 	}
 
 	placeOrder() {
+		this.orderAnimation = true;
+
 		const order = {
 			orderID: this.generateOrderNumber(),
 			paymentDetails: this.data,
@@ -39,12 +43,16 @@ export class DialogPaymentComponent {
 			date: new Date(),
 		};
 
-		this.orderService.orders.push(order);
-		this.orderService.updateOrders();
+		setTimeout(() => {
+			this.orderService.orders.push(order);
+			this.orderService.updateOrders();
 
-		this.cartService.products = [];
-		this.cartService.updateProducts();
+			this.cartService.products = [];
+			this.cartService.updateProducts();
 
-		this.dialog.closeAll();
+			this.dialog.closeAll();
+		}, 2000);
+
+		this.orderAnimation = false;
 	}
 }

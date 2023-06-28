@@ -24,5 +24,7 @@
 </div>
 
 <div class="btn-wrapper">
-	<button (click)="placeOrder()" class="order-btn"><mat-icon>lock</mat-icon>Order</button>
+	<button *ngIf="!orderAnimation" (click)="placeOrder()" class="order-btn"><mat-icon>lock</mat-icon>Order</button>
+	<div *ngIf="orderAnimation" class="order-btn">
+		<mat-spinner></mat-spinner> Processing Order</div>
 </div>
