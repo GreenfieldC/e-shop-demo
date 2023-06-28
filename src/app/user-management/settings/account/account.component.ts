@@ -9,14 +9,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AccountComponent {
 	selected: string = 'ACCOUNT SETTINGS';
 	form: FormGroup;
+	addresses: any[];
 
 	constructor(private fb: FormBuilder) {
 		this.initialiseForm();
 	}
 
 	submit() {
-		console.log('form is invalid');
-		return;
+		console.log(this.form.value);
 	}
 
 	initialiseForm() {
