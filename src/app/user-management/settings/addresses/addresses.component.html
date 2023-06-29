@@ -196,15 +196,33 @@
 		*ngFor="let address of addresses; let i = index"
 		class="addresses__box"
 	>
-		<div class="addresses__box__header">
-			<h3>{{ address.firstName }} {{ address.lastName }}</h3>
-			<p>{{ address.street }}</p>
-			<p>{{ address.zipCode }} {{ address.city }}</p>
-			<p>{{ address.country }}</p>
-
-			<button mat-icon-button aria-label="Delete">
-				<mat-icon>delete</mat-icon>
-			</button>
-		</div>
+		<header
+			*ngIf="address.isDefault"
+			class="addresses__box__header"
+		>
+			Default:
+			<img src="./../../../../assets/img/logo.png" alt="" />
+		</header>
+		<main class="addresses__box__main">
+			<div class="addresses__box__main__content">
+				<p>{{ address.firstName }} {{ address.lastName }}</p>
+				<p>{{ address.street }}</p>
+				<p>{{ address.zipCode }} {{ address.city }}</p>
+				<p>{{ address.country }}</p>
+			</div>
+			<div class="addresses__box__main__options">
+				<span
+					(click)="deleteAddress(i)"
+					title="delete address"
+					>delete</span
+				>
+				|
+				<span
+					(click)="setDefaultAddress(i)"
+					title="set address to default"
+					>set as default</span
+				>
+			</div>
+		</main>
 	</div>
 </div>
