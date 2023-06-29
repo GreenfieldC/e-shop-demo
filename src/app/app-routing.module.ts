@@ -7,6 +7,7 @@ import { OrdersListComponent } from './order-management/orders-list/orders-list.
 import { SettingsComponent } from './user-management/settings/settings.component';
 import { AddressesComponent } from './user-management/settings/addresses/addresses.component';
 import { AccountComponent } from './user-management/settings/account/account.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
 	{
@@ -33,11 +34,13 @@ const routes: Routes = [
 	{
 		path: 'settings',
 		component: SettingsComponent,
+		canActivate: [authGuard],
 		children: [
 			{ path: 'account', component: AccountComponent },
 			{ path: 'addresses', component: AddressesComponent },
 		],
 	},
+	{ path: '**', redirectTo: '' },
 ];
 
 @NgModule({

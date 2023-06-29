@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-settings',
@@ -9,11 +10,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class SettingsComponent {
 	@Input() selected: string = 'ACCOUNT SETTINGS';
 
-	constructor(public afAuth: AngularFireAuth) {}
+	constructor(public afAuth: AngularFireAuth, private router: Router) {}
 
-	logout() {
-		//! not working yet
-		this.afAuth.signOut();
-		localStorage.removeItem('authToken');
+	async logout() {
+		await this.afAuth.signOut();
+		await localStorage.removeItem('authToken');
+		this.router.navigate(['']);
 	}
 }

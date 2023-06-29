@@ -81,6 +81,11 @@ export class AddressesComponent implements OnInit {
 	 * @param {number} index
 	 */
 	deleteAddress(index: number) {
+		//Make sure that if there is one address left, it is set to default
+		if (this.addresses.length === 2) {
+			this.setDefaultAddress(0);
+		}
+
 		this.addresses.splice(index, 1);
 		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
 			addresses: this.addresses,

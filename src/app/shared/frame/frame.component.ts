@@ -1,22 +1,11 @@
-import {
-	Component,
-	HostListener,
-	ElementRef,
-	ViewChild,
-} from '@angular/core';
+import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 
 import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ShoppingBasketService } from '../services/shopping-basket.service';
-import {
-	trigger,
-	state,
-	style,
-	animate,
-	transition,
-} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
 	selector: 'app-frame',
@@ -24,14 +13,8 @@ import {
 	styleUrls: ['./frame.component.scss'],
 	animations: [
 		trigger('fadeInOut', [
-			state(
-				'void',
-				style({ opacity: 0, transform: 'translateY(-20px)' })
-			),
-			state(
-				'*',
-				style({ opacity: 1, transform: 'translateY(0)' })
-			),
+			state('void', style({ opacity: 0, transform: 'translateY(-20px)' })),
+			state('*', style({ opacity: 1, transform: 'translateY(0)' })),
 			transition(':enter', [
 				animate(
 					'300ms ease-in-out',
@@ -125,10 +108,7 @@ export class FrameComponent {
 	}
 
 	openLoginDialog() {
-		if (
-			this.shoppingBasketService.currentlyLoggedInUser !=
-			'Guest'
-		) {
+		if (this.shoppingBasketService.currentlyLoggedInUser != 'Guest') {
 			// User is logged in, do not open the dialog
 			this.toggleLogOutButton();
 			return;
@@ -154,15 +134,11 @@ export class FrameComponent {
 	}
 
 	toggleBurgerMenu() {
-		this.iconName === 'menu'
-			? (this.iconName = 'close')
-			: (this.iconName = 'menu');
+		this.iconName === 'menu' ? (this.iconName = 'close') : (this.iconName = 'menu');
 		this.iconBoxOpen = !this.iconBoxOpen;
 	}
 
 	private checkMobile() {
-		if (window.innerWidth < 480) {
-			this.iconBoxOpen = false;
-		}
+		window.innerWidth < 480 ? (this.iconBoxOpen = false) : null;
 	}
 }
