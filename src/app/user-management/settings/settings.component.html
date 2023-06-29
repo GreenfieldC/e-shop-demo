@@ -13,7 +13,9 @@
 					value="ADDRESSES"
 					>ADDRESSES</mat-option
 				>
-				<mat-option value="LOG OUT">LOG OUT</mat-option>
+				<mat-option (click)="logout()" value="LOG OUT"
+					>LOG OUT</mat-option
+				>
 			</mat-select>
 		</mat-form-field>
 
@@ -34,7 +36,7 @@
 				>
 					ADDRESSES
 				</li>
-				<li>LOG OUT</li>
+				<li (click)="logout()">LOG OUT</li>
 			</ul>
 		</nav>
 		<router-outlet></router-outlet>

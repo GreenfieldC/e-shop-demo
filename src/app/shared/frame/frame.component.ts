@@ -1,4 +1,9 @@
-import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import {
+	Component,
+	HostListener,
+	ElementRef,
+	ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 
@@ -23,7 +28,10 @@ import {
 				'void',
 				style({ opacity: 0, transform: 'translateY(-20px)' })
 			),
-			state('*', style({ opacity: 1, transform: 'translateY(0)' })),
+			state(
+				'*',
+				style({ opacity: 1, transform: 'translateY(0)' })
+			),
 			transition(':enter', [
 				animate(
 					'300ms ease-in-out',
@@ -33,7 +41,10 @@ import {
 			transition(':leave', [
 				animate(
 					'300ms ease-in-out',
-					style({ opacity: 0, transform: 'translateY(-20px)' })
+					style({
+						opacity: 0,
+						transform: 'translateY(-20px)',
+					})
 				),
 			]),
 		]),
@@ -49,7 +60,6 @@ export class FrameComponent {
 
 	constructor(
 		public dialog: MatDialog,
-		// private currencyService: CurrencyService,
 		public exchangeRateService: ExchangeRateService,
 		public afAuth: AngularFireAuth,
 		public shoppingBasketService: ShoppingBasketService
@@ -115,7 +125,10 @@ export class FrameComponent {
 	}
 
 	openLoginDialog() {
-		if (this.shoppingBasketService.currentlyLoggedInUser != 'Guest') {
+		if (
+			this.shoppingBasketService.currentlyLoggedInUser !=
+			'Guest'
+		) {
 			// User is logged in, do not open the dialog
 			this.toggleLogOutButton();
 			return;
@@ -141,12 +154,9 @@ export class FrameComponent {
 	}
 
 	toggleBurgerMenu() {
-		if (this.iconName === 'menu') {
-			this.iconName = 'close';
-		} else {
-			this.iconName = 'menu';
-		}
-
+		this.iconName === 'menu'
+			? (this.iconName = 'close')
+			: (this.iconName = 'menu');
 		this.iconBoxOpen = !this.iconBoxOpen;
 	}
 
