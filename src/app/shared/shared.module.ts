@@ -25,8 +25,9 @@ import { FrameComponent } from './frame/frame.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FirstNamePipe } from './pipes/first-name.pipe';
 
-const components = [FrameComponent];
+const components = [FrameComponent, FirstNamePipe];
 const modules = [
 	CommonModule,
 	MatButtonModule,
