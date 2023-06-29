@@ -4,12 +4,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
-import {
-	CollectionReference,
-	collection,
-	doc,
-	setDoc,
-} from 'firebase/firestore';
+import { CollectionReference, collection, doc, setDoc } from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
@@ -53,10 +48,7 @@ export class LoginPageComponent {
 			username: ['', []],
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.minLength(6), Validators.required]],
-			passwordConfirm: [
-				'',
-				[Validators.minLength(3), Validators.required],
-			],
+			passwordConfirm: ['', [Validators.minLength(3), Validators.required]],
 		});
 	}
 
@@ -120,7 +112,10 @@ export class LoginPageComponent {
 					this.cartService.currentlyLoggedInUser = user.displayName;
 					this.orderService.currentlyLoggedInUser = user.displayName;
 
-					const authData = { id: user.uid, name: user.displayName };
+					const authData = {
+						id: user.uid,
+						name: user.displayName,
+					};
 					localStorage.setItem('authToken', JSON.stringify(authData));
 
 					this.cartService.cartReference = `user_${user.uid}/cart`;
@@ -131,11 +126,10 @@ export class LoginPageComponent {
 				}
 			}
 			if (this.isSignup) {
-				const credential =
-					await this.afAuth.createUserWithEmailAndPassword(
-						email,
-						password
-					);
+				const credential = await this.afAuth.createUserWithEmailAndPassword(
+					email,
+					password
+				);
 
 				const user = credential.user;
 				if (user) {
@@ -144,6 +138,9 @@ export class LoginPageComponent {
 					});
 					setDoc(doc(this.firestore, `user_${user.uid}`, 'orders'), {
 						orders: [],
+					});
+					setDoc(doc(this.firestore, `user_${user.uid}`, 'addresses'), {
+						addresses: [],
 					});
 
 					updateProfile(user, { displayName: username });

@@ -1,11 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-	Firestore,
-	doc,
-	docData,
-	getDoc,
-	setDoc,
-} from '@angular/fire/firestore';
+import { Firestore, doc, docData, getDoc, setDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
@@ -19,15 +13,22 @@ export class AddressesComponent implements OnInit {
 	@ViewChild(MatAccordion) accordion: MatAccordion;
 	form: FormGroup;
 	addresses: Array<any> = [];
-	ngOnInit(): void {
-		// throw new Error('Method not implemented.');
+	authToken: any;
+	ngOnInit(): void {}
+
+	getAuthTokenFromLocalStorage() {
+		const authTokenObjectAsString = localStorage.getItem('authToken');
+		if (!authTokenObjectAsString) return;
+		const authTokenObject = JSON.parse(authTokenObjectAsString);
+		this.authToken = authTokenObject.id;
+		console.log(this.authToken);
 	}
 
 	constructor(private fb: FormBuilder, private db: Firestore) {
 		this.initialiseForm();
+		this.getAuthTokenFromLocalStorage();
 		this.getAddresses$().subscribe((data) => {
 			this.addresses = data.addresses;
-			console.log(this.addresses);
 		});
 	}
 
@@ -36,36 +37,12 @@ export class AddressesComponent implements OnInit {
 	 */
 	initialiseForm() {
 		this.form = this.fb.group({
-			firstName: [
-				'',
-				[
-					Validators.required,
-					Validators.pattern(/^[A-Za-z]+\s*$/),
-				],
-			],
-			lastName: [
-				'',
-				[
-					Validators.required,
-					Validators.pattern(/^[A-Za-z]+\s*$/),
-				],
-			],
+			firstName: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)]],
+			lastName: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)]],
 			street: ['', Validators.required],
 			zipCode: ['', Validators.required],
-			city: [
-				'',
-				[
-					Validators.required,
-					Validators.pattern(/^[A-Za-z]+\s*$/),
-				],
-			],
-			country: [
-				'',
-				[
-					Validators.required,
-					Validators.pattern(/^[A-Za-z]+\s*$/),
-				],
-			],
+			city: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)]],
+			country: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)]],
 		});
 	}
 
@@ -89,7 +66,7 @@ export class AddressesComponent implements OnInit {
 		setDoc(
 			doc(
 				this.db,
-				'user_ADBZlQ4MpQOwAa2mMnyq5vrCzwr2', // das muss noch dynamisch werden
+				`user_${this.authToken}`, // das muss noch dynamisch werden
 				'addresses'
 			),
 			{ addresses: this.addresses }
@@ -102,11 +79,7 @@ export class AddressesComponent implements OnInit {
 	 * @returns {Observable<any>}
 	 */
 	getAddresses$(): Observable<any> {
-		const docRef = doc(
-			this.db,
-			'user_ADBZlQ4MpQOwAa2mMnyq5vrCzwr2',
-			'addresses'
-		);
+		const docRef = doc(this.db, `user_${this.authToken}`, 'addresses');
 		return docData(docRef);
 	}
 
@@ -115,7 +88,7 @@ export class AddressesComponent implements OnInit {
 		setDoc(
 			doc(
 				this.db,
-				'user_ADBZlQ4MpQOwAa2mMnyq5vrCzwr2', // das muss noch dynamisch werden
+				`user_${this.authToken}`, // das muss noch dynamisch werden
 				'addresses'
 			),
 			{ addresses: this.addresses }
@@ -130,7 +103,7 @@ export class AddressesComponent implements OnInit {
 		setDoc(
 			doc(
 				this.db,
-				'user_ADBZlQ4MpQOwAa2mMnyq5vrCzwr2', // das muss noch dynamisch werden
+				`user_${this.authToken}`, // das muss noch dynamisch werden
 				'addresses'
 			),
 			{ addresses: this.addresses }
