@@ -31,7 +31,6 @@ export class AddressesComponent implements OnInit {
 			if (!data) return; // return if data is undefined
 			this.addresses = data.addresses;
 		});
-		console.log(this.addresses);
 	}
 
 	/**
@@ -48,31 +47,23 @@ export class AddressesComponent implements OnInit {
 		});
 	}
 
-	isFormControlInvalid(controlName: any): boolean {
+	/* 	isFormControlInvalid(controlName: any): boolean {
 		const control = controlName;
 		return control.invalid && (control.dirty || control.touched);
-	}
+	} */
 
 	/**
 	 *Save the form data to the database
 	 * @returns {void}
 	 */
 	submit() {
-		if (!this.form.valid) {
-			console.log('form is invalid');
-			return;
-		}
+		if (!this.form.valid) return;
 
 		this.addresses.push(this.form.value);
 
-		setDoc(
-			doc(
-				this.db,
-				`user_${this.authToken}`, // das muss noch dynamisch werden
-				'addresses'
-			),
-			{ addresses: this.addresses }
-		);
+		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
+			addresses: this.addresses,
+		});
 		this.form.reset();
 	}
 
@@ -85,30 +76,28 @@ export class AddressesComponent implements OnInit {
 		return docData(docRef);
 	}
 
+	/**
+	 *Deletes an address from the database
+	 * @param {number} index
+	 */
 	deleteAddress(index: number) {
 		this.addresses.splice(index, 1);
-		setDoc(
-			doc(
-				this.db,
-				`user_${this.authToken}`, // das muss noch dynamisch werden
-				'addresses'
-			),
-			{ addresses: this.addresses }
-		);
+		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
+			addresses: this.addresses,
+		});
 	}
 
+	/**
+	 * Sets and saves the default address
+	 * @param {number} index
+	 */
 	setDefaultAddress(index: number) {
 		this.addresses.forEach((address) => {
 			address.isDefault = false;
 		});
 		this.addresses[index].isDefault = true;
-		setDoc(
-			doc(
-				this.db,
-				`user_${this.authToken}`, // das muss noch dynamisch werden
-				'addresses'
-			),
-			{ addresses: this.addresses }
-		);
+		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
+			addresses: this.addresses,
+		});
 	}
 }
