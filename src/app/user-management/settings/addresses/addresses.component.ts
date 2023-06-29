@@ -109,4 +109,31 @@ export class AddressesComponent implements OnInit {
 		);
 		return docData(docRef);
 	}
+
+	deleteAddress(index: number) {
+		this.addresses.splice(index, 1);
+		setDoc(
+			doc(
+				this.db,
+				'user_ADBZlQ4MpQOwAa2mMnyq5vrCzwr2', // das muss noch dynamisch werden
+				'addresses'
+			),
+			{ addresses: this.addresses }
+		);
+	}
+
+	setDefaultAddress(index: number) {
+		this.addresses.forEach((address) => {
+			address.isDefault = false;
+		});
+		this.addresses[index].isDefault = true;
+		setDoc(
+			doc(
+				this.db,
+				'user_ADBZlQ4MpQOwAa2mMnyq5vrCzwr2', // das muss noch dynamisch werden
+				'addresses'
+			),
+			{ addresses: this.addresses }
+		);
+	}
 }
