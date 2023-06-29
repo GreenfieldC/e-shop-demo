@@ -3,18 +3,11 @@
 		<h1>{{ selected }}</h1>
 		<mat-form-field class="select--mobile">
 			<mat-select [(value)]="selected" disableRipple>
-				<mat-option
-					routerLink="/settings/account"
-					value="ACCOUNT SETTINGS"
+				<mat-option routerLink="/settings/account" value="ACCOUNT SETTINGS"
 					>ACCOUNT SETTINGS</mat-option
 				>
-				<mat-option
-					routerLink="/settings/addresses"
-					value="ADDRESSES"
+				<mat-option routerLink="/settings/addresses" value="ADDRESSES"
 					>ADDRESSES</mat-option
-				>
-				<mat-option (click)="logout()" value="LOG OUT"
-					>LOG OUT</mat-option
 				>
 			</mat-select>
 		</mat-form-field>
@@ -36,7 +29,6 @@
 				>
 					ADDRESSES
 				</li>
-				<li (click)="logout()">LOG OUT</li>
 			</ul>
 		</nav>
 		<router-outlet></router-outlet>
