@@ -31,6 +31,7 @@ export class AddressesComponent implements OnInit {
 			if (!data) return; // return if data is undefined
 			this.addresses = data.addresses;
 		});
+		console.log(this.addresses);
 	}
 
 	/**

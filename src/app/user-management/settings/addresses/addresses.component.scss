@@ -33,7 +33,7 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 1rem;
-	margin-top: 1rem;
+	margin: 1rem 0;
 
 	&__box {
 		display: flex;
@@ -49,8 +49,7 @@
 			align-items: center;
 			gap: 0.5rem;
 			padding: 1rem;
-			border-bottom: 1px solid
-				rgba($color: #000000, $alpha: 0.2);
+			border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
 
 			span {
 				font-weight: bold;
@@ -99,6 +98,10 @@
 			}
 		}
 	}
+}
+
+.noAddresses {
+	margin-top: 3rem;
 }
 
 @media (min-width: 801px) {

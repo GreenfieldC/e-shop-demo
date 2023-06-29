@@ -180,26 +180,16 @@
 					</div>
 				</fieldset>
 			</div>
-			<button
-				(click)="accordion.closeAll()"
-				class="cart-action-btn"
-				type="submit"
-			>
+			<button (click)="accordion.closeAll()" class="cart-action-btn" type="submit">
 				SUBMIT
 			</button>
 		</form></mat-expansion-panel
 	>
 </mat-accordion>
 
-<div class="addresses">
-	<div
-		*ngFor="let address of addresses; let i = index"
-		class="addresses__box"
-	>
-		<header
-			*ngIf="address.isDefault"
-			class="addresses__box__header"
-		>
+<div *ngIf="addresses.length > 0; else noAddresses" class="addresses">
+	<div *ngFor="let address of addresses; let i = index" class="addresses__box">
+		<header *ngIf="address.isDefault" class="addresses__box__header">
 			Default:
 			<img src="./../../../../assets/img/logo.png" alt="" />
 		</header>
@@ -211,18 +201,15 @@
 				<p>{{ address.country }}</p>
 			</div>
 			<div class="addresses__box__main__options">
-				<span
-					(click)="deleteAddress(i)"
-					title="delete address"
-					>delete</span
-				>
+				<span (click)="deleteAddress(i)" title="delete address">delete</span>
 				|
-				<span
-					(click)="setDefaultAddress(i)"
-					title="set address to default"
+				<span (click)="setDefaultAddress(i)" title="set address to default"
 					>set as default</span
 				>
 			</div>
 		</main>
 	</div>
 </div>
+<ng-template #noAddresses>
+	<h3 class="noAddresses">No delivery addresses yet</h3>
+</ng-template>
