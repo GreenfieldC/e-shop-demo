@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { TitleCasePipe } from '@angular/common';
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-dialog-payment',
@@ -10,14 +11,15 @@ import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.s
 	styleUrls: ['./dialog-payment.component.scss'],
 })
 export class DialogPaymentComponent {
+	orderAnimation: boolean = false;
+
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
 		public orderService: OrderHistoryService,
 		public dialog: MatDialog,
-		public cartService: ShoppingBasketService
+		public cartService: ShoppingBasketService,
+		private router: Router
 	) {}
-
-	orderAnimation: boolean = false;
 
 	getCardDetailsArray(details: any): any[] {
 		return Object.entries(details);
@@ -35,24 +37,20 @@ export class DialogPaymentComponent {
 
 	placeOrder() {
 		this.orderAnimation = true;
-
 		const order = {
 			orderID: this.generateOrderNumber(),
 			paymentDetails: this.data,
 			products: this.cartService.products,
 			date: new Date(),
 		};
-
 		setTimeout(() => {
 			this.orderService.orders.push(order);
 			this.orderService.updateOrders();
-
 			this.cartService.products = [];
 			this.cartService.updateProducts();
-
+			this.orderAnimation = false;
+			this.router.navigateByUrl('orders');
 			this.dialog.closeAll();
 		}, 2000);
-
-		this.orderAnimation = false;
 	}
 }

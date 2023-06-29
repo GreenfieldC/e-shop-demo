@@ -1,6 +1,6 @@
 <div class="order-history-container">
 	<h1>My Orders</h1>
-	<mat-card *ngFor="let order of orderService.orders" class="order-container">
+	<mat-card *ngFor="let order of orderService.orders.reverse()" class="order-container">
 		<div class="order-overview-container">
 			<div class="order-detail-wrapper">
 				<span>ORDER PLACED</span>

@@ -130,7 +130,10 @@ export class ShoppingCartComponent implements OnInit {
 		this.form1 = this.fb.group({
 			cardNumber: [
 				'',
-				[Validators.required, Validators.pattern(/^\d{16}\s*$/)],
+				[
+					Validators.required,
+					Validators.pattern(/^\d{16}\s*$/),
+				],
 			],
 			expiry: [
 				'',
@@ -139,7 +142,13 @@ export class ShoppingCartComponent implements OnInit {
 					Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}\s*$/),
 				],
 			],
-			cvv: ['', [Validators.required, Validators.pattern(/^\d{3}\s*$/)]],
+			cvv: [
+				'',
+				[
+					Validators.required,
+					Validators.pattern(/^\d{3}\s*$/),
+				],
+			],
 			name: [
 				'',
 				[
@@ -152,23 +161,38 @@ export class ShoppingCartComponent implements OnInit {
 		this.form2 = this.fb.group({
 			firstname: [
 				'',
-				[Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)],
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
 			],
 			lastname: [
 				'',
-				[Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)],
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
 			],
 			adress: [
 				'',
-				[Validators.required, Validators.pattern(/^(?=.*\d).*\s*$/)],
+				[
+					Validators.required,
+					Validators.pattern(/^(?=.*\d).*\s*$/),
+				],
 			],
 			zipcode: [
 				'',
-				[Validators.required, Validators.pattern(/^\d{5}\s*$/)],
+				[
+					Validators.required,
+					Validators.pattern(/^\d{5}\s*$/),
+				],
 			],
 			city: [
 				'',
-				[Validators.required, Validators.pattern(/^[A-Za-z]+\s*$/)],
+				[
+					Validators.required,
+					Validators.pattern(/^[A-Za-z]+\s*$/),
+				],
 			],
 			country: ['', [Validators.required]],
 		});
@@ -302,7 +326,10 @@ export class ShoppingCartComponent implements OnInit {
 			if (this.paymentMethod === 'credit' && this.form1.valid) {
 				this.setCreditData();
 				this.openDialog();
-			} else if (this.paymentMethod === 'debit' && this.form2.valid) {
+			} else if (
+				this.paymentMethod === 'debit' &&
+				this.form2.valid
+			) {
 				this.setDebitData();
 				this.openDialog();
 			} else {
