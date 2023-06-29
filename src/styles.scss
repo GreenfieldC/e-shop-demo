@@ -1,6 +1,7 @@
 @import 'variables.scss';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+@import 'node_modules/@ngneat/hot-toast/src/styles/styles.css';
 
 html,
 body {
@@ -194,13 +195,9 @@ button {
 	text-align: start;
 }
 
-
 .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
-    stroke: white !important;
+	stroke: white !important;
 }
-
-
-
 
 @media (min-width: 801px) {
 	.mat-mdc-menu-panel.mat-mdc-menu-panel {

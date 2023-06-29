@@ -8,7 +8,7 @@ import { CollectionReference, collection, doc, setDoc } from 'firebase/firestore
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
-
+import { HotToastService } from '@ngneat/hot-toast';
 @Component({
 	selector: 'app-login-page',
 	templateUrl: './login-page.component.html',
@@ -33,7 +33,8 @@ export class LoginPageComponent {
 		private firestore: Firestore,
 		private router: Router,
 		public cartService: ShoppingBasketService,
-		public orderService: OrderHistoryService
+		public orderService: OrderHistoryService,
+		private toast: HotToastService
 	) {}
 
 	ngOnInit() {
@@ -123,6 +124,8 @@ export class LoginPageComponent {
 
 					this.cartService.getUserData();
 					this.orderService.getOrders();
+					// Show success message and change the form type to login
+					this.toast.success('Logged in!');
 				}
 			}
 			if (this.isSignup) {
@@ -144,7 +147,7 @@ export class LoginPageComponent {
 					});
 
 					updateProfile(user, { displayName: username });
-					alert('Account successfully created!');
+
 					this.type = 'login';
 				}
 			}
@@ -154,6 +157,7 @@ export class LoginPageComponent {
 			}
 		} catch (err) {
 			this.serverMessage = err;
+			this.toast.error('Failed to log in');
 		}
 
 		this.loading = false;
