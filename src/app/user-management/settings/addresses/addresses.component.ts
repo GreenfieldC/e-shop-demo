@@ -28,6 +28,7 @@ export class AddressesComponent implements OnInit {
 		this.initialiseForm();
 		this.getAuthTokenFromLocalStorage();
 		this.getAddresses$().subscribe((data) => {
+			if (!data) return; // return if data is undefined
 			this.addresses = data.addresses;
 		});
 	}
