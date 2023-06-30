@@ -27,7 +27,7 @@ export class AddressesComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
-		private deliveryAddressService: DeliveryAddressService,
+
 		private aS: AddressesService
 	) {
 		this.initialiseForm();
@@ -35,9 +35,7 @@ export class AddressesComponent implements OnInit {
 		this.aS.getAddressesFromFireBase$(this.authToken).subscribe((data) => {
 			if (!data) return; // return if data is undefined
 			this.addresses = data.addresses;
-		});
-		this.deliveryAddressService.getAddress().subscribe((data) => {
-			console.log('s', data);
+			this.getDefaultAddress();
 		});
 	}
 
@@ -91,5 +89,13 @@ export class AddressesComponent implements OnInit {
 
 	singelAddressToDefault() {
 		if (this.addresses.length === 1) this.setDefaultAddress(0);
+	}
+
+	getDefaultAddress() {
+		const defaultAddress = this.addresses.filter(
+			(address) => address.isDefault === true
+		);
+		if (defaultAddress.length === 0) return;
+		this.aS.setDefaultAddress(defaultAddress[0]);
 	}
 }
