@@ -4,6 +4,7 @@ import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.servi
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AddressesService } from 'src/app/shared/services/addresses.service';
 
 /**
  * interface for the Credit Card Details entered by the user
@@ -124,9 +125,14 @@ export class ShoppingCartComponent implements OnInit {
 		public shoppingCartService: ShoppingBasketService,
 		public exchangeRateService: ExchangeRateService,
 		public dialog: MatDialog,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private aS: AddressesService
 	) {
 		this.initialiseForms();
+		this.aS.defaultAddress$.subscribe((address) => {
+			this.deliveryAddress = address;
+			console.log('test', this.deliveryAddress);
+		});
 	}
 
 	ngOnInit() {}

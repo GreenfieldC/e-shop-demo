@@ -21,10 +21,17 @@
 			<div class="order-detail-wrapper">
 				<span>DELIVERED TO</span>
 				<span
-					matTooltip="Address: Hutgraben 7c, 21035 Hamburg, Germany"
+					*ngIf="order.paymentDetails.deliveryAddress"
+					matTooltip="Address:
+          {{ order.paymentDetails.deliveryAddress.street }}
+          {{ order.paymentDetails.deliveryAddress.zipCode }}
+          {{ order.paymentDetails.deliveryAddress.city }}
+          {{ order.paymentDetails.deliveryAddress.country }}
+          "
 					aria-label="Button that displays a tooltip when focused or hovered over"
 				>
-					{{ orderService.currentlyLoggedInUser }}</span
+					{{ order.paymentDetails.deliveryAddress.firstName }}
+					{{ order.paymentDetails.deliveryAddress.lastName }}</span
 				>
 			</div>
 			<div class="order-detail-wrapper">
