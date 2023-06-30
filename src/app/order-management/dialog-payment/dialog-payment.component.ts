@@ -4,6 +4,7 @@ import { TitleCasePipe } from '@angular/common';
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { Router } from '@angular/router';
+import { AddressesService } from 'src/app/shared/services/addresses.service';
 
 @Component({
 	selector: 'app-dialog-payment',
@@ -19,7 +20,8 @@ export class DialogPaymentComponent {
 		public orderService: OrderHistoryService,
 		public dialog: MatDialog,
 		public cartService: ShoppingBasketService,
-		private router: Router
+		private router: Router,
+		private aS: AddressesService
 	) {}
 
 	getCardDetailsArray(details: any): any[] {
