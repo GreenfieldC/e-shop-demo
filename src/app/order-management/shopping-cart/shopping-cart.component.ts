@@ -4,7 +4,6 @@ import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.servi
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DeliveryAddressService } from 'src/app/shared/services/delivery-address.service';
 
 /**
  * interface for the Credit Card Details entered by the user
@@ -43,7 +42,14 @@ export class ShoppingCartComponent implements OnInit {
 	form1: FormGroup;
 	form2: FormGroup;
 
-	deliveryAddress: any;
+	deliveryAddress: Object = {
+		firstname: 'Peter',
+		lastname: 'Parker',
+		street: 'Marvel Street 12',
+		zipcode: '12345',
+		city: 'New York',
+		country: 'USA',
+	};
 
 	billingDetails: billingDetails = {
 		firstname: null,
@@ -118,18 +124,12 @@ export class ShoppingCartComponent implements OnInit {
 		public shoppingCartService: ShoppingBasketService,
 		public exchangeRateService: ExchangeRateService,
 		public dialog: MatDialog,
-		private fb: FormBuilder,
-		private deliveryAddressService: DeliveryAddressService
+		private fb: FormBuilder
 	) {
-		this.deliveryAddressService.address$.subscribe((address) => {
-			this.deliveryAddress = address;
-			console.log(this.deliveryAddress);
-		});
-	}
-
-	ngOnInit() {
 		this.initialiseForms();
 	}
+
+	ngOnInit() {}
 
 	/**
 	 * 	initialisation of the card infirmation forms
@@ -312,6 +312,7 @@ export class ShoppingCartComponent implements OnInit {
 				currency: this.exchangeRateService.icon,
 				paymentData: this.paymentData,
 				shipping: this.shoppingCartService.shippingCosts,
+				deliveryAddress: this.deliveryAddress,
 			},
 		});
 	}

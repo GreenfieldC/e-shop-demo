@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class DialogPaymentComponent {
 	orderAnimation: boolean = false;
+	deliveryAddress: any = [];
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,10 +28,8 @@ export class DialogPaymentComponent {
 
 	generateOrderNumber(): string {
 		const randomNumber1 = Math.floor(Math.random() * 900) + 100;
-		const randomNumber2 =
-			Math.floor(Math.random() * 9000000) + 1000000;
-		const randomNumber3 =
-			Math.floor(Math.random() * 9000000) + 1000000;
+		const randomNumber2 = Math.floor(Math.random() * 9000000) + 1000000;
+		const randomNumber3 = Math.floor(Math.random() * 9000000) + 1000000;
 		const orderNumber = `ORDER # ${randomNumber1}-${randomNumber2}-${randomNumber3}`;
 		return orderNumber;
 	}
