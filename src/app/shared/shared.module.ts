@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FirstNamePipe } from './pipes/first-name.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const components = [FrameComponent, FirstNamePipe];
 const modules = [
@@ -49,6 +50,7 @@ const modules = [
 	MatSelectModule,
 	MatRadioModule,
 	MatProgressSpinnerModule,
+	MatTooltipModule,
 ];
 
 @NgModule({

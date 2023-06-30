@@ -5,8 +5,11 @@
 			<div class="order-detail-wrapper">
 				<span>ORDER PLACED</span>
 				<span>
-					{{ (order.date.seconds * 1000 + (21 * 24 * 60 * 60 * 1000)) | date: 'longDate' }}
-				  </span>
+					{{
+						order.date.seconds * 1000 + 21 * 24 * 60 * 60 * 1000
+							| date : 'longDate'
+					}}
+				</span>
 			</div>
 			<div class="order-detail-wrapper">
 				<span>TOTAL</span>
@@ -17,7 +20,12 @@
 			</div>
 			<div class="order-detail-wrapper">
 				<span>DELIVERED TO</span>
-				<span>{{ orderService.currentlyLoggedInUser }}</span>
+				<span
+					matTooltip="Address: Hutgraben 7c, 21035 Hamburg, Germany"
+					aria-label="Button that displays a tooltip when focused or hovered over"
+				>
+					{{ orderService.currentlyLoggedInUser }}</span
+				>
 			</div>
 			<div class="order-detail-wrapper">
 				<span>{{ order.orderID }}</span>
@@ -25,15 +33,19 @@
 			</div>
 		</div>
 		<div class="product-overview-container">
-			<div *ngFor="let product of order.products; let i = index" class="product-wrapper">
+			<div
+				*ngFor="let product of order.products; let i = index"
+				class="product-wrapper"
+			>
 				<div class="product">
 					<img [src]="product.image" alt="product-img" />
 					<div class="product-info-actions">
 						<span>{{ product.title }}</span>
-						<span style="font-size: smaller;">Return window open until 30 June 2023</span>
-						<div class="btn-wrapper"> 
-							<button class="btn-accent">                            
-                                Buy again</button>
+						<span style="font-size: smaller"
+							>Return window open until 30 June 2023</span
+						>
+						<div class="btn-wrapper">
+							<button class="btn-accent">Buy again</button>
 							<button class="btn-white">See Product Detail</button>
 						</div>
 					</div>
