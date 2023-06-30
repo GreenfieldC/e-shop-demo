@@ -6,6 +6,8 @@ import { ExchangeRateService } from '../services/exchange-rate.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ShoppingBasketService } from '../services/shopping-basket.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { HotToastService } from '@ngneat/hot-toast';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-frame',
@@ -45,7 +47,9 @@ export class FrameComponent {
 		public dialog: MatDialog,
 		public exchangeRateService: ExchangeRateService,
 		public afAuth: AngularFireAuth,
-		public shoppingBasketService: ShoppingBasketService
+		public shoppingBasketService: ShoppingBasketService,
+		private toast: HotToastService,
+		private router: Router
 	) {
 		this.checkMobile();
 	}
@@ -69,32 +73,6 @@ export class FrameComponent {
 		};
 
 		this.exchangeRateService.icon = currencyIcons[currency];
-	}
-
-	@ViewChild('dropdown') el: any;
-	// Close the dropdown menu when a user clicks outside of it
-	@HostListener('document:click', ['$event'])
-	onDocumentClick(event: MouseEvent): void {
-		if (this.dropDownOpen) {
-			// Check if the clicked element is outside the dropdown menu
-			const clickedElement = event.target as HTMLElement;
-			const dropdownMenu = this.el.nativeElement;
-
-			if (
-				dropdownMenu &&
-				!dropdownMenu.contains(clickedElement) &&
-				this.clickCounter === 0
-			) {
-				this.clickCounter++;
-			} else if (
-				dropdownMenu &&
-				!dropdownMenu.contains(clickedElement) &&
-				this.clickCounter > 0
-			) {
-				this.dropDownOpen = false;
-				this.clickCounter = 0;
-			}
-		}
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -121,12 +99,15 @@ export class FrameComponent {
 		}
 	}
 
-	logout() {
+	async logout() {
 		this.afAuth.signOut();
 		this.showLogOutButton = false;
+		this.toast.success('Logged out!');
 		this.shoppingBasketService.currentlyLoggedInUser = 'Guest';
 		localStorage.removeItem('authToken');
-		window.location.reload();
+		setTimeout(() => {
+			this.router.navigate(['/']);
+		}, 2000);
 	}
 
 	toggleLogOutButton() {
