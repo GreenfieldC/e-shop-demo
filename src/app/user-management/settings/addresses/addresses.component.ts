@@ -36,6 +36,9 @@ export class AddressesComponent implements OnInit {
 			if (!data) return; // return if data is undefined
 			this.addresses = data.addresses;
 		});
+		this.deliveryAddressService.getAddress().subscribe((data) => {
+			console.log('s', data);
+		});
 	}
 
 	/**
@@ -70,6 +73,7 @@ export class AddressesComponent implements OnInit {
 			addresses: this.addresses,
 		});
 		this.form.reset();
+		this.singelAddressToDefault();
 	}
 
 	/**
@@ -86,14 +90,11 @@ export class AddressesComponent implements OnInit {
 	 * @param {number} index
 	 */
 	deleteAddress(index: number) {
-		//Make sure that if there is one address left, it is set to default
-		if (this.addresses.length === 2) {
-			this.setDefaultAddress(0);
-		}
-
 		this.addresses.splice(index, 1);
 		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
 			addresses: this.addresses,
+		}).then(() => {
+			this.singelAddressToDefault();
 		});
 	}
 
@@ -111,5 +112,9 @@ export class AddressesComponent implements OnInit {
 		}).then(() => {
 			this.deliveryAddressService.setAddress(this.addresses[index]);
 		});
+	}
+
+	singelAddressToDefault() {
+		if (this.addresses.length === 1) this.setDefaultAddress(0);
 	}
 }
