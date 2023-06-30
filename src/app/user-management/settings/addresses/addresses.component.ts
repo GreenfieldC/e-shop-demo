@@ -3,6 +3,7 @@ import { Firestore, doc, docData, getDoc, setDoc } from '@angular/fire/firestore
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
+import { DeliveryAddressService } from 'src/app/shared/services/delivery-address.service';
 
 @Component({
 	selector: 'app-addresses',
@@ -24,7 +25,11 @@ export class AddressesComponent implements OnInit {
 		console.log(this.authToken);
 	}
 
-	constructor(private fb: FormBuilder, private db: Firestore) {
+	constructor(
+		private fb: FormBuilder,
+		private db: Firestore,
+		private deliveryAddressService: DeliveryAddressService
+	) {
 		this.initialiseForm();
 		this.getAuthTokenFromLocalStorage();
 		this.getAddresses$().subscribe((data) => {
@@ -103,6 +108,8 @@ export class AddressesComponent implements OnInit {
 		this.addresses[index].isDefault = true;
 		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
 			addresses: this.addresses,
+		}).then(() => {
+			this.deliveryAddressService.setAddress(this.addresses[index]);
 		});
 	}
 }
