@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class DeliveryAddressService {
-	addressSource = new Subject<any>();
-	address$ = this.addressSource.asObservable();
+	private addressSource = new Subject<any>();
+	address$: Observable<any> = this.addressSource.asObservable();
 
 	setAddress(address: any) {
 		this.addressSource.next(address);
 	}
 
-	getAddress() {
+	getAddress(): Observable<any> {
 		return this.address$;
 	}
 }

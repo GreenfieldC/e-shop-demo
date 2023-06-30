@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Firestore, doc, docData, getDoc, setDoc } from '@angular/fire/firestore';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
+import { AddressesService } from 'src/app/shared/services/addresses.service';
 import { DeliveryAddressService } from 'src/app/shared/services/delivery-address.service';
-
 @Component({
 	selector: 'app-addresses',
 	templateUrl: './addresses.component.html',
@@ -27,12 +27,12 @@ export class AddressesComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
-		private db: Firestore,
-		private deliveryAddressService: DeliveryAddressService
+		private deliveryAddressService: DeliveryAddressService,
+		private aS: AddressesService
 	) {
 		this.initialiseForm();
 		this.getAuthTokenFromLocalStorage();
-		this.getAddresses$().subscribe((data) => {
+		this.aS.getAddressesFromFireBase$(this.authToken).subscribe((data) => {
 			if (!data) return; // return if data is undefined
 			this.addresses = data.addresses;
 		});
@@ -55,34 +55,16 @@ export class AddressesComponent implements OnInit {
 		});
 	}
 
-	/* 	isFormControlInvalid(controlName: any): boolean {
-		const control = controlName;
-		return control.invalid && (control.dirty || control.touched);
-	} */
-
 	/**
 	 *Save the form data to the database
 	 * @returns {void}
 	 */
 	submit() {
 		if (!this.form.valid) return;
-
 		this.addresses.push(this.form.value);
-
-		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
-			addresses: this.addresses,
-		});
+		this.aS.addAddressesToFireBase(this.authToken, this.addresses);
 		this.form.reset();
 		this.singelAddressToDefault();
-	}
-
-	/**
-	 * Gets the addresses from the database
-	 * @returns {Observable<any>}
-	 */
-	getAddresses$(): Observable<any> {
-		const docRef = doc(this.db, `user_${this.authToken}`, 'addresses');
-		return docData(docRef);
 	}
 
 	/**
@@ -91,11 +73,8 @@ export class AddressesComponent implements OnInit {
 	 */
 	deleteAddress(index: number) {
 		this.addresses.splice(index, 1);
-		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
-			addresses: this.addresses,
-		}).then(() => {
-			this.singelAddressToDefault();
-		});
+		this.aS.addAddressesToFireBase(this.authToken, this.addresses);
+		this.singelAddressToDefault();
 	}
 
 	/**
@@ -107,11 +86,7 @@ export class AddressesComponent implements OnInit {
 			address.isDefault = false;
 		});
 		this.addresses[index].isDefault = true;
-		setDoc(doc(this.db, `user_${this.authToken}`, 'addresses'), {
-			addresses: this.addresses,
-		}).then(() => {
-			this.deliveryAddressService.setAddress(this.addresses[index]);
-		});
+		this.aS.addAddressesToFireBase(this.authToken, this.addresses);
 	}
 
 	singelAddressToDefault() {
