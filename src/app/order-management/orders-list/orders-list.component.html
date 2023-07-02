@@ -5,10 +5,7 @@
 			<div class="order-detail-wrapper">
 				<span>ORDER PLACED</span>
 				<span>
-					{{
-						order.date.seconds * 1000 + 21 * 24 * 60 * 60 * 1000
-							| date : 'longDate'
-					}}
+					{{ order.date.seconds * 1000 | date : 'longDate' }}
 				</span>
 			</div>
 			<div class="order-detail-wrapper">
@@ -49,7 +46,8 @@
 					<div class="product-info-actions">
 						<span>{{ product.title }}</span>
 						<span style="font-size: smaller"
-							>Return window open until 30 June 2023</span
+							>Return window open until
+							{{ order.returnDate * 1000 | date }}</span
 						>
 						<div class="btn-wrapper">
 							<button class="btn-accent">Buy again</button>

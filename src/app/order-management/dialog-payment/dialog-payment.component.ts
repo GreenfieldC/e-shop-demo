@@ -43,6 +43,7 @@ export class DialogPaymentComponent {
 			paymentDetails: this.data,
 			products: this.cartService.products,
 			date: new Date(),
+			returnDate: this.returnDate,
 		};
 		setTimeout(() => {
 			this.orderService.orders.push(order);
@@ -53,5 +54,11 @@ export class DialogPaymentComponent {
 			this.router.navigateByUrl('orders');
 			this.dialog.closeAll();
 		}, 2000);
+	}
+
+	get returnDate(): Date {
+		const date = new Date();
+		date.setDate(date.getDate() + 14);
+		return date;
 	}
 }
