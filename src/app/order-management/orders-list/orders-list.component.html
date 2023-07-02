@@ -20,10 +20,10 @@
 				<span
 					*ngIf="order.paymentDetails.deliveryAddress"
 					matTooltip="Address:
-          {{ order.paymentDetails.deliveryAddress.street }}
-          {{ order.paymentDetails.deliveryAddress.zipCode }}
-          {{ order.paymentDetails.deliveryAddress.city }}
-          {{ order.paymentDetails.deliveryAddress.country }}
+          {{ order.paymentDetails.deliveryAddress!.street }}
+          {{ order.paymentDetails.deliveryAddress!.zipCode }}
+          {{ order.paymentDetails.deliveryAddress!.city }}
+          {{ order.paymentDetails.deliveryAddress!.country }}
           "
 					aria-label="Button that displays a tooltip when focused or hovered over"
 				>
@@ -47,8 +47,10 @@
 						<span>{{ product.title }}</span>
 						<span style="font-size: smaller"
 							>Return window open until
-							{{ order.returnDate * 1000 | date }}</span
-						>
+							<strong>{{
+								order.returnDate!.seconds * 1000 | date : 'longDate'
+							}}</strong>
+						</span>
 						<div class="btn-wrapper">
 							<button class="btn-accent">Buy again</button>
 							<button class="btn-white">See Product Detail</button>
