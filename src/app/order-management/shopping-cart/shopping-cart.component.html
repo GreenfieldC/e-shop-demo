@@ -7,13 +7,24 @@
 	>
 		<mat-expansion-panel-header>
 			<mat-panel-title>
-				<img [src]="product.image" alt="product-img" class="product-img" />
-				<span class="product-title"
-					>{{ product.title }} ({{ product.size }})</span
-				></mat-panel-title
-			>
+				<div class="total-container--mobile">
+					Item Total:
+					{{
+						product.price *
+							product.quantity *
+							exchangeRateService.selectedRate | number : '1.2-2'
+					}}
+					{{ exchangeRateService.icon }}
+				</div>
+				<div class="img-title">
+					<img [src]="product.image" alt="product-img" class="product-img" />
+					<span class="product-title"
+						>{{ product.title }} ({{ product.size }})</span
+					>
+				</div>
+			</mat-panel-title>
 
-			<mat-panel-description>
+			<mat-panel-description class="mat-panel-description">
 				<div>
 					Price:
 					{{
@@ -28,7 +39,7 @@
 						>do_not_disturb_on</mat-icon
 					>
 				</div>
-				<div class="total-container">
+				<div class="total-container--desktop">
 					Item Total:
 					{{
 						product.price *
@@ -46,8 +57,13 @@
 					<h1>{{ product.title }}</h1>
 					<p>{{ product.description }}</p>
 					<div class="info-row">
-						<div class="info">Size: {{ product.size }}</div>
-						<div class="info">Bought: {{ product.rating.count }} Times</div>
+						<div class="info-row__container">
+							<div class="info">Size: {{ product.size }}</div>
+							<div class="info">
+								Bought: {{ product.rating.count }} Times
+							</div>
+						</div>
+
 						<div class="stars">
 							<mat-icon
 								*ngFor="let star of [0, 1, 2, 3, 4]; let i = index"

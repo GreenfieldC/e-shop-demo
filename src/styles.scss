@@ -199,6 +199,14 @@ button {
 	stroke: white !important;
 }
 
+.mat-content {
+	flex-direction: column !important;
+	gap: 1rem;
+}
+
+@media (min-width: 480px) {
+}
+
 @media (min-width: 801px) {
 	.mat-mdc-menu-panel.mat-mdc-menu-panel {
 		max-width: 400px !important;
@@ -207,5 +215,10 @@ button {
 	.checkout-row {
 		align-items: center;
 		flex-direction: row !important;
+	}
+
+	.mat-content {
+		flex-direction: row !important;
+		gap: 1rem;
 	}
 }
