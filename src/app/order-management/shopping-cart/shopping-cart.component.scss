@@ -89,8 +89,8 @@
 
 		img {
 			width: 200px;
-
 			transition: transform 0.5s;
+
 			&:hover {
 				transform: rotateY(180deg);
 			}
