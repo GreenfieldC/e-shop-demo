@@ -22,7 +22,11 @@ export class DialogPaymentComponent {
 		public cartService: ShoppingBasketService,
 		private router: Router,
 		private aS: AddressesService
-	) {}
+	) {
+		this.aS.defaultAddress$.subscribe((res) => {
+			this.deliveryAddress = res;
+		});
+	}
 
 	getCardDetailsArray(details: any): any[] {
 		return Object.entries(details);

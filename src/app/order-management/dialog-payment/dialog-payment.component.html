@@ -23,12 +23,18 @@
 	</div>
 	<div class="checkout-detail-wrapper">
 		<h2>Adress</h2>
-		
+		<span>{{ deliveryAddress.firstName }} {{ deliveryAddress.lastName }}</span>
+		<span>{{ deliveryAddress.street }}</span>
+		<span>{{ deliveryAddress.zipCode }} {{ deliveryAddress.city }}</span>
+		<span>{{ deliveryAddress.country }}</span>
 	</div>
 </div>
 
 <div class="btn-wrapper">
-	<button *ngIf="!orderAnimation" (click)="placeOrder()" class="order-btn"><mat-icon>lock</mat-icon>Order</button>
+	<button *ngIf="!orderAnimation" (click)="placeOrder()" class="order-btn">
+		<mat-icon>lock</mat-icon>Order
+	</button>
 	<div *ngIf="orderAnimation" class="spinner-wrapper">
-		<mat-spinner></mat-spinner> Processing Order</div>
+		<mat-spinner></mat-spinner> Processing Order
+	</div>
 </div>
