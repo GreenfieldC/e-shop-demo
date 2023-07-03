@@ -42,7 +42,7 @@ export class DialogPaymentComponent {
 
 			if (coupon.toString() == this.data.discountCode) {
 				this.cartService.couponCodes.splice(i, 1);
-				console.log(this.cartService.couponCodes);
+				this.cartService.updateCodes();
 			}
 		}
 	}

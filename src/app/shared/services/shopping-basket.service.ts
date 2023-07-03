@@ -26,7 +26,7 @@ export class ShoppingBasketService {
 	shippingCosts: number = 2.5;
 
 	//coupon code
-	couponCodes: Array<any>;
+	couponCodes: Array<any> = [];
 
 	constructor(private firestore: Firestore) {}
 
@@ -53,7 +53,7 @@ export class ShoppingBasketService {
 
 		//real time listener of coupon codes in database
 		onSnapshot(this.couponDocRef, (doc) => {
-			this.couponCodes = doc.data()?.['codes'];
+			this.couponCodes = doc.data()?.['codes'] || [];
 		});
 	}
 
@@ -73,5 +73,11 @@ export class ShoppingBasketService {
 				}
 			});
 		}
+	}
+
+	async updateCodes() {
+		setDoc(this.couponDocRef, {
+			codes: this.couponCodes,
+		});
 	}
 }
