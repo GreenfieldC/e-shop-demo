@@ -64,6 +64,9 @@
 			</div>
 		</div>
 	</mat-card>
+	<mat-card *ngIf="orderService.orders.length < 1" class="placeholder">
+		No orders yet<mat-icon>list_alt</mat-icon>
+	</mat-card>
 </div>
 
 <!-- <div *ngFor="let order of orderService.orders">
