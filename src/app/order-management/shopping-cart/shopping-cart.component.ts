@@ -44,12 +44,12 @@ export class ShoppingCartComponent implements OnInit {
 	form2: FormGroup;
 
 	deliveryAddress: Object = {
-		firstname: 'Peter',
-		lastname: 'Parker',
-		street: 'Marvel Street 12',
-		zipcode: '12345',
-		city: 'New York',
-		country: 'USA',
+		firstname: null,
+		lastname: null,
+		street: null,
+		zipcode: null,
+		city: null,
+		country: null,
 	};
 
 	billingDetails: billingDetails = {
