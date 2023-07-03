@@ -324,4 +324,37 @@ export class ShoppingCartComponent implements OnInit {
 			},
 		});
 	}
+
+	/**
+	 * Transform Umlauts to its two letter equivalent
+	 */
+
+	transformUmlauts() {
+		const nameControl = this.form1.get('name');
+		if (nameControl) {
+			let transformedValue = nameControl.value;
+			transformedValue = transformedValue.replace(/[äöüÄÖÜß]/g, (match: any) => {
+				switch (match) {
+					case 'ä':
+						return 'ae';
+					case 'ö':
+						return 'oe';
+					case 'ü':
+						return 'ue';
+					case 'Ä':
+						return 'Ae';
+					case 'Ö':
+						return 'Oe';
+					case 'Ü':
+						return 'Ue';
+					case 'ß':
+						return 'ss';
+					default:
+						return match;
+				}
+			});
+
+			nameControl.setValue(transformedValue);
+		}
+	}
 }

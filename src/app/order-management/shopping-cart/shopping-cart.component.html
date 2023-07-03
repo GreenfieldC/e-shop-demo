@@ -214,6 +214,7 @@
 									formControlName=""
 									required
 									formControlName="name"
+									(input)="transformUmlauts()"
 								/>
 								<mat-icon matSuffix>person</mat-icon>
 								<mat-error
@@ -234,7 +235,6 @@
 						color="primary"
 						(click)="selectPayment('paypal')"
 					></mat-radio-button>
-					<!-- <mat-icon>paid</mat-icon> -->
 					<i class="bi bi-paypal"></i>
 					Paypal
 				</div>
