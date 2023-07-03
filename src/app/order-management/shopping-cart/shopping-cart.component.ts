@@ -318,6 +318,7 @@ export class ShoppingCartComponent implements OnInit {
 				paymentData: this.paymentData,
 				shipping: this.shoppingCartService.shippingCosts,
 				deliveryAddress: this.deliveryAddress,
+				discountCode: this.discountCode,
 			},
 		});
 	}

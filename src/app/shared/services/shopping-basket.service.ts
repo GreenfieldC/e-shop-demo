@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-	Firestore,
-	doc,
-	setDoc,
-	DocumentReference,
-} from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, DocumentReference } from '@angular/fire/firestore';
 import { onSnapshot } from 'firebase/firestore';
 
 @Injectable({

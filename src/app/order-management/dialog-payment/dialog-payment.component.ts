@@ -36,6 +36,17 @@ export class DialogPaymentComponent {
 		return orderNumber;
 	}
 
+	removeDiscount() {
+		for (let i = 0; i < this.cartService.couponCodes.length; i++) {
+			const coupon = this.cartService.couponCodes[i].code;
+
+			if (coupon.toString() == this.data.discountCode) {
+				this.cartService.couponCodes.splice(i, 1);
+				console.log(this.cartService.couponCodes);
+			}
+		}
+	}
+
 	placeOrder() {
 		this.orderAnimation = true;
 		const order = {
@@ -51,6 +62,7 @@ export class DialogPaymentComponent {
 			this.cartService.products = [];
 			this.cartService.updateProducts();
 			this.orderAnimation = false;
+			this.removeDiscount();
 			this.router.navigateByUrl('orders');
 			this.dialog.closeAll();
 		}, 2000);
