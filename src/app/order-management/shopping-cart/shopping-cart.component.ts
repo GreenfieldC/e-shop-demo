@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddressesService } from 'src/app/shared/services/addresses.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 /**
  * interface for the Credit Card Details entered by the user
@@ -126,7 +127,8 @@ export class ShoppingCartComponent implements OnInit {
 		public exchangeRateService: ExchangeRateService,
 		public dialog: MatDialog,
 		private fb: FormBuilder,
-		private aS: AddressesService
+		private aS: AddressesService,
+		private toast: HotToastService
 	) {
 		this.initialiseForms();
 		this.aS.defaultAddress$.subscribe((address) => {
@@ -295,10 +297,10 @@ export class ShoppingCartComponent implements OnInit {
 				this.setDebitData();
 				this.openDialog();
 			} else {
-				alert('Please complete form with valid data!');
+				this.toast.error('Please complete form with valid data!');
 			}
 		} else {
-			alert('Please select a payment method'!);
+			this.toast.error('Please select a payment method'!);
 		}
 	}
 

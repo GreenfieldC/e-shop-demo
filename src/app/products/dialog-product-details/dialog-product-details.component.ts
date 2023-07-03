@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { HotToastService } from '@ngneat/hot-toast';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
@@ -18,6 +19,8 @@ export class DialogProductDetailsComponent {
 		private dialog: MatDialog,
 		public shoppingBasketService: ShoppingBasketService,
 		public exchangeRateService: ExchangeRateService,
+		private toast: HotToastService,
+
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
 
@@ -36,8 +39,7 @@ export class DialogProductDetailsComponent {
 			this.orderPlaced = true;
 
 			const index = this.shoppingBasketService.products.findIndex(
-				(obj) =>
-					obj.size === this.data.size && obj.title === this.data.title
+				(obj) => obj.size === this.data.size && obj.title === this.data.title
 			);
 
 			if (index != -1) {
@@ -46,15 +48,14 @@ export class DialogProductDetailsComponent {
 					this.shoppingBasketService.products[index].quantity;
 
 				this.shoppingBasketService.products[index].quantity += 1;
-				this.shoppingBasketService.products[index].price +=
-					baselinePrice;
+				this.shoppingBasketService.products[index].price += baselinePrice;
 			} else {
 				this.shoppingBasketService.products.push(this.data);
 			}
 
 			this.shoppingBasketService.updateProducts();
 		} else {
-			alert('Please select size!');
+			this.toast.error('Please select size!');
 		}
 	}
 }
