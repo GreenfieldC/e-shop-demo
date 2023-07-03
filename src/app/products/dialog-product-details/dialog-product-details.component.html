@@ -5,20 +5,21 @@
 			<h1 class="main-heading">{{ data.title }}</h1>
 			<span class="subheading">Greenfield Traders</span>
 			<span class="price"
-				>{{
-					data.price * exchangeRateService.selectedRate
-						| number : '1.2-2'
-				}}
+				>{{ data.price * exchangeRateService.selectedRate | number : '1.2-2' }}
 				{{ exchangeRateService.icon }}</span
 			>
 			<span> {{ data.description }} </span>
 			<div class="rating-container">
-				<mat-icon>star</mat-icon>
-				<mat-icon>star</mat-icon>
-				<mat-icon>star</mat-icon>
-				<mat-icon>star</mat-icon>
-				<mat-icon>star</mat-icon>
-				<span>(no reviews)</span>
+				<div class="stars">
+					<mat-icon
+						*ngFor="let star of [0, 1, 2, 3, 4]; let i = index"
+						[ngClass]="{
+							filled: i + 1 < data.rating.rate
+						}"
+						>star</mat-icon
+					>
+					(Rating: {{ data.rating.rate }})
+				</div>
 			</div>
 			<div
 				*ngIf="data.category.includes('clothing')"
@@ -28,16 +29,7 @@
 				<div class="size-box-wrapper">
 					<div
 						*ngFor="
-							let size of [
-								'XS',
-								'S',
-								'M',
-								'L',
-								'XL',
-								'2XL',
-								'3XL',
-								'4XL'
-							]
+							let size of ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']
 						"
 						(click)="selectSize(size)"
 						[class.selected-size]="size === selectedSize"
@@ -46,9 +38,7 @@
 					</div>
 				</div>
 			</div>
-			<button (click)="addToCart()" *ngIf="!orderPlaced">
-				Add to cart
-			</button>
+			<button (click)="addToCart()" *ngIf="!orderPlaced">Add to cart</button>
 			<button
 				*ngIf="orderPlaced"
 				class="success"
@@ -73,6 +63,4 @@
 	</div>
 </div>
 
-<span class="close-button" (click)="onNoClick()"
-	><mat-icon>close</mat-icon></span
->
+<span class="close-button" (click)="onNoClick()"><mat-icon>close</mat-icon></span>
