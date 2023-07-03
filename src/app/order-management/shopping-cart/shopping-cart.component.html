@@ -7,12 +7,10 @@
 	>
 		<mat-expansion-panel-header>
 			<mat-panel-title>
-				<img
-					[src]="product.image"
-					alt="product-img"
-					class="product-img"
-				/>
-				{{ product.title }} ({{ product.size }})</mat-panel-title
+				<img [src]="product.image" alt="product-img" class="product-img" />
+				<span class="product-title"
+					>{{ product.title }} ({{ product.size }})</span
+				></mat-panel-title
 			>
 
 			<mat-panel-description>
@@ -24,9 +22,7 @@
 					}}{{ exchangeRateService.icon }}
 				</div>
 				<div class="quantity-container">
-					<mat-icon (click)="incrementQuantity(i, $event)"
-						>add_circle</mat-icon
-					>
+					<mat-icon (click)="incrementQuantity(i, $event)">add_circle</mat-icon>
 					<div class="quantity-box">{{ product.quantity }}</div>
 					<mat-icon (click)="decreaseQuantity(i, $event)"
 						>do_not_disturb_on</mat-icon
@@ -51,15 +47,10 @@
 					<p>{{ product.description }}</p>
 					<div class="info-row">
 						<div class="info">Size: {{ product.size }}</div>
-						<div class="info">
-							Bought: {{ product.rating.count }} Times
-						</div>
+						<div class="info">Bought: {{ product.rating.count }} Times</div>
 						<div class="stars">
 							<mat-icon
-								*ngFor="
-									let star of [0, 1, 2, 3, 4];
-									let i = index
-								"
+								*ngFor="let star of [0, 1, 2, 3, 4]; let i = index"
 								[ngClass]="{
 									filled: i + 1 < product.rating.rate
 								}"
@@ -69,26 +60,19 @@
 						</div>
 					</div>
 				</div>
-				<img
-					[src]="product.image"
-					alt="product-img"
-					class="product-img"
-				/>
+				<img [src]="product.image" alt="product-img" class="product-img" />
 			</div>
 		</div>
 	</mat-expansion-panel>
 
-	<div
-		class="checkout-container"
-		*ngIf="shoppingCartService.products.length > 0"
-	>
+	<div class="checkout-container" *ngIf="shoppingCartService.products.length > 0">
 		<mat-card>
 			<div class="price-info-container">
 				<span>Subtotal:</span
 				><span>
 					{{
-						shoppingCartService.totalPrice *
-							exchangeRateService.selectedRate | number : '1.2-2'
+						shoppingCartService.totalPrice * exchangeRateService.selectedRate
+							| number : '1.2-2'
 					}}{{ exchangeRateService.icon }}</span
 				>
 			</div>
@@ -149,20 +133,24 @@
 						<div class="number-wrapper">
 							<mat-form-field>
 								<mat-label>Enter Card Number</mat-label>
-								<input matInput placeholder="1234 5678 9012 3456" 
-								formControlName="cardNumber"
-
-								required
+								<input
+									matInput
+									placeholder="1234 5678 9012 3456"
+									formControlName="cardNumber"
+									required
 								/>
-								<mat-icon matSuffix
-									>credit_card</mat-icon
+								<mat-icon matSuffix>credit_card</mat-icon>
+								<mat-error
+									*ngIf="
+										form1.controls['cardNumber'].invalid &&
+										form1.controls['cardNumber'].touched
+									"
 								>
-								<mat-error *ngIf="form1.controls['cardNumber'].invalid && form1.controls['cardNumber'].touched">
 									Card number is required (16 digits).
-								  </mat-error>
+								</mat-error>
 							</mat-form-field>
 						</div>
-	
+
 						<div class="security-wrapper">
 							<mat-form-field>
 								<mat-label>Expiry Date</mat-label>
@@ -172,12 +160,15 @@
 									required
 									formControlName="expiry"
 								/>
-								<mat-icon matSuffix
-									>credit_card_off</mat-icon
+								<mat-icon matSuffix>credit_card_off</mat-icon>
+								<mat-error
+									*ngIf="
+										form1.controls['expiry'].invalid &&
+										form1.controls['expiry'].touched
+									"
 								>
-								<mat-error *ngIf="form1.controls['expiry'].invalid && form1.controls['expiry'].touched">
 									Valid expiry date is required.
-								  </mat-error>
+								</mat-error>
 							</mat-form-field>
 							<mat-form-field>
 								<mat-label>CVC/ CVV</mat-label>
@@ -185,15 +176,17 @@
 									matInput
 									placeholder="3 digits"
 									formControlName="cvv"
-
 									required
 								/>
-								<mat-icon matSuffix
-									>pin</mat-icon
+								<mat-icon matSuffix>pin</mat-icon>
+								<mat-error
+									*ngIf="
+										form1.controls['cvv'].invalid &&
+										form1.controls['cvv'].touched
+									"
 								>
-								<mat-error *ngIf="form1.controls['cvv'].invalid && form1.controls['cvv'].touched">
 									Valid cvv is required.
-								  </mat-error>
+								</mat-error>
 							</mat-form-field>
 						</div>
 						<div class="name-wrapper">
@@ -206,20 +199,19 @@
 									required
 									formControlName="name"
 								/>
-								<mat-icon matSuffix
-									>person</mat-icon
+								<mat-icon matSuffix>person</mat-icon>
+								<mat-error
+									*ngIf="
+										form1.controls['name'].invalid &&
+										form1.controls['name'].touched
+									"
 								>
-								<mat-error *ngIf="form1.controls['name'].invalid && form1.controls['name'].touched">
 									Cardholder's name is required.
-								  </mat-error>
+								</mat-error>
 							</mat-form-field>
 						</div>
 					</div>
 				</form>
-			
-
-
-
 
 				<div class="payment-option-wrapper">
 					<mat-radio-button
@@ -230,8 +222,6 @@
 					<i class="bi bi-paypal"></i>
 					Paypal
 				</div>
-				
-
 
 				<div class="payment-option-wrapper">
 					<mat-radio-button
@@ -243,7 +233,6 @@
 				</div>
 				<form *ngIf="paymentMethod === 'debit'" [formGroup]="form2">
 					<div class="payment-info">
-
 						<div class="security-wrapper">
 							<mat-form-field>
 								<mat-label>First Name</mat-label>
@@ -253,7 +242,13 @@
 									formControlName="firstname"
 									required
 								/>
-								<mat-error *ngIf="form2.controls['firstname'].invalid && form2.controls['firstname'].touched">Please enter first name.</mat-error>
+								<mat-error
+									*ngIf="
+										form2.controls['firstname'].invalid &&
+										form2.controls['firstname'].touched
+									"
+									>Please enter first name.</mat-error
+								>
 							</mat-form-field>
 							<mat-form-field>
 								<mat-label>Last Name</mat-label>
@@ -263,25 +258,36 @@
 									formControlName="lastname"
 									required
 								/>
-								<mat-error *ngIf="form2.controls['lastname'].invalid && form2.controls['lastname'].touched">Please enter last name.</mat-error>
+								<mat-error
+									*ngIf="
+										form2.controls['lastname'].invalid &&
+										form2.controls['lastname'].touched
+									"
+									>Please enter last name.</mat-error
+								>
 							</mat-form-field>
 						</div>
-	
-	
+
 						<div class="number-wrapper">
 							<mat-form-field>
 								<mat-label>Street + Number</mat-label>
-								<input matInput 
-								placeholder="Enter Street Name" 
-								formControlName="adress"
-								required
+								<input
+									matInput
+									placeholder="Enter Street Name"
+									formControlName="adress"
+									required
 								/>
-								<mat-error *ngIf="form2.controls['adress'].invalid && form2.controls['adress'].touched">
+								<mat-error
+									*ngIf="
+										form2.controls['adress'].invalid &&
+										form2.controls['adress'].touched
+									"
+								>
 									Please enter a valid adress.
 								</mat-error>
 							</mat-form-field>
 						</div>
-	
+
 						<div class="security-wrapper">
 							<mat-form-field>
 								<mat-label>Zip Code</mat-label>
@@ -290,9 +296,14 @@
 									placeholder="Enter Zip Code"
 									formControlName="zipcode"
 									required
-	
 								/>
-								<mat-error *ngIf="form2.controls['zipcode'].invalid && form2.controls['zipcode'].touched">Please enter zipcode.</mat-error>
+								<mat-error
+									*ngIf="
+										form2.controls['zipcode'].invalid &&
+										form2.controls['zipcode'].touched
+									"
+									>Please enter zipcode.</mat-error
+								>
 							</mat-form-field>
 							<mat-form-field>
 								<mat-label>City</mat-label>
@@ -302,47 +313,51 @@
 									formControlName="city"
 									required
 								/>
-								<mat-error *ngIf="form2.controls['city'].invalid && form2.controls['city'].touched">
+								<mat-error
+									*ngIf="
+										form2.controls['city'].invalid &&
+										form2.controls['city'].touched
+									"
+								>
 									Please enter city.
 								</mat-error>
 							</mat-form-field>
 						</div>
-	
-						
+
 						<div class="name-wrapper">
 							<mat-form-field>
 								<mat-label>Country</mat-label>
 								<mat-select formControlName="country" value="Option">
-									<mat-option *ngFor="let country of countries"
-									[value]="country"
-									>{{country}}</mat-option>
+									<mat-option
+										*ngFor="let country of countries"
+										[value]="country"
+										>{{ country }}</mat-option
+									>
 								</mat-select>
-								<mat-error *ngIf="form2.controls['city'].invalid">Please select a country.</mat-error>
+								<mat-error *ngIf="form2.controls['city'].invalid"
+									>Please select a country.</mat-error
+								>
 							</mat-form-field>
 						</div>
 					</div>
 				</form>
-				
-
-
-
 			</div>
 
-			<button *ngIf="paymentMethod != 'paypal'" class="payment-button" (click)="openPaymentDialog()">
+			<button
+				*ngIf="paymentMethod != 'paypal'"
+				class="payment-button"
+				(click)="openPaymentDialog()"
+			>
 				Proceed to Payment
 			</button>
 
 			<button *ngIf="paymentMethod === 'paypal'" class="paypal-button">
 				Checkout with paypal <i class="bi bi-paypal pal"></i>
 			</button>
-
 		</mat-card>
 	</div>
 
-	<div
-		class="empty-cart-prompt"
-		*ngIf="shoppingCartService.products.length === 0"
-	>
+	<div class="empty-cart-prompt" *ngIf="shoppingCartService.products.length === 0">
 		<mat-icon>shopping_cart</mat-icon>
 		<h3>Shopping Cart is empty</h3>
 		<button [routerLink]="''">Explore products</button>
