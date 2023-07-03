@@ -131,7 +131,6 @@ export class ShoppingCartComponent implements OnInit {
 		this.initialiseForms();
 		this.aS.defaultAddress$.subscribe((address) => {
 			this.deliveryAddress = address;
-			alert('no address found yet');
 		});
 	}
 
