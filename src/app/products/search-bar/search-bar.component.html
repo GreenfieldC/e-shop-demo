@@ -25,13 +25,8 @@
 		<div class="wrapper__window__container" *ngIf="showProducts">
 			<!-- Category bar -->
 			<div class="wrapper__window__container__catergory-bar">
-				<mat-button-toggle-group
-					name="favoriteColor"
-					aria-label="Favorite Color"
-				>
-					<mat-button-toggle
-						checked="true"
-						(click)="setsCategory('all')"
+				<mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
+					<mat-button-toggle checked="true" (click)="setsCategory('all')"
 						>All</mat-button-toggle
 					>
 					<mat-button-toggle
@@ -44,18 +39,13 @@
 			</div>
 
 			<!-- Products container -->
-			<div
-				#productList
-				class="wrapper__window__container__procucts-container"
-			>
+			<div #productList class="wrapper__window__container__procucts-container">
 				<app-product-item
 					[hidden]="
 						(!(
 							searchTerm &&
 							searchTerm.length >= 2 &&
-							product.title
-								.toLowerCase()
-								.includes(searchTerm.toLowerCase())
+							product.title.toLowerCase().includes(searchTerm.toLowerCase())
 						) &&
 							searchTerm.length > 2) ||
 						(product.category !== selectedCategory &&
