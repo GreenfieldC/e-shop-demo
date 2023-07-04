@@ -1,38 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
+import {
+	DocumentReference,
+	Firestore,
+	doc,
+	docData,
+	getDoc,
+	setDoc,
+} from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AddressesService {
-	defaultAddressSource = new BehaviorSubject<any>(null);
-	defaultAddress$ = this.defaultAddressSource.asObservable();
-	defaultAddress!: Object;
+	//products array that get displayed in UI
+	addresses: Array<any> = [];
+	adressDocRef: DocumentReference;
+	adressReference: string;
+	currentlyLoggedInUser: string | null;
 
-	setDefaultAddress(address: any) {
-		this.defaultAddressSource.next(address);
+	constructor(private firestore: Firestore) {}
+
+	async getAdresses() {
+		this.adressDocRef = doc(this.firestore, this.adressReference);
+		const snap = await getDoc(this.adressDocRef);
+		if (snap) {
+			this.addresses = snap.data()!['addresses'];
+		} else {
+			console.error('No document found!');
+		}
 	}
 
-	constructor(public db: Firestore) {
-		//subscribe to the default address
-		this.defaultAddress$.subscribe((data) => {
-			this.defaultAddress = data;
-		});
-	}
-
-	addAddressesToFireBase(authToken: string, addresses: any) {
-		setDoc(doc(this.db, `user_${authToken}`, 'addresses'), {
-			addresses: addresses,
-		});
-	}
-
-	/**
-	 * Gets the addresses from the database
-	 * @returns {Observable<any>}
-	 */
-	getAddressesFromFireBase$(authToken: string): Observable<any> {
-		const docRef = doc(this.db, `user_${authToken}`, 'addresses');
-		return docData(docRef);
+	async updateAdresses() {
+		if (this.currentlyLoggedInUser != 'Guest') {
+			setDoc(this.adressDocRef, {
+				addresses: this.addresses,
+			});
+		}
 	}
 }

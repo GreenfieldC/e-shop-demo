@@ -131,10 +131,6 @@ export class ShoppingCartComponent implements OnInit {
 		private toast: HotToastService
 	) {
 		this.initialiseForms();
-		this.aS.defaultAddress$.subscribe((address) => {
-			this.deliveryAddress = address;
-			console.log(this.deliveryAddress);
-		});
 	}
 
 	ngOnInit() {}
