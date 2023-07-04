@@ -27,5 +27,6 @@ export class OrderHistoryService {
 				orders: this.orders,
 			});
 		}
+		console.log(this.orders);
 	}
 }

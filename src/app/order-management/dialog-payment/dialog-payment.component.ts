@@ -60,8 +60,9 @@ export class DialogPaymentComponent {
 			paymentDetails: this.data,
 			products: this.cartService.products,
 			date: new Date(),
-			// returnDate: this.returnDate,
+			returnDate: this.returnDate,
 		};
+
 		setTimeout(() => {
 			this.orderService.orders.push(order);
 			this.orderService.updateOrders();

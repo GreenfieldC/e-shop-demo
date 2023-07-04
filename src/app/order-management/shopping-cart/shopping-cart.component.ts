@@ -35,7 +35,7 @@ interface billingDetails {
 	styleUrls: ['./shopping-cart.component.scss'],
 })
 export class ShoppingCartComponent implements OnInit {
-	discountCode: number;
+	discountCode: number | null = null;
 	panelOpenState: boolean = false;
 	discountGiven: boolean = false;
 	discount: number = 0;
@@ -133,6 +133,7 @@ export class ShoppingCartComponent implements OnInit {
 		this.initialiseForms();
 		this.aS.defaultAddress$.subscribe((address) => {
 			this.deliveryAddress = address;
+			console.log(this.deliveryAddress);
 		});
 	}
 

@@ -18,7 +18,6 @@ export class AddressesService {
 		//subscribe to the default address
 		this.defaultAddress$.subscribe((data) => {
 			this.defaultAddress = data;
-			console.log(this.defaultAddress);
 		});
 	}
 
