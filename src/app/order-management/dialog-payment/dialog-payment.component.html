@@ -15,6 +15,10 @@
 			{{ item[0] }}: {{ item[1] }}
 		</span>
 	</div>
+	
+</div>
+
+<div class="checkout-container">
 	<div class="checkout-detail-wrapper" *ngIf="data.payment === 'debit'">
 		<h2>Billing Details</h2>
 		<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
@@ -37,4 +41,11 @@
 	<div *ngIf="orderAnimation" class="spinner-wrapper">
 		<mat-spinner></mat-spinner> Processing Order
 	</div>
+</div>
+
+<div class="logo-placeholder">
+	<img src="assets/img/logo.png" alt="logo" class="logo">
+	<img src="assets/img/logo.png" alt="logo" class="logo">
+	<img src="assets/img/logo.png" alt="logo" class="logo">
+	<img src="assets/img/logo.png" alt="logo" class="logo">
 </div>

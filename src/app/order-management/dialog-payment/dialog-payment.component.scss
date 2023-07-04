@@ -1,28 +1,26 @@
 h1 {
     text-align: center;
     margin-top: 2rem;
+    margin-bottom: 2rem;
     text-decoration: underline;
 }
 
 
 .checkout-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1rem;
     align-items: flex-start;
     min-width: 50vw;
     padding: 1rem 2rem;
-    gap: 1rem;
+   margin-bottom: 2rem;
 
     .checkout-detail-wrapper {
         display: flex;   
         justify-content: center;
-        align-items: center;
         flex-direction: column;
-    }
-
-
-
-    
+        width: 50%;
+    } 
 }
 
 .btn-wrapper {
@@ -32,7 +30,7 @@ h1 {
         color: white;
         background-color: var(--accent-color);
         font-size: 1rem;
-        margin-top: 1rem;
+      
         margin-bottom: 1rem;
         border: none;
         border-radius: 0.5rem;
@@ -69,3 +67,19 @@ h1 {
 
 }
 
+
+.logo-placeholder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    img {
+        width: 100px;
+    }
+}
