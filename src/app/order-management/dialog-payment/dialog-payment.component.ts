@@ -5,6 +5,7 @@ import { OrderHistoryService } from 'src/app/shared/services/order-history.servi
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { Router } from '@angular/router';
 import { AddressesService } from 'src/app/shared/services/addresses.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
 	selector: 'app-dialog-payment',
@@ -21,7 +22,8 @@ export class DialogPaymentComponent {
 		public dialog: MatDialog,
 		public cartService: ShoppingBasketService,
 		private router: Router,
-		private aS: AddressesService
+		private aS: AddressesService,
+		private toast: HotToastService
 	) {
 		this.aS.defaultAddress$.subscribe((res) => {
 			this.deliveryAddress = res;
@@ -58,7 +60,7 @@ export class DialogPaymentComponent {
 			paymentDetails: this.data,
 			products: this.cartService.products,
 			date: new Date(),
-			returnDate: this.returnDate,
+			// returnDate: this.returnDate,
 		};
 		setTimeout(() => {
 			this.orderService.orders.push(order);
@@ -67,6 +69,7 @@ export class DialogPaymentComponent {
 			this.cartService.updateProducts();
 			this.orderAnimation = false;
 			this.removeDiscount();
+			this.toast.success('Order successful!');
 			this.router.navigateByUrl('orders');
 			this.dialog.closeAll();
 		}, 2000);
