@@ -24,11 +24,7 @@ export class DialogPaymentComponent {
 		private router: Router,
 		private aS: AddressesService,
 		private toast: HotToastService
-	) {
-		this.aS.defaultAddress$.subscribe((res) => {
-			this.deliveryAddress = res;
-		});
-	}
+	) {}
 
 	getCardDetailsArray(details: any): any[] {
 		return Object.entries(details);

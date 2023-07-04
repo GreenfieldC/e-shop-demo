@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, doc, setDoc, DocumentReference } from '@angular/fire/firestore';
-import { onSnapshot } from 'firebase/firestore';
+import { getDoc, onSnapshot } from 'firebase/firestore';
 
 @Injectable({
 	providedIn: 'root',
@@ -37,44 +37,50 @@ export class ShoppingBasketService {
 		//asssignment of coupon_codes document reference in Firestore
 		this.couponDocRef = doc(this.firestore, 'coupon_codes/codes');
 
-		//real time listener of prodcuts in database
-		onSnapshot(this.cartDocRef, (doc) => {
-			this.products = doc.data()?.['products'] || [];
-			this.totalPrice = 0;
-			this.products.forEach((product) => {
-				this.totalPrice += product.price * product.quantity;
-				if (this.totalPrice > 250) {
-					this.shippingCosts = 0;
-				} else {
-					this.shippingCosts = 2.5;
-				}
-			});
-		});
+		//get all products stored in cart in database
+		const productSnap = await getDoc(this.cartDocRef);
+		if (productSnap) {
+			this.products = productSnap.data()!['products'];
+			this.calculatePrices();
+		} else {
+			console.error('No document found!');
+		}
 
-		//real time listener of coupon codes in database
-		onSnapshot(this.couponDocRef, (doc) => {
-			this.couponCodes = doc.data()?.['codes'] || [];
+		//get all coupon codes stored in database
+		const couponSnap = await getDoc(this.couponDocRef);
+		if (couponSnap) {
+			this.couponCodes = couponSnap.data()!['codes'];
+		} else {
+			console.error('No document found!');
+		}
+	}
+
+	//calculate the total price of all items
+	calculatePrices() {
+		this.totalPrice = 0;
+		this.products.forEach((product) => {
+			this.totalPrice += product.price * product.quantity;
+			if (this.totalPrice > 250) {
+				this.shippingCosts = 0;
+			} else {
+				this.shippingCosts = 2.5;
+			}
 		});
 	}
 
+	//update all products
 	async updateProducts() {
 		if (this.currentlyLoggedInUser != 'Guest') {
 			setDoc(this.cartDocRef, {
 				products: this.products,
 			});
+			this.calculatePrices();
 		} else {
-			this.totalPrice = 0;
-			this.products.forEach((product) => {
-				this.totalPrice += product.price * product.quantity;
-				if (this.totalPrice > 250) {
-					this.shippingCosts = 0;
-				} else {
-					this.shippingCosts = 2.5;
-				}
-			});
+			this.calculatePrices();
 		}
 	}
 
+	//update discount codes
 	async updateCodes() {
 		setDoc(this.couponDocRef, {
 			codes: this.couponCodes,

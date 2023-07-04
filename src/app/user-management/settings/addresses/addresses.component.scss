@@ -33,13 +33,18 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 1rem;
-	margin: 1rem 0;
+	margin: 2rem 0;
+
+	.default {
+		border: var(--accent-color) 1px solid;
+		
+	}
 
 	&__box {
 		display: flex;
 		flex-direction: column;
 		flex-basis: 100%;
-		box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+		box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: 0.2);
 		max-width: 280px;
 		width: 100%;
 		height: 200px;

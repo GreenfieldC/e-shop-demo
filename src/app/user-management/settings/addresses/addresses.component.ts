@@ -10,33 +10,12 @@ import { DeliveryAddressService } from 'src/app/shared/services/delivery-address
 	templateUrl: './addresses.component.html',
 	styleUrls: ['./addresses.component.scss'],
 })
-export class AddressesComponent implements OnInit {
+export class AddressesComponent {
 	@ViewChild(MatAccordion) accordion: MatAccordion;
 	form: FormGroup;
-	addresses: Array<any> = [];
-	authToken: any;
-	ngOnInit(): void {}
 
-	getAuthTokenFromLocalStorage() {
-		const authTokenObjectAsString = localStorage.getItem('authToken');
-		if (!authTokenObjectAsString) return;
-		const authTokenObject = JSON.parse(authTokenObjectAsString);
-		this.authToken = authTokenObject.id;
-		console.log(this.authToken);
-	}
-
-	constructor(
-		private fb: FormBuilder,
-
-		private aS: AddressesService
-	) {
+	constructor(private fb: FormBuilder, public aS: AddressesService) {
 		this.initialiseForm();
-		this.getAuthTokenFromLocalStorage();
-		this.aS.getAddressesFromFireBase$(this.authToken).subscribe((data) => {
-			if (!data) return; // return if data is undefined
-			this.addresses = data.addresses;
-			this.getDefaultAddress();
-		});
 	}
 
 	/**
@@ -59,20 +38,9 @@ export class AddressesComponent implements OnInit {
 	 */
 	submit() {
 		if (!this.form.valid) return;
-		this.addresses.push(this.form.value);
-		this.aS.addAddressesToFireBase(this.authToken, this.addresses);
+		this.aS.addresses.push(this.form.value);
 		this.form.reset();
-		this.singelAddressToDefault();
-	}
-
-	/**
-	 *Deletes an address from the database
-	 * @param {number} index
-	 */
-	deleteAddress(index: number) {
-		this.addresses.splice(index, 1);
-		this.aS.addAddressesToFireBase(this.authToken, this.addresses);
-		this.singelAddressToDefault();
+		this.aS.updateAdresses();
 	}
 
 	/**
@@ -80,22 +48,27 @@ export class AddressesComponent implements OnInit {
 	 * @param {number} index
 	 */
 	setDefaultAddress(index: number) {
-		this.addresses.forEach((address) => {
+		// if (this.addresses.length === 1) this.setDefaultAddress(0);
+
+		this.aS.addresses.forEach((address) => {
 			address.isDefault = false;
 		});
-		this.addresses[index].isDefault = true;
-		this.aS.addAddressesToFireBase(this.authToken, this.addresses);
-	}
-
-	singelAddressToDefault() {
-		if (this.addresses.length === 1) this.setDefaultAddress(0);
+		this.aS.addresses[index].isDefault = true;
 	}
 
 	getDefaultAddress() {
-		const defaultAddress = this.addresses.filter(
+		const defaultAddress = this.aS.addresses.filter(
 			(address) => address.isDefault === true
 		);
 		if (defaultAddress.length === 0) return;
-		this.aS.setDefaultAddress(defaultAddress[0]);
+	}
+
+	/**
+	 *Deletes an address from the database
+	 * @param {number} index
+	 */
+	deleteAddress(index: number) {
+		this.aS.addresses.splice(index, 1);
+		this.aS.updateAdresses();
 	}
 }

@@ -187,11 +187,11 @@
 	>
 </mat-accordion>
 
-<div *ngIf="addresses.length > 0; else noAddresses" class="addresses">
-	<div *ngFor="let address of addresses; let i = index" class="addresses__box">
+<div *ngIf="aS.addresses.length > 0; else noAddresses" class="addresses">
+	<div *ngFor="let address of aS.addresses; let i = index" class="addresses__box" [class.default]="address.isDefault">
 		<header *ngIf="address.isDefault" class="addresses__box__header">
-			Default:
-			<img src="./../../../../assets/img/logo.png" alt="" />
+			Default
+			<img src="assets/img/logo.png" alt="logo" />
 		</header>
 		<main class="addresses__box__main">
 			<div class="addresses__box__main__content">
