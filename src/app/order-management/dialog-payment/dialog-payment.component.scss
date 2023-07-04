@@ -1,8 +1,7 @@
 h1 {
-    text-align: center;
+    margin-left: 2rem;
     margin-top: 2rem;
-    margin-bottom: 2rem;
-    text-decoration: underline;
+    margin-bottom: 1rem;
 }
 
 
@@ -85,7 +84,13 @@ h1 {
 }
 
 .edit-icon {
-    margin-left: .5rem; 
     vertical-align: middle; 
     cursor: pointer;
+    color: gray;
+    margin-left: 3px;
+    transition: 225ms all ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
