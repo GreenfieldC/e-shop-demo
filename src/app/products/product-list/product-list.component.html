@@ -1,8 +1,42 @@
 <div class="products-list">
-	<app-product-item
-		*ngFor="let product of products"
+	<mat-card
+		*ngFor="let product of products; let i = index"
 		class="product-item"
-		[product]="product"
-		(click)="openDetailView(product)"
-	></app-product-item>
+		class="card"
+	>
+		<div (click)="openDetailView(product)" class="card__image-container">
+			<img class="card__image-container__image" [src]="product?.image" />
+			<div class="card__image-container__overlay">
+				<button mat-raised-button aria-label="Expand image">
+					<span>Product View</span>
+				</button>
+			</div>
+		</div>
+
+		<mat-card-content class="card__content">
+			<span class="card__content__title">{{ product.title }}</span>
+			<span class="card__content__price"
+				>{{
+					product.price * exchangeRateService.selectedRate | number : '1.2-2'
+				}}
+				{{ exchangeRateService.icon }}</span
+			>
+		</mat-card-content>
+
+		<button mat-icon-button (click)="toggleSelected(i)">
+			<mat-icon
+				*ngIf="favourites!.favourites[i]!.favourite"
+				aria-label="Example icon-button with a heart icon"
+			>
+				favorite
+			</mat-icon>
+
+			<mat-icon
+				*ngIf="!favourites!.favourites[i]!.favourite"
+				aria-label="Example icon-button with a heart icon"
+			>
+				favorite_border
+			</mat-icon>
+		</button>
+	</mat-card>
 </div>

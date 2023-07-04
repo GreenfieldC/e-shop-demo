@@ -11,11 +11,18 @@
 	<mat-card-content class="card__content">
 		<span class="card__content__title">{{ product.title }}</span>
 		<span class="card__content__price"
-			>{{
-				product.price * exchangeRateService.selectedRate
-					| number : '1.2-2'
-			}}
+			>{{ product.price * exchangeRateService.selectedRate | number : '1.2-2' }}
 			{{ exchangeRateService.icon }}</span
 		>
 	</mat-card-content>
+
+	<button mat-icon-button (click)="toggleSelected()">
+		<mat-icon *ngIf="selected" aria-label="Example icon-button with a heart icon">
+			favorite
+		</mat-icon>
+
+		<mat-icon *ngIf="!selected" aria-label="Example icon-button with a heart icon">
+			favorite_border
+		</mat-icon>
+	</button>
 </mat-card>

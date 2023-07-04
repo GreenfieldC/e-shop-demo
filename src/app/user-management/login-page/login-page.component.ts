@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
 import { CollectionReference, collection, doc, setDoc } from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
+import { FavouritesService } from 'src/app/shared/services/favourites.service';
 
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -27,6 +28,8 @@ export class LoginPageComponent {
 
 	collection: CollectionReference;
 
+	favouriteProducts: any[] = [];
+
 	constructor(
 		public afAuth: AngularFireAuth,
 		private fb: FormBuilder,
@@ -34,11 +37,13 @@ export class LoginPageComponent {
 		private router: Router,
 		public cartService: ShoppingBasketService,
 		public orderService: OrderHistoryService,
-		private toast: HotToastService
+		private toast: HotToastService,
+		public favouritesService: FavouritesService
 	) {}
 
 	ngOnInit() {
 		this.initialiseForm();
+		this.generateProductslistForFavorites();
 	}
 
 	/**
@@ -121,6 +126,9 @@ export class LoginPageComponent {
 
 					this.cartService.cartReference = `user_${user.uid}/cart`;
 					this.orderService.orderReference = `user_${user.uid}/orders`;
+					this.favouritesService.setFavouritesReference(
+						`user_${user.uid}/favourites`
+					);
 
 					this.cartService.getUserData();
 					this.orderService.getOrders();
@@ -145,6 +153,9 @@ export class LoginPageComponent {
 					setDoc(doc(this.firestore, `user_${user.uid}`, 'addresses'), {
 						addresses: [],
 					});
+					setDoc(doc(this.firestore, `user_${user.uid}`, 'favourites'), {
+						favourites: [...this.favouriteProducts],
+					});
 
 					updateProfile(user, { displayName: username });
 
@@ -161,5 +172,13 @@ export class LoginPageComponent {
 		}
 
 		this.loading = false;
+	}
+
+	generateProductslistForFavorites() {
+		this.favouriteProducts = Array.from({ length: 20 }, (_, index) => ({
+			id: index + 1,
+			favourite: false,
+		}));
+		console.log(this.favouriteProducts);
 	}
 }
