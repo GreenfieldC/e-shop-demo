@@ -34,7 +34,7 @@ interface billingDetails {
 	templateUrl: './shopping-cart.component.html',
 	styleUrls: ['./shopping-cart.component.scss'],
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent {
 	discountCode: number | null = null;
 	panelOpenState: boolean = false;
 	discountGiven: boolean = false;
@@ -43,15 +43,6 @@ export class ShoppingCartComponent implements OnInit {
 	paymentData: any;
 	form1: FormGroup;
 	form2: FormGroup;
-
-	deliveryAddress: Object = {
-		firstname: null,
-		lastname: null,
-		street: null,
-		zipcode: null,
-		city: null,
-		country: null,
-	};
 
 	billingDetails: billingDetails = {
 		firstname: null,
@@ -127,13 +118,10 @@ export class ShoppingCartComponent implements OnInit {
 		public exchangeRateService: ExchangeRateService,
 		public dialog: MatDialog,
 		private fb: FormBuilder,
-		private aS: AddressesService,
 		private toast: HotToastService
 	) {
 		this.initialiseForms();
 	}
-
-	ngOnInit() {}
 
 	/**
 	 * 	initialisation of the card infirmation forms
@@ -316,7 +304,6 @@ export class ShoppingCartComponent implements OnInit {
 				currency: this.exchangeRateService.icon,
 				paymentData: this.paymentData,
 				shipping: this.shoppingCartService.shippingCosts,
-				deliveryAddress: this.deliveryAddress,
 				discountCode: this.discountCode,
 			},
 		});
@@ -350,7 +337,6 @@ export class ShoppingCartComponent implements OnInit {
 						return match;
 				}
 			});
-
 			nameControl.setValue(transformedValue);
 		}
 	}
