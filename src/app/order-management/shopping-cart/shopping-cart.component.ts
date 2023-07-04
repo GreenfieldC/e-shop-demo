@@ -43,6 +43,7 @@ export class ShoppingCartComponent {
 	paymentData: any;
 	form1: FormGroup;
 	form2: FormGroup;
+	addressMatch: boolean = false;
 
 	billingDetails: billingDetails = {
 		firstname: null,
@@ -118,7 +119,8 @@ export class ShoppingCartComponent {
 		public exchangeRateService: ExchangeRateService,
 		public dialog: MatDialog,
 		private fb: FormBuilder,
-		private toast: HotToastService
+		private toast: HotToastService,
+		public adressService: AddressesService
 	) {
 		this.initialiseForms();
 	}
@@ -340,4 +342,39 @@ export class ShoppingCartComponent {
 			nameControl.setValue(transformedValue);
 		}
 	}
+
+	toggleBillingAdress() {
+		this.addressMatch = !this.addressMatch;
+
+		if (this.addressMatch) {
+			const address = this.adressService.defaultAdress;
+			this.form2.get('firstname')?.setValue(address['firstName']);
+			this.form2.get('lastname')?.setValue(address['lastName']);
+			this.form2.get('adress')?.setValue(address['street']);
+			this.form2.get('zipcode')?.setValue(address['zipCode']);
+			this.form2.get('city')?.setValue(address['city']);
+			this.form2.get('country')?.setValue(address['country']);
+		} else {
+			this.form2.reset();
+		}
+	}
 }
+
+// get firstname() {
+// 	return this.form2.get('firstname');
+// }
+// get lastname() {
+// 	return this.form2.get('lastname');
+// }
+// get adress() {
+// 	return this.form2.get('adress');
+// }
+// get zipcode() {
+// 	return this.form2.get('zipcode');
+// }
+// get city() {
+// 	return this.form2.get('city');
+// }
+// get country() {
+// 	return this.form2.get('country');
+// }

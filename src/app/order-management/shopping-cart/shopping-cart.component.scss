@@ -263,9 +263,7 @@
 		}
 	}
 
-	.billing {
-		margin-top: 2rem;
-	}
+	
 
 	.name-wrapper {
 		mat-form-field {
@@ -284,7 +282,7 @@
 	color: white;
 	background-color: var(--accent-color);
 	font-size: 1rem;
-	margin-top: 1rem;
+	margin-top: 2rem;
 	border: none;
 	border-radius: 0.5rem;
 	width: 100%;
@@ -347,4 +345,8 @@
 		align-items: unset !important;
 		gap: 0 !important;
 	}
+}
+
+.billing {
+	margin-top: 2rem;
 }

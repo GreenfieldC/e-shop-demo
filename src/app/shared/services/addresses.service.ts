@@ -18,6 +18,7 @@ export class AddressesService {
 	adressDocRef: DocumentReference;
 	adressReference: string;
 	currentlyLoggedInUser: string | null;
+	defaultAdress: { [key: string]: any };
 
 	constructor(private firestore: Firestore) {}
 
@@ -26,6 +27,11 @@ export class AddressesService {
 		const snap = await getDoc(this.adressDocRef);
 		if (snap) {
 			this.addresses = snap.data()!['addresses'];
+			this.addresses.forEach((adress) => {
+				if (adress.isDefault) {
+					this.defaultAdress = adress;
+				}
+			});
 		} else {
 			console.error('No document found!');
 		}
