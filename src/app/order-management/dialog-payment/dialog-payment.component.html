@@ -16,17 +16,17 @@
 		</span>
 	</div>
 	<div class="checkout-detail-wrapper" *ngIf="data.payment === 'debit'">
-		<h2>Debit Details</h2>
+		<h2>Billing Details</h2>
 		<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
 			{{ item[0][0].toUpperCase() + item[0].slice(1) }}: {{ item[1] }}
 		</span>
 	</div>
 	<div class="checkout-detail-wrapper">
-		<h2>Adress</h2>
-		<!-- <span>{{ deliveryAddress.firstName }} {{ deliveryAddress.lastName }}</span>
-		<span>{{ deliveryAddress.street }}</span>
-		<span>{{ deliveryAddress.zipCode }} {{ deliveryAddress.city }}</span>
-		<span>{{ deliveryAddress.country }}</span> -->
+		<h2>Delivery Adress</h2>
+		<span>{{aS.defaultAdress['firstName']}} {{aS.defaultAdress['lastName']}}</span>
+		<span>{{aS.defaultAdress['street']}} </span>
+		<span>{{aS.defaultAdress['zipCode']}} {{aS.defaultAdress['city']}}  </span>
+		<span>{{aS.defaultAdress['country']}} </span>
 	</div>
 </div>
 

@@ -14,7 +14,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class DialogPaymentComponent {
 	orderAnimation: boolean = false;
-	deliveryAddress: any = [];
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,7 +21,7 @@ export class DialogPaymentComponent {
 		public dialog: MatDialog,
 		public cartService: ShoppingBasketService,
 		private router: Router,
-		private aS: AddressesService,
+		public aS: AddressesService,
 		private toast: HotToastService
 	) {}
 
