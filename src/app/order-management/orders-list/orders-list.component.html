@@ -1,5 +1,5 @@
 <div class="order-history-container">
-	<h1>My Orders</h1>
+	<h1 *ngIf="orderService.orders.length != 0">My Orders</h1>
 	<mat-card *ngFor="let order of orderService.orders.reverse()" class="order-container">
 		<div class="order-overview-container">
 			<div class="order-detail-wrapper">
@@ -64,12 +64,13 @@
 			</div>
 		</div>
 	</mat-card>
-	<mat-card *ngIf="orderService.orders.length < 1" class="placeholder">
-		No orders yet<mat-icon>list_alt</mat-icon>
-	</mat-card>
+	
+	<div class="empty-orders-prompt" *ngIf="orderService.orders.length === 0">
+		<mat-icon>list_alt</mat-icon>
+		<h3>No orders yet</h3>
+		<button [routerLink]="''">Explore products</button>
+	</div>
+
 </div>
 
-<!-- <div *ngFor="let order of orderService.orders">
-    <h1>Order</h1>
-    <p>{{order.paymentDetails.currency}}</p>
-</div> -->
+
