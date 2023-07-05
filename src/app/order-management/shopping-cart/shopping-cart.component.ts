@@ -363,22 +363,3 @@ export class ShoppingCartComponent {
 		}
 	}
 }
-
-// get firstname() {
-// 	return this.form2.get('firstname');
-// }
-// get lastname() {
-// 	return this.form2.get('lastname');
-// }
-// get adress() {
-// 	return this.form2.get('adress');
-// }
-// get zipcode() {
-// 	return this.form2.get('zipcode');
-// }
-// get city() {
-// 	return this.form2.get('city');
-// }
-// get country() {
-// 	return this.form2.get('country');
-// }
