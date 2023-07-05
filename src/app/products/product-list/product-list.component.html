@@ -1,4 +1,4 @@
-<div class="products-list">
+<div class="products-list" *ngIf="!apiService.isLoading">
 	<mat-card
 		*ngFor="let product of products; let i = index"
 		class="product-item"
@@ -31,4 +31,8 @@
 
 		</button>
 	</mat-card>
+</div>
+<div class="loading-placeholder" *ngIf="apiService.isLoading">
+	<mat-spinner></mat-spinner>
+	<h1>Loading Products</h1>
 </div>

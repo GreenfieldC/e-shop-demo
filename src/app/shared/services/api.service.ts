@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 	baseUrl = 'https://fakestoreapi.com/products';
+	isLoading: boolean = true;
 
 	private fetchData(url: string): Observable<any> {
 		return new Observable((observer) => {
@@ -14,6 +15,7 @@ export class ApiService {
 				.then((data) => {
 					observer.next(data); // next() sends data to the subscriber
 					observer.complete(); // complete() ends the communication
+					this.isLoading = false;
 				})
 				.catch((error) => {
 					console.log('Error:', error);

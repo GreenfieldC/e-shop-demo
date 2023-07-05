@@ -14,7 +14,7 @@ export class ProductListComponent {
 	products: Array<any>;
 
 	constructor(
-		private apiService: ApiService,
+		public apiService: ApiService,
 		private dialog: MatDialog,
 		public exchangeRateService: ExchangeRateService,
 		public favouritesService: FavouritesService
