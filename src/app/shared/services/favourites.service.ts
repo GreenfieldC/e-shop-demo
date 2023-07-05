@@ -46,12 +46,4 @@ export class FavouritesService {
 			});
 		}
 	}
-
-	// const productSnap = await getDoc(this.cartDocRef);
-	// if (productSnap) {
-	//   this.products = productSnap.data()!['products'];
-	//   this.calculatePrices();
-	// } else {
-	//   console.error('No document found!');
-	// }
 }

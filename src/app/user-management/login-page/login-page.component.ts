@@ -101,7 +101,8 @@ export class LoginPageComponent {
 	}
 
 	/**
-	 * check for password match */
+	 * check for password match
+	 * */
 	get passwordDoesMatch() {
 		if (this.type !== 'signup') {
 			return true;
@@ -110,6 +111,9 @@ export class LoginPageComponent {
 		}
 	}
 
+	/**
+	 * function that gets executed on form submit
+	 */
 	async onSubmit() {
 		this.loading = true;
 
@@ -118,36 +122,17 @@ export class LoginPageComponent {
 		const username = this.username!.value;
 
 		try {
+			//functionality that gets triggered when type == login
 			if (this.isLogin) {
 				await this.afAuth.signInWithEmailAndPassword(email, password);
 				this.loginSuccess.emit();
 				const user = await this.afAuth.currentUser;
 				if (user) {
-					this.cartService.currentlyLoggedInUser = user.displayName;
-					this.orderService.currentlyLoggedInUser = user.displayName;
-					this.favouritesService.currentlyLoggedInUser = user.displayName;
-					this.addressService.currentlyLoggedInUser = user.displayName;
-
-					const authData = {
-						id: user.uid,
-						name: user.displayName,
-					};
-					localStorage.setItem('authToken', JSON.stringify(authData));
-
-					this.cartService.cartReference = `user_${user.uid}/cart`;
-					this.orderService.orderReference = `user_${user.uid}/orders`;
-					this.favouritesService.favReference = `user_${user.uid}/favourites`;
-					this.addressService.adressReference = `user_${user.uid}/addresses`;
-
-					this.cartService.getUserData();
-					this.orderService.getOrders();
-					this.addressService.getAdresses();
-					this.favouritesService.getFavs();
-
-					// Show success message and change the form type to login
-					this.toast.success('Logged in!');
+					this.login(user);
 				}
 			}
+
+			//functionality that gets triggered when type == signup
 			if (this.isSignup) {
 				const credential = await this.afAuth.createUserWithEmailAndPassword(
 					email,
@@ -156,22 +141,7 @@ export class LoginPageComponent {
 
 				const user = credential.user;
 				if (user) {
-					setDoc(doc(this.firestore, `user_${user.uid}`, 'cart'), {
-						products: [],
-					});
-					setDoc(doc(this.firestore, `user_${user.uid}`, 'orders'), {
-						orders: [],
-					});
-					setDoc(doc(this.firestore, `user_${user.uid}`, 'addresses'), {
-						addresses: [],
-					});
-					setDoc(doc(this.firestore, `user_${user.uid}`, 'favourites'), {
-						favourites: [],
-					});
-
-					updateProfile(user, { displayName: username });
-
-					this.type = 'login';
+					this.signup(user, username);
 				}
 			}
 			if (this.isPasswordReset) {
@@ -184,5 +154,55 @@ export class LoginPageComponent {
 		}
 
 		this.loading = false;
+	}
+
+	//login functionality
+	login(user: any) {
+		//set currently logged in user
+		this.cartService.currentlyLoggedInUser = user.displayName;
+		this.orderService.currentlyLoggedInUser = user.displayName;
+		this.favouritesService.currentlyLoggedInUser = user.displayName;
+		this.addressService.currentlyLoggedInUser = user.displayName;
+
+		const authData = {
+			id: user.uid,
+			name: user.displayName,
+		};
+		localStorage.setItem('authToken', JSON.stringify(authData));
+
+		//set document references
+		this.cartService.cartReference = `user_${user.uid}/cart`;
+		this.orderService.orderReference = `user_${user.uid}/orders`;
+		this.favouritesService.favReference = `user_${user.uid}/favourites`;
+		this.addressService.adressReference = `user_${user.uid}/addresses`;
+
+		//get corresponding data from firebase
+		this.cartService.getUserData();
+		this.orderService.getOrders();
+		this.addressService.getAdresses();
+		this.favouritesService.getFavs();
+
+		// Show success message and change the form type to login
+		this.toast.success('Logged in!');
+	}
+
+	//signup functionality
+	signup(user: any, username: any) {
+		setDoc(doc(this.firestore, `user_${user.uid}`, 'cart'), {
+			products: [],
+		});
+		setDoc(doc(this.firestore, `user_${user.uid}`, 'orders'), {
+			orders: [],
+		});
+		setDoc(doc(this.firestore, `user_${user.uid}`, 'addresses'), {
+			addresses: [],
+		});
+		setDoc(doc(this.firestore, `user_${user.uid}`, 'favourites'), {
+			favourites: [],
+		});
+
+		updateProfile(user, { displayName: username });
+
+		this.type = 'login';
 	}
 }
