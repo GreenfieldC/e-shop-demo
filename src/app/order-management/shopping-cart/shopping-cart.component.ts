@@ -348,12 +348,16 @@ export class ShoppingCartComponent {
 
 		if (this.addressMatch) {
 			const address = this.adressService.defaultAdress;
-			this.form2.get('firstname')?.setValue(address['firstName']);
-			this.form2.get('lastname')?.setValue(address['lastName']);
-			this.form2.get('adress')?.setValue(address['street']);
-			this.form2.get('zipcode')?.setValue(address['zipCode']);
-			this.form2.get('city')?.setValue(address['city']);
-			this.form2.get('country')?.setValue(address['country']);
+			if (address) {
+				this.form2.get('firstname')?.setValue(address['firstName']);
+				this.form2.get('lastname')?.setValue(address['lastName']);
+				this.form2.get('adress')?.setValue(address['street']);
+				this.form2.get('zipcode')?.setValue(address['zipCode']);
+				this.form2.get('city')?.setValue(address['city']);
+				this.form2.get('country')?.setValue(address['country']);
+			} else {
+				this.toast.error('No default address set!');
+			}
 		} else {
 			this.form2.reset();
 		}
