@@ -14,6 +14,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class DialogPaymentComponent {
 	orderAnimation: boolean = false;
+	carousellOpen: boolean = false;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -76,4 +77,10 @@ export class DialogPaymentComponent {
 		date.setDate(date.getDate() + 14);
 		return date;
 	}
+
+	toggleAdressCaroussel() {
+		this.carousellOpen = !this.carousellOpen;
+	}
+
+	selectAddress() {}
 }

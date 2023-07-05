@@ -48,12 +48,16 @@ export class AddressesComponent {
 	 * @param {number} index
 	 */
 	setDefaultAddress(index: number) {
-		// if (this.addresses.length === 1) this.setDefaultAddress(0);
+		if (this.aS.addresses.length === 1) {
+			this.aS.addresses[0].isDefault = true;
+		} else {
+			this.aS.addresses.forEach((address) => {
+				address.isDefault = false;
+			});
+			this.aS.addresses[index].isDefault = true;
+		}
 
-		this.aS.addresses.forEach((address) => {
-			address.isDefault = false;
-		});
-		this.aS.addresses[index].isDefault = true;
+		this.aS.updateAdresses();
 	}
 
 	getDefaultAddress() {

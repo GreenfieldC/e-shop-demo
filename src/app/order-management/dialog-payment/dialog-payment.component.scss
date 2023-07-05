@@ -1,96 +1,128 @@
 h1 {
-    margin-left: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+	margin-left: 2rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
 }
 
-
 .checkout-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    align-items: flex-start;
-    min-width: 50vw;
-    padding: 1rem 2rem;
-   margin-bottom: 2rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	align-items: flex-start;
+	min-width: 50vw;
+	padding: 1rem 2rem;
+	margin-bottom: 2rem;
 
-    .checkout-detail-wrapper {
-        display: flex;   
-        justify-content: center;
-        flex-direction: column;
-        width: 50%;
-    } 
+	.checkout-detail-wrapper {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		width: 50%;
+	}
 }
 
 .btn-wrapper {
-    display: flex;
-    justify-content: center;
-    .order-btn {
-        color: white;
-        background-color: var(--accent-color);
-        font-size: 1rem;
-      
-        margin-bottom: 1rem;
-        border: none;
-        border-radius: 0.5rem;
-        display: flex;
-        gap: .5rem;
-        justify-content: center;
-        align-items: center;
-        white-space: nowrap;
-        box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
-        cursor: pointer;
-        transition: 225ms all ease-in-out;
-        width: 150px;
-        &:hover {
-            background-color: var(--primary-color);
-        }
-    }
+	display: flex;
+	justify-content: center;
+	.order-btn {
+		color: white;
+		background-color: var(--accent-color);
+		font-size: 1rem;
+
+		margin-bottom: 1rem;
+		border: none;
+		border-radius: 0.5rem;
+		display: flex;
+		gap: 0.5rem;
+		justify-content: center;
+		align-items: center;
+		white-space: nowrap;
+		box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
+		cursor: pointer;
+		transition: 225ms all ease-in-out;
+		width: 150px;
+		&:hover {
+			background-color: var(--primary-color);
+		}
+	}
 }
 
 .spinner-wrapper {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    margin-bottom: 2rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 2rem;
+	padding: 0.5rem;
+	font-size: 1rem;
+	background-color: var(--accent-color);
+	color: white;
+	border-radius: 0.5rem;
 
-    mat-spinner {
-        width: 20px !important;
-        height: 20px !important;
-    }
-
+	mat-spinner {
+		width: 20px !important;
+		height: 20px !important;
+	}
 }
 
-
 .logo-placeholder {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    background-color: var(--primary-color);
-    img {
-        width: 100px;
-    }
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+	background-color: var(--primary-color);
+	img {
+		width: 100px;
+	}
 }
 
 .edit-icon {
-    vertical-align: middle; 
-    cursor: pointer;
-    color: gray;
-    margin-left: 3px;
-    transition: 225ms all ease-in-out;
+	vertical-align: middle;
+	cursor: pointer;
+	color: gray;
+	margin-left: 3px;
+	transition: 225ms all ease-in-out;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+
+.cs-wrapper {
+	position: relative;
+
+	.address-carousell {
+		box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: 0.4);
+		position: absolute;
+		left: -2rem;
+		top: 2.5rem;
+		overflow-x: scroll;
+		padding: 1rem;
+		background-color: white;
+
+		.address-option-wrapper {
+			display: flex;
+			gap: 1rem;
+
+			.address-option {
+				display: flex;
+				flex-direction: column;
+				border: 1px dashed var(--primary-color);
+				border-radius: 0.5rem;
+				padding: 0.5rem;
+				min-width: 150px;
+				cursor: pointer;
+			}
+		}
+
+		.action-wrapper {
+			display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+		}
+	}
 }

@@ -15,7 +15,6 @@
 			{{ item[0] }}: {{ item[1] }}
 		</span>
 	</div>
-	
 </div>
 
 <div class="checkout-container">
@@ -25,12 +24,39 @@
 			{{ item[0][0].toUpperCase() + item[0].slice(1) }}: {{ item[1] }}
 		</span>
 	</div>
-	<div class="checkout-detail-wrapper">
-		<h2>Delivery Adress <mat-icon class="edit-icon">edit</mat-icon></h2>
-		<span>{{aS.defaultAdress['firstName']}} {{aS.defaultAdress['lastName']}}</span>
-		<span>{{aS.defaultAdress['street']}} </span>
-		<span>{{aS.defaultAdress['zipCode']}} {{aS.defaultAdress['city']}}  </span>
-		<span>{{aS.defaultAdress['country']}} </span>
+	<div class="checkout-detail-wrapper cs-wrapper">
+		<h2>
+			Delivery Adress
+			<mat-icon class="edit-icon" (click)="toggleAdressCaroussel()">edit</mat-icon>
+		</h2>
+		<span
+			>{{ aS.defaultAdress['firstName'] }} {{ aS.defaultAdress['lastName'] }}</span
+		>
+		<span>{{ aS.defaultAdress['street'] }} </span>
+		<span>{{ aS.defaultAdress['zipCode'] }} {{ aS.defaultAdress['city'] }} </span>
+		<span>{{ aS.defaultAdress['country'] }} </span>
+
+		<div *ngIf="carousellOpen" class="address-carousell">
+
+			<div class="address-option-wrapper">
+				<div *ngFor="let address of aS.addresses" class="address-option">
+					<span
+						>{{ address['firstName'] }}
+						{{ address['lastName'] }}</span
+					>
+					<span>{{ address['street'] }} </span>
+					<span
+						>{{ address['zipCode'] }} {{ address['city'] }}
+					</span>
+					<span>{{ address['country'] }} </span>
+				</div>
+			</div>
+			<div class="action-wrapper">
+				<span>Click to select new address</span>
+				<span style="color: var(--secondary-color);">Create new address</span>
+			</div>
+			
+		</div>
 	</div>
 </div>
 
@@ -44,8 +70,8 @@
 </div>
 
 <div class="logo-placeholder">
-	<img src="assets/img/logo.png" alt="logo" class="logo">
-	<img src="assets/img/logo.png" alt="logo" class="logo">
-	<img src="assets/img/logo.png" alt="logo" class="logo">
-	<img src="assets/img/logo.png" alt="logo" class="logo">
+	<img src="assets/img/logo.png" alt="logo" class="logo" />
+	<img src="assets/img/logo.png" alt="logo" class="logo" />
+	<img src="assets/img/logo.png" alt="logo" class="logo" />
+	<img src="assets/img/logo.png" alt="logo" class="logo" />
 </div>

@@ -123,6 +123,16 @@ export class ShoppingCartComponent {
 		public adressService: AddressesService
 	) {
 		this.initialiseForms();
+		this.dialog.open(DialogPaymentComponent, {
+			data: {
+				payment: 'dummy',
+				total: 0,
+				currency: 'dummy',
+				paymentData: null,
+				shipping: 0,
+				discountCode: 0,
+			},
+		});
 	}
 
 	/**
