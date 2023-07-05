@@ -13,44 +13,37 @@ import { Observable } from 'rxjs';
 	providedIn: 'root',
 })
 export class FavouritesService {
-	favouritesReference: string = '';
-	// favouritesSource:
+	private favDocRef: DocumentReference;
+
+	//favorites array storing the ids that get displayed in UI
 	favourites: Array<any> = [];
-	favourites$!: Observable<any>;
 
-	constructor(public db: Firestore) {
-		this.getFavourites$().subscribe((data) => {
-			this.favourites = data;
-			console.log(typeof this.favourites);
-		});
+	//currently logged In User
+	currentlyLoggedInUser: string | null;
+
+	favReference: string;
+
+	constructor(public firestore: Firestore) {}
+
+	async getFavs() {
+		//asssignment of cart document reference in Firestore
+		this.favDocRef = doc(this.firestore, this.favReference);
+
+		//get all ids of favorised items from firebase
+		const favSnap = await getDoc(this.favDocRef);
+		if (favSnap) {
+			this.favourites = favSnap.data()!['favourites'];
+		} else {
+			console.error('No document found!');
+		}
 	}
 
-	// async getFavourites() {
-	// 	const docRef = doc(this.db, this.favouritesReference);
-	// 	const snap = await getDoc(docRef);
-	// 	if (snap) {
-	// 		this.favourites = snap.data()!['favourites'];
-	// 		console.log(this.favourites);
-	// 	} else {
-	// 		console.error('No document found!');
-	// 	}
-	// }
-
-	getFavourites$(): Observable<any> {
-		console.log(this.favouritesReference);
-		const docRef = doc(this.db, 'user_srVVQnKCTTRFQqWOd08yrNTRWfB2/favourites');
-		return docData(docRef);
-	}
-
-	setFavouritesReference(reference: string) {
-		this.favouritesReference = reference;
-		console.log(this.favouritesReference);
-	}
-
-	updateFavourites() {
-		const docRef = doc(this.db, 'user_srVVQnKCTTRFQqWOd08yrNTRWfB2/favourites');
-		setDoc(docRef, {
-			favourites: this.favourites,
-		});
+	//update all products
+	async updateFavs() {
+		if (this.currentlyLoggedInUser != 'Guest') {
+			setDoc(this.favDocRef, {
+				favourites: this.favourites,
+			});
+		}
 	}
 }

@@ -23,20 +23,10 @@
 			>
 		</mat-card-content>
 
-		<button mat-icon-button (click)="toggleSelected(i)">
-			<mat-icon
-				*ngIf="favourites[i].favourite"
-				aria-label="Example icon-button with a heart icon"
-			>
-				favorite
-			</mat-icon>
+		<button mat-icon-button (click)="toggleSelected(product)">
+			
+			<mat-icon>{{determineIcon(product)}}</mat-icon>
 
-			<mat-icon
-				*ngIf="!favourites[i].favourite"
-				aria-label="Example icon-button with a heart icon"
-			>
-				favorite_border
-			</mat-icon>
 		</button>
 	</mat-card>
 </div>

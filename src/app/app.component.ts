@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ShoppingBasketService } from './shared/services/shopping-basket.service';
 import { OrderHistoryService } from './shared/services/order-history.service';
 import { AddressesService } from './shared/services/addresses.service';
+import { FavouritesService } from './shared/services/favourites.service';
 
 @Component({
 	selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
 	constructor(
 		public cartService: ShoppingBasketService,
 		public orderService: OrderHistoryService,
-		public adressService: AddressesService
+		public adressService: AddressesService,
+		public favService: FavouritesService
 	) {}
 
 	ngOnInit() {
@@ -31,6 +33,8 @@ export class AppComponent {
 			this.getOrders(userData);
 
 			this.getAdresses(userData);
+
+			this.getFavourites(userData);
 		} else {
 			this.cartService.currentlyLoggedInUser = 'Guest';
 		}
@@ -55,5 +59,12 @@ export class AppComponent {
 		this.adressService.adressReference = `user_${userData.id}/addresses`;
 		this.adressService.currentlyLoggedInUser = userData.name;
 		this.adressService.getAdresses();
+	}
+
+	//get all favorite items ids
+	getFavourites(userData: any) {
+		this.favService.favReference = `user_${userData.id}/favourites`;
+		this.favService.currentlyLoggedInUser = userData.name;
+		this.favService.getFavs();
 	}
 }

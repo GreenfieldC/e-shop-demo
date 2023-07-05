@@ -4,18 +4,13 @@ import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
-import {
-	CollectionReference,
-	collection,
-	doc,
-	setDoc,
-	updateDoc,
-} from 'firebase/firestore';
+import { CollectionReference, doc, setDoc } from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { FavouritesService } from 'src/app/shared/services/favourites.service';
 
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { AddressesService } from 'src/app/shared/services/addresses.service';
 @Component({
 	selector: 'app-login-page',
 	templateUrl: './login-page.component.html',
@@ -40,20 +35,19 @@ export class LoginPageComponent {
 		public afAuth: AngularFireAuth,
 		private fb: FormBuilder,
 		private firestore: Firestore,
-		private router: Router,
 		public cartService: ShoppingBasketService,
 		public orderService: OrderHistoryService,
 		private toast: HotToastService,
-		public favouritesService: FavouritesService
+		public favouritesService: FavouritesService,
+		private addressService: AddressesService
 	) {}
 
 	ngOnInit() {
 		this.initialiseForm();
-		this.generateProductslistForFavorites();
 	}
 
 	/**
-	 * Initialise the form
+	 * Initialise the login form
 	 */
 	initialiseForm() {
 		this.form = this.fb.group({
@@ -72,6 +66,9 @@ export class LoginPageComponent {
 		this.type = val;
 	}
 
+	/**
+	 * get form modus (signup, login or password reset)
+	 */
 	get isLogin() {
 		return this.type === 'login';
 	}
@@ -84,6 +81,9 @@ export class LoginPageComponent {
 		return this.type === 'reset';
 	}
 
+	/**
+	 * get values from form controls
+	 */
 	get email() {
 		return this.form.get('email');
 	}
@@ -100,6 +100,8 @@ export class LoginPageComponent {
 		return this.form.get('passwordConfirm');
 	}
 
+	/**
+	 * check for password match */
 	get passwordDoesMatch() {
 		if (this.type !== 'signup') {
 			return true;
@@ -123,6 +125,8 @@ export class LoginPageComponent {
 				if (user) {
 					this.cartService.currentlyLoggedInUser = user.displayName;
 					this.orderService.currentlyLoggedInUser = user.displayName;
+					this.favouritesService.currentlyLoggedInUser = user.displayName;
+					this.addressService.currentlyLoggedInUser = user.displayName;
 
 					const authData = {
 						id: user.uid,
@@ -132,12 +136,14 @@ export class LoginPageComponent {
 
 					this.cartService.cartReference = `user_${user.uid}/cart`;
 					this.orderService.orderReference = `user_${user.uid}/orders`;
-					this.favouritesService.setFavouritesReference(
-						`user_${user.uid}/favourites`
-					);
+					this.favouritesService.favReference = `user_${user.uid}/favourites`;
+					this.addressService.adressReference = `user_${user.uid}/addresses`;
 
 					this.cartService.getUserData();
 					this.orderService.getOrders();
+					this.addressService.getAdresses();
+					this.favouritesService.getFavs();
+
 					// Show success message and change the form type to login
 					this.toast.success('Logged in!');
 				}
@@ -160,7 +166,7 @@ export class LoginPageComponent {
 						addresses: [],
 					});
 					setDoc(doc(this.firestore, `user_${user.uid}`, 'favourites'), {
-						favourites: [...this.favouriteProducts],
+						favourites: [],
 					});
 
 					updateProfile(user, { displayName: username });
@@ -178,13 +184,5 @@ export class LoginPageComponent {
 		}
 
 		this.loading = false;
-	}
-
-	generateProductslistForFavorites() {
-		this.favouriteProducts = Array.from({ length: 20 }, (_, index) => ({
-			id: index + 1,
-			favourite: false,
-		}));
-		console.log(this.favouriteProducts);
 	}
 }

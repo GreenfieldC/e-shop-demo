@@ -12,8 +12,6 @@ import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-
 })
 export class ProductListComponent {
 	products: Array<any>;
-	selected: boolean = false;
-	favourites: any = [];
 
 	constructor(
 		private apiService: ApiService,
@@ -21,6 +19,9 @@ export class ProductListComponent {
 		public exchangeRateService: ExchangeRateService,
 		public favouritesService: FavouritesService
 	) {
+		/**
+		 * Subscription to Porducts Observable
+		 */
 		this.apiService.getProducts.subscribe((data) => {
 			data.forEach((obj: any) => {
 				obj.quantity = 1;
@@ -28,12 +29,12 @@ export class ProductListComponent {
 			});
 			this.products = data;
 		});
-		this.favouritesService.getFavourites$().subscribe((data) => {
-			this.favourites = data['favourites'];
-			console.log(this.favourites);
-		});
 	}
 
+	/**
+	 * Opens prodcuts detail view when clicking on it
+	 * @param product Object containing all the product data
+	 */
 	openDetailView(product: any) {
 		const isMobileView = window.innerWidth < 800;
 		const dialogConfig = {
@@ -49,8 +50,31 @@ export class ProductListComponent {
 		console.log(product);
 	}
 
-	toggleSelected(i: number) {
-		this.favourites[i]!.favourite = !this.favourites[i]!.favourite;
-		console.log('i', i, this.favourites[i].favourite);
+	/**
+	 * Method to either remove a marked product ID from the favourites array or add it
+	 * @param product Object containing all the product data
+	 */
+	toggleSelected(product: any) {
+		if (this.favouritesService.favourites.includes(product.id)) {
+			const favIndex = this.favouritesService.favourites.indexOf(product.id);
+			this.favouritesService.favourites.splice(favIndex, 1);
+		} else {
+			this.favouritesService.favourites.push(product.id);
+		}
+
+		this.favouritesService.updateFavs();
+	}
+
+	/**
+	 * Method to set the icon based on whether procut is marked as favorite(filled heart) or not (empty heart)
+	 * @param product Object containing all the product data
+	 * @returns
+	 */
+	determineIcon(product: any) {
+		if (this.favouritesService.favourites.includes(product.id)) {
+			return 'favorite';
+		} else {
+			return 'favorite_border';
+		}
 	}
 }
