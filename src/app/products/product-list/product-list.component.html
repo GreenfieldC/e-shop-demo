@@ -25,14 +25,14 @@
 
 		<button mat-icon-button (click)="toggleSelected(i)">
 			<mat-icon
-				*ngIf="favourites!.favourites[i]!.favourite"
+				*ngIf="favourites[i].favourite"
 				aria-label="Example icon-button with a heart icon"
 			>
 				favorite
 			</mat-icon>
 
 			<mat-icon
-				*ngIf="!favourites!.favourites[i]!.favourite"
+				*ngIf="!favourites[i].favourite"
 				aria-label="Example icon-button with a heart icon"
 			>
 				favorite_border

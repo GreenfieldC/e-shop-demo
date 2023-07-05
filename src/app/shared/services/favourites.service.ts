@@ -21,7 +21,6 @@ export class FavouritesService {
 	constructor(public db: Firestore) {
 		this.getFavourites$().subscribe((data) => {
 			this.favourites = data;
-			console.table(this.favourites);
 			console.log(typeof this.favourites);
 		});
 	}

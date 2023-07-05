@@ -4,7 +4,13 @@ import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
-import { CollectionReference, collection, doc, setDoc } from 'firebase/firestore';
+import {
+	CollectionReference,
+	collection,
+	doc,
+	setDoc,
+	updateDoc,
+} from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { FavouritesService } from 'src/app/shared/services/favourites.service';
 

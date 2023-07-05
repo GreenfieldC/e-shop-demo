@@ -1,10 +1,9 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
 import { FavouritesService } from 'src/app/shared/services/favourites.service';
+import { DialogProductDetailsComponent } from '../dialog-product-details/dialog-product-details.component';
 
 @Component({
 	selector: 'app-product-list',
@@ -14,7 +13,7 @@ import { FavouritesService } from 'src/app/shared/services/favourites.service';
 export class ProductListComponent {
 	products: Array<any>;
 	selected: boolean = false;
-	favourites: any = [''];
+	favourites: any = [];
 
 	constructor(
 		private apiService: ApiService,
@@ -30,9 +29,8 @@ export class ProductListComponent {
 			this.products = data;
 		});
 		this.favouritesService.getFavourites$().subscribe((data) => {
-			console.log(data);
-			this.favourites = data;
-			console.log(this.favourites.favourites[0].favourite);
+			this.favourites = data['favourites'];
+			console.log(this.favourites);
 		});
 	}
 
@@ -52,7 +50,7 @@ export class ProductListComponent {
 	}
 
 	toggleSelected(i: number) {
-		this.favourites!.favourites[i]!.favourite =
-			!this.favourites!.favourites[i]!.favourite;
+		this.favourites[i]!.favourite = !this.favourites[i]!.favourite;
+		console.log('i', i, this.favourites[i].favourite);
 	}
 }
