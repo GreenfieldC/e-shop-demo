@@ -38,7 +38,7 @@ export class FavouritesService {
 		}
 	}
 
-	//update all products
+	//update all favorites
 	async updateFavs() {
 		if (this.currentlyLoggedInUser != 'Guest') {
 			setDoc(this.favDocRef, {

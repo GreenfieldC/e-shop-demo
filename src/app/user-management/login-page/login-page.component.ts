@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { updateProfile } from 'firebase/auth';
 import { CollectionReference, doc, setDoc } from 'firebase/firestore';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
