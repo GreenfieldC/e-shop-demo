@@ -132,9 +132,7 @@ export class LoginPageComponent {
 
 					this.cartService.cartReference = `user_${user.uid}/cart`;
 					this.orderService.orderReference = `user_${user.uid}/orders`;
-					this.favouritesService.setFavouritesReference(
-						`user_${user.uid}/favourites`
-					);
+					this.favouritesService.favouritesReference = `user_${user.uid}/favourites`;
 
 					this.cartService.getUserData();
 					this.orderService.getOrders();
@@ -160,7 +158,7 @@ export class LoginPageComponent {
 						addresses: [],
 					});
 					setDoc(doc(this.firestore, `user_${user.uid}`, 'favourites'), {
-						favourites: [...this.favouriteProducts],
+						favourites: [this.favouriteProducts],
 					});
 
 					updateProfile(user, { displayName: username });

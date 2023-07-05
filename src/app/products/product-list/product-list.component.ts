@@ -30,7 +30,7 @@ export class ProductListComponent {
 		});
 		this.favouritesService.getFavourites$().subscribe((data) => {
 			this.favourites = data['favourites'];
-			console.log(this.favourites);
+			console.log(data);
 		});
 	}
 
