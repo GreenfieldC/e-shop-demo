@@ -1,77 +1,83 @@
-<h1>Order Summary</h1>
+<div class="wrapper">
+	<main>
+		<h1>Order Summary</h1>
 
-<div class="checkout-container">
-	<div class="checkout-detail-wrapper">
-		<h2>Payment Method</h2>
-		<span> {{ data.payment | titlecase }} </span>
-	</div>
-	<div class="checkout-detail-wrapper">
-		<h2>Grand Total</h2>
-		<span>{{ data.total | number : '1.2-2' }}{{ data.currency }}</span>
-	</div>
-	<div class="checkout-detail-wrapper" *ngIf="data.payment === 'credit'">
-		<h2>Card Details</h2>
-		<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
-			{{ item[0] }}: {{ item[1] }}
-		</span>
-	</div>
-</div>
+		<div class="checkout-container">
+			<div class="checkout-detail-wrapper">
+				<h2>Payment Method</h2>
+				<span> {{ data.payment | titlecase }} </span>
+			</div>
+			<div class="checkout-detail-wrapper">
+				<h2>Grand Total</h2>
+				<span>{{ data.total | number : '1.2-2' }}{{ data.currency }}</span>
+			</div>
+			<div class="checkout-detail-wrapper" *ngIf="data.payment === 'credit'">
+				<h2>Card Details</h2>
+				<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
+					{{ item[0] }}: {{ item[1] }}
+				</span>
+			</div>
+		</div>
 
-<div class="checkout-container">
-	<div class="checkout-detail-wrapper" *ngIf="data.payment === 'debit'">
-		<h2>Billing Details</h2>
-		<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
-			{{ item[0][0].toUpperCase() + item[0].slice(1) }}: {{ item[1] }}
-		</span>
-	</div>
-	<div class="checkout-detail-wrapper cs-wrapper">
-		<h2>
-			Delivery Adress
-			<mat-icon class="edit-icon" (click)="toggleAdressCaroussel()">edit</mat-icon>
-		</h2>
-		<span
-			>{{ aS.defaultAdress['firstName'] }} {{ aS.defaultAdress['lastName'] }}</span
-		>
-		<span>{{ aS.defaultAdress['street'] }} </span>
-		<span>{{ aS.defaultAdress['zipCode'] }} {{ aS.defaultAdress['city'] }} </span>
-		<span>{{ aS.defaultAdress['country'] }} </span>
-
-		<div *ngIf="carousellOpen" class="address-carousell">
-
-			<div class="address-option-wrapper">
-				<div *ngFor="let address of aS.addresses" class="address-option">
-					<span
-						>{{ address['firstName'] }}
-						{{ address['lastName'] }}</span
+		<div class="checkout-container">
+			<div class="checkout-detail-wrapper" *ngIf="data.payment === 'debit'">
+				<h2>Billing Details</h2>
+				<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
+					{{ item[0][0].toUpperCase() + item[0].slice(1) }}: {{ item[1] }}
+				</span>
+			</div>
+			<div class="checkout-detail-wrapper cs-wrapper">
+				<h2>
+					Delivery Adress
+					<mat-icon class="edit-icon" (click)="toggleAdressCaroussel()"
+						>edit</mat-icon
 					>
-					<span>{{ address['street'] }} </span>
-					<span
-						>{{ address['zipCode'] }} {{ address['city'] }}
-					</span>
-					<span>{{ address['country'] }} </span>
+				</h2>
+				<span
+					>{{ aS.defaultAdress['firstName'] }}
+					{{ aS.defaultAdress['lastName'] }}</span
+				>
+				<span>{{ aS.defaultAdress['street'] }} </span>
+				<span
+					>{{ aS.defaultAdress['zipCode'] }} {{ aS.defaultAdress['city'] }}
+				</span>
+				<span>{{ aS.defaultAdress['country'] }} </span>
+
+				<div *ngIf="carousellOpen" class="address-carousell">
+					<div class="address-option-wrapper">
+						<div *ngFor="let address of aS.addresses" class="address-option">
+							<span
+								>{{ address['firstName'] }}
+								{{ address['lastName'] }}</span
+							>
+							<span>{{ address['street'] }} </span>
+							<span>{{ address['zipCode'] }} {{ address['city'] }} </span>
+							<span>{{ address['country'] }} </span>
+						</div>
+					</div>
+					<div class="action-wrapper">
+						<span>Click to select new address</span>
+						<span style="color: var(--secondary-color)"
+							>Create new address</span
+						>
+					</div>
 				</div>
 			</div>
-			<div class="action-wrapper">
-				<span>Click to select new address</span>
-				<span style="color: var(--secondary-color);">Create new address</span>
-			</div>
-			
 		</div>
-	</div>
-</div>
 
-<div class="btn-wrapper">
-	<button *ngIf="!orderAnimation" (click)="placeOrder()" class="order-btn">
-		<mat-icon>lock</mat-icon>Order
-	</button>
-	<div *ngIf="orderAnimation" class="spinner-wrapper">
-		<mat-spinner></mat-spinner> Processing Order
+		<div class="btn-wrapper">
+			<button *ngIf="!orderAnimation" (click)="placeOrder()" class="order-btn">
+				<mat-icon>lock</mat-icon>Order
+			</button>
+			<div *ngIf="orderAnimation" class="spinner-wrapper">
+				<mat-spinner></mat-spinner> Processing Order
+			</div>
+		</div>
+	</main>
+	<div class="logo-placeholder">
+		<img src="assets/img/logo.png" alt="logo" class="logo" />
+		<img src="assets/img/logo.png" alt="logo" class="logo" />
+		<img src="assets/img/logo.png" alt="logo" class="logo" />
+		<img src="assets/img/logo.png" alt="logo" class="logo" />
 	</div>
-</div>
-
-<div class="logo-placeholder">
-	<img src="assets/img/logo.png" alt="logo" class="logo" />
-	<img src="assets/img/logo.png" alt="logo" class="logo" />
-	<img src="assets/img/logo.png" alt="logo" class="logo" />
-	<img src="assets/img/logo.png" alt="logo" class="logo" />
 </div>

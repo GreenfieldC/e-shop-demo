@@ -295,7 +295,14 @@ export class ShoppingCartComponent {
 	 * Function that triggers payment dialog
 	 */
 	openDialog() {
+		const isMobileView = window.innerWidth < 800;
+		const dialogConfig = {
+			width: isMobileView ? '100vw' : '100%',
+			maxWidth: isMobileView ? '100vw' : '900px',
+			maxHeight: '100vh',
+		};
 		this.dialog.open(DialogPaymentComponent, {
+			...dialogConfig,
 			data: {
 				payment: this.paymentMethod,
 				total:
