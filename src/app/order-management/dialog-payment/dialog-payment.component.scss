@@ -103,7 +103,8 @@ h1 {
 		overflow-x: scroll;
 		padding: 1rem;
 		background-color: white;
-
+		z-index: 3;
+		
 		.address-option-wrapper {
 			display: flex;
 			gap: 1rem;
