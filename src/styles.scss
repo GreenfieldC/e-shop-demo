@@ -196,7 +196,7 @@ button {
 }
 
 .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
-	stroke: white !important;
+	stroke: var(--primary-color) !important;
 }
 
 .mat-content {
