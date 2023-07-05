@@ -25,7 +25,9 @@
 
 		<button mat-icon-button (click)="toggleSelected(product)">
 			
-			<mat-icon>{{determineIcon(product)}}</mat-icon>
+			<mat-icon
+			[ngClass]="{'red-icon': determineIcon(product) === 'favorite'}"
+			>{{determineIcon(product)}}</mat-icon>
 
 		</button>
 	</mat-card>
