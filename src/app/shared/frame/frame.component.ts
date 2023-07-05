@@ -1,13 +1,13 @@
-import { Component, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 
-import { ExchangeRateService } from '../services/exchange-rate.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ShoppingBasketService } from '../services/shopping-basket.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
+import { ExchangeRateService } from '../services/exchange-rate.service';
+import { ShoppingBasketService } from '../services/shopping-basket.service';
 
 @Component({
 	selector: 'app-frame',
@@ -86,17 +86,16 @@ export class FrameComponent {
 	}
 
 	openLoginDialog() {
-		if (this.shoppingBasketService.currentlyLoggedInUser != 'Guest') {
-			// User is logged in, do not open the dialog
-			this.toggleLogOutButton();
-			return;
-		} else {
-			const dialogRef = this.dialog.open(LoginPageComponent);
+		const isMobileView = window.innerWidth < 400;
+		const dialogConfig = {
+			width: isMobileView ? '100vw' : '400px',
+			maxWidth: '400px',
+		};
+		const dialogRef = this.dialog.open(LoginPageComponent, dialogConfig);
 
-			dialogRef.componentInstance.loginSuccess.subscribe(() => {
-				dialogRef.close(); // Close the dialog when login is successful
-			});
-		}
+		dialogRef.componentInstance.loginSuccess.subscribe(() => {
+			dialogRef.close(); // Close the dialog when login is successful
+		});
 	}
 
 	async logout() {
