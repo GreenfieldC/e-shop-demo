@@ -100,3 +100,31 @@
 	justify-content: center;
 	gap: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+	.products-list {
+
+		padding: 1rem;
+		gap: 2rem;
+
+		.card {
+			width: 100%;
+			height: unset;
+			flex-direction: row;
+			box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: .4);
+
+			&__image-container {
+
+				height: unset;
+				width: unset;
+				padding: 1rem;
+
+				&__image {
+					width: 50px;
+					
+				}
+
+		}
+	}
+}
+}
