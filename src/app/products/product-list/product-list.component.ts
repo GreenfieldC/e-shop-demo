@@ -58,11 +58,15 @@ export class ProductListComponent {
 		if (this.favouritesService.favourites.includes(product.id)) {
 			const favIndex = this.favouritesService.favourites.indexOf(product.id);
 			this.favouritesService.favourites.splice(favIndex, 1);
+			this.favouritesService.favouritesList.splice(favIndex, 1);
 		} else {
 			this.favouritesService.favourites.push(product.id);
+			this.favouritesService.favouritesList.push(product);
 		}
-
+		console.log(this.favouritesService.favouritesList);
 		this.favouritesService.updateFavs();
+		this.favouritesService.updateFavsList();
+		console.log(this.favouritesService.favourites);
 	}
 
 	/**

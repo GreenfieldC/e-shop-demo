@@ -14,14 +14,19 @@ import { Observable } from 'rxjs';
 })
 export class FavouritesService {
 	private favDocRef: DocumentReference;
+	private favListDocRef: DocumentReference;
 
 	//favorites array storing the ids that get displayed in UI
 	favourites: Array<any> = [];
+
+	//Storing the favourites list of the user
+	favouritesList: Array<any> = [];
 
 	//currently logged In User
 	currentlyLoggedInUser: string | null;
 
 	favReference: string;
+	favListReference: string;
 
 	constructor(public firestore: Firestore) {}
 
@@ -43,6 +48,28 @@ export class FavouritesService {
 		if (this.currentlyLoggedInUser != 'Guest') {
 			setDoc(this.favDocRef, {
 				favourites: this.favourites,
+			});
+		}
+	}
+
+	async getFavsList() {
+		//asssignment of cart document reference in Firestore
+		this.favListDocRef = doc(this.firestore, this.favListReference);
+
+		//get all ids of favorised items from firebase
+		const favListSnap = await getDoc(this.favListDocRef);
+		if (favListSnap) {
+			this.favourites = favListSnap.data()!['favouritesList'];
+		} else {
+			console.error('No document found!');
+		}
+	}
+
+	//update all favorites
+	async updateFavsList() {
+		if (this.currentlyLoggedInUser != 'Guest') {
+			setDoc(this.favListDocRef, {
+				favouritesList: this.favouritesList,
 			});
 		}
 	}

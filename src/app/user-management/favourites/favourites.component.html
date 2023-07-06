@@ -1,9 +1,20 @@
-<div [ngClass]="{ 'nofavourite-container': favourites === undefined }" class="container">
+<div
+	[ngClass]="{ 'nofavourite-container': favsService.favouritesList.length === 0 }"
+	class="container"
+>
 	<div class="container__frame">
-		<h1 *ngIf="favourites" class="container__frame__list-heading">Your Favourites</h1>
-		<div *ngIf="favourites; else noFavourites" class="container__frame__list">
+		<h1
+			*ngIf="favsService.favouritesList.length > 0"
+			class="container__frame__list-heading"
+		>
+			Your Favourites
+		</h1>
+		<div
+			*ngIf="favsService.favouritesList.length > 0; else noFavourites"
+			class="container__frame__list"
+		>
 			<mat-card
-				*ngFor="let favourite of favourites"
+				*ngFor="let favourite of favsService.favouritesList"
 				class="container__frame__list-item"
 			>
 				<div class="image-container">

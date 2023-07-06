@@ -67,4 +67,10 @@ export class AppComponent {
 		this.favService.currentlyLoggedInUser = userData.name;
 		this.favService.getFavs();
 	}
+
+	getFavsList(userData: any) {
+		this.favService.favListReference = `user_${userData.id}/favouritesList`;
+		this.favService.currentlyLoggedInUser = userData.name;
+		this.favService.getFavsList();
+	}
 }

@@ -173,6 +173,7 @@ export class LoginPageComponent {
 		this.cartService.cartReference = `user_${user.uid}/cart`;
 		this.orderService.orderReference = `user_${user.uid}/orders`;
 		this.favouritesService.favReference = `user_${user.uid}/favourites`;
+		this.favouritesService.favListReference = `user_${user.uid}/favouritesList`;
 		this.addressService.adressReference = `user_${user.uid}/addresses`;
 
 		//get corresponding data from firebase
@@ -180,6 +181,7 @@ export class LoginPageComponent {
 		this.orderService.getOrders();
 		this.addressService.getAdresses();
 		this.favouritesService.getFavs();
+		this.favouritesService.getFavsList();
 
 		// Show success message and change the form type to login
 		this.toast.success('Logged in!');
@@ -198,6 +200,9 @@ export class LoginPageComponent {
 		});
 		setDoc(doc(this.firestore, `user_${user.uid}`, 'favourites'), {
 			favourites: [],
+		});
+		setDoc(doc(this.firestore, `user_${user.uid}`, 'favouritesList'), {
+			favouritesList: [],
 		});
 
 		updateProfile(user, { displayName: username });
