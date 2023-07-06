@@ -1,6 +1,6 @@
-<div class="container">
+<div [ngClass]="{ 'nofavourite-container': favourites === undefined }" class="container">
 	<div class="container__frame">
-		<h1 class="container__frame__list-heading">Your Favourites</h1>
+		<h1 *ngIf="favourites" class="container__frame__list-heading">Your Favourites</h1>
 		<div *ngIf="favourites; else noFavourites" class="container__frame__list">
 			<mat-card
 				*ngFor="let favourite of favourites"
@@ -50,9 +50,10 @@
 			</mat-card>
 		</div>
 		<ng-template #noFavourites>
-			<div class="container__no-items">
-				<h1 class="container__no-items-heading">You have no favourites</h1>
-				<p class="container__no-items-text">Add some to see them here</p>
+			<div class="noFavourites">
+				<mat-icon class="heart-icon">favorite_border</mat-icon>
+				<h3>You have no favourites yet</h3>
+				<button [routerLink]="''">Explore products</button>
 			</div>
 		</ng-template>
 	</div>
