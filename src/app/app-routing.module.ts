@@ -8,6 +8,7 @@ import { SettingsComponent } from './user-management/settings/settings.component
 import { AddressesComponent } from './user-management/settings/addresses/addresses.component';
 import { AccountComponent } from './user-management/settings/account/account.component';
 import { authGuard } from './guards/auth.guard';
+import { FavouritesComponent } from './user-management/favourites/favourites.component';
 
 const routes: Routes = [
 	{
@@ -40,6 +41,7 @@ const routes: Routes = [
 			{ path: 'addresses', component: AddressesComponent },
 		],
 	},
+	{ path: 'favourites', component: FavouritesComponent },
 	{ path: '**', redirectTo: '' },
 ];
 

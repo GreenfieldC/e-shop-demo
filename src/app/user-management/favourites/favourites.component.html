@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="container__frame">
+		<h1 class="container__frame__list-heading">Your Favourites</h1>
+		<div *ngIf="favourites; else noFavourites" class="container__frame__list">
+			<mat-card
+				*ngFor="let favourite of favourites"
+				class="container__frame__list-item"
+			>
+				<div class="image-container">
+					<img src="{{ favourite.image }}" alt="{{ favourite.title }}" />
+				</div>
+
+				<div class="details-container">
+					<div>
+						<h2 class="details-container__title">
+							{{
+								favourite.title.length > 20
+									? (favourite.title | slice : 0 : 40) + '...'
+									: favourite.title
+							}}
+						</h2>
+						<span class="details-container__price">
+							{{
+								favourite.price * exchangeRateService.selectedRate
+									| number : '1.2-2'
+							}}
+							{{ exchangeRateService.icon }}
+						</span>
+					</div>
+
+					<div class="btn-container">
+						<button (click)="addToCart()" *ngIf="!orderPlaced">
+							Add to cart
+						</button>
+
+						<button
+							mat-icon-button
+							class="fav-btn"
+							(click)="toggleSelected(favourite)"
+						>
+							<mat-icon
+								[ngClass]="{
+									'red-icon': determineIcon(favourite) === 'favorite'
+								}"
+								>{{ determineIcon(favourite) }}</mat-icon
+							>
+						</button>
+					</div>
+				</div>
+			</mat-card>
+		</div>
+		<ng-template #noFavourites>
+			<div class="container__no-items">
+				<h1 class="container__no-items-heading">You have no favourites</h1>
+				<p class="container__no-items-text">Add some to see them here</p>
+			</div>
+		</ng-template>
+	</div>
+</div>

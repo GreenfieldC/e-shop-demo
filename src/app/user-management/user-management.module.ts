@@ -11,6 +11,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { AccountComponent } from './settings/account/account.component';
 import { AddressesComponent } from './settings/addresses/addresses.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
 	declarations: [
@@ -19,6 +20,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		SettingsComponent,
 		AccountComponent,
 		AddressesComponent,
+		FavouritesComponent,
 	],
 	imports: [
 		CommonModule,
