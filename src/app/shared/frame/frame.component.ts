@@ -99,13 +99,13 @@ export class FrameComponent {
 	}
 
 	async logout() {
-		this.afAuth.signOut();
+		await this.afAuth.signOut();
 		this.showLogOutButton = false;
 		this.toast.success('Logged out!');
 		this.shoppingBasketService.currentlyLoggedInUser = 'Guest';
 		localStorage.removeItem('authToken');
 		setTimeout(() => {
-			this.router.navigate(['/']);
+			window.location.reload();
 		}, 2000);
 	}
 
