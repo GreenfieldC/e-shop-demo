@@ -42,6 +42,12 @@ export class AddressesService {
 			setDoc(this.adressDocRef, {
 				addresses: this.addresses,
 			});
+
+			this.addresses.forEach((adress) => {
+				if (adress.isDefault) {
+					this.defaultAdress = adress;
+				}
+			});
 		}
 	}
 }

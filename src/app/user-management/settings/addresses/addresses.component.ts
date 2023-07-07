@@ -40,6 +40,11 @@ export class AddressesComponent {
 		if (!this.form.valid) return;
 		this.aS.addresses.push(this.form.value);
 		this.form.reset();
+
+		if (this.aS.addresses.length === 1) {
+			this.setInitialDefault();
+		}
+
 		this.aS.updateAdresses();
 	}
 
@@ -47,25 +52,25 @@ export class AddressesComponent {
 	 * Sets and saves the default address
 	 * @param {number} index
 	 */
-	setDefaultAddress(index: number) {
-		if (this.aS.addresses.length === 1) {
-			this.aS.addresses[0].isDefault = true;
-		} else {
-			this.aS.addresses.forEach((address) => {
-				address.isDefault = false;
-			});
-			this.aS.addresses[index].isDefault = true;
-		}
+	makeDefault(index: number) {
+		this.aS.addresses.forEach((address) => {
+			address.isDefault = false;
+		});
+		this.aS.addresses[index].isDefault = true;
 
 		this.aS.updateAdresses();
 	}
 
-	getDefaultAddress() {
-		const defaultAddress = this.aS.addresses.filter(
-			(address) => address.isDefault === true
-		);
-		if (defaultAddress.length === 0) return;
+	setInitialDefault() {
+		this.aS.addresses[0].isDefault = true;
 	}
+
+	// getDefaultAddress() {
+	// 	const defaultAddress = this.aS.addresses.filter(
+	// 		(address) => address.isDefault === true
+	// 	);
+	// 	if (defaultAddress.length === 0) return;
+	// }
 
 	/**
 	 *Deletes an address from the database
