@@ -61,16 +61,14 @@ export class AppComponent {
 		this.adressService.getAdresses();
 	}
 
-	//get all favorite items ids
+	//get all favorite items (both ids and items)
 	getFavourites(userData: any) {
 		this.favService.favReference = `user_${userData.id}/favourites`;
-		this.favService.currentlyLoggedInUser = userData.name;
-		this.favService.getFavs();
-	}
 
-	getFavsList(userData: any) {
 		this.favService.favListReference = `user_${userData.id}/favouritesList`;
+
 		this.favService.currentlyLoggedInUser = userData.name;
-		this.favService.getFavsList();
+
+		this.favService.getFavs();
 	}
 }

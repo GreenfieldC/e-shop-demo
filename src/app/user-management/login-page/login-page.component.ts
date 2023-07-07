@@ -181,7 +181,6 @@ export class LoginPageComponent {
 		this.orderService.getOrders();
 		this.addressService.getAdresses();
 		this.favouritesService.getFavs();
-		this.favouritesService.getFavsList();
 
 		// Show success message and change the form type to login
 		this.toast.success('Logged in!');

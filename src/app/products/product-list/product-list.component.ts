@@ -63,10 +63,7 @@ export class ProductListComponent {
 			this.favouritesService.favourites.push(product.id);
 			this.favouritesService.favouritesList.push(product);
 		}
-		console.log(this.favouritesService.favouritesList);
 		this.favouritesService.updateFavs();
-		this.favouritesService.updateFavsList();
-		console.log(this.favouritesService.favourites);
 	}
 
 	/**

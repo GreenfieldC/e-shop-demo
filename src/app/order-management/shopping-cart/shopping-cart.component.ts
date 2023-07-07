@@ -295,27 +295,33 @@ export class ShoppingCartComponent {
 	 * Function that triggers payment dialog
 	 */
 	openDialog() {
-		const isMobileView = window.innerWidth < 800;
-		const dialogConfig = {
-			width: isMobileView ? '100vw' : '100%',
-			maxWidth: isMobileView ? '100vw' : '900px',
-			maxHeight: '100vh',
-		};
-		this.dialog.open(DialogPaymentComponent, {
-			...dialogConfig,
-			data: {
-				payment: this.paymentMethod,
-				total:
-					(this.shoppingCartService.shippingCosts +
-						this.shoppingCartService.totalPrice -
-						this.discount) *
-					this.exchangeRateService.selectedRate,
-				currency: this.exchangeRateService.icon,
-				paymentData: this.paymentData,
-				shipping: this.shoppingCartService.shippingCosts,
-				discountCode: this.discountCode,
-			},
-		});
+		if (this.adressService.defaultAdress) {
+			const isMobileView = window.innerWidth < 800;
+			const dialogConfig = {
+				width: isMobileView ? '100vw' : '100%',
+				maxWidth: isMobileView ? '100vw' : '900px',
+				maxHeight: '100vh',
+			};
+			this.dialog.open(DialogPaymentComponent, {
+				...dialogConfig,
+				data: {
+					payment: this.paymentMethod,
+					total:
+						(this.shoppingCartService.shippingCosts +
+							this.shoppingCartService.totalPrice -
+							this.discount) *
+						this.exchangeRateService.selectedRate,
+					currency: this.exchangeRateService.icon,
+					paymentData: this.paymentData,
+					shipping: this.shoppingCartService.shippingCosts,
+					discountCode: this.discountCode,
+				},
+			});
+		} else {
+			this.toast.error(
+				'Please select a delivery address in the account settings panel!'
+			);
+		}
 	}
 
 	/**

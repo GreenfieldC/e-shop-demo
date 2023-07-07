@@ -18,7 +18,7 @@ export class AddressesService {
 	adressDocRef: DocumentReference;
 	adressReference: string;
 	currentlyLoggedInUser: string | null;
-	defaultAdress: { [key: string]: any };
+	defaultAdress: { [key: string]: any } | null;
 
 	constructor(private firestore: Firestore) {}
 
@@ -48,6 +48,10 @@ export class AddressesService {
 					this.defaultAdress = adress;
 				}
 			});
+
+			if (this.addresses.length === 0) {
+				this.defaultAdress = null;
+			}
 		}
 	}
 }
