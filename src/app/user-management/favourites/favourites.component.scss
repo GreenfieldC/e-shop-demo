@@ -11,7 +11,7 @@
 		&__list {
 			display: flex;
 			flex-direction: column;
-			gap: 0.5rem;
+			gap: 1rem;
 
 			&-item {
 				display: flex;
@@ -92,7 +92,7 @@
 	top: 0;
 	bottom: 0;
 	width: 50px;
-	background-color: #ccc;
+	background-color: var(--primary-color);
 }
 
 
