@@ -1,7 +1,4 @@
-<div
-	[ngClass]="{ 'nofavourite-container': favsService.favouritesList.length === 0 }"
-	class="container"
->
+<div class="container">
 	<div class="container__frame">
 		<h1
 			*ngIf="favsService.favouritesList.length > 0"
@@ -10,7 +7,7 @@
 			Your Favourites
 		</h1>
 		<div
-			*ngIf="favsService.favouritesList.length > 0; else noFavourites"
+			*ngIf="favsService.favouritesList.length > 0;"
 			class="container__frame__list"
 		>
 			<mat-card
@@ -60,12 +57,10 @@
 				</div>
 			</mat-card>
 		</div>
-		<ng-template #noFavourites>
-			<div class="noFavourites">
-				<mat-icon class="heart-icon">favorite_border</mat-icon>
-				<h3>You have no favourites yet</h3>
-				<button [routerLink]="''">Explore products</button>
-			</div>
-		</ng-template>
 	</div>
+</div>
+<div class="noFavourites" *ngIf="favsService.favouritesList.length === 0">
+	<mat-icon class="heart-icon">favorite_border</mat-icon>
+	<h3>You have no favourites yet.</h3>
+	<button [routerLink]="''">Explore products</button>
 </div>
