@@ -1,4 +1,4 @@
-<div class="order-history-container">
+<div class="order-history-container" *ngIf="!mobile">
 	<h1 *ngIf="orderService.orders.length != 0">MY ORDERS</h1>
 	<mat-card *ngFor="let order of orderService.orders.reverse()" class="order-container">
 		<div class="order-overview-container">
@@ -70,6 +70,23 @@
 		<h3>No orders yet</h3>
 		<button [routerLink]="''">Explore products</button>
 	</div>
+</div>
+<div class="mobile-order-container" *ngIf="mobile">
+	<mat-card *ngFor="let order of orderService.orders.reverse()" class="order-card">
+		<div
+				*ngFor="let product of order.products; let i = index"
+				class="product-wrapper"
+			>
+					<img [src]="product.image" alt="product-img" />
+					<div class="product-info-actions">
+						<span>{{ product.title }} 					
+						</span>
+					</div>
+
+					<mat-icon *ngIf="i === 0">keyboard_arrow_right</mat-icon>
+				
+			</div>
+	</mat-card>
 
 </div>
 

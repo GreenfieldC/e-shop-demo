@@ -8,4 +8,6 @@ import { OrderHistoryService } from 'src/app/shared/services/order-history.servi
 })
 export class OrdersListComponent {
 	constructor(public orderService: OrderHistoryService) {}
+
+	mobile: boolean = true;
 }
