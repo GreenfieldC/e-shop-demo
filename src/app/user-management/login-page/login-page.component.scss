@@ -11,6 +11,10 @@
 		display: flex;
 		flex-direction: column;
 
+		mat-form-field {
+			margin-bottom: 1.5rem;
+		}
+
 		button {
 			color: white;
 			background-color: var(--accent-color);

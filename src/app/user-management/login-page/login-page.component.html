@@ -44,7 +44,7 @@
 				placeholder="Username"
 				autocomplete="off"
 			/>
-			<mat-error *ngIf="username?.invalid && username?.dirty">
+			<mat-error *ngIf="username?.invalid && username?.touched">
 				Enter Username with at least 3 characters.
 			</mat-error>
 		</mat-form-field>
@@ -57,8 +57,8 @@
 				autocomplete="off"
 			/>
 
-			<mat-error *ngIf="email?.invalid && email?.dirty">
-				You must enter a valid email address
+			<mat-error *ngIf="email?.invalid && email?.touched">
+				You must enter a valid email address.
 			</mat-error>
 		</mat-form-field>
 
@@ -74,8 +74,8 @@
 				autocomplete="off"
 			/>
 
-			<mat-error *ngIf="password?.invalid && password?.dirty">
-				Password must be at least 6 characters long
+			<mat-error *ngIf="password?.invalid && password?.touched">
+				Password must be at least 6 characters long.
 			</mat-error>
 		</mat-form-field>
 
@@ -91,8 +91,8 @@
 				autocomplete="off"
 			/>
 
-			<mat-error *ngIf="passwordConfirm?.dirty && !passwordDoesMatch">
-				Password does not match
+			<mat-error *ngIf="passwordConfirm?.touched && !passwordDoesMatch">
+				Password does not match.
 			</mat-error>
 		</mat-form-field>
 
