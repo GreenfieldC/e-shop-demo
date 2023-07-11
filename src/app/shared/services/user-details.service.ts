@@ -6,29 +6,25 @@ import {
 	DocumentReference,
 	docData,
 } from '@angular/fire/firestore';
-import { getDoc, onSnapshot } from 'firebase/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UserDetailsService {
 	userDetailsReference: string;
-	userDetails: any;
+	userDetails$: Observable<any>;
+
 	constructor(private firestore: Firestore) {}
 
-	async getUserDetails() {
+	getUserDetails() {
 		const docRef = doc(this.firestore, this.userDetailsReference);
-		const docSnap = await getDoc(docRef);
-		if (docSnap) {
-			this.userDetails = docSnap.data()!['userDetails'];
-			console.log(this.userDetails);
-		}
+		return docData(docRef);
 	}
 
 	async updateUserDetails(changes: any) {
 		const docRef = doc(this.firestore, this.userDetailsReference);
-		console.log(this.userDetailsReference);
 		await setDoc(docRef, {
 			userDetails: changes,
 		});
