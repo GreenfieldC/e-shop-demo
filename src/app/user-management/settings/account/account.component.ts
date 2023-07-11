@@ -19,7 +19,7 @@ export class AccountComponent {
 		public toast: HotToastService
 	) {
 		this.initialiseForm();
-		this.fillForm();
+		// this.fillForm();
 	}
 
 	submit() {
@@ -39,16 +39,16 @@ export class AccountComponent {
 		});
 	}
 
-	fillForm() {
-		setTimeout(() => {
-			const data = this.userDetailsService.data;
-			this.form.patchValue({
-				firstName: data.firstName,
-				lastName: data.lastName,
-				company: data.company,
-				phone: data.phone,
-				email: data.email,
-			});
-		}, 1000);
-	}
+	// fillForm() {
+	// 	setTimeout(() => {
+	// 		const data = this.userDetailsService.data;
+	// 		this.form.patchValue({
+	// 			firstName: data.firstName,
+	// 			lastName: data.lastName,
+	// 			company: data.company,
+	// 			phone: data.phone,
+	// 			email: data.email,
+	// 		});
+	// 	}, 1000);
+	// }
 }
