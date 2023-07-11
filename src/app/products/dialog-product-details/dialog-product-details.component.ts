@@ -34,28 +34,37 @@ export class DialogProductDetailsComponent {
 	}
 
 	addToCart() {
-		//! hier muss noch rein: this.data.category.includes('clothing') -> keine sizes auswählen, aber hinzufügen
-		if (this.selectedSize) {
-			this.orderPlaced = true;
+		this.orderPlaced = true;
 
-			const index = this.shoppingBasketService.products.findIndex(
-				(obj) => obj.size === this.data.size && obj.title === this.data.title
+		let index = -1;
+
+		if (!this.data.category.includes('clothing')) {
+			index = this.shoppingBasketService.products.findIndex(
+				(obj) => obj.title === this.data.title
 			);
-
-			if (index != -1) {
-				let baselinePrice =
-					this.shoppingBasketService.products[index].price /
-					this.shoppingBasketService.products[index].quantity;
-
-				this.shoppingBasketService.products[index].quantity += 1;
-				this.shoppingBasketService.products[index].price += baselinePrice;
-			} else {
-				this.shoppingBasketService.products.push(this.data);
-			}
-
-			this.shoppingBasketService.updateProducts();
 		} else {
-			this.toast.error('Please select size!');
+			if (this.selectedSize) {
+				index = this.shoppingBasketService.products.findIndex(
+					(obj) => obj.size === this.data.size && obj.title === this.data.title
+				);
+			} else {
+				this.toast.error('Please select size!');
+				return;
+			}
 		}
+
+		if (index !== -1) {
+			let baselinePrice =
+				this.shoppingBasketService.products[index].price /
+				this.shoppingBasketService.products[index].quantity;
+
+			this.shoppingBasketService.products[index].quantity += 1;
+			this.shoppingBasketService.products[index].price += baselinePrice;
+		} else {
+			this.shoppingBasketService.products.push(this.data);
+			this.toast.success('Product added to cart!');
+		}
+
+		this.shoppingBasketService.updateProducts();
 	}
 }

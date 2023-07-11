@@ -51,6 +51,10 @@ export class FavouritesComponent {
 		}
 	}
 
+	/**
+	 * Opens products detail view when clicking on it
+	 * @param product Object containing all the product data
+	 */
 	openDetails(product: any) {
 		const isMobileView = window.innerWidth < 800;
 		const dialogConfig = {
@@ -63,6 +67,5 @@ export class FavouritesComponent {
 		};
 
 		this.dialog.open(DialogProductDetailsComponent, dialogConfig);
-		console.log(product);
 	}
 }
