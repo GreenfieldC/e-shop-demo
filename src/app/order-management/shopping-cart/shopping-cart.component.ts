@@ -298,8 +298,8 @@ export class ShoppingCartComponent {
 		if (this.adressService.defaultAdress) {
 			const isMobileView = window.innerWidth < 800;
 			const dialogConfig = {
-				width: isMobileView ? '100vw' : '100%',
-				maxWidth: isMobileView ? '100vw' : '900px',
+				width: isMobileView ? '100vw' : '800px',
+				maxWidth: isMobileView ? '500px' : '800px',
 				maxHeight: '100vh',
 			};
 			this.dialog.open(DialogPaymentComponent, {
