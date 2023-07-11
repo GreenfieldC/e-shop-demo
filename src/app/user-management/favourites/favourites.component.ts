@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { HotToastService } from '@ngneat/hot-toast';
+import { DialogProductDetailsComponent } from 'src/app/products/dialog-product-details/dialog-product-details.component';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
 import { FavouritesService } from 'src/app/shared/services/favourites.service';
+import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
 @Component({
 	selector: 'app-favourites',
@@ -10,12 +14,13 @@ import { FavouritesService } from 'src/app/shared/services/favourites.service';
 export class FavouritesComponent {
 	constructor(
 		public exchangeRateService: ExchangeRateService,
-		public favsService: FavouritesService
+		public favsService: FavouritesService,
+		public shoppingBasketService: ShoppingBasketService,
+		public toast: HotToastService,
+		private dialog: MatDialog
 	) {}
 
 	orderPlaced: boolean = false;
-
-	addToCart() {}
 
 	/**
 	 * Method to either remove a marked product ID from the favourites array or add it
@@ -44,5 +49,20 @@ export class FavouritesComponent {
 		} else {
 			return 'favorite_border';
 		}
+	}
+
+	openDetails(product: any) {
+		const isMobileView = window.innerWidth < 800;
+		const dialogConfig = {
+			data: product,
+			maxHeight: isMobileView ? '100dvh' : '650px',
+			maxWidth: isMobileView ? '480px' : '800px',
+			height: isMobileView ? '100dvh' : 'fit-content',
+			width: '100%',
+			panelClass: isMobileView ? 'full-screen-modal' : undefined,
+		};
+
+		this.dialog.open(DialogProductDetailsComponent, dialogConfig);
+		console.log(product);
 	}
 }

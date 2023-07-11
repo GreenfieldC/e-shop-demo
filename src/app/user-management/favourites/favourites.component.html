@@ -36,17 +36,17 @@
 					<div class="btn-container">
 						<button
 							class="addToCart-btn"
-							(click)="addToCart()"
+							(click)="openDetails(favourite)"
 							*ngIf="!orderPlaced"
-							aria-label="Add to cart"
+							aria-label="Product View"
 						>
-							Add to cart
+							Product View
 						</button>
 						<button class="addToCart-mobile" mat-icon-button>
 							<mat-icon
-								(click)="addToCart()"
+								(click)="openDetails(favourite)"
 								*ngIf="!orderPlaced"
-								aria-label="Add to cart"
+								aria-label="Product View"
 								>add_shopping_cart</mat-icon
 							>
 						</button>
