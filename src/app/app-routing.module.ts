@@ -9,6 +9,7 @@ import { AddressesComponent } from './user-management/settings/addresses/address
 import { AccountComponent } from './user-management/settings/account/account.component';
 import { authGuard } from './guards/auth.guard';
 import { FavouritesComponent } from './user-management/favourites/favourites.component';
+import { PaymentComponent } from './user-management/settings/payment/payment.component';
 
 const routes: Routes = [
 	{
@@ -35,10 +36,11 @@ const routes: Routes = [
 	{
 		path: 'settings',
 		component: SettingsComponent,
-		canActivate: [authGuard],
+		// canActivate: [authGuard],
 		children: [
 			{ path: 'account', component: AccountComponent },
 			{ path: 'addresses', component: AddressesComponent },
+			{ path: 'payment', component: PaymentComponent },
 		],
 	},
 	{ path: 'favourites', component: FavouritesComponent },

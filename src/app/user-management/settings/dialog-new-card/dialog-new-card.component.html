@@ -1,0 +1,90 @@
+<div class="new-card-container">
+	<h2>Enter Card Details</h2>
+	<form [formGroup]="form">
+		<div class="payment-info">
+			<div class="number-wrapper">
+				<mat-form-field>
+					<mat-label>Enter Card Number</mat-label>
+					<input
+						matInput
+						placeholder="1234 5678 9012 3456"
+						formControlName="cardNumber"
+						required
+					/>
+					<mat-icon matSuffix>credit_card</mat-icon>
+					<mat-error
+						*ngIf="
+							form.controls['cardNumber'].invalid &&
+							form.controls['cardNumber'].touched
+						"
+					>
+						Card number is required (16 digits).
+					</mat-error>
+				</mat-form-field>
+			</div>
+
+			<div class="security-wrapper">
+				<mat-form-field>
+					<mat-label>Expiry Date</mat-label>
+					<input
+						matInput
+						placeholder="MM/JJ"
+						required
+						formControlName="expiry"
+					/>
+					<mat-icon matSuffix>credit_card_off</mat-icon>
+					<mat-error
+						*ngIf="
+							form.controls['expiry'].invalid &&
+							form.controls['expiry'].touched
+						"
+					>
+						Valid expiry date is required.
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>CVC/ CVV</mat-label>
+					<input
+						matInput
+						placeholder="3 digits"
+						formControlName="cvv"
+						required
+					/>
+					<mat-icon matSuffix>pin</mat-icon>
+					<mat-error
+						*ngIf="
+							form.controls['cvv'].invalid && form.controls['cvv'].touched
+						"
+					>
+						Valid cvv is required.
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="name-wrapper">
+				<mat-form-field>
+					<mat-label>Name On Card</mat-label>
+					<input
+						matInput
+						placeholder="Enter Cardholder's Name"
+						formControlName=""
+						required
+						formControlName="name"
+					/>
+					<mat-icon matSuffix>person</mat-icon>
+					<mat-error
+						*ngIf="
+							form.controls['name'].invalid && form.controls['name'].touched
+						"
+					>
+						Cardholder's name is required.
+					</mat-error>
+				</mat-form-field>
+			</div>
+		</div>
+	</form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="addCard()" 
+    cdkFocusInitial>Ok</button>
+  </div>
