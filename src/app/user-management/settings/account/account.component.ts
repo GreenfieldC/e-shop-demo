@@ -42,6 +42,7 @@ export class AccountComponent {
 	fillForm() {
 		setTimeout(() => {
 			const data = this.userDetailsService.data;
+			if (!data) return;
 			this.form.patchValue({
 				firstName: data.firstName,
 				lastName: data.lastName,
