@@ -4,24 +4,27 @@
 		class="product-item"
 		class="card"
 	>
-		<div (click)="openDetailView(product)" class="card__image-container">
-			<img class="card__image-container__image" [src]="product?.image" />
-			<div class="card__image-container__overlay">
-				<button mat-raised-button aria-label="Expand image">
-					<span>Product View</span>
-				</button>
+		<main (click)="openDetailView(product)">
+			<div class="card__image-container">
+				<img class="card__image-container__image" [src]="product?.image" />
+				<div class="card__image-container__overlay">
+					<button mat-raised-button aria-label="Expand image">
+						<span>Product View</span>
+					</button>
+				</div>
 			</div>
-		</div>
 
-		<mat-card-content class="card__content">
-			<span class="card__content__title">{{ product.title }}</span>
-			<span class="card__content__price"
-				>{{
-					product.price * exchangeRateService.selectedRate | number : '1.2-2'
-				}}
-				{{ exchangeRateService.icon }}</span
-			>
-		</mat-card-content>
+			<mat-card-content class="card__content">
+				<span class="card__content__title">{{ product.title }}</span>
+				<span class="card__content__price"
+					>{{
+						product.price * exchangeRateService.selectedRate
+							| number : '1.2-2'
+					}}
+					{{ exchangeRateService.icon }}</span
+				>
+			</mat-card-content>
+		</main>
 
 		<button mat-icon-button (click)="toggleSelected(product)">
 			<mat-icon [ngClass]="{ 'red-icon': determineIcon(product) === 'favorite' }">{{
@@ -31,6 +34,6 @@
 	</mat-card>
 </div>
 <div class="loading-placeholder" *ngIf="apiService.isLoading">
-	<mat-spinner style="margin-bottom: 1rem;"></mat-spinner>
+	<mat-spinner style="margin-bottom: 1rem"></mat-spinner>
 	<h1>Loading Products</h1>
 </div>
