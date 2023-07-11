@@ -208,7 +208,14 @@ export class LoginPageComponent {
 			favouritesList: [],
 		});
 		setDoc(doc(this.firestore, `user_${user.uid}`, 'userDetails'), {
-			userDetails: [],
+			userDetails: {
+				firstName: null,
+				lastName: null,
+				company: null,
+				phone: null,
+				email: null,
+				cards: [],
+			},
 		});
 
 		updateProfile(user, { displayName: username });

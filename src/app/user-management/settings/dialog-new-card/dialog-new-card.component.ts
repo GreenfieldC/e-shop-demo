@@ -12,6 +12,7 @@ interface cardDetails {
 	expiry: null | string;
 	cvv: null | number;
 	name: null | string;
+	isDefault: null | boolean;
 }
 
 @Component({
@@ -26,8 +27,8 @@ export class DialogNewCardComponent {
 		expiry: null,
 		cvv: null,
 		name: null,
+		isDefault: null,
 	};
-	cards: Array<any> = [];
 
 	constructor(
 		private fb: FormBuilder,
@@ -85,14 +86,18 @@ export class DialogNewCardComponent {
 			expiry: this.expiry!.value,
 			cvv: this.cvv!.value,
 			name: this.name!.value,
+			isDefault: true,
 		};
 	}
 
 	addCard() {
 		if (this.form.valid) {
+			this.userDetailsService.data.cards.forEach((card: any) => {
+				card.isDefault = false;
+			});
+
 			this.setCreditData();
-			this.cards.push(this.cardDetails);
-			this.userDetailsService.data.cards = this.cards;
+			this.userDetailsService.data.cards.push(this.cardDetails);
 			this.userDetailsService.updateUserDetails();
 			this.dialog.closeAll();
 		} else {

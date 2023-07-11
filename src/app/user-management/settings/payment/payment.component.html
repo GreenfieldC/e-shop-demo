@@ -1,6 +1,6 @@
 <div class="saved-cards-container">
-    <div *ngIf="userDetailsService.data?.cards">
-        <div *ngFor="let card of userDetailsService.data.cards" class="card">
+    <div *ngIf="userDetailsService.data?.cards" style="display: flex; gap: 1rem;">
+        <div *ngFor="let card of userDetailsService.data.cards; let i= index" class="card" (click)="setDefault(i)" [class.default]="card.isDefault">
             <span>{{card.number}}</span>
             <span>{{card.name}}</span>
             <span>{{card.expiry}}</span>
