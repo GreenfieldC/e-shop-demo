@@ -64,7 +64,7 @@
 			</div>
 		</div>
 	</mat-card>
-	
+
 	<div class="empty-orders-prompt" *ngIf="orderService.orders.length === 0">
 		<mat-icon>list_alt</mat-icon>
 		<h3>No orders yet</h3>
@@ -73,16 +73,45 @@
 </div>
 <div class="mobile-order-container" *ngIf="mobile">
 	<h1 *ngIf="orderService.orders.length != 0">MY ORDERS</h1>
-	<mat-card *ngFor="let order of orderService.orders.reverse()" class="order-card">
-		<div *ngFor="let product of order.products; let i = index" class="product-wrapper" >
-		  <img *ngIf="i === 0" [src]="product.image" alt="product-img" />
-		  <div class="product-info-actions">
-			<span *ngIf="i === 0">{{ product.title }} ...</span>
-		  </div>
-		  <mat-icon *ngIf="i === 0">keyboard_arrow_right</mat-icon>
+	<mat-expansion-panel
+		(opened)="panelOpenState = true"
+		(closed)="panelOpenState = false"
+		*ngFor="let order of orderService.orders.reverse()"
+		class="order-card"
+	>
+		<mat-expansion-panel-header
+			*ngFor="let product of order.products.slice(0, 1); let i = index"
+		>
+			<mat-panel-title>
+				<img [src]="product.image" class="showcase-img" />
+				<span>{{ order.orderID }} ...</span>
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<h2 style="text-align: center">Order Details</h2>
+		<ol>
+			<li>
+				<strong>Date:</strong>
+				{{ order.date.seconds * 1000 | date : 'longDate' }}</li>
+			<li> <strong>Total:</strong>
+				{{ order.paymentDetails.currency
+				}}{{ order.paymentDetails.total | number : '1.2-2' }}
+			</li>
+			<li><strong>Delivered To:</strong></li>
+			<li><strong>ID:</strong> {{ order.orderID }}</li>
+			<li>
+				<strong>Return Window:</strong> {{ order.returnDate!.seconds * 1000 | date : 'longDate' }}
+			</li>
+		</ol>
+		<div class="mobile-product" *ngFor="let product of order.products; let i = index">
+			<img [src]="product.image" alt="product-img" />
+			<div class="product-info-actions">
+				<span>{{ product.title }}</span>
+				<div class="btn-wrapper-mobile">
+					<button class="btn-accent">Buy again</button>
+					<button class="btn-white">See Product Detail</button>
+				</div>
+			</div>
 		</div>
-	  </mat-card>
-
+	</mat-expansion-panel>
 </div>
-
-

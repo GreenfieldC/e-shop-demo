@@ -10,4 +10,5 @@ export class OrdersListComponent {
 	constructor(public orderService: OrderHistoryService) {}
 
 	mobile: boolean = true;
+	panelOpenState: boolean = false;
 }
