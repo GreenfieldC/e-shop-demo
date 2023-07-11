@@ -35,17 +35,20 @@ export class AccountComponent {
 			company: [''],
 			phone: ['', Validators.required],
 			email: ['', Validators.required],
+			cards: this.userDetailsService.data?.cards,
 		});
 	}
 
 	fillForm() {
-		const data = this.userDetailsService.data;
-		this.form.patchValue({
-			firstName: data.firstName,
-			lastName: data.lastName,
-			company: data.company,
-			phone: data.phone,
-			email: data.email,
-		});
+		setTimeout(() => {
+			const data = this.userDetailsService.data;
+			this.form.patchValue({
+				firstName: data.firstName,
+				lastName: data.lastName,
+				company: data.company,
+				phone: data.phone,
+				email: data.email,
+			});
+		}, 1000);
 	}
 }

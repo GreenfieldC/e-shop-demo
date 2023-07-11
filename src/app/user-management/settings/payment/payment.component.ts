@@ -17,4 +17,14 @@ export class PaymentComponent {
 	openDialog() {
 		this.dialog.open(DialogNewCardComponent);
 	}
+
+	setDefault(index: number) {
+		this.userDetailsService.data.cards.forEach((card: any) => {
+			card.isDefault = false;
+		});
+
+		this.userDetailsService.data.cards[index].isDefault = true;
+
+		this.userDetailsService.updateUserDetails();
+	}
 }
