@@ -52,7 +52,7 @@ export class LoginPageComponent {
 	 */
 	initialiseForm() {
 		this.form = this.fb.group({
-			username: ['', []],
+			username: ['', [Validators.minLength(3), Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.minLength(6), Validators.required]],
 			passwordConfirm: ['', [Validators.minLength(3), Validators.required]],
