@@ -65,13 +65,6 @@ export class AddressesComponent {
 		this.aS.addresses[0].isDefault = true;
 	}
 
-	// getDefaultAddress() {
-	// 	const defaultAddress = this.aS.addresses.filter(
-	// 		(address) => address.isDefault === true
-	// 	);
-	// 	if (defaultAddress.length === 0) return;
-	// }
-
 	/**
 	 *Deletes an address from the database
 	 * @param {number} index
