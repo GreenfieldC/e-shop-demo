@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { UserDetailsService } from 'src/app/shared/services/user-details.service';
@@ -19,7 +19,7 @@ export class AccountComponent {
 		public toast: HotToastService
 	) {
 		this.initialiseForm();
-		this.fillForm();
+		// this.fillForm();
 	}
 
 	submit() {
@@ -39,17 +39,16 @@ export class AccountComponent {
 		});
 	}
 
-	fillForm() {
-		setTimeout(() => {
-			const data = this.userDetailsService.data;
-			if (!data) return;
-			this.form.patchValue({
-				firstName: data.firstName,
-				lastName: data.lastName,
-				company: data.company,
-				phone: data.phone,
-				email: data.email,
-			});
-		}, 1000);
-	}
+	// fillForm() {
+	// 	setTimeout(() => {
+	// 		const data = this.userDetailsService.data;
+	// 		this.form.patchValue({
+	// 			firstName: data.firstName,
+	// 			lastName: data.lastName,
+	// 			company: data.company,
+	// 			phone: data.phone,
+	// 			email: data.email,
+	// 		});
+	// 	}, 1000);
+	// }
 }
