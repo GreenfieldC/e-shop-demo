@@ -6,10 +6,7 @@
 		>
 			Your Favourites
 		</h1>
-		<div
-			*ngIf="favsService.favouritesList.length > 0;"
-			class="container__frame__list"
-		>
+		<div *ngIf="favsService.favouritesList.length > 0" class="container__frame__list">
 			<mat-card
 				*ngFor="let favourite of favsService.favouritesList"
 				class="container__frame__list-item"
@@ -23,7 +20,7 @@
 						<h2 class="details-container__title">
 							{{
 								favourite.title.length > 20
-									? (favourite.title | slice : 0 : 40) + '...'
+									? (favourite.title | slice : 0 : 20) + '...'
 									: favourite.title
 							}}
 						</h2>
@@ -37,8 +34,21 @@
 					</div>
 
 					<div class="btn-container">
-						<button (click)="addToCart()" *ngIf="!orderPlaced">
+						<button
+							class="addToCart-btn"
+							(click)="addToCart()"
+							*ngIf="!orderPlaced"
+							aria-label="Add to cart"
+						>
 							Add to cart
+						</button>
+						<button class="addToCart-mobile" mat-icon-button>
+							<mat-icon
+								(click)="addToCart()"
+								*ngIf="!orderPlaced"
+								aria-label="Add to cart"
+								>add_shopping_cart</mat-icon
+							>
 						</button>
 
 						<button

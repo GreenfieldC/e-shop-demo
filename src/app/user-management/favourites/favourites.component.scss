@@ -54,6 +54,16 @@
 					.btn-container {
 						display: flex;
 						align-items: center;
+
+						.addToCart-btn {
+							display: none;
+						}
+
+						.addToCart-mobile {
+							cursor: pointer;
+							background-color: var(--accent-color);
+						}
+
 						button:not([mat-icon-button]) {
 							color: white;
 							background-color: var(--accent-color);
@@ -95,7 +105,6 @@
 	background-color: var(--primary-color);
 }
 
-
 .noFavourites {
 	display: flex;
 	flex-direction: column;
@@ -134,5 +143,13 @@
 @media (min-width: 480px) {
 	.container {
 		padding: 2rem;
+	}
+
+	.addToCart-mobile {
+		display: none !important;
+	}
+
+	.addToCart-btn {
+		display: block !important;
 	}
 }
