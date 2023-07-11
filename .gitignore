@@ -53,3 +53,4 @@ environments/environment.ts
 .runtimeconfig.json
 
 .prettierrc
+outsourcing.html

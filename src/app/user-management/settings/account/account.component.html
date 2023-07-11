@@ -27,9 +27,7 @@
 		</div>
 		<!-- Last Name -->
 		<div class="form__container__subcontainer">
-			<label for="lastName" class="label"
-				>LAST NAME<small>*REQUIRED</small></label
-			>
+			<label for="lastName" class="label">LAST NAME<small>*REQUIRED</small></label>
 			<mat-form-field>
 				<input
 					formControlName="lastName"
@@ -43,8 +41,7 @@
 			<mat-error
 				class="mat-error"
 				*ngIf="
-					form.controls['lastName'].invalid &&
-					form.controls['lastName'].touched
+					form.controls['lastName'].invalid && form.controls['lastName'].touched
 				"
 			>
 				Last name is required
@@ -67,9 +64,7 @@
 		</div>
 		<!-- Phone Number -->
 		<div class="form__container__subcontainer">
-			<label for="phone" class="label"
-				>PHONE NUMBER<small>*REQUIRED</small></label
-			>
+			<label for="phone" class="label">PHONE NUMBER<small>*REQUIRED</small></label>
 			<mat-form-field>
 				<input
 					formControlName="phone"
@@ -83,10 +78,7 @@
 			</mat-form-field>
 			<mat-error
 				class="mat-error"
-				*ngIf="
-					form.controls['phone'].invalid &&
-					form.controls['phone'].touched
-				"
+				*ngIf="form.controls['phone'].invalid && form.controls['phone'].touched"
 			>
 				Phone number is required
 			</mat-error>
@@ -95,9 +87,7 @@
 	<div class="form__container">
 		<!-- Email Address -->
 		<div class="form__container__subcontainer">
-			<label for="email" class="label"
-				>EMAIL ADDRESS<small>*REQUIRED</small></label
-			>
+			<label for="email" class="label">EMAIL ADDRESS<small>*REQUIRED</small></label>
 			<mat-form-field>
 				<input
 					formControlName="email"
@@ -111,61 +101,11 @@
 			</mat-form-field>
 			<mat-error
 				class="mat-error"
-				*ngIf="
-					form.controls['email'].invalid &&
-					form.controls['email'].touched
-				"
+				*ngIf="form.controls['email'].invalid && form.controls['email'].touched"
 			>
 				Email address is required
 			</mat-error>
 		</div>
-		<!-- Password -->
-		<div class="form__container__subcontainer">
-			<label for="password" class="label">PASSWORD</label>
-			<mat-form-field>
-				<input
-					formControlName="password"
-					#password
-					matInput
-					placeholder="Password"
-					value="**********"
-				/>
-			</mat-form-field>
-		</div>
 	</div>
-	<div class="form__container">
-		<!-- Confirm Password -->
-		<div class="form__container__subcontainer">
-			<label for="passwordConfirm" class="label"
-				>CONFIRM PASSWORD</label
-			>
-			<mat-form-field>
-				<input
-					formControlName="passwordConfirm"
-					#passwordConfirm
-					matInput
-					placeholder="Confirm Password"
-					value="--"
-				/>
-			</mat-form-field>
-		</div>
-		<!-- Current Password -->
-		<div class="form__container__subcontainer">
-			<label for="passwordCurrent" class="label"
-				>CURRENT PASSWORD</label
-			>
-			<mat-form-field>
-				<input
-					formControlName="passwordCurrent"
-					#currentPassword
-					matInput
-					placeholder="Current Password"
-					value=""
-				/>
-			</mat-form-field>
-		</div>
-	</div>
-	<button type="submit" class="cart-action-btn">
-		UPDATE DETAILS
-	</button>
+	<button type="submit" class="cart-action-btn">UPDATE DETAILS</button>
 </form>

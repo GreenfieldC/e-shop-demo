@@ -3,6 +3,7 @@ import { ShoppingBasketService } from './shared/services/shopping-basket.service
 import { OrderHistoryService } from './shared/services/order-history.service';
 import { AddressesService } from './shared/services/addresses.service';
 import { FavouritesService } from './shared/services/favourites.service';
+import { UserDetailsService } from './shared/services/user-details.service';
 
 @Component({
 	selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
 		public cartService: ShoppingBasketService,
 		public orderService: OrderHistoryService,
 		public adressService: AddressesService,
-		public favService: FavouritesService
+		public favService: FavouritesService,
+		public userDetailsService: UserDetailsService
 	) {}
 
 	ngOnInit() {
@@ -70,5 +72,10 @@ export class AppComponent {
 		this.favService.currentlyLoggedInUser = userData.name;
 
 		this.favService.getFavs();
+	}
+
+	getUserDetails(userData: any) {
+		this.userDetailsService.userDetailsReference = `user_${userData.id}/userDetails`;
+		this.userDetailsService.getUserDetails();
 	}
 }

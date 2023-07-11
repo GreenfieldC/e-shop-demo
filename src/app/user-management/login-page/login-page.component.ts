@@ -10,6 +10,7 @@ import { FavouritesService } from 'src/app/shared/services/favourites.service';
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { AddressesService } from 'src/app/shared/services/addresses.service';
+import { UserDetailsService } from 'src/app/shared/services/user-details.service';
 @Component({
 	selector: 'app-login-page',
 	templateUrl: './login-page.component.html',
@@ -38,7 +39,8 @@ export class LoginPageComponent {
 		public orderService: OrderHistoryService,
 		private toast: HotToastService,
 		public favouritesService: FavouritesService,
-		private addressService: AddressesService
+		private addressService: AddressesService,
+		public userDetailsService: UserDetailsService
 	) {}
 
 	ngOnInit() {
@@ -175,12 +177,14 @@ export class LoginPageComponent {
 		this.favouritesService.favReference = `user_${user.uid}/favourites`;
 		this.favouritesService.favListReference = `user_${user.uid}/favouritesList`;
 		this.addressService.adressReference = `user_${user.uid}/addresses`;
+		this.userDetailsService.userDetailsReference = `user_${user.uid}/userDetails`;
 
 		//get corresponding data from firebase
 		this.cartService.getUserData();
 		this.orderService.getOrders();
 		this.addressService.getAdresses();
 		this.favouritesService.getFavs();
+		this.userDetailsService.getUserDetails();
 
 		// Show success message and change the form type to login
 		this.toast.success('Logged in!');
@@ -202,6 +206,9 @@ export class LoginPageComponent {
 		});
 		setDoc(doc(this.firestore, `user_${user.uid}`, 'favouritesList'), {
 			favouritesList: [],
+		});
+		setDoc(doc(this.firestore, `user_${user.uid}`, 'userDetails'), {
+			userDetails: [],
 		});
 
 		updateProfile(user, { displayName: username });
