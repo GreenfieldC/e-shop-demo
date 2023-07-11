@@ -12,6 +12,8 @@ import { AccountComponent } from './settings/account/account.component';
 import { AddressesComponent } from './settings/addresses/addresses.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { PaymentComponent } from './settings/payment/payment.component';
+import { DialogNewCardComponent } from './settings/dialog-new-card/dialog-new-card.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +23,8 @@ import { FavouritesComponent } from './favourites/favourites.component';
 		AccountComponent,
 		AddressesComponent,
 		FavouritesComponent,
+  PaymentComponent,
+  DialogNewCardComponent,
 	],
 	imports: [
 		CommonModule,

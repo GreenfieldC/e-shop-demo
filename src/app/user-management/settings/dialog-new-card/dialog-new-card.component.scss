@@ -1,0 +1,33 @@
+.new-card-container {
+    padding: 2rem;
+}
+
+.payment-info {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	row-gap: 2rem;
+
+	.number-wrapper {
+		mat-form-field {
+			width: 100%;
+		}
+	}
+
+	.security-wrapper {
+		display: flex;
+		gap: 1rem;
+
+		mat-form-field {
+			width: 50%;
+		}
+	}
+
+	
+
+	.name-wrapper {
+		mat-form-field {
+			width: 100%;
+		}
+	}
+}

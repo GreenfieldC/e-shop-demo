@@ -28,11 +28,13 @@ export class UserDetailsService {
 
 		if (snap) {
 			this.data = snap.data()!['userDetails'];
+			console.log(this.data);
 		} else {
 			console.error('No user data found!');
 		}
 	}
 
+	//update User Information on Server
 	async updateUserDetails() {
 		if (this.currentlyLoggedInUser != 'Guest') {
 			await setDoc(this.dataDocRef, {

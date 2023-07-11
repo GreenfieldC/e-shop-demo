@@ -9,6 +9,9 @@
 				<mat-option routerLink="/settings/addresses" value="ADDRESSES"
 					>ADDRESSES</mat-option
 				>
+				<mat-option routerLink="/settings/addresses" value="PAYMENT"
+					>PAYMENT</mat-option
+				>
 			</mat-select>
 		</mat-form-field>
 
@@ -29,6 +32,14 @@
 				>
 					ADDRESSES
 				</li>
+				<li
+					routerLink="/settings/payment"
+					(click)="selected = 'PAYMENT'"
+					routerLinkActive="active"
+				>
+					PAYMENT
+				</li>
+
 			</ul>
 		</nav>
 		<router-outlet></router-outlet>
