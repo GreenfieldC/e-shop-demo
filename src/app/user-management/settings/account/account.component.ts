@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
 import { UserDetailsService } from 'src/app/shared/services/user-details.service';
 
 @Component({
@@ -12,7 +13,11 @@ export class AccountComponent {
 	form: FormGroup;
 	data: any;
 
-	constructor(private fb: FormBuilder, public userDetailsService: UserDetailsService) {
+	constructor(
+		private fb: FormBuilder,
+		public userDetailsService: UserDetailsService,
+		public toast: HotToastService
+	) {
 		this.initialiseForm();
 		this.fillForm();
 	}
@@ -20,6 +25,7 @@ export class AccountComponent {
 	submit() {
 		this.userDetailsService.data = this.form.value;
 		this.userDetailsService.updateUserDetails();
+		this.toast.success('Data updated!');
 	}
 
 	initialiseForm() {

@@ -4,7 +4,7 @@
 		<mat-form-field class="select--mobile">
 			<mat-select [(value)]="selected" disableRipple>
 				<mat-option routerLink="/settings/account" value="ACCOUNT SETTINGS"
-					>ACCOUNT SETTINGS</mat-option
+					>ACCOUNT DETAILS</mat-option
 				>
 				<mat-option routerLink="/settings/addresses" value="ADDRESSES"
 					>ADDRESSES</mat-option
@@ -20,7 +20,7 @@
 					(click)="selected = 'ACCOUNT SETTINGS'"
 					routerLinkActive="active"
 				>
-					ACCOUNT SETTINGS
+					ACCOUNT DETAILS
 				</li>
 				<li
 					routerLink="/settings/addresses"
