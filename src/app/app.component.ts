@@ -37,6 +37,8 @@ export class AppComponent {
 			this.getAdresses(userData);
 
 			this.getFavourites(userData);
+
+			this.getUserDetails(userData);
 		} else {
 			this.cartService.currentlyLoggedInUser = 'Guest';
 		}
@@ -74,8 +76,9 @@ export class AppComponent {
 		this.favService.getFavs();
 	}
 
+	//get all user account data
 	getUserDetails(userData: any) {
-		this.userDetailsService.userDetailsReference = `user_${userData.id}/userDetails`;
-		this.userDetailsService.getUserDetails();
+		this.userDetailsService.dataReference = `user_${userData.id}/userDetails`;
+		this.userDetailsService.getUserData();
 	}
 }

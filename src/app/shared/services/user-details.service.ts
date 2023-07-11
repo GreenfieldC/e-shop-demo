@@ -5,6 +5,7 @@ import {
 	setDoc,
 	DocumentReference,
 	docData,
+	getDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,20 +14,30 @@ import { map } from 'rxjs/operators';
 	providedIn: 'root',
 })
 export class UserDetailsService {
-	userDetailsReference: string;
-	userDetails$: Observable<any>;
+	//details object that contains user data
+	data: any;
+	dataDocRef: DocumentReference;
+	dataReference: string;
+	currentlyLoggedInUser: string | null;
 
 	constructor(private firestore: Firestore) {}
 
-	getUserDetails() {
-		const docRef = doc(this.firestore, this.userDetailsReference);
-		return docData(docRef);
+	async getUserData() {
+		this.dataDocRef = doc(this.firestore, this.dataReference);
+		const snap = await getDoc(this.dataDocRef);
+
+		if (snap) {
+			this.data = snap.data()!['userDetails'];
+		} else {
+			console.error('No user data found!');
+		}
 	}
 
-	async updateUserDetails(changes: any) {
-		const docRef = doc(this.firestore, this.userDetailsReference);
-		await setDoc(docRef, {
-			userDetails: changes,
-		});
+	async updateUserDetails() {
+		if (this.currentlyLoggedInUser != 'Guest') {
+			await setDoc(this.dataDocRef, {
+				userDetails: this.data,
+			});
+		}
 	}
 }

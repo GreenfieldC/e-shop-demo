@@ -177,14 +177,14 @@ export class LoginPageComponent {
 		this.favouritesService.favReference = `user_${user.uid}/favourites`;
 		this.favouritesService.favListReference = `user_${user.uid}/favouritesList`;
 		this.addressService.adressReference = `user_${user.uid}/addresses`;
-		this.userDetailsService.userDetailsReference = `user_${user.uid}/userDetails`;
+		this.userDetailsService.dataReference = `user_${user.uid}/userDetails`;
 
 		//get corresponding data from firebase
 		this.cartService.getUserData();
 		this.orderService.getOrders();
 		this.addressService.getAdresses();
 		this.favouritesService.getFavs();
-		this.userDetailsService.getUserDetails();
+		this.userDetailsService.getUserData();
 
 		// Show success message and change the form type to login
 		this.toast.success('Logged in!');

@@ -7,32 +7,19 @@ import { UserDetailsService } from 'src/app/shared/services/user-details.service
 	templateUrl: './account.component.html',
 	styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent {
 	selected: string = 'ACCOUNT SETTINGS';
 	form: FormGroup;
-	addresses: any[];
 	data: any;
 
 	constructor(private fb: FormBuilder, public userDetailsService: UserDetailsService) {
 		this.initialiseForm();
-		this.userDetailsService.getUserDetails().subscribe((data) => {
-			console.log(data['userDetails']);
-			this.data = data['userDetails'];
-			this.form.patchValue({
-				firstName: this.data.firstName,
-				lastName: this.data.lastName,
-				company: this.data.company,
-				phone: this.data.phone,
-				email: this.data.email,
-			});
-		});
+		this.fillForm();
 	}
 
-	async ngOnInit() {}
-
 	submit() {
-		console.log(this.form.value);
-		this.userDetailsService.updateUserDetails(this.form.value);
+		this.userDetailsService.data = this.form.value;
+		this.userDetailsService.updateUserDetails();
 	}
 
 	initialiseForm() {
@@ -42,6 +29,17 @@ export class AccountComponent implements OnInit {
 			company: [''],
 			phone: ['', Validators.required],
 			email: ['', Validators.required],
+		});
+	}
+
+	fillForm() {
+		const data = this.userDetailsService.data;
+		this.form.patchValue({
+			firstName: data.firstName,
+			lastName: data.lastName,
+			company: data.company,
+			phone: data.phone,
+			email: data.email,
 		});
 	}
 }
