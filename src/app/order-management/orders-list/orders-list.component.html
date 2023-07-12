@@ -18,7 +18,7 @@
 			<div class="order-detail-wrapper">
 				<span>DELIVERED TO</span>
 				<span
-				
+					style="cursor: pointer;"
 					matTooltip="{{ order.deliveryAddress.street }},
 					{{ order.deliveryAddress.zipCode }} 
 					{{ order.deliveryAddress.city }},
@@ -31,7 +31,7 @@
 			</div>
 			<div class="order-detail-wrapper">
 				<span>{{ order.orderID }}</span>
-				<span class="more-details" (click)="openDialog(order)">View All Order Details</span>
+				<span class="more-details" (click)="openDialog(order)">View Order Summary</span>
 			</div>
 		</div>
 		<div class="product-overview-container">
