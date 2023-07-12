@@ -31,7 +31,7 @@
 			</div>
 			<div class="order-detail-wrapper">
 				<span>{{ order.orderID }}</span>
-				<span class="more-details">View All Order Details</span>
+				<span class="more-details" (click)="openDialog(order)">View All Order Details</span>
 			</div>
 		</div>
 		<div class="product-overview-container">
@@ -62,12 +62,6 @@
 			</div>
 		</div>
 	</mat-card>
-
-	<div class="empty-orders-prompt" *ngIf="orderService.orders.length === 0">
-		<mat-icon>list_alt</mat-icon>
-		<h3>No orders yet</h3>
-		<button [routerLink]="''">Explore products</button>
-	</div>
 </div>
 <div class="mobile-order-container" *ngIf="mobile">
 	<h1 *ngIf="orderService.orders.length != 0">MY ORDERS</h1>
@@ -112,4 +106,9 @@
 			</div>
 		</div>
 	</mat-expansion-panel>
+</div>
+<div class="empty-orders-prompt" *ngIf="orderService.orders.length === 0">
+	<mat-icon>list_alt</mat-icon>
+	<h3>No orders yet</h3>
+	<button [routerLink]="''">Explore products</button>
 </div>

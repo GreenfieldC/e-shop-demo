@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { OrderHistoryService } from 'src/app/shared/services/order-history.service';
+import { DailogOrderDetailsComponent } from '../dailog-order-details/dailog-order-details.component';
 
 @Component({
 	selector: 'app-orders-list',
@@ -7,7 +9,7 @@ import { OrderHistoryService } from 'src/app/shared/services/order-history.servi
 	styleUrls: ['./orders-list.component.scss'],
 })
 export class OrdersListComponent {
-	constructor(public orderService: OrderHistoryService) {
+	constructor(public orderService: OrderHistoryService, private dialog: MatDialog) {
 		this.checkMobile();
 	}
 
@@ -25,5 +27,11 @@ export class OrdersListComponent {
 
 	private checkMobile() {
 		window.innerWidth < 900 ? (this.mobile = true) : (this.mobile = false);
+	}
+
+	openDialog(order: any) {
+		this.dialog.open(DailogOrderDetailsComponent, {
+			data: order,
+		});
 	}
 }
