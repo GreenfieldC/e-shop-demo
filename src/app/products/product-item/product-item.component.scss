@@ -1,71 +1,85 @@
 .card {
 	display: flex;
 	align-items: center;
-	width: 250px;
-	height: 490px;
+	width: 100%;
+	min-height: 110px;
 	border-radius: unset;
+	padding: 0 0.5rem;
 	// box-shadow: unset;
+	width: 100%;
+	height: unset;
+	flex-direction: row;
+	box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: 0.4);
 
-	&__image-container {
-		position: relative;
+	main {
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		background-color: white;
-		width: 100%;
-		height: 380px;
 
-		&__image {
-			width: 300px;
-			object-fit: cover;
-			object-position: 50% 50%;
-			transition: transform 0.3s ease-in-out;
-		}
+		.card__image-container {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			background-color: white;
+			// width: 100%;
+			// height: 380px;
 
-		&__overlay {
-			position: absolute;
-			opacity: 0;
-			transition: all 0.3s ease-in-out;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			margin: auto;
+			height: unset;
+			width: unset;
+			padding: 1rem;
 
-			&:hover {
-				opacity: 1;
-				transition: all 0.3s ease-in-out;
-				background-color: rgba(0, 0, 0, 0.3);
-				// background-color: rgba(233, 197, 106, 0.163);
+			&__image {
+				// width: 300px;
+				width: 50px;
+				object-fit: cover;
+				object-position: 50% 50%;
+				transition: transform 0.3s ease-in-out;
 			}
 
-			button {
+			&__overlay {
 				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				background-color: var(--secondary-color);
-				color: white;
-				white-space: nowrap;
-				cursor: pointer;
+				opacity: 0;
+				transition: all 0.3s ease-in-out;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+
+				&:hover {
+					opacity: 1;
+					transition: all 0.3s ease-in-out;
+					background-color: rgba(0, 0, 0, 0.3);
+					// background-color: rgba(233, 197, 106, 0.163);
+				}
+
+				button {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					background-color: var(--secondary-color);
+					color: white;
+					white-space: nowrap;
+					cursor: pointer;
+				}
+			}
+
+			&:hover .card__image-container__image {
+				transform: scale(0.7);
+				transition: transform 0.3s ease-in-out;
 			}
 		}
 
-		&:hover .card__image-container__image {
-			transform: scale(0.7);
-			transition: transform 0.3s ease-in-out;
-		}
-	}
+		.card__content {
+			display: flex;
+			flex-direction: column;
+			padding: 1rem !important;
+			font-size: 0.75rem;
 
-	&__content {
-		display: flex;
-		flex-direction: column;
-		padding: 1rem !important;
-		font-size: 0.75rem;
-
-		&__price {
-			font-weight: 600;
+			&__price {
+				font-weight: 600;
+			}
 		}
 	}
 
@@ -76,3 +90,42 @@
 	}
 }
 
+.red-icon {
+	color: red;
+}
+
+.loading-placeholder {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+	.card {
+		width: 250px;
+		// height: 490px;
+		flex-direction: column;
+		box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: 0.4);
+
+		main {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			.card__image-container {
+				height: 280px !important;
+				padding: 1rem !important;
+
+				&__image {
+					width: 300px;
+				}
+			}
+		}
+	}
+}

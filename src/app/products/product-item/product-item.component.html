@@ -1,28 +1,28 @@
-<mat-card class="card">
-	<div class="card__image-container">
-		<img class="card__image-container__image" [src]="product?.image" />
-		<div class="card__image-container__overlay">
-			<button mat-raised-button aria-label="Expand image">
-				<span>Product View</span>
-			</button>
+<mat-card class="product-item" class="card">
+	<main (click)="openDetailView(product)">
+		<div class="card__image-container">
+			<img class="card__image-container__image" [src]="product?.image" />
+			<div class="card__image-container__overlay">
+				<button mat-raised-button aria-label="Expand image">
+					<span>Product View</span>
+				</button>
+			</div>
 		</div>
-	</div>
 
-	<mat-card-content class="card__content">
-		<span class="card__content__title">{{ product.title }}</span>
-		<span class="card__content__price"
-			>{{ product.price * exchangeRateService.selectedRate | number : '1.2-2' }}
-			{{ exchangeRateService.icon }}</span
-		>
-	</mat-card-content>
+		<mat-card-content class="card__content">
+			<span class="card__content__title">{{ product.title }}</span>
+			<span class="card__content__price"
+				>{{
+					product.price * exchangeRateService.selectedRate | number : '1.2-2'
+				}}
+				{{ exchangeRateService.icon }}</span
+			>
+		</mat-card-content>
+	</main>
 
-	<button mat-icon-button (click)="toggleSelected()">
-		<mat-icon *ngIf="selected" aria-label="Example icon-button with a heart icon">
-			favorite
-		</mat-icon>
-
-		<mat-icon *ngIf="!selected" aria-label="Example icon-button with a heart icon">
-			favorite_border
-		</mat-icon>
+	<button mat-icon-button (click)="toggleSelected(product)">
+		<mat-icon [ngClass]="{ 'red-icon': determineIcon(product) === 'favorite' }">{{
+			determineIcon(product)
+		}}</mat-icon>
 	</button>
 </mat-card>
