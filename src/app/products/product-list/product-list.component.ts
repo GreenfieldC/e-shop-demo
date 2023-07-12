@@ -47,7 +47,6 @@ export class ProductListComponent {
 		};
 
 		this.dialog.open(DialogProductDetailsComponent, dialogConfig);
-		console.log(product);
 	}
 
 	/**

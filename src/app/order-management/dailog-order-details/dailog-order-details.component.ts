@@ -7,7 +7,5 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 	styleUrls: ['./dailog-order-details.component.scss'],
 })
 export class DailogOrderDetailsComponent {
-	constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-		console.log(this.data);
-	}
+	constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
