@@ -6,6 +6,7 @@ import { DialogPaymentComponent } from '../dialog-payment/dialog-payment.compone
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddressesService } from 'src/app/shared/services/addresses.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { UserDetailsService } from 'src/app/shared/services/user-details.service';
 
 /**
  * interface for the Credit Card Details entered by the user
@@ -44,6 +45,7 @@ export class ShoppingCartComponent {
 	form1: FormGroup;
 	form2: FormGroup;
 	addressMatch: boolean = false;
+	cardSaved: boolean = false;
 
 	billingDetails: billingDetails = {
 		firstname: null,
@@ -120,7 +122,8 @@ export class ShoppingCartComponent {
 		public dialog: MatDialog,
 		private fb: FormBuilder,
 		private toast: HotToastService,
-		public adressService: AddressesService
+		public adressService: AddressesService,
+		public userDetailsService: UserDetailsService
 	) {
 		this.initialiseForms();
 	}
@@ -373,6 +376,29 @@ export class ShoppingCartComponent {
 			}
 		} else {
 			this.form2.reset();
+		}
+	}
+
+	toggleCreditCard() {
+		this.cardSaved = !this.cardSaved;
+
+		if (this.cardSaved) {
+			let defaultCard;
+			this.userDetailsService.data.cards.forEach((card: any) => {
+				if (card.isDefault) {
+					defaultCard = card;
+				}
+			});
+			if (defaultCard) {
+				this.form1.get('cardNumber')?.setValue(defaultCard['number']);
+				this.form1.get('expiry')?.setValue(defaultCard['expiry']);
+				this.form1.get('cvv')?.setValue(defaultCard['cvv']);
+				this.form1.get('name')?.setValue(defaultCard['name']);
+			} else {
+				this.toast.error('No default card set!');
+			}
+		} else {
+			this.form1.reset();
 		}
 	}
 }
