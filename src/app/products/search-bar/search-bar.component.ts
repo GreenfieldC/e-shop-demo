@@ -15,10 +15,9 @@ export class SearchBarComponent {
 	showProducts: boolean = false;
 	categories: Array<any>;
 	selectedCategory: string = 'all';
-	isLoading: boolean = false;
 
 	constructor(
-		private apiService: ApiService,
+		public apiService: ApiService,
 		private dialog: MatDialog,
 		public exchangeRateService: ExchangeRateService
 	) {}

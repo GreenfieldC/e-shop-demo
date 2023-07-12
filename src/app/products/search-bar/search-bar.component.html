@@ -55,6 +55,10 @@
 					class="product-item"
 					[product]="product"
 				></app-product-item>
+				<div class="loading-placeholder" *ngIf="apiService.isLoading">
+					<mat-spinner style="margin-bottom: 1rem"></mat-spinner>
+					<h1>Loading Products</h1>
+				</div>
 			</div>
 		</div>
 	</div>
