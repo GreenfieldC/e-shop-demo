@@ -27,8 +27,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FirstNamePipe } from './pipes/first-name.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SpinnerComponent } from './spinner/spinner.component';
 
-const components = [FrameComponent, FirstNamePipe];
+const components = [FrameComponent, FirstNamePipe, SpinnerComponent];
 const modules = [
 	CommonModule,
 	MatButtonModule,
