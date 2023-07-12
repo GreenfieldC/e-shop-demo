@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -20,7 +20,7 @@ interface cardDetails {
 	templateUrl: './dialog-new-card.component.html',
 	styleUrls: ['./dialog-new-card.component.scss'],
 })
-export class DialogNewCardComponent {
+export class DialogNewCardComponent implements OnInit {
 	form: FormGroup;
 	cardDetails: cardDetails = {
 		number: null,
@@ -35,14 +35,16 @@ export class DialogNewCardComponent {
 		private dialog: MatDialog,
 		private userDetailsService: UserDetailsService,
 		private toast: HotToastService
-	) {
-		this.initialiseForms();
+	) {}
+
+	ngOnInit() {
+		this.initialiseForm();
 	}
 
 	/**
 	 * 	initialisation of the card infirmation forms
 	 */
-	initialiseForms() {
+	initialiseForm() {
 		this.form = this.fb.group({
 			cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}\s*$/)]],
 			expiry: [

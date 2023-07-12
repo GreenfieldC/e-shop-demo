@@ -17,19 +17,17 @@
 			</div>
 			<div class="order-detail-wrapper">
 				<span>DELIVERED TO</span>
-				<!-- <span
-					*ngIf="order.paymentDetails.deliveryAddress"
-					matTooltip="Address:
-          {{ order.paymentDetails.deliveryAddress!.street }}
-          {{ order.paymentDetails.deliveryAddress!.zipCode }}
-          {{ order.paymentDetails.deliveryAddress!.city }}
-          {{ order.paymentDetails.deliveryAddress!.country }}
-          "
+				<span
+				
+					matTooltip="{{ order.deliveryAddress.street }},
+					{{ order.deliveryAddress.zipCode }} 
+					{{ order.deliveryAddress.city }},
+					{{ order.deliveryAddress.country }}"
 					aria-label="Button that displays a tooltip when focused or hovered over"
 				>
-					{{ order.paymentDetails.deliveryAddress.firstName }}
-					{{ order.paymentDetails.deliveryAddress.lastName }}</span
-				> -->
+					{{ order.deliveryAddress.firstName }}
+					{{ order.deliveryAddress.lastName }}</span
+				>
 			</div>
 			<div class="order-detail-wrapper">
 				<span>{{ order.orderID }}</span>
@@ -47,9 +45,9 @@
 						<span>{{ product.title }}</span>
 						<span style="font-size: smaller"
 							>Return window open until
-							<!-- <strong>{{
+							<strong>{{
 								order.returnDate!.seconds * 1000 | date : 'longDate'
-							}}</strong> -->
+							}}</strong>
 						</span>
 						<div class="btn-wrapper">
 							<button class="btn-accent">Buy again</button>

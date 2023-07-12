@@ -33,19 +33,19 @@
 						>edit</mat-icon
 					>
 				</h2>
-				<span *ngIf="aS.defaultAdress"
-					>{{ aS.defaultAdress['firstName'] }}
-					{{ aS.defaultAdress['lastName'] }}</span
+				<span
+					>{{ this.deliveryAdress['firstName'] }}
+					{{ this.deliveryAdress['lastName'] }}</span
 				>
-				<span *ngIf="aS.defaultAdress">{{ aS.defaultAdress['street'] }} </span>
-				<span *ngIf="aS.defaultAdress"
-					>{{ aS.defaultAdress['zipCode'] }} {{ aS.defaultAdress['city'] }}
+				<span>{{ this.deliveryAdress['street'] }} </span>
+				<span 
+					>{{ this.deliveryAdress['zipCode'] }} {{ this.deliveryAdress['city'] }}
 				</span>
-				<span *ngIf="aS.defaultAdress">{{ aS.defaultAdress['country'] }} </span>
+				<span >{{ this.deliveryAdress['country'] }} </span>
 
 				<div *ngIf="carousellOpen" class="address-carousell">
 					<div class="address-option-wrapper">
-						<div *ngFor="let address of aS.addresses" class="address-option">
+						<div *ngFor="let address of aS.addresses" class="address-option" (click)="changeAdress(address)">
 							<span
 								>{{ address['firstName'] }}
 								{{ address['lastName'] }}</span

@@ -28,7 +28,6 @@ export class UserDetailsService {
 
 		if (snap) {
 			this.data = snap.data()!['userDetails'];
-			console.log(this.data);
 		} else {
 			console.error('No user data found!');
 		}

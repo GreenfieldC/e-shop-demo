@@ -15,6 +15,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class DialogPaymentComponent {
 	orderAnimation: boolean = false;
 	carousellOpen: boolean = false;
+	deliveryAdress: any;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,7 +25,9 @@ export class DialogPaymentComponent {
 		private router: Router,
 		public aS: AddressesService,
 		private toast: HotToastService
-	) {}
+	) {
+		this.deliveryAdress = this.aS.defaultAdress;
+	}
 
 	getCardDetailsArray(details: any): any[] {
 		return Object.entries(details);
@@ -57,6 +60,7 @@ export class DialogPaymentComponent {
 			products: this.cartService.products,
 			date: new Date(),
 			returnDate: this.returnDate,
+			deliveryAddress: this.deliveryAdress,
 		};
 
 		setTimeout(() => {
@@ -82,5 +86,10 @@ export class DialogPaymentComponent {
 		this.carousellOpen = !this.carousellOpen;
 	}
 
-	selectAddress() {}
+	changeAdress(address: any) {
+		this.deliveryAdress = address;
+		this.carousellOpen = false;
+
+		console.log(this.deliveryAdress);
+	}
 }

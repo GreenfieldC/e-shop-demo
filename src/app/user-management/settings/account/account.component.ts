@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { UserDetailsService } from 'src/app/shared/services/user-details.service';
 
@@ -8,7 +8,7 @@ import { UserDetailsService } from 'src/app/shared/services/user-details.service
 	templateUrl: './account.component.html',
 	styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
 	selected: string = 'ACCOUNT SETTINGS';
 	form: FormGroup;
 	data: any;
@@ -17,13 +17,16 @@ export class AccountComponent {
 		private fb: FormBuilder,
 		public userDetailsService: UserDetailsService,
 		public toast: HotToastService
-	) {
+	) {}
+
+	ngOnInit() {
 		this.initialiseForm();
-		// this.fillForm();
+		this.fillForm();
 	}
 
 	submit() {
 		this.userDetailsService.data = this.form.value;
+		// console.log(this.userDetailsService.data);
 		this.userDetailsService.updateUserDetails();
 		this.toast.success('Data updated!');
 	}
@@ -35,20 +38,18 @@ export class AccountComponent {
 			company: [''],
 			phone: ['', Validators.required],
 			email: ['', Validators.required],
-			cards: this.userDetailsService.data?.cards,
+			cards: new FormControl(this.userDetailsService.data.cards),
 		});
 	}
 
-	// fillForm() {
-	// 	setTimeout(() => {
-	// 		const data = this.userDetailsService.data;
-	// 		this.form.patchValue({
-	// 			firstName: data.firstName,
-	// 			lastName: data.lastName,
-	// 			company: data.company,
-	// 			phone: data.phone,
-	// 			email: data.email,
-	// 		});
-	// 	}, 1000);
-	// }
+	fillForm() {
+		const data = this.userDetailsService.data;
+		this.form.patchValue({
+			firstName: data.firstName,
+			lastName: data.lastName,
+			company: data.company,
+			phone: data.phone,
+			email: data.email,
+		});
+	}
 }
