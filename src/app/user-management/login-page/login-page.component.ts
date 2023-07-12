@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+	Component,
+	ElementRef,
+	EventEmitter,
+	Output,
+	ViewChild,
+} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -55,7 +61,10 @@ export class LoginPageComponent {
 			username: ['', [Validators.minLength(3), Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.minLength(6), Validators.required]],
-			passwordConfirm: ['', [Validators.minLength(3), Validators.required]],
+			passwordConfirm: [
+				'',
+				[Validators.minLength(3), Validators.required],
+			],
 		});
 	}
 
@@ -135,16 +144,26 @@ export class LoginPageComponent {
 
 			//functionality that gets triggered when type == signup
 			if (this.isSignup) {
-				const credential = await this.afAuth.createUserWithEmailAndPassword(
-					email,
-					password
-				);
-
+				const credential =
+					await this.afAuth.createUserWithEmailAndPassword(
+						email,
+						password
+					);
 				const user = credential.user;
 				if (user) {
-					this.signup(user, username);
+					await this.signup(user, username);
+					await this.afAuth.signInWithEmailAndPassword(
+						email,
+						password
+					); // Automatically log in the user after signup
+					this.loginSuccess.emit();
+					const loggedInUser = await this.afAuth.currentUser;
+					if (loggedInUser) {
+						this.login(loggedInUser);
+					}
 				}
 			}
+
 			if (this.isPasswordReset) {
 				await this.afAuth.sendPasswordResetEmail(email);
 				this.serverMessage = 'Check your email';
@@ -219,7 +238,5 @@ export class LoginPageComponent {
 		});
 
 		updateProfile(user, { displayName: username });
-
-		this.type = 'login';
 	}
 }
