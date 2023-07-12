@@ -29,7 +29,10 @@
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
-			// width: 50%;
+
+			h2 {
+				width: 180px;
+			}
 		}
 	}
 
