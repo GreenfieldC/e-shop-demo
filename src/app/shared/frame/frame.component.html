@@ -8,14 +8,17 @@
 			<span>{{ exchangeRateService.icon }}</span>
 
 			<span>{{ exchangeRateService.selectedCurrency }}</span>
-			<mat-icon class="dropdown-arrow" (click)="dropDownOpen = !dropDownOpen"
+			<mat-icon
+				[matMenuTriggerFor]="currencyMenu"
+				class="dropdown-arrow"
+				(click)="dropDownOpen = !dropDownOpen"
 				>expand_more</mat-icon
 			>
-			<div *ngIf="dropDownOpen" class="dropdown-menu" #dropdown>
+			<mat-menu #currencyMenu class="dropdown-menu" xPosition="before">
 				<div (click)="onCurrencySelected('USD')">USD</div>
 				<div (click)="onCurrencySelected('EUR')">EUR</div>
 				<div (click)="onCurrencySelected('GBP')">GBP</div>
-			</div>
+			</mat-menu>
 		</div>
 		<div class="icon-box--menuitem-container">
 			<div class="icon-wrapper">
