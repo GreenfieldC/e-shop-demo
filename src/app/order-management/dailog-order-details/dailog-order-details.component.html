@@ -1,0 +1,27 @@
+<div class="dialog-container">
+
+<h2 style="text-align: center">Order Summary</h2>
+<ol>
+	<li>
+		<strong>Date:</strong>
+		{{ data.date.seconds * 1000 | date : 'longDate' }}
+	</li>
+	<li>
+		<strong>Total:</strong> {{ data.paymentDetails.currency
+		}}{{ data.paymentDetails.total | number : '1.2-2' }}
+	</li>
+	<li><strong>Delivered To: </strong>
+        <span>{{data.deliveryAddress.firstName}}</span> | <span>{{data.deliveryAddress.lastName}}</span> | <span>{{data.deliveryAddress.street}}, </span>
+        <span>{{data.deliveryAddress.zipCode}}</span> | <span>{{data.deliveryAddress.city}}</span> | <span>{{data.deliveryAddress.country}}</span>
+        
+    </li>
+	<li><strong>ID:</strong> {{ data.orderID }}</li>
+	<li>
+		<strong>Return Window:</strong>
+		{{ data.returnDate!.seconds * 1000 | date : 'longDate' }}
+	</li>
+    <li><strong>Number of products:</strong> {{ data.products.length }}</li>
+</ol>
+
+</div>
+

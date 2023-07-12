@@ -328,7 +328,7 @@ export class ShoppingCartComponent {
 	}
 
 	/**
-	 * Transform Umlauts to its two letter equivalent
+	 * Transform Umlauts to their two letter equivalents
 	 */
 
 	transformUmlauts() {
