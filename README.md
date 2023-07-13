@@ -1,5 +1,21 @@
-# EShopDemo
+# Greenfield Traders Webshop
 
+A fully functioning dummy webshop with fake products. The shop includes: 
+
+1) A Login/ Signup System 
+2) User accounts with their associated data than can be modified. Addresses, payments and personal information. 
+3) A Shopping Cart.
+4) A Favorites List.
+5) An overview of past orders.
+6) A search bar.
+7) Changing curreny feature. 
+8) A full checkout process that processes and validates user data and triggers an email send after a purchase was completed. 
+
+Also the webshop is fully responsive and usable on mobile devices. 
+
+After cloning the repository, if you want to run it on your machine, follow the following steps: 
+
+## Installing the Angular CLI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
 
 ## Development server
