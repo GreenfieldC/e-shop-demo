@@ -11,12 +11,7 @@
 				<h2>Grand Total</h2>
 				<span>{{ data.total | number : '1.2-2' }}{{ data.currency }}</span>
 			</div>
-			<div class="checkout-detail-wrapper" *ngIf="data.payment === 'credit'">
-				<h2>Card Details</h2>
-				<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
-					{{ item[0] }}: {{ item[1] }}
-				</span>
-			</div>
+			
 		</div>
 
 		<div class="checkout-container">
@@ -24,6 +19,12 @@
 				<h2>Billing Details</h2>
 				<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
 					{{ item[0][0].toUpperCase() + item[0].slice(1) }}: {{ item[1] }}
+				</span>
+			</div>
+			<div class="checkout-detail-wrapper" *ngIf="data.payment === 'credit'">
+				<h2>Card Details</h2>
+				<span *ngFor="let item of getCardDetailsArray(data.paymentData)">
+					{{ item[0] }}: {{ item[1] }}
 				</span>
 			</div>
 			<div class="checkout-detail-wrapper cs-wrapper">

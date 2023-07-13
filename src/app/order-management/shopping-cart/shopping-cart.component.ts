@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddressesService } from 'src/app/shared/services/addresses.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { UserDetailsService } from 'src/app/shared/services/user-details.service';
+import { LoginPageComponent } from 'src/app/user-management/login-page/login-page.component';
 
 /**
  * interface for the Credit Card Details entered by the user
@@ -320,11 +321,27 @@ export class ShoppingCartComponent {
 					discountCode: this.discountCode,
 				},
 			});
+		} else if (this.shoppingCartService.currentlyLoggedInUser === 'Guest') {
+			this.openLoginDialog();
 		} else {
 			this.toast.error(
 				'Please select a delivery address in the account settings panel!'
 			);
 		}
+	}
+
+	//open login dialog when no guest user tries to checkout
+	openLoginDialog() {
+		const isMobileView = window.innerWidth < 400;
+		const dialogConfig = {
+			width: isMobileView ? '100vw' : '400px',
+			maxWidth: '400px',
+		};
+		const dialogRef = this.dialog.open(LoginPageComponent, dialogConfig);
+
+		dialogRef.componentInstance.loginSuccess.subscribe(() => {
+			dialogRef.close(); // Close the dialog when login is successful
+		});
 	}
 
 	/**

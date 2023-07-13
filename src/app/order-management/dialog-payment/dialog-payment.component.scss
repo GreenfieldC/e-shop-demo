@@ -13,15 +13,15 @@
 	h1 {
 		margin-left: 2rem;
 		margin-top: 2rem;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;;
 	}
 
 	.checkout-container {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		gap: 1rem;
+		justify-content: flex-start;
 		align-items: flex-start;
+		gap: 1rem;
 		padding: 1rem 2rem;
 		margin-bottom: 2rem;
 
@@ -29,6 +29,7 @@
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
+			min-width: 200px;
 
 			h2 {
 				width: 180px;
@@ -38,7 +39,9 @@
 
 	.btn-wrapper {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
+		margin-left: 2rem;
+
 		.order-btn {
 			color: white;
 			background-color: var(--accent-color);
@@ -145,6 +148,7 @@
 	.checkout-container {
 		display: flex;
 		flex-direction: row !important;
+		gap: 4rem;
 	}
 }
 
