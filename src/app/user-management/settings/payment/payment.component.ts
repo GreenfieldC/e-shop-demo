@@ -15,7 +15,12 @@ export class PaymentComponent {
 	) {}
 
 	openDialog() {
-		this.dialog.open(DialogNewCardComponent);
+		const isMobileView = window.innerWidth < 400;
+		const dialogConfig = {
+			width: isMobileView ? '100vw' : '400px',
+			maxWidth: '400px',
+		};
+		this.dialog.open(DialogNewCardComponent, dialogConfig);
 	}
 
 	setDefault(index: number) {

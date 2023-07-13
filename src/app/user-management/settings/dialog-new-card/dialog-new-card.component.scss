@@ -1,5 +1,5 @@
 .new-card-container {
-    padding: 2rem;
+	padding: 2rem;
 }
 
 .payment-info {
@@ -17,17 +17,22 @@
 	.security-wrapper {
 		display: flex;
 		gap: 1rem;
+		flex-wrap: wrap;
 
 		mat-form-field {
-			width: 50%;
+			flex-basis: 100%;
 		}
 	}
-
-	
 
 	.name-wrapper {
 		mat-form-field {
 			width: 100%;
 		}
+	}
+}
+
+@media (min-width: 400px) {
+	.security-wrapper {
+		flex-wrap: unset !important;
 	}
 }
