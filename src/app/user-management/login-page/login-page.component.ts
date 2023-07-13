@@ -183,23 +183,30 @@ export class LoginPageComponent {
 
 		localStorage.setItem('authToken', JSON.stringify(authData));
 
-		//set document references
+		this.setReferences(user);
+		this.getData();
+
+		// Show success message and change the form type to login
+		this.toast.success('Logged in!');
+	}
+
+	//set document references
+	setReferences(user: any) {
 		this.cartService.cartReference = `user_${user.uid}/cart`;
 		this.orderService.orderReference = `user_${user.uid}/orders`;
 		this.favouritesService.favReference = `user_${user.uid}/favourites`;
 		this.favouritesService.favListReference = `user_${user.uid}/favouritesList`;
 		this.addressService.adressReference = `user_${user.uid}/addresses`;
 		this.userDetailsService.dataReference = `user_${user.uid}/userDetails`;
+	}
 
-		//get corresponding data from firebase
+	//get corresponding data from firebase
+	getData() {
 		this.cartService.getUserData();
 		this.orderService.getOrders();
 		this.addressService.getAdresses();
 		this.favouritesService.getFavs();
 		this.userDetailsService.getUserData();
-
-		// Show success message and change the form type to login
-		this.toast.success('Logged in!');
 	}
 
 	//signup functionality
