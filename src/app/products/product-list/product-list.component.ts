@@ -20,7 +20,7 @@ export class ProductListComponent {
 		public favouritesService: FavouritesService
 	) {
 		/**
-		 * Subscription to Porducts Observable
+		 * Subscription to Products Observable
 		 */
 		this.apiService.getProducts.subscribe((data) => {
 			data.forEach((obj: any) => {
@@ -33,7 +33,7 @@ export class ProductListComponent {
 
 	/**
 	 * Opens prodcuts detail view when clicking on it
-	 * @param product Object containing all the product data
+	 * @param {object} product containing all the product data
 	 */
 	openDetailView(product: any) {
 		const isMobileView = window.innerWidth < 800;

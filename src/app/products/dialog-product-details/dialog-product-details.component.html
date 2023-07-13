@@ -43,7 +43,7 @@
 				*ngIf="orderPlaced"
 				class="success"
 				[routerLink]="'shopping-cart'"
-				(click)="onNoClick()"
+				(click)="closeDialog()"
 			>
 				<mat-icon>check_circle</mat-icon>
 				Order Placed! View Cart
@@ -63,4 +63,4 @@
 	</div>
 </div>
 
-<span class="close-button" (click)="onNoClick()"><mat-icon>close</mat-icon></span>
+<span class="close-button" (click)="closeDialog()"><mat-icon>close</mat-icon></span>

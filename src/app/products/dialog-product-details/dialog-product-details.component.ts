@@ -29,7 +29,10 @@ export class DialogProductDetailsComponent {
 		this.data.size = this.selectedSize;
 	}
 
-	onNoClick() {
+	/**
+	 * Closes the dialog
+	 */
+	closeDialog() {
 		this.dialog.closeAll();
 	}
 
