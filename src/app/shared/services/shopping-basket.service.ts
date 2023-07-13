@@ -70,14 +70,12 @@ export class ShoppingBasketService {
 
 	//update all products
 	async updateProducts() {
-		if (this.currentlyLoggedInUser != 'Guest') {
-			setDoc(this.cartDocRef, {
+		if (this.currentlyLoggedInUser !== 'Guest') {
+			await setDoc(this.cartDocRef, {
 				products: this.products,
 			});
-			this.calculatePrices();
-		} else {
-			this.calculatePrices();
 		}
+		this.calculatePrices();
 	}
 
 	//update discount codes
