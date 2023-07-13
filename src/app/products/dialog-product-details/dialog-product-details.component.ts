@@ -35,7 +35,6 @@ export class DialogProductDetailsComponent {
 
 	addToCart() {
 		this.orderPlaced = true;
-
 		let index = -1;
 
 		if (!this.data.category.includes('clothing')) {
@@ -43,24 +42,20 @@ export class DialogProductDetailsComponent {
 				(obj) => obj.title === this.data.title
 			);
 		} else {
-			if (this.selectedSize) {
-				index = this.shoppingBasketService.products.findIndex(
-					(obj) => obj.size === this.data.size && obj.title === this.data.title
-				);
-			} else {
+			if (!this.selectedSize) {
 				this.orderPlaced = false;
 				this.toast.error('Please select size!');
 				return;
 			}
+			index = this.shoppingBasketService.products.findIndex(
+				(obj) => obj.size === this.data.size && obj.title === this.data.title
+			);
 		}
 
 		if (index !== -1) {
-			let baselinePrice =
-				this.shoppingBasketService.products[index].price /
-				this.shoppingBasketService.products[index].quantity;
-
-			this.shoppingBasketService.products[index].quantity += 1;
-			this.shoppingBasketService.products[index].price += baselinePrice;
+			const product = this.shoppingBasketService.products[index];
+			product.quantity++;
+			product.price += product.price / product.quantity;
 		} else {
 			this.shoppingBasketService.products.push(this.data);
 			this.toast.success('Product added to cart!');
