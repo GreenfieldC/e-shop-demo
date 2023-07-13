@@ -1,6 +1,11 @@
+* {
+	box-sizing: border-box;
+}
+
 .saved-cards-container {
 	display: flex;
 	gap: 1rem;
+	flex-wrap: wrap;
 }
 
 .new-card-prompt {
@@ -13,6 +18,8 @@
 	cursor: pointer;
 	font-size: 1.1rem;
 	min-height: 80px;
+	width: 219.72px;
+	height: 144px;
 
 	mat-icon {
 		vertical-align: middle;

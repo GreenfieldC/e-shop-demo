@@ -1,7 +1,7 @@
 <div class="saved-cards-container">
 	<div
 		*ngIf="userDetailsService.data?.cards && userDetailsService.data.cards.length > 0"
-		style="display: flex; gap: 1rem"
+		style="display: flex; gap: 1rem; flex-wrap: wrap"
 	>
 		<div
 			*ngFor="let card of userDetailsService.data.cards; let i = index"
