@@ -48,6 +48,7 @@ export class DialogProductDetailsComponent {
 					(obj) => obj.size === this.data.size && obj.title === this.data.title
 				);
 			} else {
+				this.orderPlaced = false;
 				this.toast.error('Please select size!');
 				return;
 			}
