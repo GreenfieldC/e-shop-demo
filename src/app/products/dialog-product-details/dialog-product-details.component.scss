@@ -3,18 +3,18 @@
 }
 
 .mat-mdc-dialog-content {
-	max-height: 100dvh; // später ändern
-	max-width: 100dvw; // später ändern
+	max-height: 100dvh;
+	max-width: 100dvw;
 }
 
 .product-container {
 	display: flex;
-	align-items: center; // später ändern
+	align-items: center;
 
 	column-gap: 3rem;
-	gap: 2rem; // später ändern
+	gap: 2rem;
 	padding: 1rem;
-	flex-direction: column; //rückgängig machen
+	flex-direction: column;
 
 	img {
 		width: 200px;
@@ -131,14 +131,14 @@
 
 @media (min-width: 801px) {
 	.mat-mdc-dialog-content {
-		max-height: unset !important; // später ändern
-		max-width: unset !important; // später ändern
+		max-height: unset !important;
+		max-width: unset !important;
 	}
 
 	.product-container {
 		display: flex;
 		align-items: flex-start;
 		column-gap: 3rem;
-		flex-direction: unset; //rückgängig machen
+		flex-direction: unset;
 	}
 }

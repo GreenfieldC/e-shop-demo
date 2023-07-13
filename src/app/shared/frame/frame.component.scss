@@ -22,7 +22,7 @@
 
 	&--icon-box {
 		display: flex;
-		gap: 0.5rem; // 1rem
+		gap: 0.5rem;
 		color: white;
 
 		.icon-box--currency-wrapper {
@@ -47,6 +47,7 @@
 				z-index: 2;
 				color: black;
 				box-shadow: 0 0 6px 0 rgba($color: #000000, $alpha: 0.4);
+
 				div {
 					margin-top: 0.5rem;
 					cursor: pointer;
@@ -144,6 +145,7 @@
 			display: block;
 			font-size: 1.2rem;
 		}
+
 		&--icon-box {
 			.icon-box--menuitem-container {
 				display: flex;

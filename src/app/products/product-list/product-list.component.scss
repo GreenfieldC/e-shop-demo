@@ -10,12 +10,9 @@
 	.card {
 		display: flex;
 		align-items: center;
-		// width: 250px;
-		// height: 490px;
 		min-height: 110px;
 		border-radius: unset;
 		padding: 0 0.5rem;
-		// box-shadow: unset;
 		width: 100%;
 		height: unset;
 		flex-direction: row;
@@ -36,7 +33,6 @@
 				padding: 1rem;
 
 				&__image {
-					// width: 300px;
 					width: 50px;
 					object-fit: cover;
 					object-position: 50% 50%;
@@ -57,7 +53,6 @@
 						opacity: 1;
 						transition: all 0.3s ease-in-out;
 						background-color: rgba(0, 0, 0, 0.3);
-						// background-color: rgba(233, 197, 106, 0.163);
 					}
 
 					button {

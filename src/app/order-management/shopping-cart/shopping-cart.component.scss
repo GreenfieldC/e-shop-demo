@@ -25,6 +25,7 @@
 				align-self: start;
 				padding: 1rem 0;
 			}
+
 			.img-title {
 				display: flex;
 				.product-img {
@@ -161,7 +162,6 @@
 	mat-card {
 		width: 100%;
 		padding: 1rem;
-		// background-color: rgb(230, 226, 226);
 		border: 1px solid var(--primary-color);
 		display: flex;
 		flex-direction: column;
@@ -208,6 +208,7 @@
 		cursor: pointer;
 		transition: 225ms all ease-in-out;
 		width: 150px;
+
 		&:hover {
 			background-color: var(--primary-color);
 		}
@@ -289,6 +290,7 @@
 	box-shadow: 0 0 2px 0 rgba($color: #000000, $alpha: 0.2);
 	cursor: pointer;
 	transition: 225ms all ease-in-out;
+
 	&:hover {
 		background-color: var(--primary-color);
 	}
