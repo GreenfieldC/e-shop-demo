@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -60,7 +60,7 @@ export class LoginPageComponent {
 	}
 
 	/**
-	 * Set the type of form
+	 * Set the type of form on click
 	 * @param val string of the type of form
 	 */
 	changeType(val: any) {
@@ -68,7 +68,7 @@ export class LoginPageComponent {
 	}
 
 	/**
-	 * get form modus (signup, login or password reset)
+	 * get form state (either it is in state signup, login or password reset)
 	 */
 	get isLogin() {
 		return this.type === 'login';
@@ -165,16 +165,22 @@ export class LoginPageComponent {
 
 	//login functionality
 	login(user: any) {
-		//set currently logged in user
-		this.cartService.currentlyLoggedInUser = user.displayName;
-		this.orderService.currentlyLoggedInUser = user.displayName;
-		this.favouritesService.currentlyLoggedInUser = user.displayName;
-		this.addressService.currentlyLoggedInUser = user.displayName;
+		//set currently logged in user in all services
+		const services = [
+			this.cartService,
+			this.orderService,
+			this.favouritesService,
+			this.addressService,
+		];
+		services.forEach((service) => {
+			service.currentlyLoggedInUser = user.displayName;
+		});
 
 		const authData = {
 			id: user.uid,
 			name: user.displayName,
 		};
+
 		localStorage.setItem('authToken', JSON.stringify(authData));
 
 		//set document references
