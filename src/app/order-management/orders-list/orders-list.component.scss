@@ -51,8 +51,10 @@
 		.product {
 			display: flex;
 			gap: 2rem;
+
 			img {
 				width: 80px;
+				object-fit: contain;
 			}
 
 			.product-info-actions {
