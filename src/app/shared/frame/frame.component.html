@@ -32,7 +32,7 @@
 					*ngIf="shoppingBasketService.currentlyLoggedInUser !== 'Guest'"
 					[matMenuTriggerFor]="accountMenu"
 				>
-					{{ shoppingBasketService.currentlyLoggedInUser | firstName }}
+					{{ shoppingBasketService.currentlyLoggedInUser ?? 'You' | firstName }}
 				</span>
 				<mat-icon
 					class="account-icon"
