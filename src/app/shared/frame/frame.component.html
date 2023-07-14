@@ -15,9 +15,9 @@
 				>expand_more</mat-icon
 			>
 			<mat-menu #currencyMenu class="dropdown-menu" xPosition="before">
-				<div (click)="onCurrencySelected('USD')">USD</div>
-				<div (click)="onCurrencySelected('EUR')">EUR</div>
-				<div (click)="onCurrencySelected('GBP')">GBP</div>
+				<div style="cursor: pointer; margin-bottom: .5rem;text-align: center;" (click)="onCurrencySelected('USD')">USD</div>
+				<div style="cursor: pointer; margin-bottom: .5rem;text-align: center;" (click)="onCurrencySelected('EUR')">EUR</div>
+				<div style="cursor: pointer; text-align: center;" (click)="onCurrencySelected('GBP')">GBP</div>
 			</mat-menu>
 		</div>
 		<div class="icon-box--menuitem-container">
