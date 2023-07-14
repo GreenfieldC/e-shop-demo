@@ -42,11 +42,12 @@
 						>
 							Product View
 						</button>
-						<button class="addToCart-mobile" mat-icon-button>
-							<mat-icon
-								(click)="openDetails(favourite)"
-								*ngIf="!orderPlaced"
-								aria-label="Product View"
+						<button
+							(click)="openDetails(favourite)"
+							class="addToCart-mobile"
+							mat-icon-button
+						>
+							<mat-icon *ngIf="!orderPlaced" aria-label="Product View"
 								>add_shopping_cart</mat-icon
 							>
 						</button>
