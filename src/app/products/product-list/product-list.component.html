@@ -1,3 +1,10 @@
+<div class="landingpage-wrapper" *ngIf="!apiService.isLoading">
+	<div class="overlay"></div>
+	<h1>SHOP FOR HAPPINESS</h1>
+	<!-- <a class="explore">Explore Products</a> -->
+</div>
+
+
 <div class="products-list" *ngIf="!apiService.isLoading">
 	<mat-card
 		*ngFor="let product of products; let i = index"
