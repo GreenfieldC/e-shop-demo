@@ -1,9 +1,6 @@
 {
-  "hosting": [
-    {
-      "target": "e-shop-demo",
-      "source": ".",
-      "frameworksBackend": {}
-    }
-  ]
+	"hosting": {
+		"public": "dist/e-shop-demo",
+		"ignore": ["firebase.json", "/.*", "/node_modules/"]
+	}
 }
