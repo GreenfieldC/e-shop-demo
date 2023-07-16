@@ -1,6 +1,6 @@
 .landingpage-wrapper {
-	margin: 2rem;
-	min-height: 500px;
+	margin: 1rem;
+	min-height: 150px;
 	overflow: hidden;
 	background-image: url('/assets/img/landingpage.png');
 	background-size: cover;
@@ -30,10 +30,12 @@
 	h1 {
 		color: white;
 		font-size: 4rem;
+		font-size: 1rem;
 		height: fit-content;
 		width: fit-content;
 		background-color: var(--primary-color);
-		padding: 2rem 1rem;
+		// padding: 2rem 1rem;
+		padding: 0.5rem 0.5rem;
 		border-bottom-right-radius: 1rem;
 		margin: 0;
 	}
@@ -139,7 +141,23 @@
 	color: red;
 }
 
+@media screen and (min-width: 480px) {
+	.landingpage-wrapper {
+		margin: 2rem;
+		min-height: 200px;
+
+		h1 {
+			font-size: 2rem;
+		}
+	}
+}
+
 @media screen and (min-width: 600px) {
+	.landingpage-wrapper {
+		margin: 2rem;
+		min-height: 300px;
+	}
+
 	.products-list {
 		padding: 1rem;
 		gap: 2rem;
@@ -164,6 +182,30 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.landingpage-wrapper {
+		margin: 2rem;
+		min-height: 500px;
+
+		h1 {
+			font-size: 3rem;
+			padding: 1.5rem 1rem;
+		}
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	.landingpage-wrapper {
+		margin: 2rem;
+		min-height: 500px;
+
+		h1 {
+			font-size: 4rem;
+			padding: 2rem 1rem;
 		}
 	}
 }
