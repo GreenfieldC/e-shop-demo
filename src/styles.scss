@@ -3,9 +3,14 @@
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 @import 'node_modules/@ngneat/hot-toast/src/styles/styles.css';
 
+html {
+	scroll-behavior: smooth;
+}
+
 html,
 body {
 	height: 100%;
+	
 }
 
 * {

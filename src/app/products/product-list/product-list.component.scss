@@ -4,41 +4,38 @@
 	overflow: hidden;
 	background-image: url('/assets/img/landingpage.png');
 	background-size: cover;
-	position: relative;
 	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 	
 	.explore {
-		padding: 1rem;
-		color: white;
-		background: var(--primary-color);
-		border: 3px solid white;
-		cursor: pointer;
-		position: absolute;
-		left: 2rem;
-		bottom: 2rem;
-		z-index: 3;
-		font-size: 1.5rem;
+	padding: 0 1rem 1rem 1rem;
+    color: white;
+    background: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: fit-content;
+    width: fit-content;
+    border-bottom-right-radius: 1.5rem;
+    cursor: pointer;
+	text-decoration: none;
+
+		mat-icon {
+			color: white;
+			vertical-align: middle;
+			transform: scale(1.5);
+		}
 	}
 
 	h1 {
 		color: white;
 		font-size: 4rem;
 		height: fit-content;
+		width: fit-content;
 		background-color: var(--primary-color);
 		padding: 2rem 1rem;
 		border-bottom-right-radius: 1rem;
-	}
-
-	.overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.explore {
-
+		margin: 0;
 	}
 }
 
