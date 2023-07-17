@@ -1,6 +1,8 @@
 # Greenfield Traders Webshop
 
-A fully functioning dummy webshop with fake products. The shop includes: 
+A fully functioning dummy webshop with fake products built in a team of two (Moritz Georgy & Christian Greenfield) 
+
+The shop includes: 
 
 1) A Login/ Signup System 
 2) User accounts with their associated data than can be modified. Addresses, payments and personal information. 
