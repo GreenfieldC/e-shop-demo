@@ -1,4 +1,4 @@
-<div class="header">
+<div id="top" class="header">
 	<img class="header--logo" src="assets/img/logo.png" alt="logo" [routerLink]="''" />
 
 	<h1 class="header--title">Greenfield Traders</h1>
@@ -15,9 +15,24 @@
 				>expand_more</mat-icon
 			>
 			<mat-menu #currencyMenu class="dropdown-menu" xPosition="before">
-				<div style="cursor: pointer; margin-bottom: .5rem;text-align: center;" (click)="onCurrencySelected('USD')">USD</div>
-				<div style="cursor: pointer; margin-bottom: .5rem;text-align: center;" (click)="onCurrencySelected('EUR')">EUR</div>
-				<div style="cursor: pointer; text-align: center;" (click)="onCurrencySelected('GBP')">GBP</div>
+				<div
+					style="cursor: pointer; margin-bottom: 0.5rem; text-align: center"
+					(click)="onCurrencySelected('USD')"
+				>
+					USD
+				</div>
+				<div
+					style="cursor: pointer; margin-bottom: 0.5rem; text-align: center"
+					(click)="onCurrencySelected('EUR')"
+				>
+					EUR
+				</div>
+				<div
+					style="cursor: pointer; text-align: center"
+					(click)="onCurrencySelected('GBP')"
+				>
+					GBP
+				</div>
 			</mat-menu>
 		</div>
 		<div class="icon-box--menuitem-container">

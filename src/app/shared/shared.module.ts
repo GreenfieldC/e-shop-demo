@@ -28,8 +28,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FirstNamePipe } from './pipes/first-name.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { UpScrollBtnComponent } from './up-scroll-btn/up-scroll-btn.component';
 
-const components = [FrameComponent, FirstNamePipe, SpinnerComponent];
+const components = [
+	FrameComponent,
+	FirstNamePipe,
+	SpinnerComponent,
+	UpScrollBtnComponent,
+];
 const modules = [
 	CommonModule,
 	MatButtonModule,
