@@ -9,12 +9,11 @@
 	justify-content: flex-start;
 
 	.explore {
-		// padding: 0 1rem 1rem 1rem;
 		padding: 0 1rem 0.5rem 0.5rem;
 		color: white;
 		background: var(--primary-color);
 		cursor: pointer;
-		font-size: 0.75rem;
+		font-size: 1rem;
 		width: fit-content;
 		width: fit-content;
 		border-bottom-right-radius: 1.5rem;
@@ -30,12 +29,10 @@
 
 	h1 {
 		color: white;
-		font-size: 4rem;
-		font-size: 1rem;
+		font-size: 1.5rem;
 		height: fit-content;
 		width: fit-content;
 		background-color: var(--primary-color);
-		// padding: 2rem 1rem;
 		padding: 0.5rem 0.5rem;
 		border-bottom-right-radius: 1rem;
 		margin: 0;
@@ -148,8 +145,7 @@
 		min-height: 200px;
 
 		.explore {
-			padding: 0 1rem 1rem 1rem;
-			// padding: 0 1rem 0.5rem 0.5rem;
+			padding: 0 1rem 0.5rem 0.5rem;
 			font-size: 1rem;
 			mat-icon {
 				color: white;
@@ -204,7 +200,7 @@
 		min-height: 500px;
 
 		.explore {
-			padding: 1rem;
+			padding: 0 1rem 1rem;
 			font-size: 1.5rem;
 			mat-icon {
 				color: white;
