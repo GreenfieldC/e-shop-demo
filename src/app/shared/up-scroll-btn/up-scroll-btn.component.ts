@@ -27,6 +27,4 @@ export class UpScrollBtnComponent {
 			this.windowScrolled = false;
 		}
 	}
-
-	ngOnInit() {}
 }
