@@ -41,10 +41,10 @@
 
 .products-list {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	gap: 10px;
 	flex-wrap: wrap;
-	padding: 1rem;
+	padding: 1rem 0;
 	gap: 2rem;
 	overflow: hidden;
 
@@ -154,7 +154,8 @@
 		gap: 2rem;
 
 		.card {
-			width: 250px;
+			flex: 1 0 calc(25% - 2rem); 
+			min-width: 250px;
 			flex-direction: column;
 			box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: 0.4);
 
