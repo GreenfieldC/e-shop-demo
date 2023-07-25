@@ -401,11 +401,14 @@ export class ShoppingCartComponent {
 
 		if (this.cardSaved) {
 			let defaultCard;
-			this.userDetailsService.data.cards.forEach((card: any) => {
-				if (card.isDefault) {
-					defaultCard = card;
-				}
-			});
+			if (this.userDetailsService.data) {
+				this.userDetailsService.data.cards.forEach((card: any) => {
+					if (card.isDefault) {
+						defaultCard = card;
+					}
+				});
+			}
+
 			if (defaultCard) {
 				this.form1.get('cardNumber')?.setValue(defaultCard['number']);
 				this.form1.get('expiry')?.setValue(defaultCard['expiry']);
