@@ -7,5 +7,9 @@ import { ProductReviewService } from 'src/app/shared/services/product-review.ser
 	styleUrls: ['./reviews.component.scss'],
 })
 export class ReviewsComponent {
+	filteredReviews: Array<any>;
+
 	constructor(public reviewService: ProductReviewService) {}
+
+	ngOnInit() {}
 }

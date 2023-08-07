@@ -20,7 +20,7 @@
 					>
 					<span>					(Rating: {{ data.rating.rate }})
 					</span>
-					<a [routerLink]="'reviews'" target="_blank" *ngIf="reviewCounter > 0">See {{reviewCounter}} Review(s)</a>
+					<a (click)="navigateToReviews()" target="_blank" *ngIf="reviewCounter > 0">See {{reviewCounter}} Review(s)</a>
 				</div>
 			</div>
 			<div

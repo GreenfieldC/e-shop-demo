@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Route, Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
 import { ProductReviewService } from 'src/app/shared/services/product-review.service';
@@ -23,6 +24,7 @@ export class DialogProductDetailsComponent {
 		public exchangeRateService: ExchangeRateService,
 		private toast: HotToastService,
 		private reviewService: ProductReviewService,
+		private router: Router,
 
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
@@ -40,6 +42,14 @@ export class DialogProductDetailsComponent {
 				this.reviewCounter++;
 			}
 		});
+	}
+
+	/**
+	 * navigate to reviews
+	 */
+	navigateToReviews() {
+		this.closeDialog();
+		this.router.navigate(['/reviews'], { queryParams: { id: this.data.id } });
 	}
 
 	/**
