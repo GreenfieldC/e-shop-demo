@@ -17,6 +17,8 @@ export class ReviewsComponent {
 	) {}
 
 	ngOnInit() {
+		//To Do: solve problem on page reload
+
 		this.route.queryParams.subscribe((params) => {
 			// Convert this.id to a number
 			this.id = parseInt(params['id'], 10); // Use parseInt with base 10
