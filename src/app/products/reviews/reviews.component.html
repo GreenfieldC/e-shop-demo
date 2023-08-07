@@ -1,6 +1,6 @@
 <div class="reviews-container">
     <h1>PRODUCT REVIEWS</h1>
-    <div class="review" *ngFor="let review of reviewService.reviews">
+    <div class="review" *ngFor="let review of filteredReviews">
         <span>{{review.username}}</span>
         <span>{{review.review}}</span>
     </div>
