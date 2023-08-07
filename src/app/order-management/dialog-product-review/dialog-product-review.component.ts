@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-dialog-product-review',
@@ -12,7 +12,11 @@ export class DialogProductReviewComponent {
 
 	form: FormGroup;
 
-	constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public product: any) {}
+	constructor(
+		private fb: FormBuilder,
+		@Inject(MAT_DIALOG_DATA) public product: any,
+		private dialog: MatDialog
+	) {}
 
 	ngOnInit() {
 		this.initialiseForm();
@@ -52,4 +56,12 @@ export class DialogProductReviewComponent {
 	 * Add Form submit
 	 */
 	onSubmit() {}
+
+	/**
+	 * close Dialog
+	 */
+
+	closeDialog() {
+		this.dialog.closeAll();
+	}
 }
