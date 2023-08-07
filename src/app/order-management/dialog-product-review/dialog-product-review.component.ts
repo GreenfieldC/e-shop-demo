@@ -74,6 +74,9 @@ export class DialogProductReviewComponent {
 
 			this.reviewService.reviews.push(review);
 			this.reviewService.addProductReview();
+
+			this.dialog.closeAll();
+			this.toast.success('Product review successfully submitted!');
 		}
 	}
 

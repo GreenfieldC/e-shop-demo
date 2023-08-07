@@ -6,9 +6,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 	providedIn: 'root',
 })
 export class ProductReviewService {
-	constructor(private fs: Firestore) {
-		this.getProductReviews();
-	}
+	constructor(private fs: Firestore) {}
 
 	reviewDoc: string = 'reviews/reviews';
 	reviews: Array<any> = [];
@@ -19,7 +17,9 @@ export class ProductReviewService {
 	async getProductReviews() {
 		let reviewRef = doc(this.fs, this.reviewDoc);
 		let snapshot = await getDoc(reviewRef);
-		console.log(snapshot);
+		let data = snapshot.data();
+		this.reviews = data!['reviews'];
+		console.log(this.reviews);
 	}
 
 	/**
