@@ -19,10 +19,7 @@
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<mat-form-field class="textarea">
 			<mat-label>Write product review</mat-label>
-			<textarea matInput></textarea>
-			<mat-error *ngIf="reviewMessage?.invalid && reviewMessage?.touched">
-				The review needs at least 15 characters.
-			</mat-error>
+			<textarea matInput formControlName="message"></textarea>
 		</mat-form-field>
 
 		<div class="button-wrapper">

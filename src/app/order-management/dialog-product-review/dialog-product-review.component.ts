@@ -1,6 +1,10 @@
 import { Component, ElementRef, Inject, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { HotToastService } from '@ngneat/hot-toast';
+import { ProductReviewService } from 'src/app/shared/services/product-review.service';
+import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
+import { UserDetailsService } from 'src/app/shared/services/user-details.service';
 
 @Component({
 	selector: 'app-dialog-product-review',
@@ -11,16 +15,19 @@ export class DialogProductReviewComponent {
 	stars: any = Array.from({ length: 5 }, () => ({ isSelected: false }));
 
 	form: FormGroup;
+	counter: number = 0;
 
 	constructor(
 		private fb: FormBuilder,
 		@Inject(MAT_DIALOG_DATA) public product: any,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		public reviewService: ProductReviewService,
+		public shoppingCartService: ShoppingBasketService,
+		private toast: HotToastService
 	) {}
 
 	ngOnInit() {
 		this.initialiseForm();
-		console.log(this.product);
 	}
 
 	/**
@@ -28,7 +35,7 @@ export class DialogProductReviewComponent {
 	 */
 	initialiseForm() {
 		this.form = this.fb.group({
-			message: ['', [Validators.minLength(15), Validators.required]],
+			message: [''],
 		});
 	}
 
@@ -55,7 +62,41 @@ export class DialogProductReviewComponent {
 	/**
 	 * Add Form submit
 	 */
-	onSubmit() {}
+	onSubmit() {
+		if (this.validateForm()) {
+			let review = {
+				username: this.shoppingCartService.currentlyLoggedInUser,
+				review: this.reviewMessage!.value,
+				date: new Date(),
+				stars: this.counter,
+				productId: this.product.id,
+			};
+
+			this.reviewService.reviews.push(review);
+			this.reviewService.addProductReview();
+		}
+	}
+
+	/**
+	 * validate Form
+	 */
+	validateForm() {
+		this.stars.forEach((star: any) => {
+			if (star.isSelected) {
+				this.counter++;
+			}
+		});
+
+		if (this.counter === 0) {
+			this.toast.error('Please select stars to give a rating!');
+			return false;
+		} else if (this.reviewMessage!.value.length < 5) {
+			this.toast.error('Review must be at least 5 characters long!');
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 	/**
 	 * close Dialog
