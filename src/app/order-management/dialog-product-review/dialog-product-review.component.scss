@@ -1,45 +1,63 @@
 .dialog-content {
-    padding: 1rem;
+	padding: 1rem;
 }
 
 h1 {
-    text-align: center;
+	text-align: center;
 }
 
+.product-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem 0;
+	gap: 1rem;
+
+	img {
+		width: 80px;
+	}
+
+	
+}
 
 .star-wrapper {
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+    align-items: center;
 
-    .star {
-        color: gray;
-        cursor: pointer;
-    }
+	.star {
+		color: gray;
+		cursor: pointer;
+		transform: scale(1.2);
+	}
 
-    .selected {
-        color: var(--accent-color);
-    }
-
+	.selected {
+		color: var(--accent-color);
+	}
 }
 
-
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.textarea {
+		width: 100%;
+		min-height: 200px;
+	}
 }
 
 .button-wrapper {
-    display:flex;
-    gap: 1rem;
-    width: 100%;
-    justify-content: center;
-    margin-top: 1rem;
+	display: flex;
+	gap: 1rem;
+	width: 100%;
+	justify-content: center;
+	margin-top: 2rem;
 
-    .submit {
-        background-color: var(--accent-color);
-        color: white;
-    }
-
+	.submit {
+		background-color: var(--accent-color);
+		color: white;
+	}
 }

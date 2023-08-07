@@ -1,13 +1,23 @@
 <div class="dialog-content">
 	<h1>Product review</h1>
 
-    <div class="star-wrapper">
-        <mat-icon class="star" *ngFor="let star of stars; let i= index" [class.selected]="star.isSelected" (click)="fillStars(i)">star</mat-icon>
-    </div>
+	<div class="product-wrapper">
+		<img [src]="product.image" alt="product-img" />
+		<span>{{ product.title }}</span>
+	</div>
 
+	<div class="star-wrapper">
+		<mat-icon
+			class="star"
+			*ngFor="let star of stars; let i = index"
+			[class.selected]="star.isSelected"
+			(click)="fillStars(i)"
+			>star</mat-icon
+		>
+	</div>
 
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
-		<mat-form-field>
+		<mat-form-field class="textarea">
 			<mat-label>Write product review</mat-label>
 			<textarea matInput></textarea>
 			<mat-error *ngIf="reviewMessage?.invalid && reviewMessage?.touched">

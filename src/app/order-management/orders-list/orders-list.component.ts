@@ -63,7 +63,11 @@ export class OrdersListComponent {
 		this.dialog.open(DialogProblemComponent);
 	}
 
-	productReview() {
-		this.dialog.open(DialogProductReviewComponent);
+	openProductReview(product: any) {
+		this.dialog.open(DialogProductReviewComponent, {
+			height: 'fit-content',
+			width: '600px',
+			data: product,
+		});
 	}
 }
