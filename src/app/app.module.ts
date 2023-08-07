@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserManagementModule } from './user-management/user-management.module';
 import { OrderManagementModule } from './order-management/order-management.module';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { DialogProductReviewComponent } from './order-management/dialog-product-review/dialog-product-review.component';
 
 @NgModule({
 	declarations: [AppComponent],

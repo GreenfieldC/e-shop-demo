@@ -18,7 +18,9 @@
 						}"
 						>star</mat-icon
 					>
-					(Rating: {{ data.rating.rate }})
+					<span>					(Rating: {{ data.rating.rate }})
+					</span>
+					<a (click)="navigateToReviews()" target="_blank" *ngIf="reviewCounter > 0">See {{reviewCounter}} Review(s)</a>
 				</div>
 			</div>
 			<div

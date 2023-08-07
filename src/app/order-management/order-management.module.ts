@@ -9,9 +9,17 @@ import { DialogPaymentComponent } from './dialog-payment/dialog-payment.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { DailogOrderDetailsComponent } from './dailog-order-details/dailog-order-details.component';
 import { DialogProblemComponent } from './dialog-problem/dialog-problem.component';
+import { DialogProductReviewComponent } from './dialog-product-review/dialog-product-review.component';
 
 @NgModule({
-	declarations: [ShoppingCartComponent, OrdersListComponent, DialogPaymentComponent, DailogOrderDetailsComponent, DialogProblemComponent],
+	declarations: [
+		ShoppingCartComponent,
+		OrdersListComponent,
+		DialogPaymentComponent,
+		DailogOrderDetailsComponent,
+		DialogProblemComponent,
+		DialogProductReviewComponent,
+	],
 	imports: [
 		CommonModule,
 		SharedModule,

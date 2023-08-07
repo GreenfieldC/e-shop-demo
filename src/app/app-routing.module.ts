@@ -10,6 +10,7 @@ import { AccountComponent } from './user-management/settings/account/account.com
 import { authGuard } from './guards/auth.guard';
 import { FavouritesComponent } from './user-management/favourites/favourites.component';
 import { PaymentComponent } from './user-management/settings/payment/payment.component';
+import { ReviewsComponent } from './products/reviews/reviews.component';
 
 const routes: Routes = [
 	{
@@ -24,6 +25,10 @@ const routes: Routes = [
 	{
 		path: 'shopping-cart',
 		component: ShoppingCartComponent,
+	},
+	{
+		path: 'reviews',
+		component: ReviewsComponent,
 	},
 	{
 		path: 'search',

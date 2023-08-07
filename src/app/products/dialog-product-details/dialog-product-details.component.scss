@@ -39,9 +39,23 @@
 			display: flex;
 			margin-top: 1rem;
 
-			span {
-				margin-left: 1rem;
+			.stars {
+				display: flex;
+				align-items: center;
+				span {
+					margin-left: .5rem;
+				}
+
+				a {
+					text-decoration: underline;
+					margin-left: .5rem;
+					cursor: pointer;
+				}
+
+
 			}
+
+			
 		}
 
 		.size-selection-container {

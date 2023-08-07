@@ -1,0 +1,8 @@
+<div class="reviews-container">
+    <h1>PRODUCT REVIEWS</h1>
+    <div class="review" *ngFor="let review of filteredReviews">
+        <span class="user">{{review.username}}</span>
+        <span>{{review.review}}</span>
+        <span>{{review.date.toDate() | date: 'short'}}</span>
+    </div>
+</div>

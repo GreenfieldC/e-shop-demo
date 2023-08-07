@@ -4,6 +4,7 @@ import { OrderHistoryService } from './shared/services/order-history.service';
 import { AddressesService } from './shared/services/addresses.service';
 import { FavouritesService } from './shared/services/favourites.service';
 import { UserDetailsService } from './shared/services/user-details.service';
+import { ProductReviewService } from './shared/services/product-review.service';
 
 @Component({
 	selector: 'app-root',
@@ -17,11 +18,13 @@ export class AppComponent {
 		public orderService: OrderHistoryService,
 		public adressService: AddressesService,
 		public favService: FavouritesService,
-		public userDetailsService: UserDetailsService
+		public userDetailsService: UserDetailsService,
+		public reviewService: ProductReviewService
 	) {}
 
 	ngOnInit() {
 		this.checkForUserData();
+		this.reviewService.getProductReviews();
 	}
 
 	//check if in local storage there is saved data present
