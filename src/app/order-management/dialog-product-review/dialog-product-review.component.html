@@ -1,0 +1,24 @@
+<div class="dialog-content">
+	<h1>Product review</h1>
+
+    <div class="star-wrapper">
+        <mat-icon class="star" *ngFor="let star of stars; let i= index" [class.selected]="star.isSelected" (click)="fillStars(i)">star</mat-icon>
+    </div>
+
+
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<mat-form-field>
+			<mat-label>Write product review</mat-label>
+			<textarea matInput></textarea>
+			<mat-error *ngIf="reviewMessage?.invalid && reviewMessage?.touched">
+				The review needs at least 15 characters.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="button-wrapper">
+			<button mat-raised-button>Cancel</button>
+
+			<button mat-raised-button type="submit" class="submit">Submit</button>
+		</div>
+	</form>
+</div>

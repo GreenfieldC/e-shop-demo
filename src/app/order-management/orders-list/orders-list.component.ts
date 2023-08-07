@@ -6,6 +6,7 @@ import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.s
 import { DialogProductDetailsComponent } from 'src/app/products/dialog-product-details/dialog-product-details.component';
 import { HotToastService } from '@ngneat/hot-toast';
 import { DialogProblemComponent } from '../dialog-problem/dialog-problem.component';
+import { DialogProductReviewComponent } from '../dialog-product-review/dialog-product-review.component';
 
 @Component({
 	selector: 'app-orders-list',
@@ -63,8 +64,6 @@ export class OrdersListComponent {
 	}
 
 	productReview() {
-		this.toast.error(
-			'Product review feature is currently still in working progress!'
-		);
+		this.dialog.open(DialogProductReviewComponent);
 	}
 }
