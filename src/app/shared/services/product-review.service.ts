@@ -19,7 +19,6 @@ export class ProductReviewService {
 		let snapshot = await getDoc(reviewRef);
 		let data = snapshot.data();
 		this.reviews = data!['reviews'];
-		console.log(this.reviews);
 	}
 
 	/**

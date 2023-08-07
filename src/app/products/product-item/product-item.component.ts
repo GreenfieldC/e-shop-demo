@@ -33,10 +33,6 @@ export class ProductItemComponent {
 		});
 	}
 
-	// toggleSelected() {
-	// 	this.selected = !this.selected;
-	// }
-
 	/**
 	 * Opens prodcuts detail view when clicking on it
 	 * @param product Object containing all the product data

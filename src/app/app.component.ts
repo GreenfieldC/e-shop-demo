@@ -18,11 +18,13 @@ export class AppComponent {
 		public orderService: OrderHistoryService,
 		public adressService: AddressesService,
 		public favService: FavouritesService,
-		public userDetailsService: UserDetailsService
+		public userDetailsService: UserDetailsService,
+		public reviewService: ProductReviewService
 	) {}
 
 	ngOnInit() {
 		this.checkForUserData();
+		this.reviewService.getProductReviews();
 	}
 
 	//check if in local storage there is saved data present

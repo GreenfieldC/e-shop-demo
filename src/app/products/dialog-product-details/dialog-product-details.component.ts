@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ExchangeRateService } from 'src/app/shared/services/exchange-rate.service';
+import { ProductReviewService } from 'src/app/shared/services/product-review.service';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 
 @Component({
@@ -14,16 +15,36 @@ export class DialogProductDetailsComponent {
 	selectedSize: string | null = null;
 	selectedCurrency: string = 'USD';
 	minimumOrderValue = 250;
+	reviewCounter: number = 0;
 
 	constructor(
 		private dialog: MatDialog,
 		public shoppingBasketService: ShoppingBasketService,
 		public exchangeRateService: ExchangeRateService,
 		private toast: HotToastService,
+		private reviewService: ProductReviewService,
 
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
 
+	ngOnInit() {
+		this.checkReviews();
+	}
+
+	/**
+	 * checkReviews
+	 */
+	checkReviews() {
+		this.reviewService.reviews.forEach((review: any) => {
+			if (review.productId === this.data.id) {
+				this.reviewCounter++;
+			}
+		});
+	}
+
+	/**
+	 * Set size of selected product
+	 */
 	selectSize(size: string) {
 		this.selectedSize = size;
 		this.data.size = this.selectedSize;

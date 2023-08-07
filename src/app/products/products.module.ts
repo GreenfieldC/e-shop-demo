@@ -8,6 +8,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { DialogProductDetailsComponent } from './dialog-product-details/dialog-product-details.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 		ProductListComponent,
 		DialogProductDetailsComponent,
 		SearchBarComponent,
+  ReviewsComponent,
 	],
 	imports: [CommonModule, SharedModule, ProductsRoutingModule, MatButtonToggleModule],
 })
