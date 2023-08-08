@@ -10,7 +10,7 @@ export class ProductReviewService {
 
 	reviewDoc: string = 'reviews/reviews';
 	reviews: Array<any> = [];
-
+	product: any;
 	/**
 	 * Get all product reviews present in firebase
 	 */

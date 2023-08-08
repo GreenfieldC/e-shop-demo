@@ -1,8 +1,37 @@
 <div class="reviews-container">
-    <h1>PRODUCT REVIEWS</h1>
-    <div class="review" *ngFor="let review of filteredReviews">
-        <span class="user">{{review.username}}</span>
-        <span>{{review.review}}</span>
-        <span>{{review.date.toDate() | date: 'short'}}</span>
+	<h1>PRODUCT REVIEWS</h1>
+
+	<div class="product">
+		<img [src]="reviewService.product.image" alt="" />
+		<span> {{ reviewService.product.title }} <br> 
+               Overall Rating: <mat-icon
+               *ngFor="let star of [0, 1, 2, 3, 4]; let i = index"
+               class="star"
+               [class.filled]="i < reviewService.product.rating.rate"
+               >star</mat-icon
+           > ({{reviewService.product.rating.rate}}) 
+        </span>
+	</div>
+
+    <div class="review-box">
+        <div class="review" *ngFor="let review of filteredReviews">
+            <div class="user-wrapper">
+                <img src="assets/img/avatar_male.jpg" alt="" />
+                <span class="user">{{ review.username }}</span>
+            </div>
+            <div class="star-wrapper">
+                <mat-icon
+                    *ngFor="let star of [0, 1, 2, 3, 4]; let i = index"
+                    class="star"
+                    [class.filled]="i < review.stars"
+                    >star</mat-icon
+                >
+            </div>
+    
+            <span>{{ review.review }}</span>
+            <span>{{ review.date.toDate() | date : 'short' }}</span>
+        </div>
     </div>
+
+	
 </div>

@@ -48,6 +48,7 @@ export class DialogProductDetailsComponent {
 	 * navigate to reviews
 	 */
 	navigateToReviews() {
+		this.reviewService.product = this.data;
 		this.closeDialog();
 		this.router.navigate(['/reviews'], { queryParams: { id: this.data.id } });
 	}
