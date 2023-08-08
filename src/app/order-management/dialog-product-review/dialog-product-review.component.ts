@@ -2,6 +2,7 @@ import { Component, ElementRef, Inject, QueryList, ViewChildren } from '@angular
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Timestamp } from 'firebase/firestore';
 import { ProductReviewService } from 'src/app/shared/services/product-review.service';
 import { ShoppingBasketService } from 'src/app/shared/services/shopping-basket.service';
 import { UserDetailsService } from 'src/app/shared/services/user-details.service';
@@ -67,7 +68,7 @@ export class DialogProductReviewComponent {
 			let review = {
 				username: this.shoppingCartService.currentlyLoggedInUser,
 				review: this.reviewMessage!.value,
-				date: new Date(),
+				date: Timestamp.now(),
 				stars: this.counter,
 				productId: this.product.id,
 			};

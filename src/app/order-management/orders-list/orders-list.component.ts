@@ -93,6 +93,7 @@ export class OrdersListComponent {
 				height: 'fit-content',
 				width: '600px',
 				data: product,
+				autoFocus: false,
 			});
 		} else {
 			this.toast.error('You already wrote a review for this product!');
